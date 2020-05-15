@@ -1,0 +1,8 @@
+.product-container{
+  padding:0 32rpx;
+}
+
+.card-container{
+  text-align: center;
+  padding:50rpx 0 150rpx;
+}

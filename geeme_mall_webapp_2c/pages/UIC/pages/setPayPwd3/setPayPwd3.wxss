@@ -1,0 +1,54 @@
+.header{
+  margin-top:40rpx;
+  color:#1f1f1f;
+  font-size:32rpx;
+  text-align: center;
+}
+
+.input-container{
+  position:relative;
+  display: inline-block;
+  margin-top:90rpx;
+  margin-left:33rpx;
+  height:90rpx;
+  border:1px solid #efeff4;
+  box-shadow: 0 0 8rpx 0 rgba(174, 184, 229, 0.3);
+  word-spacing: 50rpx;
+  font-size:0;
+}
+
+.input-item{
+  position:relative;
+  display: inline-block;
+  width:114rpx;
+  height:100%;
+  line-height:90rpx;
+  border-right: 1px solid #efeff4;
+  font-size:52rpx;
+  vertical-align: top;
+  text-align: center;
+}
+
+.input-item:last-child{
+  border:none;
+}
+
+.confirm-button{
+  margin:180rpx auto 0;
+  width:604rpx;
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  color:#fff;
+  font-size:34rpx;
+  background: #f52d56;
+}
+
+.real-input{
+  position: fixed;
+  left:1000px;
+  top:60rpx;
+  width:100rpx;
+  height:100rpx;
+}

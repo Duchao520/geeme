@@ -1,0 +1,14 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="page-container">
+  <block wx:if="{{list && list.length}}">
+    <view class="address-container">
+      <AddressCard wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" showEdit showSelect="{{showSelect}}" isSelected="{{selectedAddress.id == item.id}}" bind:selectAddress="selectAddress" />
+    </view>
+  </block>
+  <block wx:else>
+    <AppDefault text="您还没有任何收货地址哦~" />
+  </block>
+</view>
+<view class="bottom-fixed">
+  <view class="bottom-button" bindtap="jumpEdit">新增收货地址</view>
+</view>

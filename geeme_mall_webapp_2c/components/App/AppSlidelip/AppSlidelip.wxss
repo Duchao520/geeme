@@ -1,0 +1,72 @@
+@import "/utils/wxss/base.wxss";
+@import "/utils/iconfont/iconfont.wxss";
+.row{
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 2rpx solid #EFEFF4;
+  padding: 32rpx 0;
+}
+.row .list_item {
+  border-radius: 12rpx;
+  position: relative;
+  left: -120rpx;
+  width: calc(100% + 120rpx);
+  height: 160rpx;
+}
+.row .list_item .itmem_wrap {
+  width: calc(100% - 120rpx);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 120rpx;
+  z-index: 2;
+  background-color: #fff;
+}
+.row .list_item .itmem_wrap .uncheckbox{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  border: 2rpx solid #AAAAAA;
+}
+.row .list_item .itmem_wrap .checkbox{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  color: #F52D56;
+}
+.row .list_item .itmem_wrap .detail{
+  width: 616rpx;
+  height: 160rpx;
+}
+.row .list_item .itmem_wrap .detail .thumb{
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 24rpx;
+  border-radius: 4rpx;
+  background: #CCCCCC;
+}
+.row .list_item .itmem_wrap .detail .desc{
+  width: 442rpx;
+}
+.row .list_item .delete_wrap {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: rgb(219, 54, 54);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1;
+}
+.row .list_item .delete_wrap .delete_btn {
+  width: 120rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

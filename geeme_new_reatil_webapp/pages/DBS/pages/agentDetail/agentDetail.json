@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "推广提成明细",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "AppOptions": "/components/App/AppOptions/AppOptions",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

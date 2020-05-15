@@ -1,0 +1,54 @@
+.coupon-list{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #F2F2F2;
+}
+.coupon-list .close{
+  position: fixed;
+  top: 100rpx;
+  right: 27rpx;
+}
+.coupon-list .scroll{
+  position: fixed;
+  box-sizing: border-box;
+  padding: 0 36rpx;
+  top: 143rpx;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #F2F2F2;
+}
+.coupon-item{
+  width: 670rpx;
+  height: 174rpx;
+  background: url("/pages/packageA/static/imgs/coupon_bg.png") center center no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+}
+.coupon-active{
+  background: url("/pages/packageA/static/imgs/coupon_bg_active.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.coupon-item .active{
+  width: 83rpx;
+  height: 73rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.ul{
+  display: flex;
+  align-items: center;
+}
+.ul::before{
+  content: '';
+  display: block;
+  width: 6rpx;
+  height: 6rpx;
+  background: #7D7D7D;
+  border-radius: 50%;
+  margin-right: 6rpx;
+}

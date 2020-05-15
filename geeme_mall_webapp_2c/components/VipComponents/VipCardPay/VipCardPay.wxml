@@ -1,0 +1,24 @@
+<!-- 会员卡支付 -->
+<moveBox flag="{{flagPay}}" title="选择支付方式" bindclose="close" bindgoBack="bindgoBack">
+  <view slot="timeContent" class='vipPayContent'>
+    <view class='pay-title'>
+      <view class='pay-t-l'>充值金额</view>
+      <view class='pay-t-r'>
+        <text>￥</text>{{payNumber}}</view>
+    </view>
+    <view class='pay-body'>
+      <view class='payitem'>
+        <view class='itemicon'></view>
+        <view class='itemname'>微信支付</view>
+        <view class='itemselected'></view>
+      </view>
+
+      <!-- <view class='payitem'>
+        <view class='itemiconwallet'></view>
+        <view class='itemname'>钱包余额支付</view>
+        <view class='itemselected' wx:if="{{5>6}}"></view>
+      </view> -->
+    </view>
+  </view>
+  <view class='button' slot="timeBottom" bindtap='toPay'>确认支付</view>
+</moveBox>

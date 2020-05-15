@@ -1,0 +1,351 @@
+<!--index.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class='header'>
+  <view class='header-bg' style="background:{{SHADE_SWITCHER ? '#FFFFFF' : format.getSkin(themeId).color1}}"></view>
+  <!-- 店铺名字 -->
+  <view class="selector flex_box justify_space_between align_center" style="background:{{SHADE_SWITCHER ? '#FFFFFF' : format.getSkin(themeId).color1}};padding-bottom: 24rpx;padding-top: 32rpx;">
+    <text class="fz-42 {{SHADE_SWITCHER ? 'fc-000000' : 'fc-ffffff'}} txt-ellipsis" style="width: 520rpx;" bindtap="showBrowerList">{{BRAND_HOME_SWITCHER ? '品牌中心' : (format.replaceCity(shopInfo.city) || '') + ' ' + (shopInfo.shopName || '')}} <text class="iconfont {{SHADE_SWITCHER ? 'iconxiala-copy' : 'iconxiala'}} fz-24"></text></text>
+    <view class="{{SHADE_SWITCHER ? 'fc-000000' : 'fc-ffffff'}} fz-28" bindtap="jumpShopcate" style="z-index: 4">
+      <text style="margin-right: 8rpx;">其他门店</text>
+      <text class="iconfont icondizhiguanli fz-24"></text>
+    </view>
+  </view>
+  <!-- 下拉门店列表前5个 -->
+  <view class="shade" catchtouchmove='{{true}}' wx:if="{{SHADE_SWITCHER}}" bindtap="showBrowerList">
+    <view class="options">
+      <view class="options-item flex_box align_center justify_space_between box-padding" style="padding-right: 30rpx;" data-type="selectBrand" catchtap="selectStore">
+        <view class="flex_box align_center">
+          <image class="store-thumb" src='{{format.getImageUrl(brand.logo + "?x-oss-process=image/resize,m_fill,h_40,w_40")}}' mode='aspectFill'></image>
+          <text class="fz-28 fc-333333">品牌中心</text>
+        </view>
+        <view class="iconfont fc-F52D56 fz-36 {{BRAND_HOME_SWITCHER ? 'icongouxuan' : ''}}"></view>
+      </view>
+      <view class="options-item flex_box align_center justify_space_between box-padding" style="padding-right: 30rpx;" wx:for="{{browerStoreList}}" wx:key="index" data-storeid="{{item.id}}" data-type="selectStore" catchtap="selectStore">
+        <view class="flex_box align_center">
+          <image class="store-thumb" src='{{format.getImageUrl(item.shopImg + "?x-oss-process=image/resize,m_fill,h_40,w_40")}}' mode='aspectFill'></image>
+          <text class="fz-28 fc-333333">{{format.replaceCity(item.city) + ' ' + item.shopName}}</text>
+        </view>
+        <view class="iconfont  fc-F52D56 fz-36 {{(item.id == shopInfo.id && !BRAND_HOME_SWITCHER) ? 'icongouxuan' : ''}}"></view>
+      </view>
+    </view>
+  </view>
+  <!-- 搜索 -->
+  <view class="flex_box justify_space_between align_center" style="margin-top: 116rpx;height: 64rpx;" wx:if="{{!BRAND_HOME_SWITCHER}}">
+    <view class='search-container'>
+      <AppSearch placeholder="搜索服务项目/产品/会员卡" bind:clickinput="jumpSearch" showCart disabled></AppSearch>
+    </view>
+    <view class="iconfont icongouwuche fc-ffffff fz-44" style="margin-right: 30rpx;position: relative" bindtap="jumpShopCar">
+      <view class="car-count" wx:if="{{shopCarCount}}">{{shopCarCount}}</view>
+    </view>
+  </view>
+
+  <view class='shopname' wx:elif="{{brand && BRAND_HOME_SWITCHER}}">
+    <image class='shop-left' lazy-load src="{{brand.logo+'!style40'}}" mode='aspectFill'></image>
+    <view class='shop-right'>
+      <view class='shop-info text--ellipsis_1'>{{brand.title}}</view>
+      <view class='shop-phone' bindtap='makePhoneCall'>{{brand.phone}}</view>
+    </view>
+  </view>
+</view>
+<block wx:if="{{BRAND_HOME_SWITCHER}}">
+  <!-- 按钮 -->
+  <view class='func' wx:if="{{BRAND_MODULES_FILTER.length > 0}}">
+    <view class='func-item' bindtap="brandJumpTab" data-url="{{item.showLink}}" wx:for="{{BRAND_MODULES_FILTER}}" wx:key="index" wx:if="{{item.showFlag}}">
+      <image class='func-image' src='{{format.getImageUrl(item.showIcon + "?x-oss-process=image/resize,m_lfit,h_116,w_116")}}'></image>
+      <view class='func-text'>{{item.showName}}</view>
+    </view>
+  </view>
+
+  <view class='func' wx:else>
+    <view class='func-item' data-type="DISCOUNT" bindtap="brandJumpTabDefault">
+      <image class='func-image' src='/images/button/icon_index01.png'></image>
+      <view class='func-text'>会员优惠</view>
+    </view>
+    <view class='func-item' data-type="SUGGEST_STORE" bindtap="brandJumpTabDefault">
+      <image class='func-image' src='/images/button/icon_index02.png'></image>
+      <view class='func-text'>推荐美店</view>
+    </view>
+    <view class='func-item' data-type="ASSESSMENT" bindtap="brandJumpTabDefault">
+      <image class='func-image' src='/images/button/icon_index03.png'></image>
+      <view class='func-text'>客户评价</view>
+    </view>
+    <view class='func-item' data-type="BRAND_HOME" bindtap="brandJumpTabDefault">
+      <image class='func-image' src='/images/button/icon_index04.png'></image>
+      <view class='func-text'>品牌主页</view>
+    </view>
+  </view>
+
+  <!-- 广告banner -->
+  <!-- <view class="box_padding" style="padding: 0 16.5rpx;height: 256rpx;margin-bottom: 30rpx;">
+    <swiper class="swiper-adv" indicator-dots autoplay indicator-color="rgba('255,255,255,0')">
+      <block>
+        <swiper-item class="adv-item"></swiper-item>
+      </block>
+      <block>
+        <swiper-item class="adv-item"></swiper-item>
+      </block>
+    </swiper>
+  </view> -->
+  <!-- 广告banner -->
+    <view class="box_padding" style="padding: 0 16.5rpx;height: 256rpx;margin-bottom: 30rpx;" wx:if="{{bannerInfoBrandList.length > 0}}">
+      <swiper class="swiper-adv" indicator-dots autoplay indicator-color="rgba('255,255,255,0')">
+        <block wx:for="{{bannerInfoBrandList}}" wx:key="index">
+          <swiper-item class="adv-item" bindtap="getAdDetailByAdId" data-adid="{{item.adId}}">
+            <image lazy-load src="{{format.getImageUrl(item.banner)}}" style="display:block;border-radius: 12rpx;width: 100%;height: 100%;" mode='aspectFill'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+  <!-- 作品动态 -->
+  <view class='recommended' style="margin-top: 30rpx;">
+    <!-- <view class='recommended-top' bindtap='jumpWorks'> -->
+    <view class='recommended-top'>
+      <view class='recommended-text'>封面动态</view>
+      <!-- <view class='recommended-icon'></view> -->
+    </view>
+    <block wx:if="{{dynamicList && dynamicList.length}}">
+      <view class='recommended-worksBottom'>
+        <Masonry list="{{dynamicList}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+      </view>
+    </block>
+    <block wx:if="{{ifShowDefault}}">
+      <AppDefault image="/images/default/default_works.png" text="暂时没有作品动态，晚点再来看看吧～" top="100rpx" />
+    </block>
+  </view>
+
+</block>
+<block wx:else>
+  <block wx:if="{{abnormal}}">
+    <!-- 按钮 -->
+    <view class='func' wx:if="{{HOME_FIRST_FILTER.length > 0}}">
+      <view class='func-item' data-url="{{item.showLink}}" bindtap='brandJumpTab' wx:for="{{HOME_FIRST_FILTER}}" wx:key="index" wx:if="{{item.showFlag}}">
+        <image class='func-image' src='{{format.getImageUrl(item.showIcon + "?x-oss-process=image/resize,m_lfit,h_116,w_116")}}'></image>
+        <view class='func-text'>{{item.showName}}</view>
+      </view>
+    </view>
+    <view class='func' wx:else>
+      <view class='func-item' bindtap='quickEntry' data-index="{{0}}">
+        <image class='func-image' src='/images/button/home_action1.png'></image>
+        <view class='func-text'>开单码</view>
+      </view>
+      <view class='func-item' bindtap='quickEntry' data-index="{{1}}">
+        <image class='func-image' src='/images/button/home_action2.png'></image>
+        <view class='func-text'>我的预约</view>
+      </view>
+      <view class='func-item' bindtap='quickEntry' data-index="{{2}}">
+        <image class='func-image' src='/images/button/home_action3.png'></image>
+        <view class='func-text'>消费账单</view>
+      </view>
+      <view class='func-item' bindtap='quickEntry' data-index="{{3}}">
+        <image class='func-image' src='/images/button/home_action4.png'></image>
+        <view class='func-text'>会员卡</view>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class='funclass' wx:if="{{goodsClass.length > 0}}">
+      <view class='funclass-item' wx:for="{{goodsClass}}" wx:key="index">
+        <image class='funclass-image' src='{{format.getImageUrl(item.image + "?x-oss-process=image/resize,m_lfit,h_132,w_132")}}' bindtap='jumpClass' data-parent="{{item.parentId}}" data-id='{{item.id}}' data-type="{{item.goodsTypeScope}}" data-name="{{item.sortName}}"></image>
+        <view class='funclass-text'>{{item.sortName}}</view>
+      </view>
+      <view class='funclass-item' wx:if="{{goodsClass.length >= 9}}">
+        <image class='funclass-image' bindtap='jumpClass' data-type="all" src='/images/button/icon_sort.png'></image>
+        <view class='funclass-text'>全场分类</view>
+      </view>
+    </view>
+
+    <!-- 广告banner -->
+    <view class="box_padding" style="padding: 0 16.5rpx;height: 256rpx;margin-bottom: 30rpx;" wx:if="{{bannerInfoList.length > 0}}">
+      <swiper class="swiper-adv" indicator-dots autoplay indicator-color="rgba('255,255,255,0')">
+        <block wx:for="{{bannerInfoList}}" wx:key="index">
+          <swiper-item class="adv-item" bindtap="getAdDetailByAdId" data-adid="{{item.adId}}">
+            <image lazy-load src="{{format.getImageUrl(item.banner)}}" style="display:block;border-radius: 12rpx;width: 100%;height: 100%;" mode='aspectFill'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    
+    <!-- 美物拼团 -->
+    <view class='recommended' wx:if="{{groupBuyProducts.length != 0}}">
+      <view class='recommended-top' bindtap='jumpProduct_group'>
+        <view class='recommended-text'>{{HOME_SECOND_FILTER.groupBuy ? HOME_SECOND_FILTER.groupBuy.showName : '美物拼团'}}</view>
+        <view class='recommended-icon arrow--right_red_big'></view>
+      </view>
+      <scroll-view scroll-x class="recommend-scroll-view">
+        <view style="padding-bottom:16rpx;">
+          <view class="recommend-item" wx:for="{{groupBuyProducts}}" wx:key="index" bindtap="jumpGoodsDetail" data-id="{{item.goodsId}}" data-type="{{item.goodsType}}">
+            <view class="recommend-image">
+              <image src="{{format.getImageUrl(item.cycleImage + '?x-oss-process=image/resize,m_fill,h_540,w_540')}}" lazy-load mode="aspectFill"></image>
+            </view>
+            <view class="recommend-text">
+              <view class="recommend-title text--ellipsis_2">{{item.goodsTitle}}</view>
+              <view class="price-group">
+                <text style="font-size:24rpx;font-weight:normal">¥</text>{{item.groupPrice}}
+                <text class="word-symbol">团</text>
+              </view>
+              <view class="price-shopPrice">¥{{item.shopPrice}}
+                <text class="word-symbol">单</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 新人专享 -->
+    <view class='recommended' wx:if="{{weExpShowGoodsList.length != 0}}">
+      <view class='recommended-top'>
+        <view class='recommended-text'>{{HOME_SECOND_FILTER.newCustomer ? HOME_SECOND_FILTER.newCustomer.showName : '新人专享'}}</view>
+        <view class='recommended-icon arrow--right_red_big' bindtap="jumpVipDiscount"></view>
+      </view>
+      <scroll-view scroll-x class="recommend-scroll-view">
+        <view style="padding-bottom:16rpx;">
+          <view class="recommend-item" wx:for="{{weExpShowGoodsList}}" wx:key="index" bindtap="jumpGoodsDetail" data-id="{{item.goodsId}}" data-type="{{item.goodsType}}">
+            <view class="recommend-image">
+              <image src="{{format.getImageUrl(item.cycleImage + '?x-oss-process=image/resize,m_fill,h_540,w_540')}}" lazy-load mode="aspectFill"></image>
+            </view>
+            <view class="recommend-text">
+              <view class="recommend-title text--ellipsis_2">{{item.goodsSimpleTitle}}</view>
+              <view class="price-group">
+                <text style="font-size:24rpx;font-weight:normal">¥</text>{{item.experiencePrice}}
+                <text class="word-symbol" style="width: 72rpx;">新人专享</text>
+              </view>
+              <view class="price-shopPrice">¥{{item.shopPrice}}
+                <text class="word-symbol">单</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 充值有礼 -->
+    <view class='recommended' wx:if="{{listCardKindBasicInfoSupperRecommend.length > 0}}">
+      <view class='recommended-top' bindtap='jumpPurchase'>
+        <view class='recommended-text'>{{HOME_SECOND_FILTER.rechargeGift ? HOME_SECOND_FILTER.rechargeGift.showName : '充值有礼'}}</view>
+        <view class='recommended-icon arrow--right_red_big'></view>
+      </view>
+      <scroll-view scroll-x>
+        <view class='card-container'>
+          <view class='card' wx:for="{{listCardKindBasicInfoSupperRecommend}}" wx:key="index" style='background-image:url({{format.getImageUrl(item.cardCover + "?x-oss-process=image/resize,m_fill,h_296,w_460")}})' bindtap='jumpVipCardDetail' data-id='{{item.id}}'>
+            <view class='card-title'>
+              <image class='card-logo' lazy-load src="{{brand.logo + '?x-oss-process=image/resize,m_lfit,h_46,w_46'}}" mode='aspectFill'></image>
+              <text class='card-name'>{{item.cardName}}</text>
+            </view>
+            <view class='card-info'>
+              <view class='card-effect' wx:if="{{item.cardType === 1}}">
+                <text>赠{{item.cardGiftNum}}元</text>
+              </view>
+              <view class='card-price'>¥{{item.cardType === 1 ? item.cardFirstRechargeNum : item.cardPrice}}</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 推荐服务信息 -->
+    <view class="recommended" style="margin-bottom: 0;">
+      <view class='recommended-top align_center' style="margin-bottom: 0;">
+        <view class='recommended-text'>店长推荐</view>
+        <image style="display:block;width: 30rpx;height: 30rpx;" src="/images/button/icon_model01.png" wx:if="{{arrangement}}" bindtap="changeArrangement"></image>
+        <image style="display:block;width: 30rpx;height: 30rpx;" src="/images/button/icon_model02.png" wx:else bindtap="changeArrangement"></image>
+      </view>
+      <view>
+        <AppTabsScroll tabs="{{tabList}}" bindswitchTab="selectGoodsType"></AppTabsScroll>
+      </view>
+    </view>
+    
+    <view class='Service'>
+      <view class='Service-item'>
+        <view class='s-contents'>
+          <block wx:if="{{arrangement}}">
+            <Masonry list="{{productList}}" key="id" column-space="30rpx" generic:masonry-item="VipDoubleCard" wx:if="{{type == 3}}"></Masonry>
+            <Masonry list="{{productList}}" key="id" column-space="30rpx" generic:masonry-item="ServiceCard" wx:else></Masonry>
+          </block>
+          <block wx:else>
+            <block wx:if="{{type == 3}}">
+              <VipSingleCard wx:for="{{productList}}" wx:key="index" item="{{item}}"></VipSingleCard>
+            </block>
+            <block wx:else>
+              <ColumnGoods wx:for="{{productList}}" wx:key="index" item="{{item}}"></ColumnGoods>            
+            </block>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class="cover" wx:if="{{TAKE_REDPACKET_STATUS || IS_SHOW_REDPACKET}}">
+      <view class="redPacket-container" wx:if="{{IS_SHOW_REDPACKET}}" style="background-image:url({{bg_redPacket3}});padding-top: 94rpx;">
+        <view class="fz-50 fc-ffffff text-center">{{customerRedPacketInfo.packetName}}</view>
+        <view>
+          <view class="redPacket {{customerRedPacketInfo.redPacketDetailInfoList.length == 1 ? 'big' : redPacketList.length == 2 ? 'middle' : 'small'}}" wx:for="{{customerRedPacketInfo.redPacketDetailInfoList}}" wx:key="index" wx:if="{{index < 3}}">
+            <view class="redPacket-info">
+              <view class="redPacket-info-left">
+                <view>红包</view>
+                <view wx:if="{{item.packetUseCondition == 1}}">满{{item.leastMoney}}元可用</view>
+              </view>
+              <view class="redPacket-info-right">
+                <text style="">¥</text>{{item.packetMoney}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="redPacket-button" catchtap="takeRedPacketById">立即领取</view>
+        <view class="icon--close_big" bindtap="$set" data-key="IS_SHOW_REDPACKET" data-value="{{false}}"></view>
+      </view>
+      <view class="redPacket-container" style="background-image:url({{bg_redPacket2}})" wx:if="{{TAKE_REDPACKET_STATUS}}">
+        <view class="redPacket-info2">
+          <view>恭喜你获得</view>
+          <view>{{customerRedPacketInfo.packetName}}</view>
+          <view>{{redPacketTotalMoney}}
+            <text style="font-size:48rpx">元</text>
+          </view>
+        </view>
+        <view class="redPacket-button button2" catchtap="jumpRedPacket">去我的红包看看</view>
+        <view class="redPacket-close-btn" bindtap="$set" data-key="TAKE_REDPACKET_STATUS" data-value="{{false}}"></view>
+      </view>
+    </view>
+
+    <view class="cover" wx:if="{{popRedPacket && !hasReceiveRed}}">
+      <!-- 未登录时可领取红包弹框 -->
+      <view wx:if="{{unLogin}}" class="redPacket-container" style="background-image:url({{bg_redPacket1}})">
+        <view class="redPacket-container-text">绑定手机号免费领取</view>
+        <view>
+          <view class="redPacket {{redPacketList.length == 1 ? 'big' : redPacketList.length == 2 ? 'middle' : 'small'}}" wx:for="{{redPacketList}}" wx:key="index" wx:if="{{index < 3}}">
+            <view class="redPacket-info">
+              <view class="redPacket-info-left">
+                <view>{{redPacketInfo.packetTypeName}}</view>
+                <view wx:if="{{item.packetUseCondition == 1}}">满{{item.leastMoney}}元可用</view>
+              </view>
+              <view class="redPacket-info-right">
+                <text style="">¥</text>{{item.packetMoney}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="redPacket-button" catchtap="jumpRedPacket">立即领取</view>
+        <view class="icon--close_big" bindtap="$set" data-key="popRedPacket" data-value="{{false}}"></view>
+      </view>
+      <!-- 恭喜获得红包 -->
+      <view wx:else class="redPacket-container" style="background-image:url({{bg_redPacket2}})">
+        <view class="redPacket-info2">
+          <view>恭喜你获得</view>
+          <view>{{redPacketInfo.packetTypeName}}</view>
+          <view>{{redPacketInfo.totalMoney}}
+            <text style="font-size:48rpx">元</text>
+          </view>
+        </view>
+        <view class="redPacket-button button2" catchtap="jumpRedPacket">去我的红包看看</view>
+        <view class="redPacket-close-btn" bindtap="$set" data-key="popRedPacket" data-value="{{false}}"></view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <OffLineDefault />
+  </block>
+</block>
+
+
+<view style="position: relative;">
+  <AppFooter />
+
+</view>

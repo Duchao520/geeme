@@ -1,0 +1,230 @@
+page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+/* 搜索头部 */
+
+.choose-search {
+  width: 100%;
+  background-color: white;
+  padding-bottom: 20rpx;
+}
+
+.myappointment {
+  width: 100%;
+  height: auto;
+}
+
+.appointment-body {
+  width: 100%;
+  min-height: 1000rpx;
+  padding: 28rpx;
+}
+
+.appointment-item {
+  width: 100%;
+  border-radius: 16rpx;
+  padding: 24rpx 20rpx 26rpx 24rpx;
+  background-color: white;
+  margin-top: 28rpx;
+}
+
+.appointment-item:first-child {
+  margin-top: 0rpx;
+}
+
+.ap-top {
+  width: 100%;
+  height: 164rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.headinfo {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.headavatar {
+  width: 94rpx;
+  height: 94rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.headname {
+  color: rgba(38, 50, 56, 1);
+  font-size: 34rpx;
+  margin-bottom: 12rpx;
+}
+
+.headposition {
+  width: 400rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.headposition-text {
+  color: rgba(51, 51, 51, 1);
+  font-size: 24rpx;
+  margin-right: 30rpx;
+}
+
+.headposition-address {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ha-icon {
+  width: 18rpx;
+  height: 24rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAYCAMAAADAi10DAAAAXVBMVEUAAAC4ydDEy9ewv8axv8axvsaxv8axvsazwMixvsWxvsaxwMeywMexwMixv8awv8axv8awv8Wxv8Wxv8axv8eyv8ayv8axv8i0wMa1wMi1xcXHx+OwwMWyvsewvsWZh0eNAAAAHnRSTlMACgf67NO68j3QopVAROff18+bf2pXTDcqIB8EhXroT2xQAAAApklEQVQY03WP2RKDIAxFL4iC4Fbr1try/5/ZSUgVHzwvZM7cLIBxoTamDg5/3lUUqlcyq4kHZuWMGHGUk66ikF7AcVG2SrUllw0CGwUAml0APy2YhuoBhuaopDTNs+hI6Ux1aWGTNVaY6Kk1hx5UT1CWndPasbEKeF5P/VC8jxk9L19ytYAZT+ORUIMI+piw2WTshoM5qfk0cskXF3yMI67s3u+45QdzcRjDEixsZAAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+  margin-right: 4rpx;
+}
+
+.ha-text {
+  /* width: 200rpx; */
+  color: rgba(153, 153, 153, 1);
+  font-size: 24rpx;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+}
+
+.headtime {
+  width: 100%;
+  height: 34rpx;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.status {
+  width: 92rpx;
+  height: auto;
+  font-size: 24rpx;
+}
+
+.paystatus {
+  line-height: 58rpx;
+  color: #f52d56;
+  text-align: right;
+  font-size: 24rpx;
+}
+
+.paystatus.yes {
+  color: #333;
+}
+
+.headstatus {
+  color: white;
+  border-radius: 4rpx;
+  line-height: 38rpx;
+  text-align: center;
+}
+/* 待服务 */
+.headstatus.one {
+  background-color: #58c9f3;
+}
+/* 已服务 */
+.headstatus.two {
+  background-color: #00cf82;
+}
+/* 已超时 */
+.headstatus.three {
+  background-color: #707171;
+}
+/* 已取消 */
+.headstatus.four {
+  background-color: #c1c0c9;
+}
+
+.ap-bottom {
+  width: 100%;
+  padding: 22rpx;
+  background-color: rgba(248, 248, 248, 1);
+  border-radius: 8rpx;
+}
+
+.ap-item:first-child {
+  margin-top: 0;
+}
+
+.ap-item {
+  width: 100%;
+  height: 34rpx;
+  line-height: 34rpx;
+  margin-top: 16rpx;
+}
+
+.ap-item > view {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.species {
+  width: 200rpx;
+  color: rgba(51, 51, 51, 1);
+  font-size: 24rpx;
+}
+
+.speciesname {
+  width: 200rpx;
+  margin-left: 20rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.speciesname > text:first-child {
+  max-width: 150rpx;
+  float: left;
+}
+
+.speciesname > text:last-child {
+  float: right;
+}
+
+.speciesprice {
+  float: right;
+  height: 100%;
+  color: #f52d56;
+  font-size: 24rpx;
+}
+
+/* 按钮的综合样式 */
+
+.buttons {
+  width: 100%;
+  height: 54rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  margin-top: 24rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.buttons .btn {
+  padding: 8rpx 0;
+  width: 154rpx;
+  text-align: center;
+  border-radius: 26rpx;
+  border: 1rpx solid #d8d8d8;
+  margin-left: 32rpx;
+}
+
+.buttons .btn.red{
+  border-color: #f52d56;
+  color:#f52d56;
+}

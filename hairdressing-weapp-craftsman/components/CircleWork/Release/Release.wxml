@@ -1,0 +1,4 @@
+<view class="Release" bindtap='toRelease'>
+  <view class='cross'></view>
+  <view class='vertical'></view>
+</view>

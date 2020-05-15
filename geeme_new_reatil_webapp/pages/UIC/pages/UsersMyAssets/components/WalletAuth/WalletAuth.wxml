@@ -1,0 +1,30 @@
+<view class="WalletAuth" wx:if="{{isShow}}">
+  <view class="content" >
+    <view class="text-center header" style="padding: 36rpx 0;position: relative;">
+      <text class="fz-38 fc-333333">及美钱包充值协议</text>
+      <view class="icon--close close" bindtap="close"></view>
+    </view>
+    <scroll-view scroll-y class="scroll" bindscrolltolower="scrolToLowerEvent">
+      <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">本协议有助于您了解本公司为您提供的服务内容及您使用服务的权利和义务，请您务必审慎阅读、充分理解协议中相关条款内容（特别是以粗体下划线标注的内容）。如果您对本协议的条款有疑问，您可通过本公司客服渠道（客服电话：95118）进行咨询。
+      </view>
+      <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">如本协议发生变更，本公司将通过www.jdpay.com网站公告的方式提前予以公布，变更后的协议在公告期届满起生效。若您在协议生效后继续使用京东钱包服务的，表示您接受变更后的协议，也将遵循变更后的协议使用京东钱包服务。
+      </view>
+      <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">如您为无民事行为能力人或为限制民事行为能力人，请告知您的监护人，并在您监护人的指导下阅读本协议和使用京东钱包服务。若您非自然人，则您确认，您订立并履行本协议不受您所属、所居住或开展经营活动或其他业务的国家或地区法律法规的限制。
+      </view>
+      <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">相关定义</view>
+      <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">京东钱包会员号（或称“会员号”）：指您按照本公司提供的方式取得的，供您使用部分京东钱包服务的编号。会员号登录名可以是您的电子邮箱，也可以是您的手机号码。如您只持有会员号，则不能使用余额服务（见下文定义）。
+      </view>
+       <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">京东钱包会员号（或称“会员号”）：指您按照本公司提供的方式取得的，供您使用部分京东钱包服务的编号。会员号登录名可以是您的电子邮箱，也可以是您的手机号码。如您只持有会员号，则不能使用余额服务（见下文定义）。
+      </view>
+       <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">京东钱包会员号（或称“会员号”）：指您按照本公司提供的方式取得的，供您使用部分京东钱包服务的编号。会员号登录名可以是您的电子邮箱，也可以是您的手机号码。如您只持有会员号，则不能使用余额服务（见下文定义）。
+      </view>
+       <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">京东钱包会员号（或称“会员号”）：指您按照本公司提供的方式取得的，供您使用部分京东钱包服务的编号。会员号登录名可以是您的电子邮箱，也可以是您的手机号码。如您只持有会员号，则不能使用余额服务（见下文定义）。
+      </view>
+       <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">京东钱包会员号（或称“会员号”）：指您按照本公司提供的方式取得的，供您使用部分京东钱包服务的编号。会员号登录名可以是您的电子邮箱，也可以是您的手机号码。如您只持有会员号，则不能使用余额服务（见下文定义）。
+      </view>
+       <view class="fz-24 fc-666666" style="text-indent:2em;line-height: 40rpx;">京东钱包会员号（或称“会员号”）：指您按照本公司提供的方式取得的，供您使用部分京东钱包服务的编号。会员号登录名可以是您的电子邮箱，也可以是您的手机号码。如您只持有会员号，则不能使用余额服务（见下文定义）。
+      </view>
+    </scroll-view>
+    <button class="submit" hover-class="hover" bindtap="submit">同意</button>
+  </view>
+</view>

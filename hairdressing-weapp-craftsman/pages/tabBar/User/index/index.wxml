@@ -1,0 +1,62 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="User">
+  <!-- 用户模块 -->
+  <view class='UserHeader' catchtap='toupdateInfo'>
+    <view class='userAvatar'>
+      <image class='default-avatar' src='{{format.getImageUrl(info.headPortrait)}}' mode='aspectFill'></image>
+    </view>
+    <view class='userContent'>
+      <view class='userName'>{{info.nickName}}</view>
+      <view class='userNickName'>{{info.sign || '这家伙很懒，暂时没有签名~'}}</view>
+      <view class='userData'>
+        <view class='userDataItem' catchtap='touserWork'>
+          作品
+          <text>{{info.dynamicNum}}</text>
+        </view>
+        <view class='userDataItem' catchtap='touserFocus'>
+          关注
+          <text>{{info.attentiveNum}}</text>
+        </view> 
+        <view class='userDataItem' catchtap='touserFans'>
+          粉丝
+          <text>{{info.fansNum}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='moreIcon big'></view>
+  </view>
+
+  <!-- 功能模块 -->
+  <view class='funcMoudle'>
+    <view class='funcMoudleItem' bindtap='toserviceOrderList'>
+      <view class='icon-serviceList'></view>
+      <view class='funcName'>我的服务单</view>
+      <view class='moreIcon small'></view>
+    </view>
+
+    <view class='funcMoudleItem' bindtap='toevaluationList'>
+      <view class='icon-evaluation'></view>
+      <view class='funcName'>我的评价</view>
+      <view class='moreIcon small'></view>
+    </view>
+
+    <view class='funcMoudleItem' bindtap='tocollection'>
+      <view class='icon-collection'></view>
+      <view class='funcName'>我的收藏</view>
+      <view class='moreIcon small'></view>
+
+    </view>
+
+    <view class='funcMoudleItem' bindtap='toaccountSet'>
+      <view class='icon-accountSet'></view>
+      <view class='funcName'>账号设置</view>
+      <view class='moreIcon small'></view>
+
+    </view>
+  </view>
+
+
+
+
+
+</view>

@@ -1,0 +1,12 @@
+<view style="position: fixed;top: 0;left: 0;width: 100%;z-index: 1;">
+  <AppTabs tabs="{{tabs}}" currentTab="{{currentTab}}" bind:switchTab="switchTab"></AppTabs>
+</view>
+<view style="height: 92rpx;"></view>
+<view>
+  <view class="box_padding" style="padding: 30rpx;" wx:if="{{CustomerCouponInfoList.length > 0}}">
+    <view style="margin-bottom: 30rpx;" wx:for="{{CustomerCouponInfoList}}" wx:key="index" wx:for-index="index" wx:for-item="coupon">
+      <CouponModel coupon="{{coupon}}"></CouponModel>
+    </view>
+  </view>
+  <AppDefault wx:else text="没有找到更多优惠券~"/>
+</view>

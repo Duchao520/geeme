@@ -1,0 +1,146 @@
+.order-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999999;
+  background: rgba(0, 0, 0, 0.5);
+  &-container {
+    width: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transform: translate(-50%,-50%);
+    font-size: 18px;
+    color: #333333;
+    overflow: hidden;
+    &.choose-appo {
+      transform: translate(-298px, -298px);
+    }
+    .order-detail-header {
+      position: relative;
+      border: 1px solid rgba(240, 241, 244, 1);
+      .title {
+        padding: 15px 20px 15px 20px;
+      }
+      .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 15px 12px 15px 20px;
+        cursor: pointer;
+        .icon {
+          font-size: 20px;
+        }
+      }
+    }
+    .order-detail-body {
+      padding: 20px 30px;
+      text-align: left;
+      position: relative;
+      .box-modules {
+        .title {
+          display: inline-block;
+          color: #333333;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        .status {
+          float: right;
+          display: inline-block;
+          color: #fff;
+        }
+        .content {
+          width: 100%;
+          @include border-radius(4px);
+          border: 1px solid $border_color1;
+          margin: 10px 0 20px 0;
+          padding: 5px 0 15px 0;
+          
+        }
+        .user-box-wrap {
+          margin: 10px 0;
+          position: relative;
+        }
+        .to-read {
+          position: absolute;
+          left: 200px;
+          bottom: 10px;
+          font-size: 14px;
+          color: #58C9F3;
+          cursor: pointer;
+        }
+      }
+    }
+    .modify-order {
+      float: right;
+      margin: 0 30px 30px;
+    }
+    // 修改预约
+    .order-modify-body {
+      padding: 20px 30px;
+      text-align: left;
+      .fast-order {
+        position: absolute;
+        right: 20px;
+        z-index: 999;
+      }
+      .no-form-bottom {
+        margin-bottom: 0;
+      }
+      .click-group {
+        display: inline-block;
+        vertical-align: bottom;
+      }
+      .form-gap {
+        // margin-right: 20px;
+      }
+      .form-tip {
+        margin-left: 1.73rem;
+        font-size: 14px;
+        color: #606266;
+        margin-bottom: 16px;
+      }
+      .select-item {
+        width: 220px;
+        display: inline-block;
+      }
+      .nopay {
+        color: #FF6D61;
+        // margin-left: 15px;
+        cursor: pointer;
+      }
+      .btn-group {
+        float: right;
+        .group-item {
+          display: inline-block;
+          &:first-child {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+    // 列表中的选择订单
+    .order-choose-body {
+      margin: 30px 25px 20px 25px;
+      color: #666666;
+      font-size: 14px;
+    }
+    .footer {
+      padding-right: 25px;
+      position: relative;
+      height: 60px;
+      .btn-group {
+        float: right;
+        .group-item {
+          display: inline-block;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

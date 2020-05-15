@@ -1,0 +1,30 @@
+<view class="scroll-container">
+  <view class="date-head flex_box justify_space_between align_center box_padding" style="padding:20rpx 25rpx;background:#F2F2F2;">
+      <text class="fz-24" style="color:#343C53">{{dateList[DATE_HEAD_INDEX].createTimeStr}}</text>
+      <text class="fz-24" style="color:#5C5F71">今日累计收入：{{dateList[DATE_HEAD_INDEX].totalMoneys}}元</text>
+    </view>
+  <view a:for="{{dateList}}">
+    <view class="dateTitle flex_box justify_space_between align_center box_padding" style="padding:20rpx 25rpx;background:#F2F2F2;">
+      <text class="fz-24" style="color:#343C53">{{item.createTimeStr}}</text>
+      <text class="fz-24" style="color:#5C5F71">今日累计收入：{{item.totalMoneys}}元</text>
+    </view>
+    <view class="box_padding" style="padding:0 25rpx;" 
+          a:for="{{orderList}}" a:for-index="idx" a:for-item="order" a:if="{{order.createTimeStr == item.createTimeStr}}">
+      <view class="flex_box justify_space_between align_center" style="padding: 23rpx 0;border-bottom:1rpx solid #E5E5E5;">
+        <image mode="scaleToFill" 
+               src="{{'/static/imgs/icon_' + order.payWay + '.png'}}" 
+               style="display:block;width: 90rpx;height:90rpx;"/>
+        <view class="flex_box flex_column justify_space_between" style="width: 600rpx;">
+          <view class="flex_box justify_space_between align_center">
+            <text class="fz-30" style="color:#5C5F71;">{{payWay[order.payWay]}}支付</text>
+            <text class="fz-38" style="color:#343C53;">{{order.actualReceiveMoney}}元</text>
+          </view>
+          <view class="flex_box justify_space_between align_center">
+            <text class="fz-24 fc-8D8E98">{{order.createTimeStr}}</text>
+            <text class="fz-24" style="color: #5C5F71">订单金额{{order.totalMoney}}元</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,137 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.8.1",
+	"appid": "wxec7589fa231cb498",
+	"projectname": "%E5%8F%8A%E7%BE%8E%E6%9C%8D%E5%8A%A1%E7%89%88",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 9,
+			"list": [
+				{
+					"id": 0,
+					"name": "预约详情",
+					"pathName": "pages/TC/pages/appointmentDetail/appointmentDetail",
+					"query": "id=405",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "开单",
+					"pathName": "pages/TC/pages/consumptionBillOne/consumptionBillOne",
+					"query": "id=8364",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "业绩提成",
+					"pathName": "pages/UIC/pages/currentMonthResults/currentMonthResults",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/SC/pages/hairdetails/hairdetails",
+					"query": "hairId=103",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增客户",
+					"pathName": "pages/SC/pages/customer_add/customer_add",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的服务单",
+					"pathName": "pages/UIC/pages/serviceOrderList/serviceOrderList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "服务单详情",
+					"pathName": "pages/UIC/pages/serviceOrderDetail/serviceOrderDetail",
+					"query": "id=2800",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人资料",
+					"pathName": "pages/UIC/pages/userInfo/userInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "美丽档案",
+					"pathName": "pages/SC/pages/customerDetail/customerDetail",
+					"query": "id=8380",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加备注",
+					"pathName": "pages/SC/pages/addNotes/addNotes",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "及美用户服务协议",
+					"pathName": "pages/Authorization/Authorization",
+					"scene": null
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,4 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="card" style="background-image:url({{format.getImageUrl(item.backgroundImage)}})">
+  
+</view>

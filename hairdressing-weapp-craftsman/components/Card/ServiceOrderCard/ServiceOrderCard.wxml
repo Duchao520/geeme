@@ -1,0 +1,62 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function sliceGoodsName1(name) {
+    return name.split('/')[0]
+  }
+
+  function sliceGoodsName2(name) {
+    return name.split('/')[1]
+  }
+
+  module.exports = {
+    sliceGoodsName1: sliceGoodsName1,
+    sliceGoodsName2: sliceGoodsName2
+  }
+</wxs>
+<view class='order-card' style='{{canSelect ? "padding-left:0" : ""}}' bindtap='jumpDetail' data-id="{{item.id}}">
+  <view class='order-header'>
+    <AppAvatar style="display:inline-block;vertical-align:middle;margin-right:20rpx;" gender="{{item.customerSex}}" avatar="{{item.customerHeadPortrait}}" width="76rpx" iconWidth="30rpx" />
+    <view class='header-text'>
+      <view class="text-1 text--ellipsis_1">{{item.customerName}}</view>
+      <view class='text-2'>{{item.orderTime}}</view>
+    </view>
+    <view class='header-status {{item.status}}'>{{item.status == "UnBilling" ? "待结算" : item.status == 'UnPaid' ? '待支付' : item.status == 'Rescind' ? '已撤单' : '已完成'}}</view>
+  </view>
+  <view class='order-service'>
+    <view class='service-row' wx:for="{{item.details.length ? item.details : item.consumerOrderCardInfo}}" wx:for-item="goods" wx:for-index="goodsIndex" wx:key="{{goodsIndex}}">
+      <view class='row-left'>{{goods.goodsTypeScope ? wxs.sliceGoodsName1(goods.goodsName) : goods.cardName}}</view>
+      <view class='row-center'>
+        <text>{{goods.goodsTypeScope ? wxs.sliceGoodsName2(goods.goodsName) : ""}}</text>
+        <text>X{{goods.goodsTypeScope ? goods.count : 1}}</text>
+      </view>
+      <view class='row-right'>¥{{goods.goodsTypeScope ? goods.unitTotal : goods.chargeMoney}}</view>
+    </view>
+  </view>
+  <block wx:if="{{!canSelect && !item.consumerOrderCardInfo.length}}">
+    <view class='order-total'>
+      <view class='discount' wx:if="{{item.totalPreference}}">优惠
+        <text>-¥{{item.totalPreference}}</text>
+      </view>
+      <view class='finalPrice'>合计
+        <text>¥{{item.finalPrice}}</text>
+      </view>
+    </view>
+    <view class='order-bottom'>
+      <text class='order-bottom-text text--ellipsis_1'>{{item.brandName}} {{format.getCity(item.storeCity)}} {{item.storeName}}</text>
+      <view class='order-bottom-button {{item.published ? "unable" : ""}}' wx:if="{{item.status == 'Paid'}}" catchtap='jumpRelease' data-id="{{item.id}}" data-storeid="{{item.storeId}}" data-published="{{item.published}}">{{item.published ? "作品已发" : "发作品"}}</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='order-total'>
+      <view class='order-total-left'>
+        <text class='order-bottom-text text--ellipsis_1'>{{item.brandName}} {{format.getCity(item.storeCity)}} {{item.storeName}}</text>
+      </view>
+      <view class='discount' wx:if="{{item.totalPreference}}">优惠
+        <text>-¥{{item.totalPreference}}</text>
+      </view>
+      <view class='finalPrice'>合计
+        <text>¥{{item.finalPrice}}</text>
+      </view>
+    </view>
+  </block>
+</view>

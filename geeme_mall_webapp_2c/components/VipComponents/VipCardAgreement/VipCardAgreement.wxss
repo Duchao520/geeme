@@ -1,0 +1,40 @@
+/* 权益说明 */
+.power{
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+}
+.powerTitle{
+  width: 100%;
+  line-height: 48rpx;
+  color: #484848;
+  font-size: 34rpx;
+  text-align: left;
+  padding-left: 32rpx;
+  margin-bottom: 28rpx;
+  font-weight: 600;
+}
+.powerBody{
+  width: 100%;
+  height: auto;
+  padding-left: 44rpx;
+}
+.powerItem{
+  width: 100%;
+  line-height: 48rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.point{
+  margin-right: 10rpx;
+  background-color: black;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+}
+.powerText{
+  color: #666666;
+  font-size: 28rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "SearchInput":"../../../../components/common/SearchInput/SearchInput"
+  },
+  "navigationBarTitleText":"编辑标签"
+}

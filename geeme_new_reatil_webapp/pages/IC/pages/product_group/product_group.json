@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  },
+  "navigationBarTitleText": "美物拼团",
+  "enablePullDownRefresh": true
+}

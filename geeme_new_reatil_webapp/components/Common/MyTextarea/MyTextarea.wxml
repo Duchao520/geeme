@@ -1,0 +1,6 @@
+<view class='my-class'>
+  <textarea class='textarea' focus='{{isFocus}}' hidden='{{!ifShowTextarea}}' placeholder='{{placeholder}}' bindinput='input' value='{{value}}' maxlength='{{maxlength}}' cursor-spacing="40rpx" placeholder-style='color:#aaa;'></textarea>
+  <view class='view {{value ? "" : "placeholder"}}' bindtap='showTextarea' hidden='{{ifShowTextarea}}'>
+    <text>{{value || placeholder}}</text>
+  </view>
+</view>

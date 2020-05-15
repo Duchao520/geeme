@@ -1,0 +1,17 @@
+<!--pages/UIC//pages/equityStore/equityStore.wxml-->
+<view class="container">
+  <view class="equity-store-header flex_box align_center">
+    <view class="fz-24 fc-666666 text_left">门店</view>
+    <view class="fz-24 fc-666666 text_right">余额</view>
+  </view>
+  <view class="equity-store-item box_padding flex_box align_center" wx:for="{{storePreMoneyList}}" wx:key="index">
+    <view class="fz-24 fc-666666 text_left text_ellipsis">{{item.storeName}}</view>
+    <view class="fz-32 fc-000000 text_right">¥{{item.preMoney}}</view>
+  </view>
+
+  <!-- 权益金总计 -->
+  <view class="equity-store-total flex_box align_center">
+    <text class="fz-24 fc-666666">总计：</text>
+    <text class="fz-40 fc-000000 mgr56">¥{{totalPreMoney}}</text>
+  </view>
+</view>

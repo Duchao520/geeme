@@ -1,0 +1,172 @@
+@white: #fff;
+
+@default_green: #75C74F;
+@hover_green: #6DBB4A;
+@active_green: #61AD3F;
+
+@default_peacock_blue: #41CAC0;
+@hover_peacock_blue: #39B2A9;
+@active_peacock_blue: #2FA39B;
+
+@default_blue: #58C9F3;
+@hover_blue: #53BEE6;
+@active_blue: #54B1D3;
+
+@default_yellow: #FCB322;
+@hover_yellow: #F0A91C;
+@active_yellow: #E39E17;
+
+@default_pink: #FF6D61;
+@hover_pink: #EE5D51;
+@active_pink: #DF4A3F;
+
+@default_red: #F52D56;
+@hover_red: #E02047;
+@active_red: #D11D42;
+
+@default_silvery_gray: #F4F5F7;
+@hover_silvery_gray: #EDF0F5;
+@active_silvery_gray: #E1E4EA;
+
+@default_light_gray: #fff;
+@hover_light_gray: #E0E3E9;
+@active_light_gray: #D3D8E2;
+
+@default_gray: #fff;
+@hover_gray: #BEC3C6;
+@active_gray: #AFB7BC;
+
+.normal_model(@theme, @h_theme, @a_theme, @font:@white) {
+  user-select: none;
+  color: @font;
+  background: @theme;
+  border: 1px solid @theme;
+  &:hover { background: @h_theme; border-color: @h_theme; }
+  &:active { background: @a_theme; border-color: @a_theme }
+}
+
+#body {
+  /* 空心按钮 */
+  .plain_green_btn {
+    user-select: none;
+    border: @default_green 1px solid;
+    color: @default_green;
+    background: @white;
+    &:hover { color: @white; background: @hover_green; border-color: @hover_green; }
+    &:active { color: @white; background: @active_green; border-color: @active_green; }
+  }
+
+  .plain_blue_btn {
+    user-select: none;
+    border: @default_blue 1px solid;
+    color: @default_blue;
+    background: @white;
+    &:hover { color: @white; background: @hover_blue; border-color: @hover_blue; }
+    &:active { color: @white; background: @active_blue; border-color: @active_blue; }
+  }
+
+  .plain_pink_btn { 
+    user-select: none;
+    border: @default_pink 1px solid;
+    color: @default_pink;
+    background: @white;
+    &:hover { color: @white; background: @hover_pink; border-color: @hover_pink; }
+    &:active { color: @white; background: @active_pink; border-color: @active_pink; } 
+  }
+
+  .plain_gray_btn { 
+    user-select: none;
+    border: @hover_gray 1px solid;
+    color: @hover_gray;
+    background: @white;
+    &:hover { color: @white; background: @hover_gray; border-color: @hover_gray; }
+    &:active { color: @white; background: @active_gray; border-color: @active_gray; }
+  }
+
+  /* 实心按钮 */ 
+  .normal_green_btn { 
+    user-select: none;
+    color: @white;
+    background: @default_green;
+    border: 1px solid @default_green;
+    &:hover { background: @hover_green; border-color: @hover_green; }
+    &:active { background: @active_green; border-color: @active_green } 
+  }
+  
+  .normal_peacock_blue_btn {
+    user-select: none;
+    color: @white;
+    background: @default_peacock_blue;
+    border: 1px solid @default_peacock_blue;
+    &:hover { background: @hover_peacock_blue; border-color: @hover_peacock_blue; }
+    &:active { background: @active_peacock_blue; border-color: @active_peacock_blue } 
+  }
+
+  .normal_blue_btn { 
+    user-select: none;
+    color: @white;
+    background: @default_blue;
+    border: 1px solid @default_blue;
+    &:hover { background: @hover_blue; border-color: @hover_blue; }
+    &:active { background: @active_blue; border-color: @active_blue }   
+  }
+
+  .normal_yellow_btn {
+    user-select: none;
+    color: @white;
+    background: @default_yellow;
+    border: 1px solid @default_yellow;
+    &:hover { background: @hover_yellow; border-color: @hover_yellow; }
+    &:active { background: @active_yellow; border-color: @active_yellow }  
+  }
+
+  .normal_pink_btn {
+    user-select: none;
+    color: @white;
+    background: @default_pink;
+    border: 1px solid @default_pink;
+    &:hover { background: @hover_pink; border-color: @hover_pink; }
+    &:active { background: @active_pink; border-color: @active_pink }    
+  }
+
+  .normal_red_btn { 
+    user-select: none;
+    color: @white;
+    background: @default_red;
+    border: 1px solid @default_red;
+    &:hover { background: @hover_red; border-color: @hover_red; }
+    &:active { background: @active_red; border-color: @active_red }    
+  }
+
+  .normal_silvery_gray_btn {
+    user-select: none;
+    color: #666;
+    background: @default_silvery_gray;
+    border: 1px solid @default_silvery_gray;
+    &:hover { background: @hover_silvery_gray; border-color: @hover_silvery_gray; }
+    &:active { background: @active_silvery_gray; border-color: @active_silvery_gray }     
+  }
+
+  .normal_light_gray_btn {
+    user-select: none;
+    color: #666;
+    background: @default_light_gray;
+    border: 1px solid @hover_light_gray;
+    &:hover { background: @hover_light_gray; border-color: @hover_light_gray; }
+    &:active { background: @active_light_gray; border-color: @active_light_gray }   
+  }
+
+  .normal_gray_btn {
+    user-select: none;
+    color: #666;
+    background: @default_gray;
+    border: 1px solid @hover_gray;
+    &:hover { background: @hover_gray; border-color: @hover_gray; }
+    &:active { background: @active_gray; border-color: @active_gray }   
+  }
+
+  .icon-icon_operate_delete {
+    color: #DFE1E3;
+    &:hover { color: @default_peacock_blue; }
+  }
+}

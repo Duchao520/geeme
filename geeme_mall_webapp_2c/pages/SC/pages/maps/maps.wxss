@@ -1,0 +1,37 @@
+.popup-container {
+  position: absolute;
+  top: 100rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.4)
+}
+.floorInformation{
+  box-sizing: border-box;
+  padding: 0 30rpx 10rpx;
+}
+.plain{
+  position: relative;
+  display: inline-block;
+  width: 106rpx;
+  height: 48rpx;
+  border-radius: 36rpx;
+  border: 1px solid rgba(151,151,151,1);
+  font-size: 24rpx;
+  color: #596367;
+  text-align: center;
+  line-height: 48rpx;
+  margin: 0;
+  margin-right: 20rpx;
+}
+.active{
+  background: #F52D56;
+  border: none;
+  color: #FFFFFF;
+}
+.container{
+  width: 100%;
+}
+.container image{
+  width: 100%;
+}

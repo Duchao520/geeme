@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "商品详情",
+   "usingComponents": {
+    "comments": "/components/comments/comments",
+    "AppASAmount": "/components/App/AppASAmount/AppASAmount",
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "WorksCard":"/components/Card/WorksCard/WorksCard",
+    "Masonry":"/components/Masonry/Masonry"
+  }
+}

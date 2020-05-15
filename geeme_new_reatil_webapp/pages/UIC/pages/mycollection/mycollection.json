@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "ProductCard": "/components/Card/ProductCard/ProductCard",
+    "Masonry": "/components/Masonry/Masonry"
+  }
+}

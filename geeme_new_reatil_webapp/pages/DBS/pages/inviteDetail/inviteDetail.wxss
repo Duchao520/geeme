@@ -1,0 +1,44 @@
+.total-detail{
+  width: 100%;  
+  height: 310rpx;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+  padding: 42rpx 40rpx;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4rpx 28rpx 0 rgba(174, 184, 229, 0.3);
+}
+.total-detail .line{
+  width: 2rpx;
+  height: 62rpx;
+  background: #EEEEEE;
+}
+.tr{
+  box-sizing: border-box;
+  padding: 24rpx 40rpx;
+}
+.single{
+  background: #F8F8F8;
+}
+.double{
+  background: #FFFFFF;
+}
+.status{
+  font-size: 20rpx;
+  color: #FFFFFF;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  margin-left: 3rpx;
+}
+.status-wait{
+  background: #F52D56;
+}
+.status-finish{
+  background: #41CAC0;
+}
+.payway{
+  padding: 0 6rpx;
+  font-size: 18rpx;
+  background: #cccccc;
+  border-radius: 12rpx;
+  line-height: 24rpx;
+}

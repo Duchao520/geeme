@@ -1,0 +1,72 @@
+@import '../../../utils/wxss/base.wxss';
+@import '../../../utils/iconfont/iconfont.wxss';
+.AppFooter{
+  position:absolute;
+  bottom:30rpx;
+  left:0;
+  width:100%;
+  font-size:24rpx;
+  color:#d6d6d6;
+  text-align: center;
+  z-index:0;
+}
+
+.text{
+  display: inline-block;
+}
+
+.text1{
+  padding-left:34rpx;
+  margin-right:10rpx;
+  background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAWlBMVEUAAADk5OTq6urp6enk5OTk5OTl5eXm5ubj4+Pj4+Pk5OTk5OTk5OTk5OTj4+Pj4+Pj4+Pl5eXm5ubj4+Pj4+P29vb////t7e38/Pzx8fHl5eX4+Pjq6urn5+e9Ezg6AAAAFHRSTlMA7xsW85lrZfrTtkrZ2LCvk09Gb6AMqv8AAADwSURBVCjPTZBZtoQgDERREaee3msSwuD+t9kMhcd8iN4ilTIKNZr9ofVzNyMA8Gyvmm/Sn7a3Go7Ovzd6lofB/YsGa11VjuqvATO1NvnqNmUBcwugfFBLkBtgQ866DKUJ66QMhOiCOEvs2ueidszlkyhzwr2XerQXF30848XtpjScvCQBr7kgBCEf2Ze3LjzrmUiKv6OYutUOgYRDnkToeCNu8J6lhos97ohUTricuQ8/iJWk5JmyF3Pd4qcscWgtgZiFma8lqgNb9J4it5X8q1rG9sgSXZuMOpobaij3UdO8drx+JkBIy2sbhu29dPwDsFkjrgh4AZ0AAAAASUVORK5CYII=') no-repeat left center;
+  background-size: 24rpx 24rpx;
+}
+
+.shade{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(12, 12, 12, .5);
+  z-index: 10;
+}
+.modal{
+  width: 650rpx;
+  height: 800rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 40rpx 24rpx 0;
+  margin: auto;
+  z-index: 11;
+}
+.close{
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+
+
+}
+.content{
+  display: block;
+  width: 330rpx;
+  height: 44rpx;
+}
+.submit{
+  display: block;
+  width: 600rpx;
+  height: 100rpx;
+  border-radius: 12rpx;
+  background: #F60F51;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  margin: 50rpx auto 0;
+}

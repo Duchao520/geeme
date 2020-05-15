@@ -1,0 +1,13 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<!-- 时间组件 -->
+<view class='Timebox'>
+  <Time times="{{times}}" dates="{{dates}}" bindsetCurrentDate="setCurrentDate" bindsetCurrentTime="setCurrentTime">
+    <view class='calendaricon' slot="timeCalendarIcon"></view>
+  </Time>
+</view>
+<view class="page-footer">
+  <view class="footer-button" catchtap="jumpChooseService">下一步</view>
+  <view style="color:#999;padding-left:30rpx;font-size:28rpx">已选时间
+    <text style="color:#333">{{format._getDate4(currentDate)}} {{currentTime || ''}}</text>
+  </view>
+</view>

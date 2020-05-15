@@ -1,0 +1,24 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function hasSkill(skillIds, id) {
+    if(!skillIds){
+      return false
+    }
+    return skillIds.indexOf(id) != -1
+  }
+
+  module.exports.hasSkill = hasSkill
+</wxs>
+<view class='grey-space'></view>
+<view class="page-container">
+  <view class='shop_skills' wx:for="{{list}}" wx:key="{{index}}">
+    <view class='shop_skills-title text--ellipsis_1'>{{format.getCity(item.staffSkillAndStroeInfo.storeCity)}} {{item.staffSkillAndStroeInfo.storeName}}</view>
+    <view class='skills-container'>
+      <view class='skill-item {{wxs.hasSkill(item.staffSkillAndStroeInfo.skillIds, skill.id) ? "active" : ""}}' wx:for="{{item.skillInStore.skills}}" wx:key="{{skillIndex}}" wx:for-item="skill" wx:for-index="skillIndex" bindtap='setSkill' data-id="{{skill.id}}"
+        data-storeindex="{{index}}">{{skill.simpleTitle}}</view>
+    </view>
+  </view>
+  <view class='bottom-fixed'>
+    <view class='bottom-button' bindtap='confirm'>保存修改</view>
+  </view>
+</view>

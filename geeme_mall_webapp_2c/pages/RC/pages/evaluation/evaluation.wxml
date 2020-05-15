@@ -1,0 +1,106 @@
+<!--pages/RC/pages/evaluation/evaluation.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs1">
+  function getDes(score) {
+    var desArr = ['很差', '差', '满意', '非常满意', '无可挑剔']
+    return desArr[score - 1]
+  }
+  module.exports.getDes = getDes
+</wxs>
+<template name="scoreDes">
+  <view class="item-score">
+    <view class="score {{index >= score ? 'lose' : ''}}" wx:for="{{5}}" wx:key="{{index}}" bindtap="$set" data-key="{{key}}" data-value="{{index + 1}}"></view>
+  </view>
+  <view class="item-des">{{wxs1.getDes(score)}}</view>
+</template>
+<!-- ~~~~~~~~~~~~~我是工具与页面wxml文档的分割线~~~~~~~~~~~~ -->
+<view class='container'>
+  <!-- 商品信息 -->
+  <view class='serviceList'>
+    <view class='serviceItem'>
+      <image class='serviceImage' src='{{format.getImageUrl(isProduct ? info.cycleImage[0] : info.serviceInfo.image)}}' mode='aspectFill' lazy-load/>
+      <view class='serviceInfo'>
+        <view class='serviceDes text--ellipsis_2'>{{info.title || info.serviceInfo.serviceName}}</view>
+        <view class='servicePackage'>{{info.specificationName || info.serviceInfo.specificationName}}
+          <text wx:if="{{!isProduct}}">  {{info.serviceInfo.serverTime}}分钟</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评价 -->
+  <view class="assessment">
+    <view class="assessment-item overall">
+      <view class="item-title">总体评价</view>
+      <template is="scoreDes" data="{{score:score0, key:'score0'}}" />
+    </view>
+    <view class="assessment-seperate-container">
+      <view class="assessment-item">
+        <view class="item-title">{{isProduct ? "商品质量" : "专业度"}}</view>
+        <template is="scoreDes" data="{{score:score1, key:'score1'}}" />
+      </view>
+      <view class="assessment-item">
+        <view class="item-title">{{isProduct ? "发货速度" : "环境"}}</view>
+        <template is="scoreDes" data="{{score:score2, key:'score2'}}" />
+      </view>
+      <view class="assessment-item">
+        <view class="item-title">{{isProduct ? "快递物流" : "服务"}}</view>
+        <template is="scoreDes" data="{{score:score3, key:'score3'}}" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 印象标签 -->
+  <view class='label'>
+    <view class='label-title'>印象标签</view>
+    <view class='label-body'>
+      <view class='label-item {{item.selected?"active":""}}' wx:for="{{TAG_FLAG ? tagList : format.arrSlice(tagList,0,8)}}" data-id="{{item.id}}" wx:key="index" bindtap='selectedTag'>{{item.tag}}</view>
+      <view class="subscript {{TAG_FLAG ? 'upscript' : 'downscript'}}" bindtap='TagSwitcher'>{{TAG_FLAG ? '收起' : '展开'}}</view>
+    </view>
+  </view>
+
+  <!-- 服务者评分 -->
+  <view class='staff' wx:if="{{!isProduct && info._staffList.length > 0}}">
+    <view class='staff-text'>
+      <view class='staff-title'>服务者评分</view>
+      <view style="color:#999;font-size:24rpx;" wx:if="{{anonymous}}">评价对服务者匿名</view>
+    </view>
+    <view class="staff-container">
+      <view class='staff-body' wx:for="{{info._staffList}}" wx:key="{{index}}">
+        <image class='staff-avatar' src='{{format.getImageUrl(item.headPortrait ? item.headPortrait : info.staffHeadPortrait)}}' mode='aspectFill' lazy-load></image>
+        <view class='staff-info'>
+          <view class='staff-name'>{{item.staffName}} <text style="font-size:24rpx;color:#999">{{item.staffLevelName || item.postName || ''}}</text></view>
+          <view class="assessment-item overall">
+            <template is="scoreDes" data="{{score:item.serverScore, key:'info._staffList[' + index + '].serverScore'}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评价正文 -->
+  <view class='evalinput'>
+    <!-- <textarea placeholder='请输入评价内容' bindinput='setContent' placeholder-class='placeholder' maxlength='300'></textarea> -->
+    <MyTextarea my-class="textarea" bindinput="setContent" placeholder="请输入评价内容" maxlength="300" />
+    <view class='elalinputlength'>{{content.length}}/300</view>
+  </view>
+
+  <!-- 拍照 -->
+  <view class='photos'>
+    <image wx:for="{{photos}}" wx:key="{{index}}" lazy-load src="{{format.getImageUrl(item)}}" mode='aspectFill'></image>
+    <view class='camera' wx:if="{{photos.length < 9}}" bindtap='uploadPic'></view>
+  </view>
+
+  <!-- 匿名评价 -->
+  <view class='anonymous'>
+    <view style='display:inline-block;'>
+      <view class='anonymoustext {{anonymous ? "icon--selected" : "icon--unSelected"}}' bindtap='$set' data-key="anonymous" data-value="{{!anonymous}}">匿名评价</view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 提交评价 -->
+<view class='submit' bindtap='evaluate'>
+  <button class='submit-item'>提交评价</button>
+</view>

@@ -1,0 +1,19 @@
+<view class="userWorkSet">
+  <view class='userWorkContent'>
+    <view class='userWorkItem' bindtap='chooseImage' data-type="album">
+      <view class="icon-one" style=""></view>
+      <view class='icon-Text'>手机相册</view>
+    </view>
+
+     <view class='userWorkItem' bindtap='chooseImage' data-type="camera">
+      <view class="icon-two"></view>
+      <view class='icon-Text'>拍一张</view>
+    </view>
+
+     <view class='userWorkItem'>
+      <view class="icon-three"></view>
+      <view class='icon-Text'>摄影素材库</view>
+    </view>
+    
+  </view>
+</view>

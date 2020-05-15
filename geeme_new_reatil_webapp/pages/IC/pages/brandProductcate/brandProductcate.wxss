@@ -1,0 +1,70 @@
+Page{
+  background-color: #f7f7f7;
+}
+
+.productcate{
+  border-top:1px solid #ebebeb;
+}
+
+/* 分类主体 */
+.servicebody{
+  width: 100%;
+  min-height: 100vh;
+  background: #F7F7F7;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.service-l{
+  width: 172rpx;
+  height: auto;
+}
+.s-l-item{
+  position: relative;
+  width: 100%;
+  height: 96rpx;
+  text-align: center;
+  line-height: 96rpx;
+  color: #797979;
+  font-size: 28rpx;
+}
+.s-l-item.active{
+  background-color: white;
+  color: #F52D56;
+}
+
+.s-l-item.active::before {
+  content: '';
+  width: 6rpx;
+  height: 50rpx;
+  background: linear-gradient(#f52d56, #ff1e8b);
+  position: absolute;
+  left: 0;
+  top: 23rpx;
+}
+
+.service-r{
+  width: 580rpx;
+  min-height: 100vh;
+  background-color: white;
+}
+.s-r-item{
+  float: left;
+  width:120rpx;
+  margin-top: 40rpx;
+  margin-left: 50rpx;
+  text-align: center;
+}
+.s-r-img{
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.service-name{
+  color: #333333;
+  font-size: 24rpx;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

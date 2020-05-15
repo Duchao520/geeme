@@ -1,0 +1,47 @@
+.starListItems{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.startListItem{
+  width: 104rpx;
+  height: auto;
+  margin-left: 36rpx;
+}
+.startListItem:first-child{
+  margin-left: 50rpx;
+}
+.avatar{
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+}
+.starName{
+  width: 100%;
+  color: #263238;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.focus-no{
+  min-width: 86rpx;
+  line-height: 34rpx;
+  color: #F52D56;
+  font-size: 20rpx;
+  border-radius: 50rpx;
+  border: 1rpx solid #F52D56;
+  text-align: center;
+  
+}
+.focus-yes{
+  min-width: 86rpx;
+  line-height: 34rpx;
+  color: #999999;
+  font-size: 20rpx;
+  border-radius: 50rpx;
+  border: 1rpx solid #999999;
+  text-align: center;
+}
+
+

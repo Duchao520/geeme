@@ -1,0 +1,74 @@
+<wxs module="wxs">
+  function getStatusText(orderStatus) {
+    var statusText, timeText
+    switch (orderStatus) {
+      case 'REFUNDING':
+        statusText = '退款中';
+        timeText = '申请退款';
+        break;
+      case 'AFTER_SALES_RIGHT':
+        statusText = '售后中';
+        timeText = '申请售后';
+        break;
+      case 'REFUNDED':
+        statusText = '退款完成';
+        timeText = '退款时间';
+        break;
+      case 'AFTER_SALES_CLOSE':
+        statusText = '售后完成';
+        timeText = '售后完成';
+        break;
+      case 'REFUND_REJECTED':
+        statusText = '已拒绝';
+        timeText = '拒绝退款';
+        break;
+      case 'AFTER_SALES_REJECTED':
+        statusText = '已拒绝';
+        timeText = '拒绝售后';
+        break;
+      case 'REFUND_CANCELED':
+        statusText = '已取消';
+        timeText = '取消退款';
+        break;
+      case 'AFTER_SALES_CANCELED':
+        statusText = '已取消';
+        timeText = '取消售后';
+        break;
+    }
+    return {
+      statusText: statusText,
+      timeText: timeText
+    }
+  }
+  module.exports.getStatusText = getStatusText
+</wxs>
+
+<view class='productOrderList'>
+  <view class='search-container'>
+    <AppSearch placeholder="搜索商品名称/订单号" bindinput="search" hideText></AppSearch>
+  </view>
+
+  <view class='productOrderList-body'>
+    <view class='productOrderListTabs'>
+      <AppTabs tabs="{{tabList}}" bindswitchTab="switchTab"></AppTabs>
+    </view>
+    <view class='productOrderListContent'>
+      <OrderListItem wx:for="{{refundList}}" wx:key="{{index}}" orderItem="{{item}}">
+        <!-- 显示状态 -->
+        <view class='statusItem {{item.orderStatus}}' slot="status">{{wxs.getStatusText(item.orderStatus).statusText}}</view>
+        <!-- 功能按钮 -->
+        <view class="orderListButtons" slot="buttons">
+          <view wx:if="{{item.orderStatus == 'REFUNDING' || item.orderStatus == 'AFTER_SALES_RIGHT' || item.orderStatus == 'REFUND_REJECTED' || item.orderStatus == 'AFTER_SALES_REJECTED'}}" class='button-item black' bindtap="cancelOrder" data-id="{{item.id}}" data-index="{{index}}"
+            data-type="{{item.type}}">{{item.type == 0 ? "取消退款" : "取消售后" }}</view>
+          <view wx:if="{{item.orderStatus != 'REFUND_REJECTED' && item.orderStatus != 'AFTER_SALES_REJECTED'}}" class='button-item {{(item.orderStatus == "REFUNDING" || item.orderStatus == "AFTER_SALES_RIGHT") ? "red" : "black"}}' bindtap="jumpRefundDetail" data-id="{{item.id}}">{{(item.orderStatus == "REFUNDING" || item.orderStatus == "AFTER_SALES_RIGHT") ? "查看进度" : item.type == 0 ? "退款详情" : "售后详情"}}</view>
+          <view wx:if="{{item.orderStatus === 'AFTER_SALES_CLOSE'}}" class='button-item red'>评价售后</view>
+        </view>
+        <!-- 时间 -->
+        <view class="OrderListItem_Time" slot="time">
+          {{wxs.getStatusText(item.orderStatus).timeText}}：
+          <text>{{item.modifyTime}}</text>
+        </view>
+      </OrderListItem>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,83 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view style="padding: 36rpx;">
+  <block wx:for="{{infoList}}" wx:key="index">
+    <block wx:if="{{item.type == 1}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">提交申请</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.cashAmount}}">申请提现金额：¥{{item.cashAmount}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+      <view class="progress-item">
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">你的申请单已受理，待商家审核中</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{item.type == 2}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_stop.png" class="step"></image>
+          <view class="fz-28 fc-333333">您的申请单被商家拒绝</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.reason}}">拒绝理由：{{item.reason}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{item.type == 3}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_stop.png" class="step"></image>
+          <view class="fz-28 fc-333333">商家已转账，提现完成</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.cashAmount}}">转账金额：¥{{item.cashAmount}}</view>
+          <view class="fz-24 fc-999999 flex_box detail" wx:if="{{item.photo}}">转账凭证：<image class="thumb"  src='{{format.getImageUrl(item.photo + "?x-oss-process=image/resize,m_fill,h_120,w_120")}}' bindtap='$previewImage' data-current="{{format.getImageUrl(item.photo + '?x-oss-process=image/resize,m_lfit,w_750')}}" data-urls="{{[format.getImageUrl(item.photo + '?x-oss-process=image/resize,m_lfit,w_750')]}}" mode='aspectFill'></image></view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{item.type == 4}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_stop.png" class="step"></image>
+          <view class="fz-28 fc-333333">提现已取消</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{item.type == 5}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">修改转出申请</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.cashAmount}}">修改提现金额：¥{{item.cashAmount}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+      <view class="progress-item">
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">你的申请单已受理，待商家审核中</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>

@@ -1,0 +1,23 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view>
+  <!-- <view class="flex_box floorInformation" wx:for="{{partition}}" wx:key="index">
+    <button class="plain active" style="opacity: .7;">{{item.name}}</button>
+    <scroll-view style="width:564rpx;height: 60rpx;" scroll-x>
+      <view style="width: 564rpx;height: 60rpx;white-space: nowrap;">
+        <button class="plain {{floorid==floor.id ? 'active' : ''}}" wx:for="{{item.floorList}}" wx:for-item="floor" wx:for-index="floorIdx" bindtap="selectFloor" data-floor="{{floor}}" data-floorid="{{floor.id}}" wx:key="index">{{floor.name}}</button>
+      </view>
+    </scroll-view>
+  </view> -->
+  <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+    <view>
+      <PopHeader tabs="{{tabs}}" activeIndex="{{activeTab}}" bind:popup="popup" />
+      <view class="{{activeTab !=-1 ? 'popup-container' : ''}}" catchtap="hideShade">
+        <PopDoubleColumn wx:if="{{partition}}" list="{{partition}}" bind:clickChild="selectFloor" ifShow="{{activeTab === 0}}" />
+      </view>
+    </view>
+  </AttachTop>
+  <view class="container"  wx:if="{{floor.image}}">
+    <image src='{{format.getImageUrl(floor.image)}}' mode='aspectFill' lazy-load></image>
+  </view>
+  <AppDefault image="/images/default/default_position_1.png" text="暂无该区导航" wx:else></AppDefault>
+</view>

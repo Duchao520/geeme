@@ -1,0 +1,11 @@
+
+  {
+    "navigationBarTitleText": "个人主页",
+    "usingComponents": {
+      "WorksCard": "/components/Card/WorksCard/WorksCard",
+      "Masonry": "/components/Masonry/Masonry",
+      "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore",
+      "comments": "/components/comments/comments",
+      "AppTabs":"/components/App/AppTabs/AppTabs"
+    }
+  }

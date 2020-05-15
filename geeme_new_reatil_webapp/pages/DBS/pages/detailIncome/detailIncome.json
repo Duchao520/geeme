@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "收入明细",
+  "navigationBarTextStyle": "black"
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "Time":"/components/time/time",
+    "StaffCard": "/components/Card/StaffCard/StaffCard"
+  }
+}

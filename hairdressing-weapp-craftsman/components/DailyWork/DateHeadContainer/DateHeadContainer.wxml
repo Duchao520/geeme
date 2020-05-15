@@ -1,0 +1,11 @@
+<view class="DateHeadContailer date-container">
+  <slot></slot>
+  <block wx:if="{{calendarAction == 1}}">
+    <view class='canenderIcon calendar-icon' bindtap='tocalendar'></view>
+  </block>
+  <block wx:else>
+    <picker mode="date" fields="{{fields}}" start="{{start}}" end="{{end}}" value="{{value}}" bindchange='selectDate'>
+      <view class='canenderIcon calendar-icon'></view>
+    </picker>
+  </block>
+</view>

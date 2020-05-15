@@ -1,0 +1,42 @@
+<view>
+  <view class="bg box_padding" style="padding-top: 120rpx;">
+    <view>
+      <view class="fz-34 fc-ffffff font-weight text-center" style="margin-bottom: 22rpx;">识别到您还不是本店会员</view>
+      <view class="fz-28 fc-ffffff text-center">开通会员，享受会员权益</view>
+    </view>
+  </view>
+  <view class="box_padding" style="padding:0 23rpx;">
+    <view class="form-item flex_box align_center {{input == 'phone' ? 'active' : ''}}" data-input="phone" onTap="onfocus">
+      <text class="iconfont icon-shouji fz-38" style="color: #AAAAAA"></text>
+      <view style="position: relative;">
+        <view style="width: 500rpx;height: 100%;position: absolute;z-index: 2;" class="focus"></view>
+        <input maxlength="11" class="fz-32" value="{{encodePhone}}" onBlur="phoneInput" onTap="onfocus" type="number" placeholder="请输入手机号" style="width: 520rpx;z-index: -1"/>        
+      </view>
+      <text class="iconfont icon-shanchu fz-34" style="color: #7D7D7D;" onTap="clearPhone"></text>
+    </view>
+    <view class="form-item flex_box align_center {{input == 'code' ? 'active' : ''}}" data-input="code" onTap="onfocus">
+      <text class="iconfont icon-yanzheng fz-38" style="color: #AAAAAA"></text>
+      <view style="position: relative;">
+        <view style="width: 100%;height: 100%;position: absolute;z-index: 2;"></view>
+        <input class="fz-32" type="number" value="{{code}}" onBlur="codeInput" placeholder="请输入验证码" style="width: 400rpx;z-index: -1;"/>        
+      </view>
+      <button type="ghost" style="width: 300rpx;height: 60rpx;line-height:60rpx;border: 1rpx solid #108DE9;padding: 0 12rpx;" catchTap="sendMsCode" a:if="{{time == 60}}">获取验证码</button>
+      <text class="fz-28" style="color:#7D7D7D;border-radius: 5rpx;border: 2rpx solid #7D7D7D;margin-left: 120rpx;padding: 12rpx;" a:else>{{time}}s</text>
+    </view>
+    <!-- <button class="fz-34 fc-ffffff bg-13B5B1" style="width:559rpx;height:94rpx;border-radius:9rpx;margin: 150rpx auto 38rpx;" hover-class="hover-class" onTap="register">授权</button> -->
+    <view style="width: 100%;height: 496rpx;background: #EEEEEE;position:fixed;bottom:0;left:0;">
+      <view class="flex_box box_padding justify_space_between" style="width: 100%;height:398rpx;padding: 6rpx 9rpx;">
+        <view style="width: 550rpx;height: 100%;margin-right: 8rpx;" class="keyboard">
+          <button type="default" style="width: 178rpx;height: 94rpx;border-radius: 5rpx;font-size: 45rpx;line-height: 94rpx;" class="bg-FFFFFF" a:for="{{keyBoard}}" data-key="{{item}}" onTap="keyBoardEvent">{{item}}</button>
+        </view>
+        <view style="width: 194rpx;height: 100%;">
+          <button class="bg-FFFFFF iconfont icon-backspaceoutline fz-60" data-key="del" onTap="keyBoardEvent" style="width: 185rpx;height: 191rpx;border-radius: 5rpx;line-height: 191rpx;margin-bottom:5rpx;" type="default"></button>
+          <button style="width: 185rpx;height: 191rpx;border-radius: 5rpx;line-height: 191rpx;" data-key="put" onTap="keyBoardEvent" class="fc-ffffff fz-34 bg-0095D9" type="primary">开通</button>
+        </view>
+      </view>
+      <button type="default" class="bg-FFFFFF" style="width: 100%;height: 98rpx;color:#7D7D7D;" data-key="exit" onTap="keyBoardEvent">退出</button>
+    </view>
+
+  </view>
+</view>
+

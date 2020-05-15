@@ -1,0 +1,9 @@
+<view class='page-container'>
+  <view class='header'>
+    <AppSearch placeholder="搜索用户昵称" bind:input="search" hideText />
+  </view>
+  <view class='userFocusList'>
+    <FansCard wx:for="{{list}}" wx:key="{{index}}" info="{{item}}" />
+  </view>
+  <AppDefault wx:if="{{total == 0}}" image="/images/default/default_fans.png" text="您还没有粉丝哦~" />
+</view>

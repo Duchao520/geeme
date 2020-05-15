@@ -1,0 +1,100 @@
+<!--pages/VIP//pages/VipCardManagement/VipCardManagement.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    createTime = Date.parse(getDate())
+    if (finishTime - createTime < 0) {
+      return 0
+    } else {
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+
+  function JudgeType(cardType) {
+    switch (cardType) {
+      case 0:
+        return '身份卡';
+      case 1:
+        return '储值卡';
+      case 2:
+        return '次卡'
+      case 3:
+        return '时间卡';
+      default:
+        return '';
+    }
+  }
+
+  function JudgeDisplay(cardType) {
+    switch (cardType) {
+      case 0:
+        return true;
+      case 1:
+        return true;
+      case 2:
+        return false
+      case 3:
+        return false;
+      default:
+        return false;
+    }
+  }
+
+  module.exports = {
+    getCountdownDay: getCountdownDay,
+    JudgeType: JudgeType,
+    JudgeDisplay: JudgeDisplay
+  }
+</wxs>
+<view>
+  <!-- 会员卡样式 -->
+  <view class='card active' style='background-image:url({{format.getImageUrl(cardDetail.cardCover + "?x-oss-process=image/resize,m_fill,h_400,w_630")}})'>
+    <view class='card-title'>
+      <image class='card-logo' lazy-load src="{{logo + '?x-oss-process=image/resize,m_lfit,h_82,w_82'}}" mode='aspectFill'></image>
+      <view class="flex_box flex_column">
+        <view class='card-name txt-ellipsis'>{{cardDetail.cardName}}</view>
+        <view class="tag">{{wxs.JudgeType(cardDetail.cardType)}}</view>
+      </view>
+    </view>
+    <view class='card-info'>
+      <view class="card-number fz-32 fc-ffffff text_left white_nowrap">{{cardDetail.cardNo}}</view>
+      <view class='card-price white_nowrap'>
+        <text wx:if="{{cardDetail.cardType == 1}}">¥{{format.getPrice(cardDetail._balance)}}</text>
+        <text wx:else>{{cardDetail.validPermanent ? '永久' : wxs.getCountdownDay(cardDetail.finishTime) + '天'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员卡操作 -->
+  <view class="card-management flex_box box_padding align_center" bindtap="onTapRecord">
+    <view class="card-management-text fz-30 fc-45454D text_left">消费记录</view>
+    <view class="card-management-image arrow--right"></view>
+  </view>
+  <view class="card-management flex_box box_padding align_center" wx:if="{{wxs.JudgeDisplay(cardDetail.cardType)}}" bindtap="onTapPayment">
+    <view class="card-management-text fz-30 fc-45454D text_left">充值/续卡记录</view>
+    <view class="card-management-image arrow--right"></view>
+  </view>
+
+
+  <!-- 购买会员卡 -->
+  <view class='bottom-fixed'>
+    <view class='bottom-button {{currentCard.supportRenewal ? "" : "unable"}}' bindtap='showRecharge'>充值</view>
+  </view>
+</view>
+<!-- 会员卡充值 -->
+<block wx:if="{{flagRecharge}}">
+  <VipCardRecharge info="{{currentCard}}" rechargeRules="{{rechargeRules}}" bind:toRecharge="bindtoRecharge" bindcloseRecharge="closeRecharge"></VipCardRecharge>
+</block>
+
+<!-- 会员卡支付 -->
+<block wx:if="{{flagPay}}">
+  <VipCardPay flagPay="{{flagPay}}" payNumber="{{rechargeNum}}" bindtoPay="bindtoPay" bindclosePay="closePay" bindgoBack="bindgoBack"></VipCardPay>
+</block>
+
+<!-- 各种弹框 -->
+<view class="cover" wx:if="{{ifShowDiscountDetail || ifShowCountDetail}}" bindtap="closePop">
+  <view catchtap="prevent">
+    <VipCardDiscount wx:if="{{ifShowDiscountDetail}}" service="{{currentCard.partServiceDiscountStrategy}}" product="{{currentCard.partProductDiscountStrategy}}" bind:closeDiscount="closeDiscount" />
+    <VipCardCount wx:if="{{ifShowCountDetail}}" list="{{currentCard.listServiceCountInfo}}" bind:closeCount="closeCount" />
+  </view>
+</view>

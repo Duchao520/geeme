@@ -1,0 +1,31 @@
+.AppNavBar {
+  position: fixed;
+  width:100%;
+  top:0;
+  background-color: #fff;
+  overflow:hidden;
+}
+
+.navigate-bar {
+  position: relative;
+  text-align: center;
+}
+
+.navigate-icon{
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navigator-back{
+  width: 64rpx;
+  height: 100%;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAoCAMAAADNGvrUAAAAaVBMVEUAAABKSkpWVlZLS0tSUlJaWlpLS0tKSkpKSkpLS0tKSkpKSkpLS0tLS0tLS0tLS0tMTExMTExOTk5PT09LS0tPT09eXl5KSkpKSkpLS0tLS0tKSkpKSkpKSkpKSkpLS0tNTU1LS0tKSkon0mHfAAAAInRSTlMA7w3iEwjV9Z7c58vEvrZJNy8pIx4aBOrp0LCol4ZuWFBBoUPh1AAAAKtJREFUKM+F08kWgyAMBVARpSpq69R55P8/skNY8HznpCzvAkjyktHZOlPlpI/wOdVan18NZn3D5scW9SUa7qC7qFdUI4oPDlEv+1THo+gZdLKifZnqHLUDXWrRFsounKhHPYm6ItXci9aobdQl1bITtTNoL9pMUPJN9DCCZo30fUBl5kv+P8kf5HLQPbWEW6U3lsegD41HrAeC46OHjaOpB5ljz0uirRQv4BtAGiPMWrMKLwAAAABJRU5ErkJggg==') no-repeat 32rpx center;
+}
+
+.navigate-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color:#3c3c3c;
+}

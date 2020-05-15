@@ -1,0 +1,12 @@
+Page{
+  background:#f7f7f7;
+}
+
+.goodProduct-header{
+  position:relative;
+  z-index:11;
+}
+.thumb{
+  display: block;
+  width: 100%;
+}

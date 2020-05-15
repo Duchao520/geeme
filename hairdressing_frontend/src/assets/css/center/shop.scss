@@ -1,0 +1,38 @@
+@import './nav.scss';
+.center-shop__wrap {
+  padding: 0 20px;
+  height: 100%;
+  .shop-header {
+    margin: 20px;
+    position: relative;
+    .shop-header-left {
+      width: 400px;
+      .g-address {
+        width: 100%;
+        .address {
+          width: 50%;
+          display: inline-block;
+        }
+        .add-select {
+          width: 90%!important;
+          display: inline-block;
+        }
+      }
+    }
+    .shop-header-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      .search, .create {
+        display: inline-block;
+      }
+      .create {
+        margin-left: 20px;
+      }
+    }
+  }
+  .shop-body {
+    height: 610px;
+    padding: 2px 0 0 20px;
+  }
+}

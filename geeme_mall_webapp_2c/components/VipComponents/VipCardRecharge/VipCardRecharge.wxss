@@ -1,0 +1,134 @@
+/* 会员卡充值 */
+.cardContent{
+  width: 100%;
+  /* height: 400rpx; */
+  border-top: 2rpx solid #EFEFF4;
+} 
+.m-cardImgBox{
+  width: 100%;
+  padding: 44rpx 166rpx 58rpx;
+}
+
+.m-Money{
+  width: 100%;
+  height: auto;
+  padding: 0 102rpx;
+}
+.m-currentMoney{
+  color: #999999;
+  font-size: 28rpx;
+  margin-bottom: 24rpx;
+}
+.m-currentMoney text{
+  color: #333333;
+}
+.m-payMoney{
+  width: 100%;
+}
+.m-payMoneyTitle{
+  color: #999999;
+  font-size: 28rpx;
+}
+.m-payMoneyNumber{
+  width: 100%;
+  height: 88rpx;
+  border-bottom: 2rpx solid #EFEFF4;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.m-p-left{
+  color: #333333 100%;
+  font-size: 28rpx;
+}
+.m-p-right{
+  width: 12rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  background-size:12rpx 18rpx;
+}
+.m-cardDes{
+  width: 100%;
+  padding: 6rpx 0;
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 6rpx;
+}
+
+.m-cardDes text{
+  display: block;
+  margin-bottom:10rpx;
+}
+
+.m-cardDes text:last-child{
+  margin-bottom:0;
+}
+
+.cardBottom{
+  width: 684rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin: 0 auto;
+  background-color: #F52D56;
+  font-size: 34rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 100rpx;
+  margin-bottom: 40rpx;
+  margin-top: 14rpx;
+}
+
+.card {
+  margin: 0 auto;
+  position: relative;
+  width: 360rpx;
+  height: 228.5rpx;
+  border-radius: 10rpx;
+  background-size: 100% 100%;
+  color: white;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.card-title {
+  padding-left: 20rpx;
+  margin-top: 20rpx;
+  font-size: 0;
+}
+
+.card-logo {
+  margin-right: 8rpx;
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.card-name {
+  display: inline-block;
+  font-size: 28rpx;
+  vertical-align: middle;
+}
+
+.card-info {
+  position: absolute;
+  bottom: 6rpx;
+  width: 100%;
+  text-align: right;
+  padding: 0 16rpx;
+}
+
+.card-effect > text {
+  padding: 0 12rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 20rpx;
+  color: #333;
+  border-radius: 16rpx;
+  background-color: #fff;
+}
+
+.card-price {
+  font-size: 32rpx;
+}

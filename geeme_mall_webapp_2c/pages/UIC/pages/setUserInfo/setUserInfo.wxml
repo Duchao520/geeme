@@ -1,0 +1,58 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="container">
+  <!-- 用户信息 -->
+  <view class='avatar' bindtap='choose'>
+    <view class='avatar-left'>
+      <view class='avatarTitle'>头像</view>
+      <image class='avatarImg' lazy-load src="{{format.getImageUrl(userInfo.storeHeadIcon)}}" mode='aspectFill'></image>
+    </view>
+    <view class='moreicon'></view>
+  </view>
+  <view class='userInfo'>
+    <view class='item'>
+      <view class='itemTitle'>昵称</view>
+      <input class="content" type='text' value='{{userInfo.nickName}}' bindinput='updateNickname'></input>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>性别</view>
+      <picker bindchange="sexChange" value="{{sexIndex}}" range="{{sexArray}}">
+        <view class="content">
+          {{sexArray[sexIndex]}}
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>生日</view>
+      <block wx:if="{{userInfo.birthdayEditable}}">
+        <picker mode="date" bindchange="birthdayChange" value="{{userInfo.birthday}}" disabled='{{!userInfo.birthdayEditable}}'>
+          <view class="content">
+            {{userInfo.birthday || '请选择'}}(只可修改一次)
+          </view>
+        </picker>
+      </block>
+      <block wx:else>
+        <view class="content" bindtap="promptBirthday">
+          {{userInfo.birthday || '请选择'}}(只可修改一次)
+        </view>
+      </block>
+      <view class='itemRight'></view>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>居住地</view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view class="content">
+          {{userInfo.province}} {{userInfo.city}} {{userInfo.district}}
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+  </view>
+  <!-- 保存按钮 -->
+  <view bindtap='updateUserInfo' class='button'>
+    保存修改
+  </view>
+</view>

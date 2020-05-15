@@ -1,0 +1,96 @@
+@import "@/assets/css/scrollbar.scss";
+.create-page {
+  width: 100%;
+  .body-center {
+    padding-top: 85px;
+    max-width: 1440px;
+    margin: 0 auto;
+    @include border-radius(8px);
+    .body-container {
+      background: #fff;
+      width: 100%;
+      height: calc(100vh - 100px);
+      overflow: hidden;
+      overflow-y: auto;
+      @include border-radius(8px);
+      .form_area {
+        padding: 60px;
+        .input-tip {
+          padding-left: 10px;
+          font-size: 14px;
+          &.grey {
+            color: #C7CAD1;
+          }
+          &.blue {
+            color: #58C9F3;
+            cursor: pointer;
+          }
+        }
+        .form-ajust {
+          padding-left: 68px;
+          line-height: 14px;
+          color: #333333;
+          .title {
+            padding-bottom: 20px;
+          }
+        }
+        .operate-group {
+          /* width:  363px;
+          .operate-item {
+            margin-top: 20px;
+            display: inline-block;
+            &:first-child {
+              margin-right: 20px;
+            }
+          } */
+          padding-left: 50px;
+          text-align: center;
+          display: flex;
+          align-items: flex-end;
+          .operate-item {
+            margin-top: 40px;
+            margin-right: 20px;
+          }
+        }
+        .shop-name_input {
+          position: relative;
+          width: 540px;
+          &:hover {
+            .g-tip {
+              display: block;
+              &.right {
+                right: 59%;
+                top: -58%;
+              }
+            }
+          }
+        }
+      }
+      .occupy-tip {
+        cursor: pointer;
+        color: rgb(64, 158, 255);
+      }
+    }
+  }
+}
+// 营业时间
+.el-popper {
+  z-index: 9999999!important;
+  padding: 0!important;
+  .weekday_popover{
+    max-width:400px;
+    margin:20px;
+    z-index: 9999;
+    .el-checkbox{
+      // margin-bottom:10px;
+      margin:0 10px 10px 0;
+    }
+    .el-checkbox.is-bordered + .el-checkbox.is-bordered{
+      margin-left:0;
+    }
+    .el-checkbox.is-bordered .el-checkbox__inner{
+      display:none;
+    }
+  }
+}
+

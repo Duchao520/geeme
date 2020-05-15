@@ -1,0 +1,4 @@
+<view class="box_padding" style="padding: 0 32rpx;" wx:if="{{productInfoList.length > 0}}">
+  <Masonry list="{{productInfoList}}" key="id" column-space="30rpx" generic:masonry-item="ServiceCard"></Masonry>
+</view>
+<AppDefault text="暂无浏览记录" wx:else></AppDefault>

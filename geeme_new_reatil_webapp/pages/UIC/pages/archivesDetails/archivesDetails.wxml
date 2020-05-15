@@ -1,0 +1,71 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='container'>
+  <!-- 店铺信息 -->
+  <view class='shopInfo'>
+    <image src='{{format.getImageUrl(info.storeImage)}}' lazy-load class='shopImage' mode='aspectFill' bindtap='jumpStoreDetail'></image>
+    <view class='shopText'>
+      <view class='cityName'>{{format.getCity(info.storeCity)}} {{info.storeName}}</view>
+      <view class='time'>{{format.getDate4(info.createTime)}}</view>
+    </view>
+  </view>
+
+  <view wx:for="{{info.dynamicWorksList}}" wx:key="{{index}}">
+    <!-- 服务者说 -->
+    <view class='staffWords'>
+      <view class='staffWords-title'>
+        <text>服务者说</text>
+        <text class='title-right'>{{format.getDate4(item.createTime)}}</text>
+      </view>
+      <view class='staffWords-body'>
+        <image class='staffImage' lazy-load src='{{format.getImageUrl(item.headPortrait)}}' mode='aspectFill' bindtap='jumpStaffDetail'></image>
+        <view class='staffInfo'>
+          <view class='staffText'>
+            <view class='staffName'>{{item.staffNickName}}</view>
+            <view class='staffLevel'>{{item.staffLevel}}</view>
+          </view>
+          <view class='staffDes'>
+            {{item.description}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 档案照片 -->
+    <view class='imageList'>
+      <image class='imageItem' lazy-load wx:for="{{item.imageList}}" wx:for-item="image" wx:key="{{index}}" src='{{format.getImageUrl(image)}}' mode='aspectFill' bindtap='$previewImage' data-current="{{format.getImageUrl(image)}}" data-urls="{{format.getImageArr(item.imageList)}}"></image>
+    </view>
+  </view>
+
+  <!-- 相关服务 -->
+  <view class='aboutService'>
+    <view class='a-s-title'>相关服务</view>
+    <view class='serviceList'>
+      <view class='item' wx:for="{{info.dynamicGoodsList}}" wx:key="{{index}}">
+        <image class='item-left' lazy-load src="{{format.getImageUrl(item.cycleImage)}}" mode='aspectFill' bindtap='jumpProductDetail' data-id="{{item.goodsId}}" data-type="{{item.goodsType}}"></image>
+        <view class='item-right'>
+          <view class='des text--ellipsis_2'>{{item.goodsTitle}}</view>
+          <view class='address'>
+            <view class='address-text'>{{item.specificationName}}
+              <text wx:if="{{item.goodsType == 'service'}}">{{item.serviceTime}}分钟</text>
+            </view>
+          </view>
+          <view class='priceinfo'>
+            <view class='price'>
+              <text id='priceicon'>￥</text>{{item.memberPrice}}</view>
+            <view class='special'>￥{{item.shopPrice}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 同意公开 -->
+  <view class='agree'>
+    <view class='agree-title'>
+      <text wx:if="{{!info.publicStatus}}">目前您的美丽影集仅您自己可见，愿意公开吗？</text>
+      <text wx:else>目前您的美丽影集公开，点击下方按钮可取消公开</text>
+    </view>
+    <view class='agree-button {{info.publicStatus ? "cancel" : ""}}' bindtap='clickBtn' bindtap='$wait'>{{info.publicStatus ? "取消公开" : "同意公开" }}</view>
+  </view>
+
+</view>

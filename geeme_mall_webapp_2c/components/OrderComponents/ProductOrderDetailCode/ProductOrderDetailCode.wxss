@@ -1,0 +1,32 @@
+.codeItems{
+  width: 100%;
+  padding: 14rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #EFEFF4;
+  position: relative;
+}
+.copyButton{
+  color: #666666;
+  font-size: 26rpx;
+  border: 1rpx solid #D8D8D8;
+  line-height: 40rpx;
+  text-align: center;
+  padding: 0 14rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 12rpx;
+}
+.codeItem{
+  width: 100%;
+  color: #333333;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+.codeItem:last-child{
+  margin: 0;
+}
+.codeItem text{
+  color: #999999;
+}

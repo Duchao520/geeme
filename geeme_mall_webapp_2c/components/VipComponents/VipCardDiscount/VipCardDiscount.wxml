@@ -1,0 +1,38 @@
+<view class="VipCardDiscount">
+  <view class="header">
+    折扣权益明细
+    <view class="icon--close" catchtap="close"></view>
+  </view>
+  <view class="container">
+    <block wx:if="{{service && service.length}}">
+      <view class="container-header">服务项目</view>
+      <view class="main">
+        <view class="row title">
+          <view class="column-1">一级分类</view>
+          <view class="column-2">二级分类</view>
+          <view class="column-3">折扣</view>
+        </view>
+        <view class="row" wx:for="{{service}}" wx:key="{{index}}">
+          <view class="column-1 text--ellipsis_1">{{item.typeOneName}}</view>
+          <view class="column-2 text--ellipsis_1">{{item.typeTwoName}}</view>
+          <view class="column-3">{{item.discount}}折</view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{product && product.length}}">
+      <view class="container-header">产品项目</view>
+      <view class="main">
+        <view class="row title">
+          <view class="column-1">一级分类</view>
+          <view class="column-2">二级分类</view>
+          <view class="column-3">折扣</view>
+        </view>
+        <view class="row" wx:for="{{product}}" wx:key="{{index}}">
+          <view class="column-1 text--ellipsis_1">{{item.typeOneName}}</view>
+          <view class="column-2 text--ellipsis_1">{{item.typeTwoName}}</view>
+          <view class="column-3">{{item.discount}}折</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

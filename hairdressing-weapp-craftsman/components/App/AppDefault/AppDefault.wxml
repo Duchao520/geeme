@@ -1,0 +1,7 @@
+<view class="AppDefault" style='margin-top:{{top}}'>
+  <view class='image'>
+    <image src="{{image}}"></image>
+  </view>
+  <view class='text'>{{text}}</view>
+  <button class='button' wx:if="{{button}}" bindtap='clickBtn'>{{button}}</button>
+</view>

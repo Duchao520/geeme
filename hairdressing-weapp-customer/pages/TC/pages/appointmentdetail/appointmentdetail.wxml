@@ -1,0 +1,111 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<import src="../../../../template/CountShow.wxml" />
+<block wx:if="{{appointmentInfo}}">
+  <movebox flag="{{flag}}" bindclose="close">
+    <Time wx:if="{{times.length}}" slot="timeContent" dates="{{dates}}" times="{{times}}" bindsetCurrentDate="setCurrentDate" bindsetCurrentTime="setCurrentTime"></Time>
+    <view slot="timeBottom" class='timeButtons'>
+      <view class='timeButtons-left'>
+        <view class='t-l-item'>
+          <text style='color:#999999'>已选时间  </text>
+          <text style='color:#333333'>{{currentDate}}</text>
+          <text style='color:#333333'>{{currentTime}}</text>
+        </view>
+      </view>
+      <view class='timeButtons-right' bindtap='confirmChange'>
+        确认修改
+      </view>
+    </view>
+  </movebox>
+  <view class="container">
+
+    <!-- 头部状态 -->
+    <appointmentStatus info="{{appointmentInfo}}" appointmentStatus="{{appointmentInfo.status}}" payStatus="{{appointmentInfo.payStatus}}" time="{{time}}"></appointmentStatus>
+
+    <!-- 主体 -->
+    <view class='body'>
+      <!-- 已约时间 -->
+      <view class='time'>
+        <view class='time-title'>已约时间</view>
+        <view class='time-item'>
+          <view class='t-i-left'>
+            <view class='t-i-icon'></view>
+            <view class='t-i-text'>{{appointmentInfo.dueTime}}</view>
+          </view>
+          <view class='t-i-right' wx:if="{{appointmentInfo.status == '待服务'}}">
+            <view class='t-i-button' bindtap='updateTime'>修改时间</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 有发型师 -->
+      <view class='staff' wx:if="{{appointmentInfo.staffInfo && appointmentInfo.staffInfo.id}}">
+        <view class='staff-left'>
+          <image class='avatar' lazy-load src="{{format.getImageUrl(appointmentInfo.staffInfo.avatar + '?x-oss-process=image/resize,m_fill,h_96,w_96')}}" mode='aspectFill' bindtap='toStaffDetail'></image>
+        </view>
+        <view class='staff-right'>
+          <view class='staff-right-1'>
+            <text class='s-name'>{{appointmentInfo.staffInfo.name}}</text>
+            <text class='s-level'>{{appointmentInfo.staffInfo.level}}</text>
+          </view>
+          <view class='staff-right-2'>
+            <text>{{format.getCity(appointmentInfo.staffInfo.city)}} {{appointmentInfo.staffInfo.shopName}}</text>
+          </view>
+          <view class='staff-right-3'>
+            <text>地址：{{appointmentInfo.staffInfo.shopAddress}}</text>
+          </view>
+        </view>
+        <view class='staffbutton' catchtap='updateStaff' wx:if="{{appointmentInfo.status == '待服务' && !appointmentInfo.payStatus}}">
+          更换
+        </view>
+      </view>
+      <!-- 无发型师 -->
+      <view class='noStaff' wx:else>
+        <view class='noStaff-left'>暂无发型师</view>
+        <view class='noStaff-right' bindtap='updateStaff' wx:if="{{appointmentInfo.status == '待服务'}}">添加</view>
+      </view>
+
+      <!-- 已选服务 -->
+      <view class='service'>
+        <view class='service-title'>
+          <view class='service-text'>已选服务</view>
+          <view class='service-button' bindtap='updateService' wx:if="{{appointmentInfo.status == '待服务' && !appointmentInfo.payStatus && appointmentInfo.staffInfo && appointmentInfo.staffInfo.id}}">{{appointmentInfo.serviceInfoForAppointments ? '修改服务' : '选择服务'}}</view>
+        </view>
+        <view class='service-item' wx:for="{{appointmentInfo.serviceInfoForAppointments}}" wx:for-item="serviceItem" wx:key="index">
+          <image class='serviceimage' lazy-load src="{{format.getImageUrl(serviceItem.image + '?x-oss-process=image/resize,m_fill,h_160,w_160')}}" mode="aspectFill" bindtap='toServiceDetail' data-id="{{serviceItem.serviceId}}"></image>
+          <view class='serviceinfo'>
+            <view class='servicedes text--ellipsis_2'>{{serviceItem.name || serviceItem.serviceName}}</view>
+            <view class='packageinfo'>{{serviceItem.specificationName}}
+              <text wx:if="{{serviceItem.time != null || serviceItem.serverTime != null}}">{{serviceItem.time != undefined ? serviceItem.time : serviceItem.serverTime}}分钟</text>
+            </view>
+            <view class='total'>
+              <template is="priceShow" data="{{price:serviceItem.price,count:serviceItem.count}}"></template>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 备注 -->
+      <view class='notes' wx:if="{{appointmentInfo.status == '待服务'}}">
+        <view class='title'>备注</view>
+        <view class='inputs'>
+          <MyTextarea my-class="textarea" bindinput="sernotes" placeholder="您的其他要求和爱好，请说明~" value="{{appointmentInfo.notes}}" maxlength="120" />
+        </view>
+        <view class='wordslenth'>{{appointmentInfo.notes.length}}/120</view>
+      </view>
+      <view wx:else style="margin-top:24rpx;font-size:24rpx;">备注： {{appointmentInfo.notes || '无'}}</view>
+
+      <!-- 按钮 -->
+      <view class='buttons' wx:if="{{!flag}}">
+        <form class='btn' wx:if="{{appointmentInfo.status == '待服务'}}" report-submit bindsubmit='saveAppointment'>
+          <button form-type="submit">保存修改</button>
+        </form>
+        <form class='btn' wx:if="{{appointmentInfo.status == '待服务' && !appointmentInfo.payStatus}}" report-submit bindsubmit='cancelAppointment'>
+          <button form-type="submit">取消预约</button>
+        </form>
+        <view class='btn red' wx:if="{{(appointmentInfo.status == '待服务' || appointmentInfo.status == '已服务') && appointmentInfo.payStatus == false}}" bindtap='clickPay'>立即支付</view>
+        <view class='btn' wx:if="{{appointmentInfo.status == '已取消' || appointmentInfo.status == '已超时'}}" bindtap='reAppoint'>重新预约</view>
+        <view class='btn' wx:if="{{appointmentInfo.status == '已服务'}}">查看订单</view>
+        <view class='btn' wx:if="{{appointmentInfo.status == '已取消' || appointmentInfo.status == '已超时'}}" bindtap='deleteAppointment'>删除</view>
+      </view>
+    </view>
+  </view>
+</block>

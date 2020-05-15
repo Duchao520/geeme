@@ -1,0 +1,228 @@
+<!--pages/my/index/index.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  var format = require("../../../../utils/format.wxs")
+
+  function getBg(themeId) {
+    var color1 = format.getSkin(themeId).color1
+    var color2 = format.getSkin(themeId).color2
+
+    return 'background:linear-gradient(to bottom left,' + color1 + ',' + color2 + ')'
+  }
+
+  module.exports = {
+    getBg: getBg
+  }
+</wxs>
+<!-- 用户头部信息 -->
+<view class='header {{userInfo ? "" : "notLogin"}}' style="{{userInfo && userInfo.backgroundImage ? 'background-image:url(' + format.getImageUrl(userInfo.backgroundImage + '?x-oss-process=image/resize,m_fill,h_131,w_343') + ')' : ''}}">
+  <view class='header-top'>
+    <image class='top-avatar' lazy-load src='{{format.getImageUrl(userInfo.storeHeadIcon)}}' mode='aspectFill'></image>
+    <view class='top-right' bindtap="jumpUserInfo" data-me="{{true}}">
+      <button class='btn-getUserInfo' wx:if="{{!userInfo}}" data-me="getUserInfo" open-type='getUserInfo' bindgetuserinfo="getuserinfo" />
+      <view class='top-text'>
+        <view class='top-nickname'>
+          <text class='{{userInfo && userInfo.isMale == "男"? "man" : ""}} {{userInfo && userInfo.isMale == "女" ? "woman" : ""}}'>{{userInfo ? userInfo.nickName : '未登录'}}</text>
+          <view class='top-arrow arrow--right_big'></view>
+        </view>
+        <view class='top-memberId'>{{userInfo ? '会员号： ' + userInfo.memberNo : '点击登录账号'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='header-bottom' wx:if="{{userInfo}}">
+    <text bindtap="jumpPoints">积分 {{userInfo.integral}}</text>
+    <view class='bottom-level text--ellipsis_1' catchtap="jumpMemberLevel">
+      <text class='icon--diamond'>{{userInfo.memberLevel}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 用户中心功能 -->
+<view class='funcmodel'>
+  <view class='func-item' bindtap='jumpVipCard'>
+    <image class='item-img' src='/images/button/my_action1.png'></image>
+    <view class='item-name'>会员卡</view>
+  </view>
+  <view class='func-item' bindtap='jumpConsumptionOrder'>
+    <image class='item-img' src='/images/button/my_action2.png'></image>
+    <view class='item-name'>消费账单</view>
+  </view>
+  <view class='func-item' bindtap='jumpCollection'>
+    <image class='item-img' src='/images/button/my_action3.png'></image>
+    <view class='item-name'>我的收藏</view>
+  </view>
+  <view class='func-item' bindtap='jumpArchives'>
+    <image class='item-img' src='/images/button/my_action4.png'></image>
+    <view class='item-name'>美丽档案</view>
+  </view>
+</view>
+
+<!-- 我的预约 -->
+<view class='appointment'>
+  <view class='appointment-head'>
+    <view class='ah-left'>
+      <view class='al-icon'></view>
+      <view class='al-text'>我的预约</view>
+    </view>
+    <view class='ah-right' bindtap='jumpmyappointment'>
+      <view class='ar-text'>全部</view>
+      <view class='ar-icon arrow--right'></view>
+    </view>
+  </view>
+  <view class='appointment-body' wx:if="{{appointmentInfo}}" data-appointmentId="{{appointmentInfo.appointmentId}}" bindtap='jumpAppointmentDetail'>
+    <view class='appointment-item'>
+      <view class='ap-top'>
+        <view class='headinfo'>
+          <image src='{{format.getImageUrl(appointmentInfo.avatar + "?x-oss-process=image/resize,m_lfit,h_94,w_94")}}' lazy-load class='headavatar default-avatar' mode='aspectFill'></image>
+          <view class='headtext'>
+            <view class='headname'>{{appointmentInfo.staffName || '暂无'}}</view>
+            <view class='headposition'>
+              <view class='headposition-text'>{{appointmentInfo.level || '暂无'}}</view>
+              <view class='headposition-address'>
+                <view class='ha-icon'></view>
+                <view class='ha-text'>{{appointmentInfo.shopName}}</view>
+              </view>
+            </view>
+            <view class='headtime'>预约时间：{{appointmentInfo.dueTime}}</view>
+          </view>
+        </view>
+        <view class='headstatus'>{{appointmentInfo.status}}</view>
+      </view>
+      <view class='ap-bottom'>
+        <view class='ap-item' wx:if="{{index <= 1}}" wx:for="{{appointmentInfo.serviceInfoForAppointments}}" wx:for-item="serviceItem" wx:key="index">
+          <view class='ap-species'>
+            <view class='species text--ellipsis_1'>{{serviceItem.serviceName}}</view>
+            <view class='speciesname'>
+              <text class='text--ellipsis_1'>{{serviceItem.specificationName}}</text>
+              <text>x{{serviceItem.count}}</text>
+            </view>
+          </view>
+          <view class='speciesprice'>￥{{serviceItem.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 服务订单 -->
+<view class='myorder'>
+  <view class='myorder-head'>
+    <view class='mh-left'>
+      <view class='mh-icon'></view>
+      <view class='mh-text'>服务订单</view>
+    </view>
+    <view class='mh-right' data-index="0" bindtap='jumpmyorder'>
+      <view class='mr-text'>全部</view>
+      <view class='mr-icon arrow--right'></view>
+    </view>
+  </view>
+  <view class='myorder-body'>
+    <view class='myorder-items'>
+      <view class='myorder-item' data-index="1" bindtap='jumpmyorder'>
+        <image class='order-img' src='/images/button/my_orderState1.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待付款</view>
+      </view>
+
+      <view class='myorder-item' data-index="2" bindtap='jumpmyorder'>
+        <image class='order-img' src='/images/button/my_orderState2.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待服务</view>
+      </view>
+
+      <view class='myorder-item' data-index="3" bindtap='jumpmyorder'>
+        <image class='order-img' src='/images/button/my_orderState3.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待评价</view>
+      </view>
+
+      <view class='myorder-item' data-index="4" bindtap='jumpmyorder'>
+        <image class='order-img' src='/images/button/my_orderState4.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待拼单</view>
+      </view>
+
+      <view class='myorder-item' data-index="3" bindtap='jumpRefundList_service'>
+        <image class='order-img' src='/images/button/my_orderState5.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>退款售后</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 产品订单 -->
+<view class='myorder'>
+  <view class='myorder-head' data-index="0" bindtap='toproductOrderList'>
+    <view class='mh-left'>
+      <view class='mh-icon'></view>
+      <view class='mh-text'>产品订单</view>
+    </view>
+    <view class='mh-right'>
+      <view class='mr-text'>全部</view>
+      <view class='mr-icon arrow--right'></view>
+    </view>
+  </view>
+  <view class='myorder-body'>
+    <view class='myorder-items'>
+      <view class='myorder-item' data-index="1" bindtap="toproductOrderList">
+        <image class='order-img' src='/images/button/my_orderState6.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待付款</view>
+      </view>
+
+      <view class='myorder-item' data-index="3" bindtap="toproductOrderList">
+        <image class='order-img' src='/images/button/my_orderState7.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待收货</view>
+      </view>
+
+      <view class='myorder-item' data-index="4" bindtap="toproductOrderList">
+        <image class='order-img' src='/images/button/my_orderState3.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待评价</view>
+      </view>
+
+      <view class='myorder-item' data-index="5" bindtap="toproductOrderList">
+        <image class='order-img' src='/images/button/my_orderState4.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>待拼单</view>
+      </view>
+
+      <view class='myorder-item' bindtap='toRefundList'>
+        <image class='order-img' src='/images/button/my_orderState5.png' style="{{wxs.getBg(themeId)}}"></image>
+        <view class='order-text'>退款售后</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+<!-- 相关设置 -->
+<view class='sets'>
+  <view class='sets-item' bindtap="jumpDistribution">
+    <view class='si-left'>
+      <view class="mh-icon1"></view>
+      <view class='si-ltext'>我的推广</view>
+    </view>
+    <view class='si-right arrow--right'></view>
+  </view>
+  <!-- 股东分红入口 -->
+  <!-- <view class='sets-item' bindtap="jumpDistribution">
+    <view class='si-left'>
+      <view class="mh-icon1"></view>
+      <view class='si-ltext'>股东分红</view>
+    </view>
+    <view class='si-right arrow--right'></view>
+  </view> -->
+  <view class='sets-item' bindtap='jumpMyAssets'>
+    <view class='si-left'>
+      <view class='si-licon1'></view>
+      <view class='si-ltext'>我的资产</view>
+    </view>
+    <view class='si-right arrow--right'>
+    </view>
+  </view>
+  <view class='sets-item' bindtap='setaccount'>
+    <view class='si-left'>
+      <view class='si-licon3'></view>
+      <view class='si-ltext'>账号设置</view>
+    </view>
+    <view class='si-right arrow--right'></view>
+  </view>
+</view>
+<AppModal bind:cancle="tel" button1="拨打电话" button2="取消" show="{{SELL_MODAL}}" title="暂时未获得推广员资格" content="如需申请成为推广员,请联系商家客服电话: {{phone}}"></AppModal>
+<AppModal bind:cancle="bindPhone" button1="绑定手机号" button2="取消" show="{{BIND_PHONE_MODAL}}" title="您暂未绑定手机号" content="请先绑定手机号"></AppModal>
+<view style="position: relative;">
+  <AppFooter />
+</view>

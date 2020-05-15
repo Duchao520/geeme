@@ -1,0 +1,9 @@
+
+<view class="FilterOne {{flagOne?'active':''}}">
+  <view class='FilterOne-left'>
+    <view class='f-l-item active'>定位城市</view>
+  </view>
+  <view class='FilterTwo-right'>
+    <view class='f-r-item'>杭州</view>
+  </view>
+</view>

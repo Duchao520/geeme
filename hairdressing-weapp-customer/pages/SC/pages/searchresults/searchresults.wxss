@@ -1,0 +1,5 @@
+.storeList{
+  margin-top:20rpx;
+  width: 100%;
+  padding: 40rpx 32rpx;
+}

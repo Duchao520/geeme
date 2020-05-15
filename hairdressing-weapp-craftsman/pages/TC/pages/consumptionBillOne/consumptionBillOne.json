@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "开单",
+  "usingComponents": {
+    "AppServiceTree":"/components/App/AppServiceTree/AppServiceTree",
+    "AppTabs":"/components/App/AppTabs/AppTabs"
+  }
+}

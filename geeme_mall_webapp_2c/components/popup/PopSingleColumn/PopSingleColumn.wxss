@@ -1,0 +1,32 @@
+.PopSingleColumn{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  z-index: 10;
+}
+
+.item{
+  position:relative;
+  height:96rpx;
+  line-height:96rpx;
+  padding-left:44rpx;
+  color:#797979;
+  font-size:28rpx;
+}
+
+.item.active{
+  color:#f52d56;
+}
+
+.item.active::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:23rpx;
+  width:6rpx;
+  height:50rpx;
+  background:linear-gradient(#f52d56, #ff1e8b);
+}
+

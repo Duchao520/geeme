@@ -1,0 +1,45 @@
+<wxs src="../../utils/util.wxs" module="util"></wxs>
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<!-- <view class="flex_box" style="margin-bottom: 20rpx;" wx:for="{{list}}" wx:key="index" bindtap="navigateToDetail" data-storeId="{{item.id}}">
+  <image class="thumb" src='{{format.getImageUrl(item.shopImg) + "?x-oss-process=image/resize,m_fill,h_352,w_440"}}' mode='aspectFill' lazy-load></image>
+  <view style="width: 500rpx;">
+    <view class="flex_box justify_space_between">
+      <text class="fz-32" style="color: #263238;">{{item.shopName}}</text>
+      <view class='recommended-icon arrow--right'></view>
+    </view>
+    <view class="flex_box align_center" style="margin-bottom: 10rpx;">
+      <AppAvgScore width="25rpx" height="25rpx" space="8rpx" score="{{item.avgScore}}"/>
+      <view class="fz-24" style="color: #F52D56;">{{format.fixNum(item.avgScore, 1)}}分</view>
+    </view>
+    <view class="fz-24 txt-overflow" style="color: #999999;">{{item.address}}</view>
+  </view>
+</view> -->
+
+<view class='recommended-item' wx:for="{{list}}" wx:key="index">
+  <view class='r-nav' bindtap="navigateToDetail" data-storeId="{{item.id}}">
+    <image src='{{format.getImageUrl(item.shopImg || item.shopImage || item.image) + "?x-oss-process=image/resize,m_fill,h_180,w_180"}}' class='recommended-left' mode='aspectFill' lazy-load></image>
+    <view class='recommended-right'>
+      <view class='recommended-one'>
+        <view class='r-name'><text class='city'>{{format.getCity(item.city)}}</text> <text style='margin-left:10rpx'>{{item.shopName}}</text></view>
+        <view class='r-distance'>
+          <view class='r-address' style='margin-right:5rpx'></view>
+          <text>{{util.distance(item.latitude,item.longitude,latitude,longitude)}}km</text>
+        </view>
+      </view>
+      <view class='recommended-two'>
+        <AppAvgScore score="{{item.avgScore || item.shopScore}}" width="25rpx" height="25rpx" space="8rpx" />
+        <text>{{format.fixNum(item.avgScore || item.shopScore, 1)}}分</text>
+      </view>
+      <view class='recommended-three' wx:if="{{item.phone}}">{{item.phone}}</view>
+      <view class='recommended-four' style="margin-bottom: 12rpx;">{{item.address}}</view>
+      <view class="flex_box justify_space_between" hidden="{{!item.goodsInfoList || item.goodsInfoList.length == 0}}">
+        <view class="model" wx:for="{{item.goodsInfoList}}" wx:key="goodsIndex" wx:for-index="goodsIndex" wx:for-item="goods" data-id="{{goods.goodsId}}" data-type="{{goods.goodsTypeScopeEnum}}" catchtap="toGoodsDetail">
+          <image src='{{format.getImageUrl(goods.cycleImageList[0]) + "?x-oss-process=image/resize,m_fill,h_268,w_268"}}'  mode='aspectFill' lazy-load style="border-radius: 8rpx;"></image>
+          <view class="fz-20 fc-333333 txt-ellipsis">{{goods.goodName}}</view>
+          <view class="fz-20 fc-F52D56"><text>￥</text><text class="fz-28 fc-F52D56">{{goods.memberPrice}}</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="phone" wx:if="{{item.phone}}" data-phone="{{item.phone}}" bindtap='call'></view>
+</view>

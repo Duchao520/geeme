@@ -1,0 +1,28 @@
+<!--pages/IC/pages/sharePic/sharePic.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='sharePic'>
+  <!-- 渐变背景 -->
+  <canvas class='canvas' id='canvas' canvas-id='canvas' />
+  <view class='gradient'></view>
+  <view class='canvas-container' wx:if="{{info}}">
+    <view class="notCanvas">
+      <image class='productImage' lazy-load src='{{format.getImageUrl(info.image)}}' mode="aspectFill"></image>
+      <view class='stars_line'>
+        <AppAvgScore width="30rpx" height="30rpx" space="16rpx" score="{{info.score}}" />
+      </view>
+      <view class='product-title text--ellipsis_2'>{{info.title}}</view>
+      <view class="product-price"><text style="font-size:24rpx">¥</text>{{info.price}}</view>
+      <view class="product-address icon--address">
+        <view>{{brandName}}</view>
+        <view>{{info.city}}{{info.shopName}}</view>
+      </view>
+      <view class='qrcode'>
+        <view>
+          <image class='qrcode-image' lazy-load src='{{format.getImageUrl(info.qrcode)}}'></image>
+        </view>
+        <view class='qrcode-text'>长按识别二维码</view>
+      </view>
+    </view>
+  </view>
+  <button class='share-button' bindtap='savePic' wx:if="{{info && info.qrcode}}">保存画报</button>
+</view>

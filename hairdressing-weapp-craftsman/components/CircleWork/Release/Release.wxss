@@ -1,0 +1,41 @@
+.Release {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  background: #fa266e;
+  box-shadow: 0 6rpx 16rpx 0 rgba(245, 45, 86, 0.3);
+  color: white;
+  font-size: 80rpx;
+  text-align: center;
+  line-height: 104rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 70rpx;
+  z-index: 999;
+}
+
+.cross {
+  width: 58rpx;
+  height: 8rpx;
+  background: white;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  border-radius: 5rpx;
+}
+
+.vertical {
+  width: 8rpx;
+  height: 58rpx;
+  background: white;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  border-radius: 5rpx;
+}

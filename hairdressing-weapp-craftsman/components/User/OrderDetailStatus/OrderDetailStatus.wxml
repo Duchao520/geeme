@@ -1,0 +1,20 @@
+<wxs src="../../../utils/format.wxs" module="format"></wxs>
+<view class='header {{format.orderStatus(orderStatus)}}'>
+    <!-- 待服务 -->
+      <view class='status'>
+        <view class='status-icon {{format.orderStatus(orderStatus)}}'></view>
+        <view class='status-text {{orderStatus=="待服务"&&!time?"active":""}}'>
+          <view class='s-t-paystatus'>{{orderStatus}}</view> 
+          <!-- 待付款 -->
+          <view class='s-t-paytime' wx:if="{{orderStatus == '待付款'}}">{{orderType}} | 距离支付截止还剩{{time}}</view>
+          <!-- 待服务 -->
+          <view class='s-t-paytime' wx:if="{{orderStatus == '待服务' && time}}">距离预约时间还剩{{time}}</view>
+          <!-- 待评价 -->
+          <view class='s-t-paytime' wx:if="{{orderStatus == '待评价'}}">期待您的评价</view>
+          <!-- 已完成 -->
+          <view class='s-t-paytime' wx:if="{{orderStatus == '已完成'}}">期待您的再次惠顾</view>
+          <!-- 已关闭 -->
+          <view class='s-t-paytime' wx:if="{{orderStatus == '已关闭'}}">期待您的再次惠顾</view>
+        </view> 
+      </view>
+</view>

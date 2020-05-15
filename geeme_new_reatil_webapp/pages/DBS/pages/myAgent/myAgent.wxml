@@ -1,0 +1,31 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+  <!-- 搜索 -->
+<view class='search-container'>
+  <AppSearch placeholder="搜索客户姓名/昵称/手机号" bind:confirm="search" hideText></AppSearch>
+</view>
+<block wx:if="{{dataBeanList.length > 0}}">
+  <view class="box_padding flex_box fc-666666 fz-24 top" style="padding: 42rpx;">
+    <view style="width: 370rpx;">推广员信息</view>
+    <view style="width:144rpx;margin-right:50rpx;">累计订单金额</view>
+    <view style="width:96rpx;">累计佣金</view>
+  </view>
+  <view style="height:116rpx;"></view>
+  <view>
+    <view class="flex_box box_padding {{index%2 == 0 ? 'single' : 'double'}} align_center" style="padding:26rpx 42rpx;" wx:for="{{dataBeanList}}" wx:key="index">
+      <image class="thumb" src='{{format.getImageUrl(item.headPortrait + "?x-oss-process=image/resize,m_fill,h_100,w_100")}}' style="margin-right: 24rpx;"></image>
+      <view style="width: 248rpx;">
+        <view>
+          <text class="fz-26 fc-333333">{{item.name}}</text>
+          <!-- <text class="level">LV1</text> -->
+        </view>
+        <view class="fz-22 fc-666666">{{item.mobile}}</view>
+      </view>
+      <view class="fz-28 fc-000000" style="width:190rpx;">¥{{item.orderMoney}}</view>
+      <view class="fz-28 fc-000000">¥{{item.amount}}</view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault text="您还没有推广员哦~~"></AppDefault>
+</block>
+

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "搜索结果",
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "ProductCard":"/components/Card/ProductCard/ProductCard",
+    "VipCard":"/components/Card/VipCard/VipCard"
+  }
+}

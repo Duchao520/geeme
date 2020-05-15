@@ -1,0 +1,132 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="page-container">
+  <view class='page-top page-padding-temp'>
+    <view class='top-left'>{{format.getDate4(date)}} {{time}}</view>
+    <view class='page-button' wx:if="{{time && !orderInfo}}" bindtap="$set" data-key="popTime" data-value="{{true}}">修改时间</view>
+  </view>
+
+  <view class='page-staffInfo page-padding-temp'>
+    <AppAvatar style="display:inline-block;vertical-align:middle" gender="{{customerInfo.sex}}" avatar="{{customerInfo.headPortrait}}" width="76rpx" iconWidth="24rpx" />
+    <view class='staffInfo-text'>
+      <view class='staffInfo-text-1'>{{customerInfo.nickName}}</view>
+      <view class='staffInfo-text-2'>{{format.encriptPhone(customerInfo.mobile)}}</view>
+    </view>
+    <view class='page-button' bindtap="jumpCustomerDetail">美丽档案</view>
+  </view>
+
+  <!-- 勾选是否计客 -->
+  <view class="customer-isCount {{isCount ? 'icon--selected' : 'icon--unSelected'}}" bindtap="$set" data-key="isCount" data-value="{{!isCount}}">计客数</view>
+
+  <!-- 选择的未服务订单 -->
+  <view class="serviceTree" wx:if="{{orders && orders.length}}">
+    <view class='tree-type-container'>
+      <view class='type-title'>
+        <text>已支付服务/产品</text>
+      </view>
+      <view class='type-service-item' wx:for="{{orders}}" wx:key="{{index}}" bindtap="selectOrder" data-index="{{index}}">
+        <view class='item-select {{item.selected? "icon--selected" : "icon--unSelected"}}'></view>
+        <view class='item-name text--ellipsis_1'>{{item.serviceName}}</view>
+        <view class='item-specification text--ellipsis_1'>{{item.specificationName}}</view>
+        <view class='item-price {{item.selected? "active" : ""}}'>
+          <text class='symbol'>¥</text>
+          <text>{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务、产品的tab -->
+  <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+    <view style="margin-top:8rpx;">
+      <AppTabs tabs="{{tabList}}" currentTab="{{curTab}}" bindswitchTab="switchTab" padding="0 160rpx"></AppTabs>
+    </view>
+  </AttachTop>
+  <!-- 服务树 -->
+  <view style='margin-top:40rpx' hidden="{{curTab != 0}}">
+    <AppServiceTree list="{{serviceTree}}" bind:updateService="updateService" />
+  </view>
+  <!-- 产品树 -->
+  <view style='margin-top:40rpx' hidden="{{curTab != 1}}">
+    <AppServiceTree list="{{productTree}}" bind:updateService="updateProduct" />
+  </view>
+  <!-- 底部按钮 -->
+  <view class="page-footer">
+    <view class="footer-button" catchtap="addappointment">下一步</view>
+    <view style="color:#999;padding-left:30rpx">合计金额
+      <text style="color:#f52d56;font-size:40rpx"><text style="font-size:24rpx;">¥</text>{{format.getPrice(_totalPrice)}}</text>
+    </view>
+  </view>
+</view>
+<!-- 弹框 -->
+<view class="page-cover" catchtouchmove="prevent" hidden="{{!popTime && !popOrder}}" bindtap="popdown" data-key="popTime" data-value="{{false}}"></view>
+<!-- 修改时间 -->
+<view class="page-popup-container {{popTime ? 'active' : ''}}">
+  <view class="popup-header">修改时间
+    <view class="app-icon-close" catchtap="$set" data-key="popTime" data-value="{{false}}"></view>
+  </view>
+  <view class="popup-main">
+    <picker class="popup-picker" mode="date" end="{{now}}" bindchange="changeDate">
+      <view class="picker-title">修改日期</view>
+      <view class="picker-time">
+        <view>{{format.getDate4(selectDate)}}</view>
+        <view class="arrow--right"></view>
+      </view>
+    </picker>
+    <picker class="popup-picker" style="border:none" mode="time" bindchange="changeTime">
+      <view class="picker-title">修改时间</view>
+      <view class="picker-time">
+        <view>{{selectTime}}</view>
+        <view class="arrow--right"></view>
+      </view>
+    </picker>
+  </view>
+  <view class="page-footer">
+    <view class="footer-button" catchtap="updateDateTime">确认修改</view>
+    <view style="color:#999;padding-left:30rpx;font-size:28rpx">已选时间
+      <text style="color:#333">{{date}} {{time}}</text>
+    </view>
+  </view>
+</view>
+<!-- 未结算订单 -->
+<view class="page-popup-container {{popOrder ? 'active' : ''}}">
+  <view class="popup-header">选择订单
+    <view class="app-icon-close" catchtap="$set" data-key="popOrder" data-value="{{false}}"></view>
+  </view>
+  <view class="popup-order-tips">查询到该顾客在本店有{{unservicedOrder.length}}笔尚未服务/发货订单，是否选择：</view>
+  <view class="popup-order-main">
+    <view class="popup-order-item" wx:for='{{unservicedOrder}}' wx:key="{{index}}" bindtap="selectUnservicedOrder" data-item="{{item}}" data-index="{{index}}">
+      <view class="order-item-left">
+        <view class="item-left-select {{(!item.orderEnable || item.unionFlag) ? 'icon--cantSelect' : item.selected ? 'icon--selected' : 'icon--unSelected'}}"></view>
+      </view>
+      <view class="order-item-right">
+        <view class="item-right-top">
+          <image class="order-image" src="{{format.getImageUrl(item.image)}}" mode="aspectFill"></image>
+          <view class="order-info">
+            <view class="order-info-title text--ellipsis_2">{{item.serviceName}}</view>
+            <view class="order-info-specification">{{item.specificationName}} {{item.serverTime || 0}}分钟</view>
+          </view>
+          <view class="order-status">{{item.orderStatus}}</view>
+          <view class="order-price">
+            <view>
+              <text style="font-size:24rpx;">¥</text>{{item.price}}</view>
+            <view>X{{item.count}}</view>
+          </view>
+        </view>
+        <view class="item-right-bottom">
+          <!-- <text class="order-type">线上订单</text> -->
+          <text style="color:#999">付款时间：{{item.orderTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-fixed" hidden="{{!popOrder}}">
+    <button class="bottom-button" bindtap="confirmOrder">确认选择</button>
+  </view>
+</view>
+<AppModal 
+  show="{{incorrectBrand}}" 
+  title="不能为跨品牌客户开单"
+  content="请将客户当前在线的店铺与服务者当前登录店铺保持一致！" 
+  button1="新增客户" 
+  button2="切换品牌" 
+  bind:action='modalAction' />

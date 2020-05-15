@@ -1,0 +1,12 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='userFocusItem'>
+  <image src='{{format.getImageUrl(info.headPortrait)}}' mode='aspectFill'></image>
+  <view class='userFocusInfo'>
+    <view class='userFocusName'>{{info.nickName}}</view>
+    <AppAvgScore wx:if="{{info.userType == 'STAFF'}}" width="26rpx" height="26rpx" space="8rpx" score="{{info.avgScore}}"></AppAvgScore>
+    <view class='userFocusTime'>
+      {{format.getDate3(info.attentiveTime)}}
+    </view>
+    <view class='focus {{info.attentived ? "" : "not"}}' wx:if="{{info.userType == 'STAFF'}}" bindtap='follow' data-id="{{info.userId}}" data-attentived="{{info.attentived}}">{{info.attentived ? "已关注" : "关注"}}</view>
+  </view>
+</view>

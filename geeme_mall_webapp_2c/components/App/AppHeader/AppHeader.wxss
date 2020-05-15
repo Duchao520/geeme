@@ -1,0 +1,46 @@
+@import '../../../utils/iconfont/iconfont.wxss';
+@import '../../../utils/wxss/base.wxss';
+
+.selector{
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 5;
+  /* height: 70rpx; */
+  box-sizing: border-box;
+  padding: 32rpx 30rpx 0;
+}
+.shade{
+  position: fixed;
+  top: 70rpx;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  overflow-y:hidden;
+  z-index: 4;
+}
+.options{
+  width: 100%;
+  position: absolute;
+  top: 32rpx;
+  left: 0;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  z-index: 4;
+}
+.options-item{
+  border-bottom: 2rpx solid #eeeeee;
+  padding: 28rpx 0;
+  z-index: 4;
+}
+.store-thumb{
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: #999999;
+  margin-right: 12rpx;
+}

@@ -1,0 +1,21 @@
+/* pages/UIC/pages/WithDrawProgress/WithDrawProgress.wxss */
+.step{
+  display:block;
+  height: 44rpx;
+  width: 44rpx;
+  margin-right: 12rpx;
+}
+.progress-item .border{
+  border-left: 2rpx dashed #B4BCC6
+}
+.progress-item:last-child .border{
+  border-left: 0;
+}
+.detail{
+  margin-bottom: 8rpx;
+}
+.thumb{
+  width: 120rpx;
+  height: 120rpx;
+  display: block;
+}

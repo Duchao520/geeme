@@ -1,0 +1,86 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="main">
+  <view class="photo-line" catchtap="updateHeadPortrait">
+    <view class="avatar">
+      <image src="{{format.getImageUrl(params.headPortrait)}}" class="default-avatar" mode="aspectFill"></image>
+      <view wx:if="{{!params.headPortrait}}" class="icon--photo"></view>
+    </view>
+    <view class="itemRight" style="right:32rpx;"></view>
+  </view>
+  <view class="grey-line"></view>
+  <view class="userInfo">
+    <view class='item'>
+      <view class='itemTitle required'>手机号码</view>
+      <input placeholder="请填写" class="content" type='number' value='{{params.telephone}}' bindinput='updateTelephone'></input>
+    </view>
+    <view class='item'>
+      <view class='itemTitle'>客户姓名</view>
+      <input placeholder="请填写" class="content" value='{{params.customerName}}' bindinput='updateCustomerName'></input>
+    </view>
+    <view class='item'>
+      <view class='itemTitle required'>备注名</view>
+      <input placeholder="请填写" class="content" value='{{params.nickName}}' bindinput='updateNickName'></input>
+    </view>
+    <view class='item'>
+      <view class='itemTitle required'>性别</view>
+      <picker bindchange="sexChange" value="{{sexIndex}}" range="{{sexArray}}">
+        <view class="content">
+          {{params.sex || '请选择'}}
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+  </view>
+  <view class="grey-line"></view>
+  <view class="userInfo">
+    <view class='item'>
+      <view class='itemTitle'>生日</view>
+      <picker mode="date" bindchange="birthdayChange" value="{{params.birthDay}}">
+        <view class="content">
+          {{params.birthDay || '请选择'}}
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+    <view class='item'>
+      <view class='itemTitle'>居住地</view>
+      <picker mode="region" bindchange="regionChange" value="{{[params.province, params.city, params.district]}}">
+        <view class="content">
+          <text wx:if="{{params.province}}">{{params.province}} {{params.city}} {{params.district}}</text>
+          <text wx:else>请选择</text>
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+    <view class='item'>
+      <view class='itemTitle'>微信号</view>
+      <input placeholder="请填写" class="content" value='{{params.wechat}}' bindinput='updateWeChat'></input>
+    </view>
+    <view class='item'>
+      <view class='itemTitle'>归属门店</view>
+      <view class="content">
+        <text wx:if="{{params.belongStoreCity}}">{{format.getCity(params.belongStoreCity)}} {{params.belongStore}}（不可更改）</text>
+        <text wx:else>暂无</text>
+      </view>
+    </view>
+    <view class='item'>
+      <view class='itemTitle'>服务者</view>
+      <view class="content">
+        <text wx:if="{{params.technicianName}}">{{params.technicianName}}（不可更改）</text>
+        <text wx:else>暂无</text>
+      </view>
+    </view>
+    <view class="item">
+      <view class="itemTitle">消费周期</view>
+      <input placeholder="请填写" class="content" type='number' value='{{params.consumptionCycle}}' bindinput='updateCycle'></input>
+      <view class="itemRight" style="background:none;text-align:right">天</view>
+    </view>
+    <view class='item'>
+      <view class='itemTitle'>备注</view>
+      <input placeholder="请填写" class="content" value='{{params.remark}}' bindinput='updateRemark'></input>
+    </view>
+  </view>
+</view>
+<view class="bottom-fixed">
+  <view class="bottom-button" catchtap="confirm">保存</view>
+</view>

@@ -1,0 +1,24 @@
+.list-item{
+  box-sizing: border-box;
+  padding: 26rpx 36rpx;
+  border-bottom: 2rpx solid #EFEFF4;
+}
+.top3{
+  display: block;
+  width: 40rpx;
+  height: 56rpx;
+}
+.thumb{
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  background: #B4CCFF;
+  border-radius: 50%;
+}
+.level{
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  background: #B4CCFF;
+}

@@ -1,0 +1,14 @@
+/* pages/UIC/pages/Wallet/Wallet.wxss */
+.wallet{
+
+}
+.wallet .date-head{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18rpx 32rpx;
+  background: #F8F8F8;
+  color: #666666;
+}
+.fc-999999{
+  color: #999999;
+}

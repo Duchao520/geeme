@@ -1,0 +1,113 @@
+Page{
+  background:white;
+}
+
+.dynamicComment{
+  padding-bottom:400rpx;
+}
+
+.comment-container{
+  margin:0 32rpx;
+  padding:32rpx 0;
+  border-bottom:1px solid #ebebeb;
+}
+
+.comment-header{
+  position:relative;
+  height:100rpx;
+  line-height:140rpx;
+}
+
+.header-avatar{
+  display: inline-block;
+  margin-right:20rpx;
+  width:80rpx;
+  height:80rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.header-info{
+   width: 430rpx;
+  line-height:50rpx;
+}
+
+.header-info_1{
+  font-size:30rpx;
+}
+
+.header-info_2{
+  font-size:24rpx;
+  color:#9b9b9b;
+}
+
+.header-thumb{
+  min-width: 30rpx;
+  height:28rpx;
+  line-height:28rpx;
+  padding-left:35rpx;
+  color:#666;
+  font-size:28rpx;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAk1BMVEUAAAA6Ojo3NzczMzM0NDQzMzMzMzMzMzM0NDQzMzNFRUUzMzMzMzMzMzMzMzM0NDQzMzM0NDQzMzMzMzMzMzMzMzM0NDQ1NTU1NTU2NjY+Pj4zMzM0NDQ0NDQzMzM0NDQ4ODgzMzMzMzMzMzM0NDQ1NTU7OzszMzMzMzM0NDQzMzMzMzM0NDQzMzM0NDQ0NDQzMzOT9QW5AAAAMHRSTlMAGh77Y7CzloVoBbn08LZ3NzHr59GLe0o9IgvJxaKCbBTi1pxcJg7bvqd+X15QqJRRKUwOAAABSUlEQVQ4y43U13KDMBQEUIEM2AJC79W9J/v/X5fIgJ1JbPnui/bhaDRXDGJPczGX7iFj7yIM3OK9gx146ucN4KudiLCRawNDDbcIhVwLoFDCDNVQalyVcDEd2bwZZw5rKl9KaMB77FCkdBAMbY1WBT3sx3bATOF0F5uxRqobL2NUY9WA3UunxQj1sZ/hWDKn/B8TnYvwftwHpsS36YJAk9/tMksbF4iL+67T/Cdtm9gOHP+2jxcs45CJOvFsvgp7wYCw2jEDsbluc/Y8vYMrA+TJtvLK2BoJDc5xpMEEFg0a6Eb4oYZL5CS4A3oSzBExElzAnqCphBYSGqxxpkEXAQnq4OIBF6oXYcVIMMXnHRoqeERKgytkJFhy6CQ4w4pR4DaEN8CglNDTZPS/8VMXdSkhB5yCJXiduh9+B46lxnqb43f4lMgcX6JvrUcyk1gYyTkAAAAASUVORK5CYII=') no-repeat left center;
+  background-size: 28rpx 28rpx;
+}
+.header-thumb.active{
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAgVBMVEUAAAD2MVj2Llb1LVb2Llf2LVf/RW/2LVb4LVj2LVb1LVb1LVb1Llb3LVf2Llf3Llf3Llj4Llr/M13/OWX2Llf1LVf1LVf2LVf2Llb3Llf1LVj1L1b4LVj4L1r2LVb2Llb3Llf6Lln2LVb2Llf2Llf2Llb2LVb3Lln3Llj2MFj1LVahL6mgAAAAKnRSTlMAGvy1sq8G5zT08Lq4l5V9XiAUDPrWz8aMd2pPSCWHcWMv3r6opqNCPTozCUaYAAAA7UlEQVQ4y43R2ZKCQAyF4QA2zTLsoCC4zYxb3v8BFQTbNcl//VWnqw58LJ39Bn8dcLkKhxoOLnHMYx7UE1Q0XOG9jISdgS33xakNCdcGxiRUBkaUK3wDEwo2aNoSLgvQdCYOz9FkF1+d9ejQj6MoipPT+3jLAD81H0bfeVa/W7pNDoa95F+lg2ivoLORrHIBUS9yUMjUXmF/OeRgLYX7Ef5wMJbCjRQepTAfocM4DUIYSmEthakU7oTQdic4o2EFQvgvhYkUtlKYCWEFd6hI2NygVzBw4fawRPQzqCmXQ9+6RG1BHpbTCM9pJ4WhC9S9oK1O+JTOAAAAAElFTkSuQmCC');
+}
+.delete{
+  padding-left:35rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  color:#666;
+  font-size:24rpx;
+}
+
+.comment-main{
+  padding-left:100rpx;
+}
+
+.main-content{
+  font-size:28rpx;
+  color:#666;
+  line-height: 40rpx;
+}
+
+.dynamicComment-bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:164rpx;
+  background:#fff;
+  border-top:1px solid #ebebeb;
+}
+
+.dynamicComment-bottom-container{
+  position:relative;
+  height:80rpx;
+  line-height:80rpx;
+  margin-top:16rpx;
+  padding:0 32rpx;
+  font-size:28rpx;
+}
+
+.dynamicComment-bottom-input{
+  display: inline-block;
+  box-sizing: border-box;
+  width:588rpx;
+  height:80rpx;
+  padding-left:87rpx;
+  padding-right:40rpx;
+  border-radius:40rpx;
+  vertical-align: middle;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAgVBMVEUAAADQ0NHMzMzDwcnCwMnCwsvCwcrCwMnDwsrBwMrBwcrY2NjBwMnFw8vCwcrCwcrCwcrCwcnCwcrCwsrFxc7CwMrCwcrDw8rExM/Pz+HCwcrDw8rDw8z////CwcnCwcrBwcrBwcrCwsrEwszGxtDCwcrCwcrCwMrHxM7Dw8vBwMkJghJ9AAAAKnRSTlMADRF3w3HJ0EPLpQThMLD79e6VaR+afkkWCLlhPAHp29S2WzYboo2GJFnmMsAQAAABCElEQVQ4y93PyY6DQAxF0QehAwmQqoRmJiNk6Pf/H9gChEpIZdjnrmzpLGxIBYfo6L8dLOSkJBUZBQtmy8ujCOM91d+C2RXoq5X+yMbFWEZPMoynJbwythvN6HdaU9bCPQej3kyEe0Kj7sztBkbFSjt2Y5R7Y2I3Rrk+q7PdGOXTcwRj1KqB63+FQUV/1TzIY7xicGNllGAa3s4no6wGJybAoGRzvrDDqESDlltgUoJBxgyTCgQDjw0mxcF06X5WjVLpcDRFpgaDB+dd0bDqRZjvNdWrHF5pg1kFNsxQ5umF1OkHQgc+75pUXuJALCKp70nXz2WysdXguXvlJcZyWrsCMIX1j632H2bFJUTNfhz6AAAAAElFTkSuQmCC') no-repeat 28rpx center;
+  background-size: 35rpx 35rpx;
+  background-color:#f8f8f8;
+}
+
+.dynamicComment-bottom-button{
+  margin-left:40rpx;
+  display: inline-block;
+  vertical-align: middle;
+  color:#f52d56;
+}

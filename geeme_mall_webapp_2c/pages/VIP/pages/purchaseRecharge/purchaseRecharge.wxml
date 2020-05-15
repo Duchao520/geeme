@@ -1,0 +1,54 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function JudgeType(cardType){
+    switch(cardType){
+      case 0:
+        return '身份卡';
+      case 1:
+        return '储值卡';
+      case 2:
+        return '次卡'
+      case 3:
+        return '时间卡';
+      default:
+        return '';
+    }
+  }
+
+  module.exports = {
+    JudgeType: JudgeType
+  }
+</wxs>
+<block wx:if="{{!ifShowDefault}}">
+  <view class="purchaseRecharge">
+    <!-- <AppSearch placeholder="搜索卡项名称" showCart></AppSearch> -->
+    <view class='card-kind {{kind.id === -1 ? "bigCard" : ""}}' wx:for="{{kindArray}}" wx:if="{{kind.list && kind.list.length}}" wx:key="index" wx:for-item="kind">
+      <view class='kind-title' bindtap='jumpVipCardCateDetail' data-kindid="{{kind.id}}" data-title="{{kind.title}}">
+        <view class=''>{{kind.title}}</view>
+        <view class='title-right'></view>
+      </view>
+      <scroll-view scroll-x>
+        <view class='card-container'>
+          <view class='card' wx:for="{{kind.list}}" wx:key="index" style='background-image:url({{format.getImageUrl(item.cardCover + (kind.id === -1 ? "?x-oss-process=image/resize,m_fill,h_296,w_460" : "?x-oss-process=image/resize,m_fill,h_115,w_181"))}})' bindtap='jumpVipCardDetail' data-id='{{item.id}}' wx:if="{{!item.giftCard}}">
+            <view class='card-title'>
+              <image class='card-logo' lazy-load src="{{logo + '?x-oss-process=image/resize,m_lfit,h_46,w_46'}}" mode='aspectFill'></image>
+              <view class="flex_box flex_column">
+                <view class='card-name'>{{item.cardName}}</view>
+                <view class="tag">{{wxs.JudgeType(item.cardType)}}</view>
+              </view>
+            </view>
+            <view class='card-info'>
+              <view class='card-effect' wx:if="{{item.cardType === 1}}">
+                <text>赠{{item.cardGiftNum}}元</text>
+              </view>
+              <view class='card-price'>¥{{item.cardType === 1 ? item.cardFirstRechargeNum : item.cardPrice}}</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_card.png" text="暂时没有会员卡售卖，下次再来看看吧" />
+</block>

@@ -1,0 +1,102 @@
+/** 
+  此页面存放公共的样式
+  */
+
+@import './theme.scss';
+@import './mixin.scss';
+// 引入媒体查询
+@import './media.scss';
+@import './staff/index.scss';
+@import './center/index.scss';
+@import './create/index.scss';
+// 引入新增页面样式
+@import './addnew/index.scss';
+// 引入订单管理页面样式
+@import './order/index.scss';
+// 引入预约样式
+@import './appo/index.scss';
+// 子页面里面的样式, 比如档案页
+.sub_container {
+    width: 1440px;
+    margin: 0px auto;
+    .container {
+        @include box-sizing(border-box);
+        margin: 85px 0 20px 0;
+        background: $bg_color1;
+        padding-bottom: 30px;
+        border-radius: 8px;
+        .content-wrap {
+            padding: 40px 70px 50px 70px;
+            // 盒子容器
+            .box-modules {
+                width: 100%;
+                .title {
+                    color: $font_color2;
+                }
+                .title-wrap {
+                    font-size: 20px;
+                    color: $font_color2;
+                    .level {
+                        font-size: 12px;
+                        color: #fff;
+                        display: inline-block;
+                        padding: 0 8px;
+                        margin-left: 10px;
+                        background: #070707;
+                        @include border-radius(10px);
+                    }
+                }
+                .content {
+                    width: 100%;
+                    @include border-radius(4px);
+                    border: 1px solid $border_color1;
+                    margin: 10px 0 20px 0;
+                    padding: 20px 0;
+                    .auto-get {
+                        display: block;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 模块卡片
+.p-modules {
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 3px 16px 0px rgba(85, 85, 85, 0.1);
+    -o-box-shadow: 0px 3px 16px 0px rgba(85, 85, 85, 0.1);
+    -ms-box-shadow: 0px 3px 16px 0px rgba(85, 85, 85, 0.1);
+    box-shadow: 0px 3px 16px 0px rgba(85, 85, 85, 0.1);
+    overflow: hidden;
+}
+
+//改变弹窗的默认样式
+/deep/ el-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 !important;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+// 字体省略
+.text-overflow {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: nowrap;
+}
+// table
+.list-box_table{
+  box-sizing:border-box;
+  padding:0 10px;
+  min-height: calc(60vh - 26px);
+}

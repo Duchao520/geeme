@@ -1,0 +1,13 @@
+<view class="AppNavBar">
+  <!-- 填充状态栏高度 -->
+  <view style="height:{{statusBarHeight}}px"></view>
+  <!-- 导航栏 -->
+  <view class="navigate-bar" style="height:{{navBarHeight}}px;line-height:{{navBarHeight}}px">
+    <view class="navigate-icon" style="height:{{menuBtnHeight}}px;bottom:{{gap}}px">
+      <view class="navigator-back" style="background-size:{{menuBtnHeight / 4}}px {{menuBtnHeight / 2}}px" wx:if="{{!isHome}}" bindtap="navigateBack" />
+    </view>
+    <view class="navigate-title">{{title || ''}}</view>
+    <view class="navigate-icon"></view>
+  </view>
+</view>
+<view class="navigate-bar-filling" style="height:{{statusBarHeight + navBarHeight}}px;width:100%"></view>

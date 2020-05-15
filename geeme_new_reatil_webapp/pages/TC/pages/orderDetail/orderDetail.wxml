@@ -1,0 +1,137 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<import src="../../../../template/OrderPreference/OrderPreference.wxml" />
+<block wx:if="{{orderInfo}}">
+  <view class='orderDetail'>
+    <ProductOrderDetailStatus wx:if="{{orderInfo}}" info="{{orderInfo}}"></ProductOrderDetailStatus>
+    <!-- 主体 -->
+    <view class='body'>
+      <!-- 发型师 -->
+      <!-- 有发型师 -->
+      <view class='staff' wx:if="{{orderInfo.staffInfo && orderInfo.staffInfo.staffId}}">
+        <image class='avatar' lazy-load src="{{format.getImageUrl(orderInfo.staffInfo.headPortrait + '?x-oss-process=image/resize,m_fill,h_144,w_144')}}" bindtap='jumpStaffDetail' mode='aspectFill'></image>
+        <view class='staffInfo'>
+          <view class='s-info'>
+            <view class='s-name'>{{orderInfo.staffInfo.staffName}}</view>
+            <view class='s-level'>{{orderInfo.staffInfo.staffLevelName}}</view>
+          </view>
+          <view class='s-shopinfo'>
+            {{orderInfo.storeInfo.city}} {{orderInfo.storeInfo.storeName}}
+          </view>
+          <view class='s-address'>
+            地址：{{orderInfo.storeInfo.address}}
+          </view>
+        </view>
+        <view class='phone' bindtap='call' data-phone="{{orderInfo.storeInfo.hotline}}"></view>
+      </view>
+      <!-- 无发型师 -->
+      <view class='noStaff' wx:else>
+        <view class='noStaff-left'>
+          暂无服务者
+        </view>
+        <!-- <view class='noStaff-right'>
+        添加
+      </view> -->
+      </view>
+
+      <!-- 已选服务 -->
+      <view class='service {{orderInfo.staffInfo.staffId?"active":""}}'>
+        <view class='service-item'>
+          <image class='serviceimage' lazy-load src="{{format.getImageUrl(orderInfo.serviceInfo.image + '?x-oss-process=image/resize,m_fill,h_160,w_160')}}" mode='aspectFill' bindtap='toselvesProduct'></image>
+          <view class='serviceinfo'>
+            <view class='servicedes text--ellipsis_2' bindtap='toselvesProduct'>{{orderInfo.serviceInfo.serviceName}}</view>
+            <view class='packageinfo'>{{orderInfo.serviceInfo.specificationName}} {{orderInfo.serviceInfo.serverTime}}分钟</view>
+            <view class='total'>
+              <view class='price'>
+                <text style='font-size:20rpx;'>￥</text>{{orderInfo.serviceInfo.price}}</view>
+              <view class='count'>X{{orderInfo.serviceInfo.count}}</view>
+            </view>
+          </view>
+          <!-- <view class='productSpecification' bindtap='toproductSpecification'>商品快照</view> -->
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单优惠信息 -->
+    <template is="OrderPreference" data="{{info:orderInfo}}" />
+
+    <!-- 我的评价 -->
+    <view class='evaluationModule' wx:if="{{orderInfo.status === 'COMPLETED'}}">
+      <view class='evaluationContent' bindtap='jumpMyEvaluation'>
+        <text>我的评价</text>
+        <view class='arrow--right'></view>
+      </view>
+    </view>
+
+    <!-- 订单信息 -->
+    <view class='orderInfo'>
+      <view class='orderInfo-Item'>
+        <view class='orderHeader'>
+          <view class='orderCode' wx:if="{{format.IF(orderInfo.orderSerialCode)}}">
+            <view class='orderCode-text'>订单编号：</view>
+            <view class='orderCode-number'>{{orderInfo.orderSerialCode}}</view>
+          </view>
+
+          <view class='orderCode' wx:if="{{format.IF(orderInfo.orderTime)}}">
+            <view class='orderCode-text'>下单时间：</view>
+            <view class='orderCode-number'>{{orderInfo.orderTime}}</view>
+          </view>
+
+
+          <view class='orderCode' wx:if="{{format.IF(orderInfo.paymentTime)}}">
+            <view class='orderCode-text'>支付时间：</view>
+            <view class='orderCode-number'>{{orderInfo.paymentTime}}</view>
+          </view>
+
+          <view class='orderCode' wx:if="{{format.IF(orderInfo.evaluateTime)}}">
+            <view class='orderCode-text'>评价时间：</view>
+            <view class='orderCode-number'>{{orderInfo.evaluateTime}}</view>
+          </view>
+
+          <view class='copyButton' bindtap='copy'>复制</view>
+        </view>
+
+        <view class='orderBody'>
+          <view class='orderCode' wx:if="{{orderInfo.status == 'WAITING_SERVICE' || orderInfo.status == 'WAITING_PAY' || orderInfo.status == 'GROUP_BUY_WAIT'}}">
+            <view class='o-a-l'>预约时间：</view>
+            <view class='orderCode-number' wx:if="{{format.IF(orderInfo.appointTime)}}">{{orderInfo.appointTime}}</view>
+            <view class='o-a-r' wx:else>未预约</view>
+          </view>
+          <view class='orderCode' wx:if="{{format.IF(orderInfo.serviceOrderSerialCode)}}">
+            <view class='orderCode-text'>服务单号：</view>
+            <view class='orderCode-number'>{{orderInfo.serviceOrderSerialCode}}</view>
+          </view>
+          <view class='orderCode' wx:if="{{format.IF(orderInfo.serviceTime)}}">
+            <view class='orderCode-text'>服务时间：</view>
+            <view class='orderCode-number'>{{orderInfo.serviceTime}}</view>
+          </view>
+        </view>
+
+        <view class='notes'>
+          <view class='notes-l'>备注：</view>
+          <view class='notes-r'>{{orderInfo.notes || '无'}}</view>
+        </view>
+      </view>
+    </view>
+
+
+
+    <!-- 按钮 -->
+    <view class='buttons' wx:if="{{orderInfo.status != 'GROUP_BUY_WAIT'}}">
+      <view class='btn' wx:if="{{orderInfo.status == 'WAITING_PAY'}}" bindtap='cancel'>取消</view>
+      <view class='btn red' wx:if="{{orderInfo.status == 'WAITING_PAY'}}" bindtap='orderPay'>支付</view>
+      <!-- <view class='btn' wx:if="{{orderInfo.status == 'WAITING_SERVICE' || orderInfo.status == 'WAITING_ASSESSMENT'}}" bindtap="jumpApplyRefund">申请退款</view> -->
+      <view class='btn red' wx:if="{{!orderInfo.appointTime && (orderInfo.status == 'WAITING_PAY' || orderInfo.status == 'WAITING_SERVICE')}}" bindtap='addAppointment'>预约</view>
+      <view class='btn red' wx:if="{{orderInfo.status == 'WAITING_ASSESSMENT'}}" bindtap='toEvaluation'>立即评价</view>
+      <!-- <view class='btn-again' wx:if="{{orderInfo.status == 'COMPLETED'}}" bindtap='$wait'>再次购买</view> -->
+      <!-- <view class='btn' wx:if="{{orderInfo.status == 'CLOSED'}}">删除</view> -->
+      <!-- <view class='btn' wx:if="{{orderInfo.status == 'REFUNDING'}}">取消退款</view> -->
+      <!-- <view class='btn red' wx:if="{{orderInfo.status == 'REFUNDING'}}">查看进度</view> -->
+    </view>
+    <view class="bottom-button-container" wx:else>
+      <view class="groupBuy-left">
+        立即邀请好友拼单
+      </view>
+      <GroupOrder_Button info="{{orderInfo}}" style="float:right;margin-right:24rpx;" />
+    </view>
+  </view>
+</block>

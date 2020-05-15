@@ -1,0 +1,45 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="shopCar">
+  function isSelectAll(str,arr1){
+    var arr = str.split(",");
+    arr = arr.filter(function(s){
+      if(s){
+        return s
+      }
+    })
+    if(arr.length == arr1.length){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  module.exports = {
+    isSelectAll: isSelectAll
+  }
+</wxs>
+<view class="list">
+  <block wx:for="{{STORE_LIST}}" wx:key="index">
+    <view class="flex_box align_center" style="padding: 20rpx 0;border-bottom: 2rpx solid #eeeeee;">
+      <image class="storeLogo" lazy-load src="{{format.getImageUrl(item.storeImage + '?x-oss-process=image/resize,m_lfit,h_60,w_60')}}" mode='aspectFill'></image>
+      <view class="fz-30 fc-333333 font-weight">{{item.storeName}}</view>
+    </view>
+    <AppSlidelip list="{{item.goodsList}}" bind:getItem="getItem" selected="{{SELECTED_ITEMS}}" brandId="{{brandId}}" bind:deleteGoods="deleteGoods" bind:setList="setList"></AppSlidelip>
+  </block>
+  <view style="height: 120rpx;"></view>
+  <AppDefault image="/images/default/default_005.png" text="快去添加产品~~" wx:if="{{STORE_LIST.length == 0}}"></AppDefault>
+  <view class="flex_box fixBottom">
+    <view style="width: 510rpx;padding: 0 32rpx;" class="flex_box justify_space_between align_center box_padding">
+      <view class="flex_box align_center" bindtap="selectAll">
+        <view class="{{shopCar.isSelectAll(SELECTED_ITEMS,goodsList) ? 'checkbox iconfont icon2xuanzhong' : 'uncheckbox'}}  fz-42 flex_box align_center"></view>
+        <view class="fz-34 fc-333333">全选</view>
+      </view>
+      <view>
+        <text class="fz-34 fc-999999" style="margin-right: 4rpx;">合计金额</text>
+        <text class="fz-24 fc-F52D56">¥</text>
+        <text class="fz-40 fc-F52D56">{{_totalMoney}}</text>
+      </view>
+    </view>
+    <button class="submit" bindtap="submit">结算</button>
+  </view>
+</view>

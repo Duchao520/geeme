@@ -1,0 +1,17 @@
+{
+  "navigationBarBackgroundColor": "#F52D56",
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh":true,
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "StoreList": "/components/StoreList/StoreList",
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "Masonry":"/components/Masonry/Masonry",
+    "AppFooter":"/components/App/AppFooter/AppFooter",
+    "ServiceCard": "/components/Card/ServiceCard/ServiceCard",
+    "OffLineDefault":"/components/Common/OffLineDefault/OffLineDefault",
+    "AppTabsScroll": "/components/App/AppTabsScroll/AppTabsScroll",
+    "ColumnGoods": "/components/Card/ColumnGoods/ColumnGoods"
+  }
+}

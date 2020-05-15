@@ -1,0 +1,62 @@
+<!--pages/SC/shopcate/shopcate.wxml-->
+<wxs src="../../../../utils/util.wxs" module="util"></wxs>
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view id='container'>
+  <!-- 搜索头部 -->
+  <!-- <view style='padding-bottom:34rpx'>
+    <AppSearch placeholder="搜索门店名称" disabled hideText bind:clickinput="jumpSearch"></AppSearch>
+  </view> -->
+  <!-- 店铺主体 -->
+  <view>
+    <view class='shophead'>
+      <view class='sh-des'>当前定位城市：</view>
+      <view class='sh-city'>
+        <view class='ad-icon'></view>
+        <view class='ad-name'>{{format.getCity(currentCity)}}</view>
+      </view>
+    </view>
+    <!-- 店铺分类 -->
+    <view class='shopfooter'>
+      <!-- 左列表 -->
+      <scroll-view class='shopfooter-left' scroll-y="{{true}}">
+        <!-- 常去的店 -->
+        <!-- <view class='sl-item text--ellipsis_1 {{"常去的店" == selectCity?"active":""}}' bindtap='selectCity' data-name="常去的店">
+          <text>常去的店</text>
+        </view> -->
+        <!-- 城市列表 -->
+        <view class='sl-item text--ellipsis_1 {{index== selectProviceIndex?"active":""}}' bindtap='selectProvince' data-item="{{item}}" data-index="{{index}}" wx:for="{{list}}" wx:key="index">
+          <text>{{item.province}}</text>
+        </view>
+      </scroll-view>
+      <!-- 右列表 -->
+      <scroll-view class='shopfooter-right' scroll-y="{{true}}">
+        <view class="city-container">
+          <view class="city {{index == selectCityIndex ? 'active' : ''}}" data-index="{{index}}" bindtap="selectCity" wx:for="{{list[selectProviceIndex].cityList}}" wx:key="index">{{format.getCity(item.city)}}</view>
+        </view>
+        <view class='area-container {{item.ifShowShop ? "" : "hidden"}}' wx:for="{{list[selectProviceIndex].cityList[selectCityIndex].areaList}}" wx:key="index">
+          <view class='title' style='z-index:999' bindtap='hideShop' data-index="{{index}}" data-ifshow="{{item.ifShowShop}}">
+            <view class='cityArea'>{{item.cityArea}}</view>
+            <view class='arrow {{item.ifShowShop ? "up" : "down"}}'></view>
+          </view>
+          <view class='moveboxs' wx:if="{{item.ifShowShop}}">
+            <view class='movebox-item {{currentStoreId == shop.id  ? "active" : ""}}' wx:for="{{item.shopList}}" wx:key="shopIndex" wx:for-index="shopIndex" wx:for-item="shop" wx:if="{{shop.operate}}" bindtap='setStore' data-index="{{index}}" data-shopindex="{{shopIndex}}" data-id="{{shop.id}}" data-operate="{{shop.operate}}">
+              <image src="{{format.getImageUrl(shop.shopImage + '?x-oss-process=image/resize,m_fill,h_90,w_90')}}" lazy-load class='shopimg' mode='aspectFill'></image>
+              <view class='info'>
+                <view class='shopinfo text--ellipsis_1'>
+                  <text class='shopname'>{{shop.shopName}}</text>
+                </view>
+                <view class='addressinfo text--ellipsis_1'>
+                  {{shop.address}}
+                </view>
+              </view>
+              <view class='shopaddress'>
+                <view class='sa-icon {{currentStoreId == shop.id ? "icon--address_red" : "icon--address"}}'></view>
+                <view class='sa-destance'>{{util.distance(shop.latitude,shop.longitude,latitude,longitude)}}km</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,147 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function isSelected(selectedServers, id) {
+    if (!(selectedServers && selectedServers.length)) {
+      return false
+    }
+    for (var i = 0; i < selectedServers.length; i++) {
+      if (selectedServers[i].id == id) {
+        return true
+      }
+    }
+    return false
+  }
+
+  module.exports = {
+    isSelected: isSelected
+  }
+</wxs>
+<view class="consumptionBillTwo">
+  <!-- 本次选择的服务信息 -->
+  <view class='consumptionItem' wx:for="{{serviceArr}}" wx:key="{{index}}">
+    <view class='serviceMoudle'>
+      <view class='consumption-title'>{{item.goodsType == 'service' ? '已选服务' : '已选产品'}}
+        <text wx:if="{{item.goodsOrderId}}">(已支付)</text>
+      </view>
+      <view class='serviceItem'>
+        <view class='serviceItem-left'>
+          <image src='{{format.getImageUrl(item.image)}}' mode="aspectFill"></image>
+        </view>
+        <view class='serviceItem-right'>
+          <view class='serviceDes text--ellipsis_2'>{{item.name}}</view>
+          <view class='specificationInfo'>{{item.selectedSpecification.name}}
+            <text wx:if="{{item.goodsType == 'service'}}">{{item.selectedSpecification.time || 0}}分钟</text>
+          </view>
+          <view class='specificationPrice'>
+            <text>￥</text>{{item.selectedSpecification.specialPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 工位 -->
+    <view class="station-module" wx:for="{{item.stationList}}" wx:for-item="station" wx:for-index="index2" wx:key="{{index2}}">
+      <view class="station-title arrow--right" bindtap="selectStation" data-index_service="{{index}}" data-index_station="{{index2}}" data-service_id="{{item.serviceId}}" data-goods_type="{{item.goodsType}}">
+        <text wx:if="{{item.goodsType === 'service'}}">第{{index2+1}}工位</text>
+        <text wx:else>销售人</text>
+      </view>
+      <view class="station-main" wx:if="{{station && station.length}}">
+        <view class='server-box' wx:for="{{station}}" wx:for-item="server" wx:for-index="index3" wx:key="{{index3}}">
+          <view class="server-portrait">
+            <image src="{{format.getImageUrl(server.headPortrait)}}" mode="aspectFill"></image>
+            <view class="server-ratio" catchtap="adjustRatio" data-index_service="{{index}}" data-index_station="{{index2}}" data-index_server="{{index3}}" data-goods_type="{{item.goodsType}}">{{server.ratio}}%</view>
+          </view>
+          <view class="server-info">
+            <view class="server-name">{{server.name}}</view>
+            <view class="server-level">{{server.levelName}}</view>
+          </view>
+          <view class="server-chosen {{server.isChosen ? 'yes' : 'no'}}"  wx:if="{{item.goodsType == 'service'}}" catchtap="changeIsChosen" data-index_service="{{index}}" data-index_station="{{index2}}" data-index_server="{{index3}}" data-is_chosen="{{server.isChosen}}">{{server.isChosen ? '指定' : '非指定'}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 留言 -->
+    <view class='notes'>
+      <text class="notes-title">留言：</text>
+      <input placeholder='对本次交易的说明（选填）' placeholder-style='color:#AAAAAA;' bindinput="inputRemark" data-index="{{index}}"></input>
+    </view>
+    <view class="grey-line"></view>
+  </view>
+
+  <!-- 并单中的服务信息 -->
+  <block wx:if="{{unionOrder}}">
+    <view class='consumptionItem' wx:for="{{unionOrder.consumerGoodsOrderInfoList}}" wx:key="{{index}}">
+      <!-- 服务相关模块 -->
+      <view class='serviceMoudle'>
+        <view class='consumption-title'>{{item.goodsType == 'service' ? '已选服务' : '已选产品'}}(并单)</view>
+        <view class='serviceItem'>
+          <view class='serviceItem-left'>
+            <image src='{{format.getImageUrl(item.image)}}' mode="aspectFill"></image>
+          </view>
+          <view class='serviceItem-right'>
+            <view class='serviceDes text--ellipsis_2'>{{item.serviceName}}</view>
+            <view class='specificationInfo'>{{item.specificationName}}
+              <text wx:if="{{item.goodsType == 'service'}}">{{item.serverTime || 0}}分钟</text>
+            </view>
+            <view class='specificationPrice'>
+              <text>¥</text>{{item.unitFinalPrice}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 工位 -->
+      <view class="station-module" wx:for="{{[item.stationOne, item.assistantOrSalers, item.stationThree]}}" wx:for-item="station" wx:for-index="index2" wx:key="{{index2}}">
+        <block wx:if="{{station && station.length}}">
+          <view class="station-title">
+            <text wx:if="{{item.goodsType === 'service'}}">第{{index2+1}}工位</text>
+            <text wx:else>销售人</text>
+          </view>
+          <view class="station-main">
+            <view class='server-box' wx:for="{{station}}" wx:for-item="server" wx:for-index="index3" wx:key="{{index3}}">
+              <view class="server-portrait">
+                <image src="{{format.getImageUrl(server.headPortrait)}}" mode="aspectFill"></image>
+                <view class="server-ratio">{{server.ratio}}%</view>
+              </view>
+              <view class="server-info">
+                <view class="server-name">{{server.staffName}}</view>
+                <view class="server-level">{{server.postName || ''}}</view>
+              </view>
+              <view class="server-chosen {{server.isChosen ? 'yes' : 'no'}}" wx:if="{{item.goodsType == 'service'}}">{{server.isChosen ? '指定' : '非指定'}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- 留言 -->
+      <view class='notes'>留言：{{item.note || '暂无'}}</view>
+      <view class="grey-line"></view>
+    </view>
+  </block>
+</view>
+
+<!-- 隐藏的调整提成比例输入框 -->
+<view class="hidden-input-cover {{opServer ? 'active' : ''}}" catchtouchmove="prevent" bindtap="stopAdjustRatio">
+  <view class="hidden-input" style="bottom:{{boardHeight || 0}}px" catchtap="prevent">
+    <input focus="{{opServer}}" type="digit" confirm-type="done" adjust-position="{{false}}" value="{{opServer.ratio}}" bindkeyboardheightchange="onBoardHeight" bindconfirm="confirmAdjustRatio"></input>
+    <view class="hidden-input-button" bindtap="confirmAdjustRatio">完成</view>
+  </view>
+</view>
+
+<!-- 底部确认开单按钮 -->
+<view class="page-footer">
+  <view class="footer-button" catchtap="createOrder">确认开单</view>
+  <view style="color:#999;padding-left:30rpx">合计金额
+    <text style="color:#f52d56;font-size:40rpx"><text style="font-size:24rpx;">¥</text>{{format.getPrice(_totalPrice)}}</text>
+  </view>
+</view>
+
+<!-- 根据工位弹框选择服务者 -->
+<AppPopup show="{{format.isNumber(opStationIndex)}}" title="{{format.isNumber(opStationIndex) ? '选择第' + (opStationIndex+1) + '工位' : ''}}" bind:close="popdown" bind:clickButton="confirmStation">
+  <view class="server-popup-main" slot="main">
+    <view class='server-box {{wxs.isSelected(selectedServers, item.id) ? "selected" : ""}}' wx:for="{{canSelectedServers}}" wx:key="{{index}}" bindtap="chooseStationServer" data-item="{{item}}">
+      <view class="selected-icon icon--selected_corner" wx:if="{{wxs.isSelected(selectedServers, item.id)}}"></view>
+      <view class="server-portrait">
+        <image src="{{format.getImageUrl(item.headPortrait)}}" mode="aspectFill"></image>
+      </view>
+      <view class="server-info">
+        <view class="server-name">{{item.name}}</view>
+        <view class="server-level">{{item.levelName}}</view>
+      </view>
+    </view>
+  </view>
+</AppPopup>

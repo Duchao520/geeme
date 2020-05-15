@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Rate": "../../common/Rate/Rate"
+  }
+}

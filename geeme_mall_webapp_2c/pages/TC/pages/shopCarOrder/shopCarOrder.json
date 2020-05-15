@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "AppASAmount": "/components/App/AppASAmount/AppASAmount",
+    "AddressCard": "/components/Card/AddressCard/AddressCard",
+    "RedPacketCard": "/components/Card/RedPacketCard/RedPacketCard",
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "VipCardCount": "/components/VipComponents/VipCardCount/VipCardCount",
+    "CouponModel": "/components/Card/CouponModel/CouponModel"
+  }
+}

@@ -1,0 +1,11 @@
+/* pages/VIP//pages/VipCardManagement/VipCardManagement.wxss */
+@import '../UserVipCard/UserVipCard.wxss';
+
+.card {
+  margin: 48rpx 60rpx 80rpx !important;
+}
+
+.card-number {
+  max-width: 300rpx !important;
+}
+

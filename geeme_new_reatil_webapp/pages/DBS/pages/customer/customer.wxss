@@ -1,0 +1,24 @@
+.top{
+  position: fixed;
+  top: 72rpx;
+}
+.single{
+  background: #F8F8F8;
+}
+.double{
+  background: #FFFFFF;
+}
+.thumb{
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  background: #B4CCFF;
+  border-radius: 50%;
+}
+.level{
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  background: #B4CCFF;
+}

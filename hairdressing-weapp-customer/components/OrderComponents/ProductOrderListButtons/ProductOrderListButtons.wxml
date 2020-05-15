@@ -1,0 +1,26 @@
+<view class="ProductOrderListButtons">
+  <!-- 待付款 -->
+  <block wx:if="{{info.orderStatus === 'WAITING_PAY'}}">
+    <view bindtap='cancel'>取消订单</view>
+    <view class='red' bindtap="pay">立即支付</view>
+  </block>
+  <!-- 待发货 -->
+  <block wx:elif="{{info.orderStatus === 'WAITING_DELIVER'}}">
+    <view bindtap="refund" >{{info.refund ? '退款进度' : '申请退款'}}</view>
+  </block>
+  <!-- 待收货 -->
+  <block wx:elif="{{info.orderStatus === 'WAITING_CONFIRM'}}">
+    <view bindtap="refund" >{{info.refund ? '退款进度' : '申请退款'}}</view>
+    <view class='red' bindtap='confirm'>确认收货</view>
+  </block>
+  <!-- 待评价 -->
+  <block wx:elif="{{info.orderStatus === 'WAITING_ASSESSMENT'}}">
+    <view bindtap="refund">{{info.afterSale ? '售后进度' : '申请售后'}}</view>
+    <view class='red' bindtap='evaluate'>立即评价</view>
+  </block>
+  <!-- 已完成 -->
+  <block wx:elif="{{info.orderStatus === 'FINISHED'}}">
+    <view bindtap="refund">{{info.afterSale ? '售后进度' : '申请售后'}}</view>
+    <!-- <view class='red' bindtap='$wait'>再次购买</view> -->
+  </block>
+</view>

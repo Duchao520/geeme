@@ -1,0 +1,4 @@
+<wxs src="../../utils/format.wxs" module="format" />
+<view class="box_padding" style="padding: 36rpx 32rpx;">
+  <image src="{{format.getImageUrl('56ae494a5e934ebbbb3f4d7405706328')}}" style="display:block;width: 100%;height: 7420rpx;"></image>
+</view>

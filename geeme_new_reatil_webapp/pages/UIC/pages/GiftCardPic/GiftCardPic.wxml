@@ -1,0 +1,5 @@
+<view class="container">
+  <canvas class="canvas" style="display: block;" canvas-id="pic"></canvas>
+  <image class="canvas-img" style="display: block;" src="{{tempFilePath}}"></image>
+  <button class="shareBtn" hover-class="hover" bindtap="saveImg">保存到相册</button>
+</view>

@@ -1,0 +1,421 @@
+@import '/utils/wxss/icon.wxss';
+/* 头部 */
+page{
+  position:relative;
+  padding-bottom: 138rpx;
+  min-height:100vh;
+}
+
+.container {
+  width: 100%;
+  background: rgba(248, 248, 248, 1);
+}
+
+.header {
+  width: 100%;
+  height: 386rpx;
+  padding: 28rpx 32rpx 36rpx 34rpx;
+  background-color: white;
+}
+
+.sh-head {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  line-height: 60rpx;
+}
+
+.sh-text {
+  width: 80%;
+  color: rgba(72, 72, 72, 1);
+  font-size: 44rpx;
+  line-height: 60rpx;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sh-text > text{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sh-text > text:first-child{
+  margin-right:10rpx;
+  max-width: 150rpx;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sh-btns {
+  color: rgba(153, 153, 153, 1);
+  font-size: 24rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  line-height: 60rpx;
+}
+
+.sh-icon {
+  width: 12rpx;
+  height: 100%;
+  background: no-repeat center center/100% auto;
+  background-position-y: 25rpx;
+}
+
+.sh-btn {
+  margin-right: 8rpx;
+}
+
+.sh-body {
+  width: 100%;
+  height: 252rpx;
+  box-shadow: 0 0 12rpx 0 rgba(0, 0, 0, 0.14);
+  padding: 22rpx 22rpx 30rpx 36rpx;
+  border-radius: 16rpx;
+  margin-top: 10rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.des {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 8rpx;
+  right: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.desChild {
+  width: 80rpx;
+  height: 32rpx;
+  /* background-color: #f12c54; */
+  color: #f12c54;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 28rpx;
+  border-radius: 16rpx;
+  border: 2rpx solid #f12c54;
+}
+
+/* 店铺信息 */
+
+.shopinfo {
+  width: 100%;
+  height: auto;
+  padding-left: 60rpx;
+  background-color: white;
+  padding-bottom: 72rpx;
+  padding-top: 88rpx;
+}
+
+.shopname {
+  width: 100%;
+  height: 60rpx;
+  text-align: left;
+  line-height: 60rpx;
+  color: black;
+  font-size: 44rpx;
+}
+
+.shopstores {
+  height: 28rpx;
+  margin-bottom:36rpx;
+}
+
+.shopscore {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24rpx;
+  color: #f52d56;
+}
+
+.shoptime {
+  width: 100%;
+  height: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: left;
+}
+
+.work {
+  width: 78rpx;
+  height: 28rpx;
+  background-color: #7ed321;
+  text-align: center;
+  line-height: 28rpx;
+  margin-left: 10rpx;
+  font-size: 16rpx;
+  border-radius: 5rpx;
+  color: #fff;
+}
+
+.work.nowork {
+  background-color: rgba(117, 140, 151, 1);
+}
+
+.timeicon {
+  width: 20rpx;
+  height: 20rpx;
+  background: no-repeat center center/100% auto;
+  margin-right: 6rpx;
+  margin-top: 4rpx;
+}
+
+.timetext {
+  height: 32rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: left;
+  line-height: 32rpx;
+}
+
+.shopaddress {
+  width: 100%;
+  height: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: left;
+  margin: 20rpx 0 20rpx 0;
+}
+
+.addressicon {
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 8rpx;
+  background: no-repeat center center/100% auto;
+  margin-right: 6rpx;
+}
+
+.addresstext {
+  max-width: 80%;
+  height: 32rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: left;
+  line-height: 32rpx;
+  margin-right: 11rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.addresshelp {
+  width: 68rpx;
+  height: 32rpx;
+  font-size: 24rpx;
+  text-align: left;
+  line-height: 32rpx;
+  color: #f52d56;
+}
+
+.shopphone {
+  width: 100%;
+  height: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: left;
+  margin: 20rpx 0 20rpx 0;
+}
+
+.phoneicon {
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 4rpx;
+  background: no-repeat center center/100% auto;
+  margin-right: 6rpx;
+}
+
+.phonetext {
+  height: 32rpx;
+  color: #f52d56;
+  font-size: 24rpx;
+  text-align: left;
+  line-height: 32rpx;
+}
+
+/* 推荐发型师 */
+
+.recommended {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  margin-bottom: 20rpx;
+}
+
+.recommended-head {
+  padding: 0 32rpx;
+}
+
+.rh-left {
+  display: inline-block;
+  font-size: 37rpx;
+  font-weight: 600;
+  color: #484848;
+}
+
+.rh-right{
+  float:right;
+  padding-right:20rpx;
+  font-size:28rpx;
+  color:#999;
+  background: no-repeat right 20rpx;
+  background-size:12rpx 16rpx;
+}
+
+.rh-right::before{
+  content: '';
+  font-size:37rpx;
+}
+
+scroll-view {
+  padding: 0 32rpx 0 0;
+}
+
+.recommended-body {
+  width: auto;
+  height: 100%;
+  padding: 50rpx 0rpx 20rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.rb-item {
+  width: 116rpx;
+  margin-right: 30rpx;
+  text-align: center;
+}
+
+.rb-item:first-child {
+  margin-left: 32rpx;
+}
+
+.rb-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+}
+
+.rb-levelName{
+  color: #999;
+  font-size: 20rpx;
+  text-align: center;
+  margin: 14rpx 0 10rpx;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.rb-name {
+  color: #263238;
+  font-size: 24rpx;
+  text-align: center;
+  margin: 14rpx 0 10rpx;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.rb-starus {
+  width: 86rpx;
+  height: 34rpx;
+  color: #999;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid #999;
+}
+
+.rb-starus-false {
+  width: 86rpx;
+  height: 34rpx;
+  color: rgba(245, 45, 86, 1);
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid rgba(245, 45, 86, 1);
+}
+
+/* 选择 */
+
+/* components/choose/choose.wxss */
+
+.choose {
+  width: 100%;
+  /* height: 100rpx; */
+  background-color: white;
+}
+
+.choose-head {
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 2rpx solid #ebebeb;
+  padding: 0 210rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.choose-head.active {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.chooseBody.active {
+  padding-top: 100rpx;
+}
+
+.ch-people {
+  height: 100%;
+  color: #484848;
+  font-size: 28rpx;
+  position: relative;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.ch-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 114rpx;
+  height: 6rpx;
+  background-color: #f52d56;
+}
+
+.ch-time {
+  height: 100%;
+  color: rgba(170, 170, 170, 1);
+  font-size: 28rpx;
+  line-height: 100rpx;
+}
+
+.ch-works {
+  color: rgba(170, 170, 170, 1);
+  font-size: 28rpx;
+  height: 100%;
+  line-height: 100rpx;
+}
+
+.choose-content {
+  width: 100%;
+  height: auto;
+  padding: 30rpx 32rpx 120rpx;
+}

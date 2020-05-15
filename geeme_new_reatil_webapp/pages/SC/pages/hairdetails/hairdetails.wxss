@@ -1,0 +1,367 @@
+@import "/utils/wxss/icon.wxss";
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 376rpx;
+  background: no-repeat center center/100% auto;
+}
+
+.productimg-button {
+  position: absolute;
+  top: 30rpx;
+  width: 76rpx;
+  height: 76rpx;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+
+.productimg-button.share {
+  right: 32rpx;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAABMCAMAAADwSaEZAAAAilBMVEUAAAAAAAAAAAAAAADr6+vr6+sAAAAAAAD09PQAAAAAAAAAAAAAAAAAAAD4+Pj09PTJycmnp6dJSUkrKyv4+Pjw8PDi4uIAAAAAAAAAAADZ2dnx8fHExMS0tLSGhoYRERH9/f38/Pz39/fp6enCwsI2Njbu7u7////7+/vd3d2bm5vy8vLS0tL///9XvlPbAAAALXRSTlMzAAkuv8EdAtgrKCUZDefXiGtBOubLriMVEZ3Pg3NXNffy4LyAPcf776di0JQMZTMdAAACIklEQVRYw83Y63LaMBCG4Q8pSPgUUihgio0hHHJodf+3V+PgKjQrrRPZM3n/kcw84wVmkBYjXzrLVRJJCUgZJSrP9MiXBxNpjA/FqWAwUorgKHJ6oKkVvK1EZ0wkYEtEJ0wrdEppHltLdEyuCYx7LP7haEzE+FSxcGNC4pNJ4cIywmK1jMYyfKmMwPgZ+UkRalnNYjrGl4v1f5hCQOoWWyOo9XtMSwQldYvxQ85+n+fMoBYTjDUxZsFo4h+W+K2pMayWtJjgrF/3kyWniSu24izcT8FpqzdMsNYFYzXRYClnNRirpQ0Wwd2ythqsfeEuqjH/lK9HWAwPW/+csFPStRhfWmMxyKrt8eFSMbtgEwDztz8ctxXI4hE0yLZTc+1Pi5Xm2tQxrUYGqtnz00v5o2neYtVr87p8eXqegSpD7vgUS9gazFaaJahyKFA9PoLC7H+pFBJQmbEPGxtQJYho7A7v+3mL3dFYBNkfJvvFEIrRhWPf+D3r9auRdME24y5YAtUFq6oumELOYW08liPrD8ug+8M0RnFfWGx/UMKxtMZEX5iwP8LBWOQ8HuzO8HTeUVM6Dy6b/QnOTvsNNaXzSFWYw8lpHUzhOlLRj3Yw+8WYbLE3B+rBfMfQYrMzZLtN4T6G1gkEJ26O7mGpgS4V4dedgS5i4VfEYS6v4dfqoS/84auI8CXJwOub8MVS+Mpr2GVc+JowfIE51Gp1+KVv+Dr6L6UHLX9QrWMOAAAAAElFTkSuQmCC);
+}
+
+.hairinfo {
+  width: 686rpx;
+  height: 222rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 0 8rpx 0 rgba(0, 0, 0, 0.1);
+  padding: 24rpx 0 26rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  position: absolute;
+  bottom: -107rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: white;
+}
+
+.hairinfo-left{
+  width:142rpx;
+  text-align: center;
+}
+
+.hairavatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+}
+
+.follow-button{
+  display: inline-block;
+  width:122rpx;
+  height:48rpx;
+  line-height:48rpx;
+  text-align: center;
+  border:0.5px solid #f52d56;
+  border-radius:24rpx;
+  color:#f52d56;
+  font-size:28rpx;
+}
+
+.servicePrice {
+  color: #999;
+  font-size: 20rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 25rpx;
+}
+
+.servicePrice text {
+  color: #f52d56;
+  font-weight: 600;
+  font-size: 44rpx;
+}
+
+.follow-button.followed{
+  color:#999;
+  border-color:#999;
+}
+
+.htname {
+  height: 48rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: 10rpx;
+}
+
+.hn-text {
+  color: #263238;
+  font-size: 34rpx;
+  margin-right: 10rpx;
+}
+
+.hn-logo {
+  width: 64rpx;
+  height: 28rpx;
+  background-color: #7ed321;
+  text-align: center;
+  line-height: 28rpx;
+  color: white;
+  font-size: 16rpx;
+  border-radius: 4rpx;
+  margin-top: 10rpx;
+}
+
+.hn-logo.unable{
+  background-color: rgba(117, 140, 151, 1);
+}
+
+.htlevel {
+  color: #333;
+  font-size: 24rpx;
+}
+
+.htaddress {
+  margin-top: 12rpx;
+  margin-bottom: 12rpx;
+  color: #999;
+  font-size: 24rpx;
+  background: no-repeat left center;
+  background-size:24rpx 24rpx;
+  padding-left: 24rpx;
+}
+
+.stores {
+  height: 25rpx;
+  line-height: 25rpx;
+}
+
+.reservation {
+  display: inline-block;
+  vertical-align: middle;
+  color: #333;
+  font-size: 24rpx;
+  margin-right: 26rpx;
+  margin-left: 16rpx;
+}
+
+.showworks {
+  display: inline-block;
+  vertical-align: middle;
+  color: #333 100%;
+  font-size: 24rpx;
+}
+
+/* 主体 */
+
+.content {
+  margin-top: 65rpx;
+  padding-bottom: 146rpx;
+}
+
+.content-head {
+  width: 100%;
+  height: 142rpx;
+  padding-top: 52rpx;
+  overflow: hidden;
+  position: relative;
+  border-bottom:1px solid #efeff4;
+}
+
+.content-head.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  padding-top: 30rpx;
+  height: 97rpx;
+}
+
+/* 主体简介 */
+
+.content-show {
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx 200rpx;
+}
+
+.content-show.active {
+  padding-top: 132rpx;
+}
+
+.des-container {
+  width: 100%;
+  height: auto;
+  border-bottom: 2rpx solid #ebebeb;
+}
+
+.des-title {
+  width: 100%;
+  line-height: 110rpx;
+  text-align: left;
+  color: #484848;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.long-items {
+  width: 100%;
+  margin-right: -20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.long-item {
+  padding: 4rpx 32rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #5a5a5a;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 22rpx;
+  border: 2rpx solid #ebebeb;
+}
+
+.des-content {
+  color: #666;
+  font-size: 30rpx;
+  text-align: left;
+  margin-bottom: 40rpx;
+}
+
+.des-experience{
+  margin-top:12rpx;
+}
+
+.des-experience:first-child{
+  margin-top:0;
+}
+
+.des-experience > text:first-child{
+  margin-right: 20rpx;
+}
+
+.advantages {
+  width: 100%;
+  height: auto;
+  border-bottom: 2rpx solid #ebebeb;
+}
+
+.advantages-title {
+  width: 100%;
+  line-height: 116rpx;
+  text-align: left;
+  color: #484848;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.advantages-content {
+  color: #666;
+  font-size: 30rpx;
+  text-align: left;
+  margin-bottom: 40rpx;
+}
+
+/* 按钮 */
+.appointment {
+  width: 100%;
+  height: 140rpx;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.appointment-item {
+  width: 684rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: #f52d56;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.evaluationTop {
+  padding: 0 32rpx;
+  border-bottom: 1px solid #efeff4;
+}
+
+.Score {
+  width: 100%;
+  height: 112rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scoreLeft {
+  color: #f52d56;
+  font-size: 32rpx;
+}
+
+.scoreLeft text {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 14rpx;
+}
+
+.service-container{
+  padding:30rpx 30rpx 0;
+}
+
+/* 评价数据统计 */
+
+.evaluationData {
+  margin-right: -30rpx;
+}
+
+.evaluationDataItem {
+  display: inline-block;
+  box-sizing: content-box;
+  margin: 0 30rpx 30rpx 0;
+  padding: 0 28rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  border-radius: 30rpx;
+  border: 1px solid #ccc;
+  font-size: 24rpx;
+  color: #ccc;
+}
+
+.evaluationDataItem.active {
+  color: #f52d56;
+  border: 1px solid #f52d56;
+}
+
+.photo-container {
+  font-size: 0;
+  width: 100%;
+  height: auto;
+}
+
+.photo-item {
+  display: inline-block;
+  padding: 1px;
+  width: 33.3%;
+  height: 250rpx;
+}
+
+.photo-item > image {
+  width: 100%;
+  height: 100%;
+}
+
+.canvas{
+  position: fixed;
+  left:1000px;
+  /* z-index: 2;
+  left:0; */
+  top:0;
+  width:375px;
+  height:667px;
+}

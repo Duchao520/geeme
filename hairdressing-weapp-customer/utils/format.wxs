@@ -1,0 +1,327 @@
+// var ImageUrl = 'https://image.geeme.cn/images/'  // RELEASE环境
+// var ImageUrl = 'https://image-develop.geeme.cn/images/' // DEVELOP环境
+// var ImageUrl = 'https://image-test.geeme.cn/images/' // TEST环境
+var ImageUrl = 'https://image.geeme.cn/images/' // BIZPRE环境
+
+
+/**
+ * 预约时间点的状态显示
+ * length（某个时间点预约客户的长度），capacity（总的容量）
+ */
+var appointmentTimeStatus = function(length, capacity) {
+  if (length == 0) {
+    return 'EMPTY'
+  } else if (capacity == length) {
+    return 'FULL'
+  } else {
+    return 'MIDDLE'
+  }
+}
+
+/**
+ * 订单头部状态(给我一个orderStatus返回对应的状态)
+ * 
+ * orderStatus(待付款  待服务  待评价)
+ */
+var orderStatus = function(orderStatus) {
+  if (orderStatus == '待付款') {
+    return 'waitPay'
+  } else if (orderStatus == '待服务') {
+    return 'waitService'
+  } else if (orderStatus == '待评价') {
+    return 'waitEvaluation'
+  } else if (orderStatus == '已完成') {
+    return 'alreadyFinish'
+  } else if (orderStatus == '已关闭') {
+    return 'colseService'
+  }
+}
+
+// 获取正确的imageUrl
+var getImageUrl = function(imageUrl) {
+  if (!imageUrl) return
+  var imageUrlSpilt = imageUrl.split('?');
+  if(!imageUrlSpilt[0] || imageUrlSpilt[0] == 'undefined' || imageUrlSpilt[0] == 'null'){
+    return ""
+  }
+  if (imageUrl.indexOf('https://') != -1 || imageUrl.indexOf('http://') != -1) {
+    return imageUrl
+  } else {
+    return ImageUrl + imageUrl
+  }
+}
+
+// 对image数组遍历，获取正确的imageUrl
+var getImageArr = function(imageArr) {
+  if (!(imageArr && imageArr.length)) return
+  for (var i = 0; i < imageArr.length; i++) {
+    imageArr[i] = getImageUrl(imageArr[i])
+  }
+  return imageArr
+}
+
+
+// 获取用于展示的城市
+var getCity = function(city) {
+  if (!city) return '位置'
+  if (city.indexOf('市') == city.length - 1) {
+    city = city.slice(0, -1)
+  }
+  if (city.indexOf('城区') == city.length - 2) {
+    city = city.slice(0, -2)
+  }
+  return city
+}
+
+
+var IF = function(field){
+  if(!field || field == '0' || field == 'false' || field == 'undefined' || field == 'NaN' || field == 'null'){
+    return false;
+  }else {
+    return true;
+  }
+}
+
+// 获取用于展示的区
+var getArea = function(area) {
+  if (!area) return ''
+  if (area.indexOf('区') == area.length - 1) {
+    area = area.slice(0, -1)
+  }
+  return area
+}
+
+// 保留digits位小数
+var fixNum = function(num, digits) {
+  if (num == 0) return num
+  if (!num) return
+  return Number(num).toFixed(digits)
+}
+
+// 多于两位小数保留两位，否则返回原数
+var fixNum2 = function(num) {
+  var numStr = num + ''
+  if (numStr.indexOf('.') == -1) {
+    return num
+  } else {
+    var arr = numStr.split('.')
+    if (arr[1].length <= 2) {
+      return num
+    } else {
+      arr[1] = arr[1].substring(0, 2)
+      return Number(arr[0] + '.' + arr[1])
+    }
+  }
+}
+
+// 获取正确的价格(多于两位小数四舍五入到两位小数，否则返回原价)
+var getPrice = function(num) {
+  var numStr = num + ''
+  if (numStr.indexOf('.') == -1) {
+    return num
+  } else {
+    var arr = numStr.split('.')
+    if (arr[1].length <= 2) {
+      return num
+    } else {
+      num = Math.round(num * 100) / 100
+      return num
+    }
+  }
+}
+
+var getTxt = function(txt){
+  if(typeof txt && txt && txt != 'null' && txt != 'undefined'){
+    return txt;
+  }else{
+    return '';
+  }
+}
+
+// timeStr: 如2019-06-11T21:07:50
+var getDate1 = function(timeStr) {
+  if (timeStr) {
+    var _date = timeStr.split('T')[0]
+    _date = _date.replace('-', '年')
+    _date = _date.replace('-', '月')
+    _date = _date.replace(' ', '日')
+    return _date
+  }
+}
+
+// 去掉时分秒
+var getDate2 = function(timeStr) {
+  if (timeStr) {
+    if (timeStr.indexOf('T') != -1) {
+      return timeStr.split('T')[0]
+    } else if (timeStr.indexOf(' ') != -1) {
+      return timeStr.split(' ')[0]
+    } else {
+      return timeStr
+    }
+  }
+}
+
+// timeStr: 如2019-06-11T21:07:50
+var getDate3 = function(timeStr) {
+  if (timeStr) {
+    return timeStr.replace('T', ' ')
+  }
+}
+
+// 将'-'转为'/'
+var getDate4 = function(timeStr, source, target) {
+  if (timeStr && source) {
+    return timeStr.replace(getRegExp(source, 'g'), target)
+  } else if (timeStr) {
+    return timeStr.replace(getRegExp('-', 'g'), '/')
+  }
+}
+
+// 去掉秒
+var getDate5 = function(timeStr) {
+  if (timeStr) {
+    var arr = timeStr.split(':')
+    if (arr.length == 3) {
+      return arr[0] + ":" + arr[1]
+    } else {
+      return timeStr
+    }
+  }
+}
+
+// 只保留时分秒
+var getDate6 = function(timeStr) {
+  if (timeStr) {
+    if (timeStr.indexOf('T') != -1) {
+      return timeStr.split('T')[1]
+    } else {
+      return timeStr.split(' ')[1]
+    }
+  } else {
+    return timeStr
+  }
+}
+
+// 主要用于将timestamp得到的date转化规格
+var formatDate = function(date) {
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+var formatNumber = function(n) {
+  if(!n) return '00'
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+var getDateByTimestamp = function(timestamp) {
+  return getDate2(formatDate(getDate(timestamp)))
+}
+
+// 手机号中间四位替换为'*'
+var encriptPhone = function(phone) {
+  if (!phone) return
+  var reg = getRegExp("(\d{3})\d{4}(\d{4})");
+  return phone.toString().replace(reg, '$1****$2')
+}
+
+// 主题皮肤相关
+var skins = ['',{
+  color1: '#f52d56',
+  color2: '#ff1e8b'
+}, {
+  color1: '#000000',
+  color2: '#787474'
+}, {
+  color1: '#cc9932',
+  color2: '#e9c06b'
+}, {
+  color1: '#009999',
+  color2: '#01cccc'
+}, {
+  color1: '#7e46b6',
+  color2: '#6666cc'
+}, {
+  color1: '#ffbc00',
+  color2: '#ffdd98'
+}, {
+  color1: '#019966',
+  color2: '#00cf82'
+}, {
+  color1: '#0199ff',
+  color2: '#0066ff'
+}]
+
+var getSkin = function(themeId){
+  return skins[themeId]
+}
+
+// 判断有无该字段并且是一个自然数
+var isNumber = function (number) {
+  if (typeof (number) === 'number') {
+    return number > 0 ? number : '0'
+  } else {
+    return false
+  }
+}
+
+/**
+ * 截取数组
+ */
+var arrSlice = function(array,start = 0, end = 5) {
+  if(array){
+    return array.slice(start, end)
+  }
+}
+
+var IF = function (field) {
+  if (!field || field == '0' || field == 'false' || field == 'undefined' || field == 'NaN' || field == 'null') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+//处理城市名
+var replaceCity = function (cityName = '') {
+  if (cityName.indexOf('城区') > -1) {
+    return cityName.replace('城区', '');
+  } else if (cityName.indexOf('市') > -1) {
+    return cityName.replace('市', '');
+  } else {
+    return cityName;
+  }
+}
+
+
+module.exports = {
+  appointmentTimeStatus: appointmentTimeStatus,
+  orderStatus: orderStatus,
+  getImageUrl: getImageUrl,
+  getImageArr: getImageArr,
+  getCity: getCity,
+  getArea: getArea,
+  getDate1: getDate1,
+  fixNum: fixNum,
+  fixNum2: fixNum2,
+  getPrice: getPrice,
+  getDate2: getDate2,
+  getDate4: getDate4,
+  getDate5: getDate5,
+  getDate6: getDate6,
+  encriptPhone: encriptPhone,
+  getDateByTimestamp: getDateByTimestamp,
+  formatNumber: formatNumber,
+  getSkin: getSkin,
+  isNumber: isNumber,
+  arrSlice: arrSlice,
+  getTxt: getTxt,
+  IF: IF,
+  replaceCity: replaceCity
+}

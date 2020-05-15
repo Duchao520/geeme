@@ -1,0 +1,118 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getPct(customerExp, previousIntegral, currentIntegral) {
+    var pct
+    if (customerExp < previousIntegral) {
+      pct = 0
+    } else if (customerExp > currentIntegral) {
+      pct = 1
+    } else {
+      pct = (customerExp - previousIntegral) / (currentIntegral - previousIntegral)
+    }
+    return pct * 100
+  }
+  module.exports = {
+    getPct: getPct
+  }
+</wxs>
+<view class="main">
+  <swiper style="margin-top:40rpx" bindchange="change" current="{{current}}" previous-margin="90rpx" next-margin="90rpx">
+    <!-- 拥有的会员卡 -->
+    <swiper-item wx:for="{{levelList}}" wx:key="{{index}}" style="text-align:center">
+      <view class="levelCard {{current == index ? 'active' : ''}}" style="background-image:url({{format.getImageUrl(item.backgroundImage + '?x-oss-process=image/resize,m_fill,h_147,w_265')}})">
+        <view class="levelCard-userInfo">
+          <image class="userInfo-avatar" lazy-load src="{{format.getImageUrl(userInfo.storeHeadIcon)}}" mode="aspectFill"></image>
+          <view class="userInfo-text">
+            <view class="userInfo-nickName">{{userInfo.nickName}}</view>
+            <view class="userInfo-exp">
+              <text>成长值</text> {{customerExp}}</view>
+          </view>
+        </view>
+        <view class="levelCard-level text--ellipsis_1">
+          <text class='icon--diamond'>{{item.levelName}}</text>
+        </view>
+      </view>
+    </swiper-item>
+    <!-- 购买会员卡 -->
+  </swiper>
+  <view class="exp-row">
+    <view class="exp-line_transparent">
+      <block wx:if="{{previousLevel}}">
+        <view class="exp-line l1">
+          <view class="exp-line_red" style="width:{{customerExp >= previousLevel.experience ? '100' : '0'}}%"></view>
+        </view>
+        <!-- 上一等级的节点 -->
+        <view class="exp-node previous">
+          <view class="node-circle {{customerExp >= previousLevel.experience ? 'active' : ''}}"></view>
+        </view>
+        <view class="exp-line l2">
+          <view class="exp-line_red" style="width:{{wxs.getPct(customerExp, previousLevel.experience, currentLevel.experience)}}%"></view>
+        </view>
+      </block>
+      <!-- 当前等级的节点 -->
+      <view class="exp-node current">
+        <view class="node-circle {{customerExp >= currentLevel.experience ? 'active' : ''}}"></view>
+      </view>
+      <block wx:if="{{nextLevel}}">
+        <view class="exp-line l3">
+          <view class="exp-line_red" style="width:{{wxs.getPct(customerExp, currentLevel.experience, nextLevel.experience)}}%"></view>
+        </view>
+        <!-- 下一等级的节点 -->
+        <view class="exp-node next">
+          <view class="node-circle {{customerExp >= nextLevel.experience ? 'active' : ''}}"></view>
+        </view>
+        <view class="exp-line l4">
+          <view class="exp-line_red" style="width:{{customerExp >= nextLevel.experience ? '100' : '0'}}%"></view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 成长值统计 -->
+  <view class="exp-row-text">
+    <view class="exp-text-item">
+      <view class="text-box" wx:if="{{previousLevel}}">
+        <view>{{previousLevel.experience}}</view>
+        <view>成长值</view>
+      </view>
+    </view>
+    <view class="exp-text-item">
+      <view class="text-box">
+        <view>{{currentLevel.experience}}</view>
+        <view>成长值</view>
+      </view>
+    </view>
+    <view class="exp-text-item">
+      <view class="text-box" wx:if="{{nextLevel}}">
+        <view>{{nextLevel.experience}}</view>
+        <view>成长值</view>
+      </view>
+    </view>
+  </view>
+  <!-- 成为条件 -->
+  <view class="des-container" style="margin-top:60rpx;">
+    <view class="des-header">成为条件</view>
+    <view class="des-items">
+      <view class="des-item" style="padding-bottom:20rpx;border-bottom:1px solid #efeff4">成长值达到{{currentLevel.experience}}点。
+        <text class="exp-rules" catchtap="jumpMemberLevel_rules">如何增加成长值？</text>
+      </view>
+    </view>
+  </view>
+  <!-- 权益说明 -->
+  <view class="des-container" style="margin-top:60rpx;">
+    <view class="des-header">权益说明</view>
+    <view class="des-items">
+      <view class="des-item">消费享受{{currentLevel.pointMultiple}}倍积分。</view>
+      <view class="des-item" wx:if="{{currentLevel.levelDiscountGoods == 'ALL'}}">消费所有服务{{currentLevel.lvlAllServiceDisc}}折，消费所有产品{{currentLevel.lvlAllProductDisc}}折</view>
+      <view class="des-item" wx:elif="{{currentLevel.levelDiscountGoods == 'APPOINT'}}">消费指定服务优惠，消费指定产品优惠。</view>
+      <view class="des-item" wx:if="{{currentLevel.birthdayGoods == 'ALL'}}">生日当天消费所有服务{{currentLevel.bdAllServiceDisc}}折，所有产品{{currentLevel.bdAllProductDisc}}折</view>
+      <view class="des-item" wx:elif="{{currentLevel.birthdayGoods == 'APPOINT'}}">生日当天消费指定服务优惠，消费指定产品优惠</view>
+      <view class="des-item" wx:if="{{currentLevel.freeShipping || currentLevel.refundFast}}">享受<text wx:if="{{currentLevel.freeShipping}}">产品包邮</text><text wx:if="{{currentLevel.freeShipping && currentLevel.refundFast}}">和</text><text wx:if="{{currentLevel.refundFast}}">急速退款</text>
+      </view>
+      <view class="des-item" wx:if="{{currentLevel.otherRights}}">其他权益：{{currentLevel.otherRights}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-fixed">
+  <view class="bottom-button" catchtap="jumpRecord">成长值记录</view>
+</view>

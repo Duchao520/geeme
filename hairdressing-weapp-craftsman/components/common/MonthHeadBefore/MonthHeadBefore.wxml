@@ -1,0 +1,6 @@
+<view class="DateTitle">
+  <view class='DateTitleItem {{item.number == active?"active":""}}' wx:for="{{monthList}}" wx:key="{{index}}" bindtap='setCurrentDateInfo' data-item="{{item}}">
+    <view class='week'>{{item.chinese}}</view>
+    <view class='date'>{{item.number}}</view>
+  </view>
+</view>

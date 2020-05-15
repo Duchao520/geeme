@@ -1,0 +1,18 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="GroupOrder_Button" catchtap="showShare">邀请好友拼单</view>
+<view class="cover {{ifPopShare ? 'active' : ''}}" hidden="{{!ifPopShare}}" bindtap="$set" data-key="ifPopShare" data-value="{{false}}">
+  <view class="share-container" wx:if="{{ifPopShare}}" catchtap="prevent">
+    <view class="share-l1">距拼团失效还剩<text>{{format.formatNumber(hour)}}</text>:<text>{{format.formatNumber(minute)}}</text>:<text>{{format.formatNumber(second)}}</text></view>
+    <view class="share-l2">还差{{info.numberRemain}}人，赶快邀请好友来拼单吧：</view>
+    <view class='share-button-container'>
+      <view class='share-button-item canvas' bindtap='sharePic'>
+        <image src="/images/button/share_canvas.png" />
+        <view>生成画报</view>
+      </view>
+      <button class='share-button-item weixin' open-type="share" data-item="{{info}}">
+        <image src="/images/button/share_weixin.png" />
+        <view>微信</view>
+      </button>
+    </view>
+  </view>
+</view>

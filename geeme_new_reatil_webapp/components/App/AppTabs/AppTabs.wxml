@@ -1,0 +1,10 @@
+<view class="component-container" style="padding:{{padding}}">
+  <view class="tabs-container">
+    <view class="activeLine" style="left:{{lineLeft}}" hidden='{{currentTab < 0}}'></view>
+    <view wx:for="{{tabs}}" wx:key="index" class="tabs-item {{currentTab == index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}" data-name="{{item}}">
+      <view class="text">{{item}}</view>
+      <!-- 一个底部居中透明的线，用来做activeLine的定位用 -->
+      <view class='hiddenLine'></view>
+    </view>
+  </view>
+</view>

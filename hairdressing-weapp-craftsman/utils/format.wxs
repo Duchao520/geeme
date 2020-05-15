@@ -1,0 +1,208 @@
+var ImageUrl = "https://image.geeme.cn/images/" // RELEASE
+// var ImageUrl = "https://image-develop.geeme.cn/images/" // DEVELOP
+// var ImageUrl = "https://image-test.geeme.cn/images/" // TEST
+
+/**
+ * 预约时间点的状态显示
+ * length（某个时间点预约客户的长度），capacity（总的容量）
+ */
+var appointmentTimeStatus = function(length,capacity){
+  if(length == 0){
+    return 'EMPTY'
+  }else if(capacity == length){
+    return 'FULL'
+  }else {
+    return 'MIDDLE' 
+  }
+}
+
+/**
+ * 订单头部状态(给我一个orderStatus返回对应的状态)
+ * 
+ * orderStatus(待付款  待服务  待评价)
+ */
+var orderStatus = function (orderStatus) {
+  if (orderStatus == '待付款') {
+    return 'waitPay'
+  } else if (orderStatus == '待服务') {
+    return 'waitService'
+  } else if (orderStatus == '待评价') {
+    return 'waitEvaluation'
+  } else if (orderStatus == '已完成') {
+    return 'alreadyFinish'
+  } else if (orderStatus == '已关闭') {
+    return 'colseService'
+  }
+}
+
+// 获取正确的imageUrl
+var getImageUrl = function(imageUrl){
+  if(!imageUrl) return
+  if (imageUrl.indexOf('https://') != -1 || imageUrl.indexOf('http://') != -1 ){
+    return imageUrl
+  }else{
+    return ImageUrl + imageUrl
+  }
+}
+
+// 对image数组遍历，获取正确的imageUrl
+var getImageArr = function (imageArr) {
+  if (!(imageArr && imageArr.length)) return
+  for (var i = 0; i < imageArr.length; i++) {
+    imageArr[i] = getImageUrl(imageArr[i])
+  }
+  return imageArr
+}
+
+// 获取用于展示的城市
+var getCity = function (city) {
+  if (!city) return '位置'
+  if (city.indexOf('市') == city.length - 1) {
+    city = city.slice(0, -1)
+  }
+  return city
+}
+
+// 保留digits位小数
+var fixNum = function (num, digits) {
+  if (!num) return
+  return Number(num).toFixed(digits)
+}
+
+// 去掉时分秒
+var getDate2 = function (timeStr) {
+  if (timeStr) {
+    if (timeStr.indexOf(' ') != -1) {
+      return timeStr.split(' ')[0]
+    } else {
+      return timeStr
+    }
+  }
+}
+
+// timeStr: 如2019-06-11T21:07:50
+var getDate3 = function (timeStr) {
+  if (timeStr) {
+    return timeStr.replace('T', ' ')
+  }
+}
+
+// 将'-'转为'/'
+var getDate4 = function (timeStr) {
+  if (timeStr) {
+    return timeStr.replace(getRegExp('-', 'g'), '/')
+  }
+}
+
+// 将'/'转为'-'
+var _getDate4 = function (timeStr) {
+  if (timeStr) {
+    return timeStr.replace(getRegExp('/', 'g'), '-')
+  }
+}
+
+// 去掉秒
+var getDate5 = function (timeStr) {
+  if (timeStr) {
+    var arr = timeStr.split(':')
+    if (arr.length == 3) {
+      return arr[0] + ":" + arr[1]
+    } else {
+      return timeStr
+    }
+  }
+}
+
+// 保留时分秒
+var getDate6 = function(timeStr){
+  if(timeStr){
+    if (timeStr.indexOf('T') != -1){
+      return timeStr.split('T')[1]
+    }else{
+      return timeStr.split(' ')[1]
+    }
+  }else{
+    return timeStr
+  }
+}
+
+// timeStr 2019-07-11
+var getDate7 = function(timeStr){
+  if(timeStr){
+    var arr = timeStr.split('-')
+    if(arr.length == 3){
+      return arr[1] + "/" + arr[2]
+    }else{
+      return timeStr
+    }
+  }
+}
+
+// 手机号中间四位替换为'*'
+var encriptPhone = function(phone){
+  if(!phone) return
+  var reg = getRegExp("(\d{3})\d{4}(\d{4})");
+  return phone.toString().replace(reg, '$1****$2')
+}
+
+// 获取正确的价格(多于两位小数四舍五入到两位小数，否则返回原价)
+var getPrice = function (num) {
+  var numStr = num + ''
+  if (numStr.indexOf('.') == -1) {
+    return num
+  } else {
+    var arr = numStr.split('.')
+    if (arr[1].length <= 2) {
+      return num
+    } else {
+      num = Math.round(num * 100) / 100
+      return num
+    }
+  }
+}
+
+// 判断有无该字段并且是一个自然数
+var isNumber = function (number) {
+  if (typeof (number) === 'number') {
+    return number > 0 ? number : '0'
+  } else {
+    return false
+  }
+}
+
+var getTxt = function (txt) {
+  if (typeof txt && txt && txt != 'null' && txt != 'undefined') {
+    return txt;
+  } else {
+    return '';
+  }
+}
+
+var IF = function (field) {
+  if (!field || field == '0' || field == 'false' || field == 'undefined' || field == 'NaN' || field == 'null') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+module.exports = {
+  appointmentTimeStatus: appointmentTimeStatus,
+  orderStatus: orderStatus,
+  getImageUrl: getImageUrl,
+  getImageArr: getImageArr,
+  getCity: getCity,
+  fixNum:fixNum,
+  getDate2: getDate2,
+  getDate3: getDate3,
+  getDate4: getDate4,
+  _getDate4: _getDate4,
+  getDate5: getDate5,
+  getDate6: getDate6,
+  getDate7: getDate7,
+  encriptPhone: encriptPhone,
+  getPrice: getPrice,
+  isNumber: isNumber,
+  getTxt: getTxt,
+  IF: IF
+}

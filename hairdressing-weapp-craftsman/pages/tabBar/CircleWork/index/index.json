@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "Release":"/components/CircleWork/Release/Release",
+    "Masonry":"/components/Masonry/Masonry"
+  },
+  "navigationBarTitleText": "发现"
+}

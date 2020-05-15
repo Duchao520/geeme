@@ -1,0 +1,14 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<!-- 服务者列表 -->
+<view class='choose-content'>
+  <StaffCard wx:if="{{item.hasCapacity}}" wx:for="{{staffList}}" wx:key="{{index}}" item="{{item}}" selected="{{currentId == item.staffId}}" bindtap="setCurrentId" data-item="{{item}}" hideReserve />
+</view>
+
+<!-- 已选服务者  确认更换 -->
+<view class='bottom'>
+  <view class='bottom-word'>
+    <view class='alt'>已选服务者</view>
+    <view class='hairname'>{{currentName}}</view>
+  </view>
+  <view class='bottom-btn' bindtap='clickNext'>确认更换</view>
+</view>

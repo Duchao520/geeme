@@ -1,0 +1,55 @@
+<!--pages/VIP//pages/VipCardPayment/VipCardPayment.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getDate(time) {
+    return time.split(" ")[0]
+  }
+  function getTime(time) {
+    return time.substring(0, time.length - 3)
+  }
+  module.exports = {
+    getDate: getDate,
+    getTime: getTime
+  }
+</wxs>
+<view>
+  <view class="space"></view>
+  <!-- 会员卡 -->
+  <view class="payment-vipcard flex_box">
+    <view class="payment-vipcard-info">
+      <view class="fz-40 fc-1F1F1F text_left white_nowrap">{{cardDetail.cardName}}</view>
+      <view class="fz-24 fc-999999 text_left">开卡日期：{{wxs.getDate(cardDetail.createTime)}}</view>
+      <view class="fz-24 fc-999999 text_left">开卡门店：{{cardDetail.storeMessage}}</view>
+    </view>
+    <view class="payment-vipcard-money">
+      <view class="fz-40 fc-1F1F1F text_right white_nowrap">¥{{format.getPrice(cardDetail._balance)}}</view>
+      <view class="fz-26 fc-ffffff text_center">余额</view>
+    </view>
+  </view>
+
+  <!-- 充值记录 -->
+  <view class="payment-list box_padding" wx:for="{{changeRecordResponseList}}" wx:key="index">
+    <view class="payment-list-item flex_box align_center mgb10">
+      <text class="fz-28 fc-999999 text_left">{{wxs.getTime(item.createTime)}}</text>
+      <text class="fz-24 fc-999999 text_right">{{item.storeMessage}}</text>
+    </view>
+    <view class="payment-list-item flex_box align_center mgb10">
+      <text class="fz-24 fc-999999 text_left">充值</text>
+      <text class="fz-24 fc-000000 text_right">¥{{item.extendContext.chargeMoneyCost}}</text>
+      <text wx:if="{{item.tradingType == '续期'}}" class="payment-list-renew fz-20 fc-ffffff text_center">续</text>
+    </view>
+    <view class="payment-list-item flex_box align_center mgb10">
+      <text class="fz-24 fc-999999 text_left">赠送</text>
+      <text class="fz-24 fc-000000 text_right">¥{{item.extendContext.giftMoney}}</text>
+    </view>
+    <view class="payment-list-total flex_box align_center mgb10">
+      <text class="fz-24 fc-F52D56">¥{{item.transactionAmount}}</text>
+      <text class="fz-24 fc-999999">实付：</text>
+    </view>
+    <view class="payment-list-item flex_box align_center">
+      <text class="fz-24 fc-999999 text_left">充值后余额</text>
+      <text class="fz-24 fc-333333 text_right">¥{{item.extendContext.chargeMoney}}</text>
+    </view>
+  </view>
+
+</view>

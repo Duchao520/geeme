@@ -1,0 +1,20 @@
+<wxs module="wxs">
+  function getRedWidth(score, index){
+    if(score >= index + 1){
+      return "100%"
+    }else if(score >= index){
+      return (score - index) * 100 + '%'
+    }else{
+      return "0"
+    }
+  }
+  module.exports.getRedWidth = getRedWidth
+</wxs>
+
+<view class="stars-container" style="height:{{height}}">
+  <view class='star-background-grey' wx:for="{{5}}" wx:key="index" style='width:{{width}};margin-right:{{space}}'>
+    <view class='star-background-red' style='width:{{wxs.getRedWidth(score, index)}}'>
+      <view class='star' style='width:{{width}}'></view>
+    </view>
+  </view>
+</view>

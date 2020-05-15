@@ -1,0 +1,23 @@
+/* components/Form/FormGroup.wxss */
+.InputGroup{
+  
+}
+.InputGroup .content{
+  box-sizing: border-box;
+  padding: 24rpx;
+  border-bottom: 1px solid rgba(239, 239, 244, 1);
+  display: flex;
+}
+.InputGroup .content .required{
+  color: #F52D56;
+  margin-right: 16rpx;
+}
+.InputGroup .content .label{
+  width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.InputGroup .content input{
+  width: 400rpx;
+}

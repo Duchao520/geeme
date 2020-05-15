@@ -1,0 +1,79 @@
+@import '/utils/wxss/icon.wxss';
+.address-card{
+  position:relative;
+  padding:30rpx 0;
+  border-bottom:1rpx solid #e7e7e7;
+}
+
+.card-left{
+  position: absolute;
+  left:0;
+  top:0;
+  width:58rpx;
+  height:100%;
+}
+
+.select{
+  position: absolute;
+  left:0;
+  top:50%;
+  width:40rpx;
+  height:40rpx;
+  margin-top:-20rpx;
+  background-size:100% 100%;
+}
+
+.card-line-1{
+  font-size:32rpx;
+}
+
+.card-line-1 > text:first-child{
+  margin-right:30rpx;
+}
+
+.default{
+  display: inline-block;
+  margin-left:12rpx;
+  width:74rpx;
+  height:32rpx;
+  line-height:32rpx;
+  text-align: center;
+  color:#f52d56;
+  font-size:20rpx;
+  background: #fdd5dd;
+  border-radius:16rpx;
+}
+
+.card-line-2{
+  margin-top:10rpx;
+  color:#555;
+  font-size:24rpx;
+}
+
+.card-right{
+  position: absolute;
+  top:0;
+  right:0;
+  width:80rpx;
+  height:100%;
+}
+
+.card-right > view{
+  position: absolute;
+  top:50%;
+  right:20rpx;
+  background: no-repeat;
+  background-size:100% 100%;
+}
+
+.card-right > .icon--edit{
+  margin-top:-15.5rpx;
+  width:31rpx;
+  height:31rpx;
+}
+
+.card-right > .arrow--right{
+  width:15rpx;
+  height:20rpx;
+  margin-top:-10rpx;
+}

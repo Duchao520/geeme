@@ -1,0 +1,29 @@
+.stars-container{
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  font-size:0;
+  background:#fff;
+}
+
+.star-background-grey{
+  display: inline-block;
+  vertical-align: top;
+  height:100%;
+  background-color: #dad9e2;
+}
+
+.star-background-grey:last-child{
+  margin-right:0;
+}
+
+.star-background-red{
+  height:100%;
+  background-color:#f52d56;
+}
+
+.star{
+  height:100%;
+  background-size:100% 100%;
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAe1BMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////NgkbwAAAAKHRSTlMA+RHtLfPplosoCX3g2Mu3pYFYIRl+VDg0MAcF5+XQr6uKcmxEQA1TirDvugAAASVJREFUOMuN1NeygjAQBuBsOqCAimDvenj/JzyAgimm/FfAfEMmuzuLWisZxmv7qw2vqMs1DHnaw5QHYYaGZCHI8BtiFoASfSL9EKoRVuCFAk0RPgirL1yBB5ZISemBVIXUAWeF+ENaalHMVMjyMqtpin4mpXVW5qyDcLeJze+AFigmHcNxEMfDdZTrGNvEuIahlkTIDenrSLYhtyXvzhAacmMLuVdS/u01T9wu4epQHBKnO+jTc8SOQh/NMUscP2wNCPvfcA8GnCNH5ga8uODFgAvnIBpw6YJLA1IXpDqEnQvuYIT2patKu7YGz0ovJIBU+nTWoJxOupH+ndymBkgNivGOs2lxjHUQGiTDGnvmrZL8OSw1opfn1LweRWukeLya0+f5H2I1a6GETwvwAAAAAElFTkSuQmCC');
+}

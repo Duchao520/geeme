@@ -1,0 +1,8 @@
+<view class="OptionsTitle" bindtap='tomoudleList'>
+  <view class='OptionsTitle-left'>
+    {{title}}
+  </view>
+
+  <view class='OptionsTitle-right options-icon'>
+  </view>
+</view>

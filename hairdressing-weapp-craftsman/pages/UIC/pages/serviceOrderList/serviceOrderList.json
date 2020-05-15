@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "ServiceOrderCard": "/components/Card/ServiceOrderCard/ServiceOrderCard"
+  },
+  "navigationBarTitleText": "我的服务单"
+}

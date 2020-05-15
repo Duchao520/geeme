@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "CustomerCard":"/components/Card/CustomerCard/CustomerCard"
+  },
+  "navigationBarTitleText": "我的客户"
+}

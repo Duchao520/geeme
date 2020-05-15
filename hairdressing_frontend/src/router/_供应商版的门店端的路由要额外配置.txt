@@ -1,0 +1,1 @@
+供应商版的路由后端数据库暂时没存 需要在 _shopStockRoutersOnly.js 中另外配置一套

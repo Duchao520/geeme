@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "AppModal": "/components/App/AppModal/AppModal"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "转出进度",
+  "navigationBarTextStyle": "black"
+}

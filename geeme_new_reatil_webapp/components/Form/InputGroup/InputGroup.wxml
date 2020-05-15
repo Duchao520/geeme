@@ -1,0 +1,9 @@
+<!--components/Form/FormGroup.wxml-->
+<view class="InputGroup">
+  <view class="content">
+    <view class="required" wx:if="{{required}}">*</view>
+    <view style="margin-right: 28rpx;" wx:else></view>
+    <view class="label">{{label}}</view>
+    <slot></slot>
+  </view>
+</view>

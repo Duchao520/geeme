@@ -1,0 +1,52 @@
+<!--pages/VIP//pages/VipCardManagement/VipCardManagement.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    if (finishTime === 'null') return 0
+    createTime = Date.parse(getDate())
+    if(finishTime - createTime < 0){
+      return 0
+    }else{
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+  function JudgeType(cardType){
+    switch(cardType){
+      case '0':
+        return '身份卡';
+      case '1':
+        return '储值卡';
+      case '2':
+        return '次卡'
+      case '3':
+        return '时间卡';
+      default:
+        return '';
+    }
+  }
+  module.exports = {
+    getCountdownDay: getCountdownDay,
+    JudgeType: JudgeType
+  }
+</wxs>
+<view>
+  <!-- 会员卡样式 -->
+  <view class='card active' style='background-image:url({{format.getImageUrl(cardDetail.cardCover + "?x-oss-process=image/resize,m_fill,h_400,w_630")}})'>
+    <view class='card-title'>
+      <image class='card-logo' lazy-load src="{{logo + '?x-oss-process=image/resize,m_lfit,h_82,w_82'}}" mode='aspectFill'></image>
+      <view class="flex_box flex_column">
+        <view class='card-name txt-ellipsis'>{{cardDetail.cardName}}</view>
+        <view class="tag">{{wxs.JudgeType(cardDetail.cardType)}}</view>
+      </view>
+    </view>
+    <view class='card-info'>
+      <view class="card-number fz-32 fc-ffffff text_left white_nowrap">{{cardDetail.cardNo}}</view>
+      <view class='card-price white_nowrap'>
+        <text wx:if="{{cardDetail.cardType === '1'}}">¥{{format.getPrice(cardDetail._balance)}}</text>
+        <text wx:else>{{cardDetail.validPermanent === 'true' ? '永久' : wxs.getCountdownDay(cardDetail.finishTime) + '天'}}</text>
+      </view>
+    </view>
+  </view>
+
+
+</view>

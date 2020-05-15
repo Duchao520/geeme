@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "input-group": "/components/Form/InputGroup/InputGroup"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "提现",
+  "navigationBarTextStyle": "black"
+}

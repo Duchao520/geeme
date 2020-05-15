@@ -1,0 +1,10 @@
+.masonry{
+  width:100%;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.masonry-column{
+  max-width:328rpx;
+  flex:1;
+}

@@ -1,0 +1,27 @@
+.option-item .picker{
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #D2D2D2;
+  border-radius: 50%;
+}
+.option-item .active{
+  background: #FFFFFF;
+  color: #108DE9;
+  font-size:28rpx;
+  border: 0;
+}
+.btn-hover{
+  opacity: .7;
+}
+.floatWindow{
+  margin-bottom: 10rpx;
+}
+.floatWindow .content{
+  padding: 14rpx 26rpx;
+  background: #FCE6C4;
+  margin-left: 93rpx;
+  color: #A46F23;
+  font-size: 26rpx;
+  border-radius: 9rpx;
+  width: auto;
+}

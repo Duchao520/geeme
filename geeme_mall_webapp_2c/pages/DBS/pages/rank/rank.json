@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "排行榜",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "AppOptions": "/components/App/AppOptions/AppOptions",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

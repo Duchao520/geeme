@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "发现好店",
+  "usingComponents": {
+    "list": "/components/list/list",
+    "PopHeader":"/components/popup/PopHeader/PopHeader",
+    "PopSingleColumn":"/components/popup/PopSingleColumn/PopSingleColumn",
+    "PopDoubleColumn":"/components/popup/PopDoubleColumn/PopDoubleColumn",
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

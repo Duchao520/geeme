@@ -1,0 +1,192 @@
+.order-card{
+  margin-top:28rpx;
+  padding:0 32rpx 24rpx;
+  border-radius:10rpx;
+  background: #fff;
+}
+
+.order-header{
+  position:relative;
+  height:128rpx;
+  line-height:128rpx;
+  border-bottom:1px solid #efeff4;
+}
+
+.header-image{
+  margin-right:14rpx;
+  width:76rpx;
+  height:76rpx;
+  border-radius:6rpx;
+  vertical-align: middle;
+}
+
+.header-text{
+  display: inline-block;
+  width:420rpx;
+  vertical-align: middle;
+  line-height:normal;
+  font-size:24rpx;
+}
+
+.header-text > .text-1{
+  color:#333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.header-text > .text-2{
+  margin-top:10rpx;
+  color:#999;
+}
+
+.header-status{
+  position:absolute;
+  right:0;
+  top:50%;
+  margin-top:-19rpx;
+  padding:0 10rpx;
+  height:38rpx;
+  line-height:38rpx;
+  background-color:#f52d56;
+  color:#fff;
+  font-size:24rpx;
+}
+
+.header-status.UnBilling {
+  background-color: #f52d56;
+}
+
+.header-status.UnPaid{
+  background-color: #f5a623;
+}
+
+.header-status.Paid{
+  background-color: #00cf82;
+}
+.header-status.Rescind{
+  background-color: #BEC3C6;
+}
+
+
+.main{
+  padding-bottom:150rpx;
+}
+
+.order-service{
+  padding:20rpx 0;
+  border-bottom:1px solid #efeff4;
+}
+
+.service-row{
+  margin-top:16rpx;
+  font-size:24rpx;
+}
+
+.service-row:first-child{
+  margin-top:0;
+}
+
+.service-row > view{
+  display: inline-block;
+}
+
+.row-left{
+  width:220rpx;
+  color:#333;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.row-center{
+  width:250rpx;
+  color:#999;
+  vertical-align: top;
+}
+
+.row-center > text:first-child{
+  max-width:200rpx;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  float:left;
+}
+
+.row-center > text:last-child{
+  float:right;
+}
+
+.row-right{
+  float:right;
+  color:#f52d56;
+}
+
+.order-total{
+  margin-top:10rpx;
+  text-align: right;
+}
+
+.order-total > view{
+  display: inline-block;
+}
+
+.order-total-left{
+  float:left;
+}
+
+.order-total-left > .order-bottom-text{
+  max-width: 450rpx;
+  font-size:24rpx;
+  color:#333;
+}
+
+.discount{
+  font-size:24rpx;
+  color:#f52d56;
+  margin-right:16rpx;
+}
+
+.discount > text{
+  margin-left:20rpx;
+}
+
+.finalPrice{
+  font-size:28rpx;
+}
+
+.finalPrice > text{
+  margin-left:16rpx;
+  color:#f52d56;
+}
+
+.order-bottom{
+  margin-top:40rpx;
+  font-size:24rpx;
+  height:54rpx;
+  line-height:54rpx;
+}
+
+.order-bottom-text{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.order-bottom-button{
+  float:right;
+  box-sizing: content-box;
+  width:150rpx;
+  height:50rpx;
+  line-height:50rpx;
+  border-radius:27rpx;
+  border:.5px solid #d8d8d8;
+  text-align:center;
+  color:#666;
+  font-size:26rpx;
+}
+
+.order-bottom-button.unable{
+  background-color:#f4f4f4;
+  color:#ccc;
+}

@@ -1,0 +1,19 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="wallet">
+  <view wx:for="{{recordList}}" wx:for-index="dateIndex" wx:for-item="date" wx:key="dateIndex">
+    <view class="date-head fz-32">{{format.getTxt(date.dateHead)}}</view>
+    <view class="box_padding" style="padding: 0 32rpx;" wx:for="{{date.RecordInfoList}}" wx:for-index="recordIndex" wx:for-item="record" wx:key="recordIndex">
+      <view style="padding: 24rpx 0;border-bottom: 2rpx solid #EFEFF4" class="flex_box justify_space_between align_center">
+        <view style="width: 500rpx">
+          <view class="fc-333333 fz-32" style="margin-bottom: 12rpx;">{{record.name}}</view>
+          <view class="fc-333333 fz-28" style="margin-bottom: 12rpx;">{{record.order}}</view>
+          <view class="fc-999999 fz-24">{{record.createTime}}</view>
+        </view>
+        <view>
+          <view class="fc-333333 fz-40" style="width:160rpx;text-align: right;">{{record.integral}}</view>
+          <view class="fc-999999 fz-28" style="width:160rpx;text-align: right;">余额:{{record.allIntegral}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

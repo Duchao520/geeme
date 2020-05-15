@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "AppSlidelip": "/components/App/AppSlidelip/AppSlidelip",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

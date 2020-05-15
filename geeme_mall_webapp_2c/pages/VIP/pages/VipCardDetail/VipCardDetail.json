@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "VipCardAgreement": "/components/VipComponents/VipCardAgreement/VipCardAgreement",
+    "VipCardDiscount": "/components/VipComponents/VipCardDiscount/VipCardDiscount",
+    "VipCardCount": "/components/VipComponents/VipCardCount/VipCardCount"
+  },
+  "navigationBarTitleText": "会员卡详情"
+}

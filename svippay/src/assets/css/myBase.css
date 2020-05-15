@@ -1,0 +1,141 @@
+.flex_box{
+  display: flex;
+}
+.justify_space_between{
+  justify-content: space-between;
+}
+.align_center{
+  align-items: center;
+}
+.flex_column{
+  flex-direction: column;
+}
+.box_padding{
+  box-sizing: border-box;
+}
+.padding-38{
+  padding: .38rem;
+}
+.padding-35{
+  padding: .35rem;
+}
+.padding-24{
+  padding: .24rem;
+}
+.padding-12{
+  padding: .12rem;
+}
+
+.pb-27{
+  padding-bottom: .27rem;
+}
+
+.font-weight{
+  font-weight: bold;
+}
+
+.fz-60{
+  font-size: .6rem!important;
+}
+.fz-48{
+  font-size: .48rem!important;
+}
+.fz-42{
+  font-size: .42rem!important;
+}
+.fz-40{
+  font-size: .4rem !important;
+}
+.fz-38{
+  font-size: .38rem!important;
+}
+.fz-36{
+  font-size: .36rem!important;
+}
+.fz-34{
+  font-size: .34rem!important;
+}
+.fz-32{
+  font-size: .32rem!important;
+}
+.fz-30{
+  font-size: .3rem!important;
+}
+.fz-28{
+  font-size: .28rem!important;
+}
+.fz-26{
+  font-size: .26rem!important;
+}
+.fz-24{
+  font-size: .24rem!important;
+}
+.fz-22{
+  font-size: .22rem!important;
+}
+.fz-20{
+  font-size: .20rem!important;
+}
+
+
+.fc-878787{
+  color: #878787;
+}
+.fc-8D8E98{
+  color: #8D8E98;
+}
+.fc-F7094D{
+  color: #F7094D;
+}
+.fc-B2682D{
+  color: #B2682D;
+}
+.fc-ffffff{
+  color: #ffffff;
+}
+
+.mb-24{
+  margin-bottom: .24rem;
+}
+
+.mb-12{
+  margin-bottom: .12rem;
+}
+
+.btn_radius{
+  border-radius: .1rem;
+}
+
+.bg-F60F51{
+  background: #F60F51;
+}
+.bg-F7094D{
+  background: #F7094D;
+}
+.bg-FEB623{
+  background: #FEB623;
+}
+.bg-36E9BB{
+  background: #36E9BB;
+}
+.bg-FB768D-FEC1A4{
+  background: -webkit-linear-gradient(#FB768D, #FEC1A4); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#FB768D, #FEC1A4); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#FB768D, #FEC1A4); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#FB768D, #FEC1A4); /* 标准的语法 */
+}
+
+.border-bottom-13{
+  border-bottom: .13rem solid #F2F2F2;
+}
+
+.border-bottom-dashed{
+  border-bottom: .01rem dashed #E5E5E5;
+}
+
+.focus{
+  display: block;
+  width: .04rem;
+  height: .54rem;
+  border-radius: .04rem;
+}

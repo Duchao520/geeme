@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我的优惠券",
+  "usingComponents": {
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "CouponModel": "/components/Card/CouponModel/CouponModel"
+  }
+}

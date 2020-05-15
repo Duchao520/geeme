@@ -1,0 +1,88 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<!-- 修改时间 -->
+<movebox wx:if="{{flag}}" flag="{{flag}}" bindclose="close">
+  <Time wx:if="{{times.length}}" slot="timeContent" dates="{{dates}}" times="{{times}}" bindsetCurrentDate="setCurrentDate" bindsetCurrentTime="setCurrentTime"></Time>
+  <view slot="timeBottom" wx:if="{{flag}}" class='timeButtons'>
+    <view class='timeButtons-left'>
+      <view class='t-l-item'>
+        <text style='color:#999'>已选时间  </text>
+        <text style='color:#333'>{{currentDate}} </text>
+        <text style='color:#333'>{{currentTime}}</text>
+      </view>
+    </view>
+    <view class='timeButtons-right' catchtap='confirmChange'>
+      确认修改
+    </view>
+  </view>
+</movebox>
+
+<view class="container">
+  <!-- 发型师信息 -->
+  <!-- 选了发型师时间 -->
+  <view class='header' wx:if="{{hairtime}}">
+    <image class='hairavatar' lazy-load src='{{format.getImageUrl(hairInfo.avatar + "?x-oss-process=image/resize,m_lfit,h_96,w_96")}}' bindtap='jumpStaffDetail' mode='aspectFill'></image>
+    <view class='hairinfo'>
+      <view class='hairname'>{{hairInfo.name}}</view>
+      <view class='hairlevel'>
+        <view class='hl-title'>{{hairInfo.levelName}}</view>
+        <AppAvgScore width="25rpx" height="25rpx" space="8rpx" score="{{hairInfo.score}}" />
+      </view>
+      <view class='hairaddress'>
+        <view class='ha-icon'></view>
+        <view class='ha-text'>{{format.getCity(hairInfo.city)}}{{hairInfo.shopName}}</view>
+      </view>
+      <view class='timeone' wx:if="{{time}}">
+        <view class='time-top'>
+          已约时间
+        </view>
+        <view class='time-bottom'>
+          <view class='t-b-number'>
+            <view class='t-b-icon'></view>
+            <view class='t-b-num'>{{time}}</view>
+          </view>
+          <view class='t-b-button' catchtap='updateTime'>修改时间</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 未选发型师 -->
+  <view class='time' wx:else>
+    <view class='time-top'>
+      已约时间
+    </view>
+    <view class='time-bottom'>
+      <view class='t-b-number'>
+        <view class='t-b-icon'></view>
+        <view class='t-b-num'>{{time}}</view>
+      </view>
+      <view class='t-b-button' catchtap='updateTime'>修改时间</view>
+    </view>
+  </view>
+
+  <view style="margin-top:40rpx" wx:if="{{skills && skills.length}}">
+    <AppServiceTree list="{{skills}}" bind:updateService="updateService" />
+  </view>
+
+  <AppDefault wx:if="{{!skills.length}}" text="本店暂无服务，晚点再来看看吧" />
+
+  <!-- 备注 -->
+  <view class='note' wx:if="{{skills.length}}">
+    <view class='notetitle'>备注</view>
+    <view class='notearea'>
+      <input class='noteinput' placeholder='您的其他要求和爱好,请说明~' placeholder-style='color:#AAAAAA;font-size:28rpx;' bindinput='setnote' maxlength='120' cursor-spacing="40rpx" value="{{words}}">
+      </input>
+      <view class='wordsnum'>
+        <text>{{words.length}}</text>/120</view>
+    </view>
+  </view>
+
+  <!-- 合计金额 -->
+  <form class="page-footer" report-submit bindsubmit="addappointment">
+    <button class="footer-button" form-type="submit">提交预约</button>
+    <view style="color:#999;padding-left:30rpx">合计金额
+      <text style="color:#f52d56;font-size:40rpx"><text style="font-size:24rpx;">¥</text>{{format.getPrice(_totalPrice)}}</text>
+    </view>
+  </form>
+
+</view>
+<AppBackHome />

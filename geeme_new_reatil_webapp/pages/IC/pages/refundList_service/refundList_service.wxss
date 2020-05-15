@@ -1,0 +1,57 @@
+/* 外部样式类 */
+
+.productOrderList{
+  width: 100%;
+  min-height: 100vh;
+  background: #F8F8F8;
+}
+.productOrderList-head{
+  width: 100%;
+  padding: 20rpx 32rpx;
+  background: white;
+}
+
+.productOrderListTabs{
+  background: white;
+}
+
+.productOrderListContent{
+  padding: 36rpx 32rpx;
+}
+
+.search-container{
+  background:#fff;
+  padding-bottom:30rpx;
+}
+
+.statusItem{
+  height: 38rpx;
+  line-height: 38rpx;
+  color: white;
+  font-size: 24rpx;
+  padding:0 10rpx;
+}
+
+/* 退款中or售后中 */
+.statusItem.REFUNDING, .statusItem.AFTER_SALES_RIGHT{
+  background-color: #FF9E02;
+}
+/* 退款成功or售后成功 */
+.statusItem.REFUNDED, .statusItem.AFTER_SALES_CLOSE{
+  background-color: #00CF82;
+}
+/* 已拒绝 */
+.statusItem.REFUND_REJECTED, .statusItem.AFTER_SALES_REJECTED{
+  background-color: #F52D56;
+}
+/* 已取消 */
+.statusItem.REFUND_CANCELED, .statusItem.AFTER_SALES_CANCELED{
+  background-color: #C1C0C9;
+}
+
+.OrderListItem_Time{
+  margin-top:20rpx;
+  margin-bottom:10rpx;
+  font-size:24rpx;
+  color:#999;
+}

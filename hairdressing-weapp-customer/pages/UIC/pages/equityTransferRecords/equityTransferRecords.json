@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "PopHeader": "/components/popup/PopHeader/PopHeader",
+    "PopSingleColumn": "/components/popup/PopSingleColumn/PopSingleColumn"
+  },
+  "navigationBarTitleText": "转出记录"
+}

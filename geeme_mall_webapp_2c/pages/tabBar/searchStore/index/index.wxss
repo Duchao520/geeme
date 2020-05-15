@@ -1,0 +1,55 @@
+page{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+}
+.body {
+  position:relative;
+  width: 100%;
+  padding: 20rpx 32rpx 0;
+}
+.popup-container {
+  position: absolute;
+  top: 180rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  background: rgba(0,0,0,.4)
+}
+.search-container {
+  height: 64rpx;
+  width: 664rpx;
+}
+.shop-map{
+  width: 132rpx;
+  height: 48rpx;
+  border-radius: 8rpx;
+  color: #F52D56;
+  border: 1px solid #F52D56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.plain{
+  position: relative;
+  display: inline-block;
+  width: 106rpx;
+  height: 48rpx;
+  border-radius: 36rpx;
+  border: 1px solid rgba(151,151,151,1);
+  font-size: 24rpx;
+  color: #596367;
+  text-align: center;
+  line-height: 48rpx;
+  margin: 0;
+  margin-right: 20rpx;
+}
+.active{
+  background: #F52D56;
+  border: none;
+  color: #FFFFFF;
+}

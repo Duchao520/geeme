@@ -1,0 +1,3 @@
+<!--pages/config/pages/getaddress/getaddress.wxml-->
+<AppDefault image="/images/default/default_position.png" text="获取定位失败，请打开定位权限" />
+<button bindtap='callback' class='getaddress-button'>设置权限</button>

@@ -1,0 +1,77 @@
+/* 弹框背景 */
+.cover{
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  background: rgba(0, 0, 0, 0);
+  z-index:-1;
+  transition: all 0.625s ease;
+}
+
+.cover.active{
+  background: rgba(0, 0, 0, .5);
+  z-index:999;
+}
+.pop-share {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background: #fff;
+  border-radius: 10rpx 10rpx 0 0;
+  z-index: 1000;
+  transition: height 0.5s ease;
+}
+
+.pop-share.active {
+  height: 420rpx;
+}
+
+.share-title {
+  position: relative;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #333;
+}
+
+.title-close {
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+}
+
+.share-button-container {
+  line-height: 280rpx;
+  text-align: center;
+}
+
+.share-button-item {
+  display: inline-block;
+  min-width: 100rpx;
+  line-height: normal;
+  text-align: center;
+  color: #333;
+  font-size: 26rpx;
+  vertical-align: middle;
+}
+
+.share-button-item > image{
+  width:100rpx;
+  height:100rpx;
+}
+
+.share-button-item.canvas {
+  margin-right: 190rpx;
+}
+.icon--close{
+  width:40rpx;
+  height:40rpx;
+  background-size:100% 100%;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAAG1BMVEUAAACGhoaAgICAgICAgICAgICAgICAgIB/f39tpOnSAAAACHRSTlMAFdTXxb61FtNOPjoAAAB+SURBVCjPxZAxDoAgDEUx0bgSb8DGERh1MY4ewiN4AvHgJkZ5TR26SRde+h+h1FWvzcPN/MASaA7nC4cvYgyKyEFimBSVUKmIqIioiEJFFCoiak5FRE3Zm02umw8xkjk837QWwuo+IipMChJD5IBWWzlIH8f77CYnal/df3UBaMQaxFkRzOUAAAAASUVORK5CYII=);
+}

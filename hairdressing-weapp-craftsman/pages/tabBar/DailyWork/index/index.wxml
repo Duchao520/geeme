@@ -1,0 +1,63 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view>
+  <block wx:if="{{storeInfo}}">
+    <view class="DailyWork">
+      <!-- 头部 -->
+      <view class='DailyWorkHader'>
+        <view class='sh-head'>
+          <view class='sh-text'>
+            <text>{{format.getCity(storeInfo.storeCity)}}</text>
+            <text>{{storeInfo.storeName}}</text>
+          </view>
+          <view class='sh-btns'>
+            <view class='sh-btn' bindtap='toswitchStore'>切换</view>
+            <view class='sh-icon arrow--right'></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 四个导航按钮 -->
+      <view class='nav-buttons'>
+        <view class='nav-item' bindtap='jumpCustomerList'>
+          <image src="/images/button/icon_work_nav01.png"></image>
+          <view>我的客户</view>
+        </view>
+        <view class='nav-item' bindtap='tocurrentMonthResults'>
+          <image src="/images/button/icon_work_nav02.png"></image>
+          <view>我的业绩</view>
+        </view>
+        <view class='nav-item' bindtap='$wait'>
+          <image src="/images/button/icon_work_nav03.png"></image>
+          <view>当月目标</view>
+        </view>
+        <view class='nav-item' bindtap='$wait'>
+          <image src="/images/button/icon_work_nav04.png"></image>
+          <view>考勤打卡</view>
+        </view>
+      </view>
+
+      <!-- 我的预约 -->
+      <view class='Appointment'>
+        <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+          <view>
+            <view class='appointmentTitle {{isFixed ? "fixed" : ""}}'>
+              <view class='a-t-left'>我的预约</view>
+              <view class='a-t-right' bindtap='toCanendar'></view>
+            </view>
+            <view class='appointmentDate'>
+              <DateHeadAfter dayNumber="{{7}}" startDate="{{startDate}}" bindsetCurrentDate="setCurrentDate"></DateHeadAfter>
+            </view>
+          </view>
+        </AttachTop>
+
+        <view class='appointmentContent {{isFixed ? "fixed" : ""}}'>
+          <AppointmentItem appointmentList="{{appointmentList}}" capacity="{{capacity}}" isToday="{{isToday}}" bindtakeUp="takeUp" bind:reserve="reserve"></AppointmentItem>
+        </view>
+      </view>
+    </view>
+  </block>
+  
+  <block wx:else>
+    <AppDefault image="/images/default/default_store.png" text="你还没有所属门店，暂时无法使用哦~" />
+  </block>
+</view>

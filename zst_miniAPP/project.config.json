@@ -1,0 +1,186 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"miniprogramRoot": "dist/",
+	"compileType": "miniprogram",
+	"appid": "wx5e11922e81e3951d",
+	"projectname": "zst_miniApp",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": -1,
+					"name": "砍价详情",
+					"pathName": "pages/packageC/pages/goodsDetail/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "表单",
+					"pathName": "pages/formSubmit/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "砍价",
+					"pathName": "pages/packageC/pages/index/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/loginpage/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "砍价详情",
+					"pathName": "pages/packageC/pages/cutFree/main",
+					"query": "bargainId=248&bargainTasksId=1253&storeId=860000000000001&fromPage=index",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "uygiyhy",
+					"pathName": "pages/currentStoreAct/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付成功",
+					"pathName": "pages/packageB/pages/paySuc/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "门店86",
+					"pathName": "pages/packageB/pages/shopRecDet/main",
+					"query": "shopStoreId=860000000000001&distance=5.11&shopId=8600000000",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "核销码",
+					"pathName": "pages/packageC/pages/lookCode/main",
+					"query": "bargainTasksId=834&bargainTitle=0716 别删&helperNum=1&bargainImg=https://zhushangtong.oss-cn-hangzhou.aliyuncs.com/zstuserinfo/1563258543796img0.png&price=12.33&prentPrice=1.85",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付页",
+					"pathName": "pages/packageB/pages/payMoney/main",
+					"query": "shopStoreId=860000000000001&identification=shopRecDet&inviterId=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付页",
+					"pathName": "pages/packageB/pages/payMoney/main",
+					"query": "shopStoreId=860000000000001&identification=shopRecDet&inviterId=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付成功1",
+					"pathName": "pages/packageB/pages/paySuc/main",
+					"query": "orderNum=100868585720190823161733&shopStoreId=000011509429828&shareCardId=178",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "mode",
+					"pathName": "pages/goeditor/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "packet",
+					"pathName": "pages/packageA/pages/packet/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pay",
+					"pathName": "pages/packageB/pages/payMoney/main",
+					"query": "shopStoreId=860000000000001&identification=shopRecDet&inviterId=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "allienceDesc",
+					"pathName": "pages/packageA/pages/allienceDesc/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "aboutUs",
+					"pathName": "pages/packageA/pages/aboutUs/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "红包记录",
+					"pathName": "pages/packageA/pages/packet/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packet",
+					"pathName": "pages/packageA/pages/packet/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packet",
+					"pathName": "pages/packageA/pages/withdrawTeach/main",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packet",
+					"pathName": "pages/packageA/pages/packet/main",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

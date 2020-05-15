@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "修改服务",
+  "usingComponents": {
+    "AppServiceTree": "/components/App/AppServiceTree/AppServiceTree",
+    "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore"
+  }
+}

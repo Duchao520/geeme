@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "我的推广员",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

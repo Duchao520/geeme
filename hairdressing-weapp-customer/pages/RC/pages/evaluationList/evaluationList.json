@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "comments":"/components/comments/comments",
+    "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore"
+  },
+  "navigationBarTitleText": "评价"
+}

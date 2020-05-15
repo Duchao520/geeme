@@ -1,0 +1,47 @@
+/* 主体 */
+.main{
+  width: 100%;
+  height: auto;
+  padding:46rpx 32rpx 0 32rpx;
+}
+.title{
+  width: 100%;
+  height: 48rpx;
+  font-size: 34rpx;
+  color: black;
+  line-height: 48rpx;
+  text-align: left;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-icon{
+  width: 100rpx;
+  height: 100rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAgCAMAAABAUVr7AAAAY1BMVEUAAADMzMzMzMzPz8/Ozs7Nzc3Nzc3MzMzi4uLNzc3Nzc3Nzc3Q0NDV1dXQ0NDNzc3Nzc3Nzc3Nzc3Nzc3MzMzNzc3Nzc3Nzc3Nzc3Ozs7Nzc3MzMzNzc3Nzc3Pz8/R0dHMzMzxVB9/AAAAIHRSTlMA/GkzL8yZZATtsZUeExD69cR7bdimkIdePeTh1sAaC/brEDoAAAC4SURBVDjL7dLJDsIgFIXhC3aAQulsW8fz/k8pYrDUEhfGhQu/BYXkb0IAetKFZJ7MrhSRIpRFCg0o7hWQkWQH7MjjAC32FXNgMW+Z1zlRj/cGIp1zPgIjfzUAdpwMOYnfR4iDue/3k1KQVbrBRJOkau5ngMkWUppYkgPuGrLHMf6TH06US5JYontlp/w4E4nmLD56UvMm6VAHK1Gh3SQF0vWSZR0PdQXWv10O2GoEhYw6sZU6bX1xAwZcIbLfbe93AAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  background-size: 32rpx 30rpx;
+  background-position-x: 62rpx;
+}
+
+.items{
+  width: 100%;
+  height: auto;
+  padding-top: 32rpx;
+  margin-right:-24rpx;
+}
+
+.item{
+  display: inline-block;
+  margin-right:24rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  padding: 0 22rpx;
+  text-align: center;
+  background-color: #F6F6F6;
+  color: #BEBEBE;
+  font-size: 24rpx;
+  border-radius: 30rpx;
+  margin-bottom: 40rpx;
+}

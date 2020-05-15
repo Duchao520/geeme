@@ -1,0 +1,60 @@
+@import '/utils/wxss/icon.wxss';
+
+.ProductCard{
+  padding:30rpx 0;
+  border-bottom: 1px solid #ebebeb;
+  font-size:0;
+}
+
+.product-image{
+  float:left;
+  margin-right:20rpx;
+  width:160rpx;
+  height:160rpx;
+}
+
+.product-right{
+  padding-left:180rpx;
+}
+
+.right-1{
+  height:72rpx;
+  font-size:28rpx;
+  color:#333;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.right-2{
+  margin-top:10rpx;
+  font-size:24rpx;
+  color:#999;
+  background: no-repeat left center;
+  background-size:25rpx 25rpx;
+  padding-left:27rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.right-3{
+  margin-top:6rpx;
+}
+
+.right-3 > text:first-child{
+  margin-right:10rpx;
+  font-size: 30rpx;
+  color:#f52d56;
+}
+
+.right-3 > text:last-child{
+  font-size:24rpx;
+  color:#9b9b9b;
+  text-decoration: line-through;
+}
+
+.symbol{
+  font-size:24rpx;
+}

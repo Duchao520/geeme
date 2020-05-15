@@ -1,0 +1,13 @@
+<!--pages/search/search.wxml-->
+<AppSearch placeholder="搜索门店名称" bind:confirm="search" focus="{{true}}"></AppSearch>
+
+<!-- 搜索历史 -->
+<view class='main'>
+  <view class='title'>
+    <view class='title-text'>历史搜索</view>
+    <view class='title-icon' bindtap='clearSearchHistory' wx:if="{{searchHistoryList.length}}"></view>
+  </view>
+  <view class='items'>
+    <view class='item' wx:for="{{searchHistoryList}}" wx:key="{{index}}" bindtap='accordingHistory' data-keyword="{{item}}">{{item}}</view>
+  </view>
+</view>

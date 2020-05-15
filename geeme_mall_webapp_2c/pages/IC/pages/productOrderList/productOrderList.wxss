@@ -1,0 +1,45 @@
+/* 外部样式类 */
+page{
+  position:relative;
+  min-height:100vh;
+}
+
+.productOrderList{
+  width: 100%;
+  min-height: 100vh;
+  background: #F8F8F8;
+}
+.productOrderList-head{
+  width: 100%;
+  padding-bottom: 20rpx;
+  background: white;
+}
+
+.productOrderListContent{
+  padding: 36rpx 32rpx;
+}
+
+.groupBuy{
+  height: 56rpx;
+  line-height: 56rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.groupBuy-left{
+  font-size:24rpx;
+  color:#333;
+  display: flex;
+  align-items: center;
+}
+
+.groupBuy-left > image{
+  vertical-align: middle;
+  margin-right: 10rpx;
+  width: 54rpx;
+  height:54rpx;
+  border-radius: 50%;
+}

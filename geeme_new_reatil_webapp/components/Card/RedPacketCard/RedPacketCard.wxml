@@ -1,0 +1,46 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="card {{type == 0 ? '' : type == 1 ? 'used' : 'expired' }}">
+  <view class="card-header">{{item.customerRedPacketBasicInfo.packetTypeName}}</view>
+  <view class="card-watermark" wx:if="{{item.startValid === false}}"></view>
+  <view class="card-main">
+    <view class="money">{{item.customerRedPacketDetailInfo.packetMoney}}<text> 元</text></view>
+    <view class="time">{{format.getDate4(format.getDate2(item.validStartTime), '-', '.')}}-{{format.getDate4(format.getDate2(item.validFinishTime), '-', '.')}}</view>
+    <view class="rules">
+      <view wx:if="{{item.customerRedPacketDetailInfo.packetUseCondition}}">满{{item.customerRedPacketDetailInfo.leastMoney}}元可用；</view>
+      <view catchtap="displayAll">可用商品：
+        <text wx:if="{{item.customerRedPacketDetailInfo.packetUseStrategy == 0}}">所有服务和产品</text>
+        <text wx:elif="{{item.customerRedPacketDetailInfo.packetUseStrategy == 1}}">所有服务</text>
+        <text wx:elif="{{item.customerRedPacketDetailInfo.packetUseStrategy == 2}}">所有产品</text>
+        <text wx:else>【点此查看全部】</text>
+      </view>
+      <!-- <view>不可与优惠券同享</view> -->
+    </view>
+  </view>
+</view>
+<view class="cover" catchtouchmove="prevent" bindtap="$set" data-key="popAll" data-value="{{false}}" wx:if="{{popAll}}">
+  <view class="popup-container" catchtap="prevent">
+    <view class="popup-header">可用商品
+      <view class="icon--close" catchtap="$set" data-key="popAll" data-value="{{false}}"></view>
+    </view>
+    <view class="popup-main">
+      <view class="main-header">服务项目</view>
+      <view class="main-line title">
+        <view class="main-line-left">一级分类</view>
+        <view class="main-line-right">二级分类</view>
+      </view>
+      <view class="main-line" wx:for="{{item.customerRedPacketDetailInfo.partServiceUseStrategy}}" wx:key="{{index}}" wx:for-item="item2">
+        <view class="main-line-left">{{item2.typeOneName}}</view>
+        <view class="main-line-right">{{item2.typeTwoName}}</view>
+      </view>
+      <view class="main-header">产品项目</view>
+      <view class="main-line title">
+        <view class="main-line-left">一级分类</view>
+        <view class="main-line-right">二级分类</view>
+      </view>
+      <view class="main-line" wx:for="{{item.customerRedPacketDetailInfo.partProductUseStrategy}}" wx:key="{{index}}" wx:for-item="item2">
+        <view class="main-line-left">{{item2.typeOneName}}</view>
+        <view class="main-line-right">{{item2.typeTwoName}}</view>
+      </view>
+    </view>
+  </view>
+</view>

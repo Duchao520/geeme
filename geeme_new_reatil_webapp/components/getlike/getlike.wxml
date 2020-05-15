@@ -1,0 +1,19 @@
+<!--components/getlike/getlike.wxml-->
+<view class='like'>
+
+  <view class='like-body'>
+    <view class='like-item' wx:for="{{likeList}}" wx:key="{{index}}" bindtap='clickService' data-id="{{item.id}}">
+      <image mode="aspectFill" src="{{item.productImage[0]}}" class="like-img" lazy-load='true'></image>
+      <view class='like-content'>
+        <view class='like-des'>{{item.serviceFullTitle}}</view>
+        <view class='like-price'>
+          <view class='p1'>
+            <text class='likemoneyicon'>￥</text>{{item.specialPrice}}</view>
+          <view class='s1'>
+            <text class='likemoneyicons'>￥</text>{{item.price}}</view>
+        </view>
+        <!-- <view class='preferential'>红包</view> -->
+      </view>
+    </view>
+  </view>
+</view>

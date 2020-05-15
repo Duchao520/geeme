@@ -1,0 +1,1 @@
+<calendar calendar-style="calendar" active-type="rounded" weeks-type="cn" days-color="{{list}}" cell-size="40" binddayClick="dayClick" bindnextMonth="nextMonth" bindprevMonth="prevMonth"/>

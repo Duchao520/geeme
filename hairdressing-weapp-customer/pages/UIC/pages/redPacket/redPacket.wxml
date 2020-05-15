@@ -1,0 +1,15 @@
+<view style="width: 100%;background: #fff;box-sizing: border-box;position: fixed;top: 0;left: 0;z-index: 100;">
+  <AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bind:switchTab="switchTab" padding="0 120rpx" />
+</view>
+<view style="height: 92rpx;"></view>
+<block wx:if="{{list && list.length}}">
+  <view class="packet-container">
+    <RedPacketCard wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" type="{{currentTab}}" />
+  </view>
+</block>
+<block wx:else>
+  <AppDefault top="120rpx" image="/images/default/default_redPacket.png" text="{{'您没有' + (currentTab == 0 ? '可用' : currentTab == 1 ? '已使用' : '已过期') + '的红包'}}" />
+</block>
+<view class="bottom-fixed" hidden="{{currentTab != 0}}">
+  <view class="bottom-button" bindtap="jumpPurchase">去使用</view>
+</view>

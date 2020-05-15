@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "input-group": "/components/Form/InputGroup/InputGroup"
+  }
+}

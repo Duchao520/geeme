@@ -1,0 +1,180 @@
+page {
+  background: #f7f7f7;
+}
+
+.spendbody {
+  background-color: #f8f8f8;
+  padding: 0 32rpx 150rpx;
+}
+
+.spenditem {
+  margin-top: 36rpx;
+  padding: 32rpx 30rpx 30rpx 32rpx;
+  position: relative;
+  background-color: white;
+  border-radius: 10rpx;
+}
+
+.shopinfo {
+  width: 100%;
+  height: 76rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.shopimg {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 6rpx;
+  margin-right: 12rpx;
+  background-color: black;
+}
+
+.s-name {
+  color: #333;
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+}
+
+.s-time {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.goodsInfo {
+  width: 100%;
+  height: auto;
+  margin: 20rpx 0;
+  border-top: 1rpx dashed #efeff4;
+  border-bottom: 1rpx dashed #efeff4;
+  padding: 16rpx 0;
+}
+
+.goodsInfo-item {
+  margin-bottom: 16rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  font-size: 24rpx;
+}
+
+.goodsInfo-item:last-child {
+  margin-bottom: 0;
+}
+
+.goodsInfo-item-right {
+  float:right;
+  width: 240rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  color: #f52d56;
+}
+
+.goodsInfo-item-right > view{
+  display: inline-block;
+}
+
+.goodsInfo-item-left {
+  margin-right: 240rpx;
+}
+
+.goodsInfo-item-left > view{
+  display: inline-block;
+}
+
+.goodsInfo-item-name {
+  width: 200rpx;
+  color: #333;
+}
+
+.goodsInfo-item-name.card{
+  width: auto;
+  margin-right:0;
+}
+
+.goodsInfo-item-left > .symbol {
+  display: inline-block;
+  margin-left:10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 20rpx;
+  border-radius: 50%;
+  color: #fff;
+  overflow: hidden;
+}
+
+.goodsInfo-item-left > .symbol.blue{
+  background: #58c9f3;
+}
+
+.goodsInfo-item-left > .symbol.green{
+  background: #75c74f;
+}
+
+.goodsInfo-item-pack {
+  margin-left:30rpx;
+  color: #999;
+}
+
+.goodsInfo-item-count{
+  color: #999;
+}
+
+/* 合计 */
+
+.totalprice {
+  width: 100%;
+  height: 28rpx;
+  line-height: 28rpx;
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.totalprice-discount {
+  display: inline-block;
+  margin-right: 16rpx;
+  font-size: 24rpx;
+  color: #f52d56;
+}
+
+.totalprice-discount > text {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
+.t-text {
+  margin-right: 6rpx;
+  color: #333;
+}
+
+.t-num {
+  color: #f52d56;
+}
+
+.state {
+  width: 92rpx;
+  height: 38rpx;
+  text-align: center;
+  line-height: 38rpx;
+  color: white;
+  font-size: 24rpx;
+  position: absolute;
+  top: 52rpx;
+  right: 30rpx;
+  border-radius: 4rpx;
+}
+
+.state.UnBilling {
+  background-color: #f52d56;
+}
+
+.state.UnPaid {
+  background-color: #f5a623;
+}
+
+.state.Paid {
+  background-color: #00cf82;
+}

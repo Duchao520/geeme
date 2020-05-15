@@ -1,0 +1,21 @@
+<wxs src="../../../utils/format.wxs" module="format"></wxs>
+<view class="selector flex_box justify_space_between align_center" style="padding-bottom: 34rpx;background: #FFFFFF;">
+  <text class="fz-42 fc-000000}} txt-ellipsis" style="width: 520rpx;" bindtap="showBrowerList">{{(format.replaceCity(shopInfo.city) + ' ' + shopInfo.shopName) || ''}} <text class="iconfont {{SHADE_SWITCHER ? 'iconxiala-copy' : 'iconxiala'}} fz-24"></text></text>
+  <view class="fc-000000 fz-28" bindtap="jumpShopcate" style="z-index: 4">
+    <text style="margin-right: 8rpx;">其他门店</text>
+    <text class="iconfont icondizhiguanli fz-24"></text>
+  </view>
+</view>
+<view style="height: 90rpx;"></view>
+<!-- 下拉门店列表前5个 -->
+<view class="shade" wx:if="{{SHADE_SWITCHER}}" bindtap="showBrowerList">
+  <view class="options">
+    <view class="options-item flex_box align_center justify_space_between box-padding" style="padding-right: 30rpx;" wx:for="{{browerStoreList}}" wx:key="index" data-storeid="{{item.id}}" data-type="selectStore" catchtap="selectStore">
+      <view class="flex_box align_center">
+        <image class="store-thumb" src='{{format.getImageUrl(item.shopImg + "?x-oss-process=image/resize,m_fill,h_40,w_40")}}' mode='aspectFill'></image>
+        <text class="fz-28 fc-333333">{{format.replaceCity(item.city) + ' ' + item.shopName}}</text>
+      </view>
+      <view class="iconfont  fc-F52D56 fz-36 {{(item.id == shopInfo.id && !BRAND_HOME_SWITCHER) ? 'icongouxuan' : ''}}"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "EvaluationList":"/components/common/EvaluationList/EvaluationList",
+    "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore"
+  },
+  "navigationBarTitleText":"我的评价"
+}

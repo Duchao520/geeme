@@ -1,0 +1,30 @@
+<view class="releaseAddlabel">
+  <!-- 头部 -->
+  <view class='releaseAddlabel-head'>
+    <SearchInput placeholder="在这添加你的专属标签" input-view="input-view" bindsearchInput="searchInput" value="{{tagName}}"></SearchInput>
+    <view class='r-h-add' bindtap='createPrivateTag'>添加</view>
+  </view>
+  <!-- 主体 -->
+  <view class='releaseAddlabel-body'>
+    <view class='r-b-already'>
+      <view class='r-b-already-title'>专属标签</view>
+      <view class='r-b-already-list'>
+        <block wx:for="{{privateTags}}" wx:key="{{index}}">
+          <view class='r-b-already-listItem {{item.selected?"active":""}}' data-type="private" data-index="{{index}}" bindtap='clickTagItem'>{{item.name}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class='r-b-recommended'>
+      <view class='r-b-recommended-title'>热门标签</view>
+      <view class='r-b-recommended-list'>
+        <block wx:for="{{publicTags}}" wx:key="{{index}}">
+          <view class='r-b-recommended-listItem {{item.selected?"active":""}}'  data-type="public" data-index="{{index}}" bindtap='clickTagItem'>{{item.name}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-fixed">
+    <view class="bottom-button" bindtap='finish'>完成</view>
+  </view>
+</view>

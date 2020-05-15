@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+     "carder": "./carder/carder",
+     "vip": "./vip/vip",
+     "coupon-list": "./coupon-list/coupon-list",
+     "share-card-list": "./shareCard-list/shareCard-list"
+   }
+}

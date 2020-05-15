@@ -1,0 +1,35 @@
+<view class="feedBack">
+  <view class='feedBackContent'>
+    <!-- 问题类型 -->
+    <view class='problemType'>
+      <view class='problemType-left'>问题类型</view>
+      <picker class='picker' bindchange="bindPickerChange" value="{{index}}" range="{{problemType}}">
+        <view class='problemType-right'>{{problemType[index]}}</view>
+      </picker>
+      <view class='moreIcon'></view>
+    </view>
+    <!-- 上传主体 -->
+    <view class='uploadMoudle'>
+      <view class='uploadItem'>
+        <view class='inputItem'>
+          <input placeholder='超过20字以上可额外赚20积分'></input>
+          <view class='wordLength'>0/300</view>
+        </view>
+        <view class='chooseImage'></view>
+      </view>
+    </view>
+    <!-- 联系电话 -->
+    <view class='userPhone'>
+      <view class='userTitle'>联系电话</view>
+      <input placeholder='请填写手机号码'></input>
+    </view>
+    <!-- 提示 -->
+    <view class='prompt'>
+      您的建议很重要，如有必要，我们将与您电话沟通
+    </view>
+  </view>
+</view>
+<!-- 提交反馈 -->
+<view class='submitfeedBack'>
+  <view class='submitfeedBackitem'>提交反馈</view>
+</view>

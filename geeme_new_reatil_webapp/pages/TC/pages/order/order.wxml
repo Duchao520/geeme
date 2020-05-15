@@ -1,0 +1,202 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="m1">
+  function getArray(appointment, product) {
+    if (appointment) {
+      return appointment.products
+    } else {
+      return [product]
+    }
+  }
+  module.exports.getArray = getArray
+</wxs>
+<view class="order-header" wx:if="{{isProduct}}">
+  <view class="header-button {{selfPickUp ? 'active' : ''}}" bindtap="setSelfPickUp" data-value="{{true}}">门店提货</view>
+  <view class="header-button {{selfPickUp ? '' : 'active'}}" bindtap="setSelfPickUp" data-value="{{false}}">物流配送</view>
+</view>
+<view class='container'>
+  <block wx:if="{{isProduct}}">
+    <!-- 门店信息模块 -->
+    <view class='storeMoudle' hidden="{{!selfPickUp}}">
+      <view class='storeMoudle-left'>
+        提货门店
+      </view>
+      <view class='storeMoudle-right'>
+        <view class='storeAddress text--ellipsis_2'>{{format.getCity(_shop.city)}} {{format.getArea(_shop.area)}}{{_shop.storeName}}（{{_shop.address}}）</view>
+        <view class='storePhone'>{{_shop.hotline}}</view>
+      </view>
+    </view>
+    <!-- 物流配送信息 -->
+    <view class="AddressInfo" hidden="{{selfPickUp}}" bindtap="jumpShippingAddress">
+      <block wx:if="{{addressInfo}}">
+        <AddressCard item="{{addressInfo}}" showArrow />
+      </block>
+      <block wx:else>
+        <view class="default-addressInfo">
+          <view class="default-addressInfo-left icon--add_red">添加收货人</view>
+          <view class="default-addressInfo-right arrow--right"></view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <!-- 产品列表-->
+  <view class='packagelist'>
+    <view class='package-item' wx:for="{{billType == 'bill' ? bill.info.products : m1.getArray(appointment, product)}}" wx:for-item="product" wx:key="index">
+      <image class='packageavatar' lazy-load src="{{format.getImageUrl(product.image + '?x-oss-process=image/resize,m_lfit,h_160,w_160')}}" mode='aspectFill'></image>
+      <view class='packageinfo'>
+        <view class='pi-des'>{{product.title}}</view>
+        <view class='pi-type'>
+          <text>{{product.specificationName}}</text>
+          <text wx:if="{{!isProduct && format.isNumber(product.serviceTime)}}">{{product.serviceTime}}分钟</text>
+        </view>
+        <view class='pi-price'>
+          <text wx:if="{{currentCard && product.discountPrice}}"><text class='symbol'>￥</text>{{format.getPrice(product.discountPrice)}}</text>
+          <text wx:else><text class='symbol'>￥</text>{{format.getPrice(product.specialPrice || product.price)}}</text>
+          <text class='unable' wx:if="{{product.price}}"><text class='symbol'>￥</text>{{format.getPrice(product.price)}}</text>
+        </view>
+      </view>
+      <!-- 加减数量 -->
+      <AppASAmount wx:if="{{product.type != 'card'}}" bind:changeAmount="changeAmount" amount="{{product.count}}" data-index="{{index}}" height="46rpx" style="position:absolute;right:0;bottom:20rpx;"></AppASAmount>
+    </view>
+  </view>
+
+  <!-- 选择身份卡等 -->
+  <view class='order-row-container' wx:if="{{!bill.info.promotion && !bill.info.isCard}}">
+    <view class='order-row' bindtap='show'>
+      <view class='title grey'>选择会员卡</view>
+      <view class='right red arrow arrow--right'>
+        <text>{{currentCard ? currentCard.cardName : ''}}</text>
+      </view>
+    </view>
+    <view class='order-row' bindtap='fetchRedPacket' data-popup="{{true}}" wx:if="{{!bill.info.expPriceActivityId}}">
+      <view class="order-sign">红包</view>
+      <view class='title grey'>{{currentRedPacket ? currentRedPacket.customerRedPacketBasicInfo.packetName : ''}}</view>
+      <view class='right red arrow arrow--right'>
+        <text wx:if="{{currentRedPacket}}" style="font-size:24rpx;">-¥</text>{{currentRedPacket ? currentRedPacket.customerRedPacketInfo.customerRedPacketDetailInfo.packetMoney : ''}}
+      </view>
+    </view>
+    <view class='order-row' bindtap="showCoupon" wx:if="{{!bill.info.expPriceActivityId && product}}">
+      <view class="order-sign">优惠券</view>
+      <view class='title grey'></view>
+      <view class='right red arrow arrow--right'>
+        <text wx:if="{{COUPON}}" style="font-size:24rpx;">-¥</text>{{COUPON ? COUPON.couponTemplateSnapshot.money : ''}}
+      </view>
+    </view>
+    <view class='order-row' wx:if="{{POINTS_INFO.allowed}}">
+      <view class='title grey'>可用{{POINTS_INFO.USE_POINTS}}积分抵{{POINTS_INFO.POINTS_DISCOUNT_AMOUNT}}元</view>
+      <view class='right' >
+        <switch checked="{{POINTS_INFO.USE_POINTS_SWITCHER}}" bindchange="pointsSwitcherEvent" color="#F52D56" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 手机号 留言 -->
+  <view class='order-row-container'>
+    <view class='order-row'>
+      <view class='title'>联系人手机号</view>
+      <view class='right'>{{mobile || '暂无'}}</view>
+    </view>
+    <view class='order-row'>
+      <view class='title'>备注：</view>
+      <input class='input' placeholder='对本次交易的说明(选填)' bindinput='setNotes'></input>
+    </view>
+  </view>
+
+  <!-- 合计金额 -->
+  <view class='totalprice'>
+    <view class='totalnum'>
+      <view class='totaldes'>合计金额</view>
+      <view class='totalnumber'>
+        <text style='font-size:24rpx;'>￥</text>{{format.getPrice(_totalPrice)}}</view>
+    </view>
+    <view class='{{submitOrderFlag ? "buttonnext" : "buttonStop"}}' bindtap='submitOrder'>{{billType === 'bill' ? '提交账单' : '提交订单'}}</view>
+  </view>
+</view>
+<!-- 选择会员卡弹窗 -->
+<view class='cover' hidden='{{!ifShowSelectCard}}' bindtap='hideCards'>
+  <view class='card-container'>
+    <view class='card-container-header'>
+      <text>选择会员卡</text>
+      <view class='icon--close card-container-close' bindtap='hideCards' data-me="{{true}}"></view>
+    </view>
+    <view class='card-list'>
+      <view class='card-list-row' wx:for="{{cards}}" wx:key="index" bindtap='setCurrentCard' data-item="{{item}}">
+        <view class='card' style='background-image:url({{format.getImageUrl(item.cardCover + "?x-oss-process=image/resize,m_fill,h_115,w_181")}})'>
+          <!-- 选择框 -->
+          <view class='card-select {{!item.canPay ? "icon--cantSelect" : ""}} {{currentCard && currentCard.customerCardId === item.customerCardId ? "icon--selected" : "icon--unSelected"}}'></view>
+          <!-- 标题 -->
+          <view class='card-title text--ellipsis_1'>
+            <image class='card-logo' lazy-load src="{{format.getImageUrl(logo + '?x-oss-process=image/resize,m_lfit,h_46,w_46')}}" mode='aspectFill'></image>
+            <text class='card-name'>{{item.cardName}}</text>
+          </view>
+          <!-- 次卡 -->
+          <!-- 右下角信息 -->
+          <view class='card-info'>
+            <view class='card-price' wx:if="{{item.cardType == 1}}">余额
+              <text>¥{{format.getPrice(item.rechargeMoney + item.giftMoney)}}</text>
+              <text style="font-size:24rpx">\n(含赠送金：¥{{item.giftMoney}})</text>
+            </view>
+            <view class='card-price' wx:else>{{item.validPermanent ? '永久有效' : format.getDateByTimestamp(item.finishTime) + ' 到期'}}</view>
+            <view class='card-power' wx:if="{{item.cardType == 2 || item.cardType == 3}}" catchtap="showCountDetail" data-item="{{item}}">[权益]</view>
+          </view>
+        </view>
+        <view class='card-des {{item.cardType == 0 || item.canPay ? "" : "unable"}}'>
+          <text wx:if="{{item.cardType == 0 || item.canPay}}">折后总额： ￥{{item.finalTotalCharge}}</text>
+          <text wx:else>{{item.errorMessage}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='confirm-button' bindtap='selectCurrentCard'>确认选择</view>
+  </view>
+</view>
+<!-- 选择红包弹框 -->
+<view class='cover' wx:if='{{ifShowSelectRedPacket}}' bindtap='hideRedPackets'>
+  <view class='card-container {{ifShowSelectRedPacket ? "active" : ""}}' catchtap="prevent">
+    <view class='card-container-header'>
+      <text>选择红包</text>
+      <view class='icon--close card-container-close' bindtap='hideRedPackets'></view>
+    </view>
+    <AppTabs tabs="{{redPacketsTabs}}" currentTab="{{redPacket_tab}}" bind:switchTab="switchRedPackets" />
+    <view class='card-list' style="padding-left:6rpx;">
+      <block wx:if="{{redPackets && redPackets.length}}">
+        <view class="redPacket-item" wx:for="{{redPackets}}" wx:if="{{item.startValid !== false}}" wx:key="index" bindtap="setCurrentRedPacket" data-item="{{item}}">
+          <RedPacketCard item="{{item.customerRedPacketInfo}}" type="{{redPacket_tab == 0 ? 0 : 2}}" />
+          <view wx:if="{{redPacket_tab == 0}}" style="text-align:center">
+            <view class="redPacket-select {{(currentRedPacket && currentRedPacket.customerRedPacketInfo.customerRedPacketId == item.customerRedPacketInfo.customerRedPacketId) ? 'icon--selected' : 'icon--unSelected'}}"></view>
+          </view>
+          <view wx:else style="color:#666;font-size:24rpx;padding-left:26rpx">{{item.message}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <AppDefault image='/images/default/default_redPacket.png' text="您没有可用的红包" top="100rpx" />
+      </block>
+    </view>
+    <view class='confirm-button' bindtap='$set' data-key="ifShowSelectRedPacket" data-value="{{false}}">确认选择</view>
+  </view>
+</view>
+<!-- 选择优惠券弹框 -->
+<view class='cover' hidden="{{!COUPON_SWITCHER}}" bindtap="hideCoupon">
+  <view class='card-container'>
+    <view class='card-container-header'>
+      <text>选择优惠券</text>
+      <view class='icon--close card-container-close' bindtap='hideCoupon'></view>
+    </view>
+    <view class='card-list' style="padding:30rpx;">
+      <block wx:if="{{customerCouponInfoList.length > 0}}">
+        <view class="flex_box align_center box_padding justify_space_between" style="margin-bottom: 30rpx;" wx:for="{{customerCouponInfoList}}" wx:key="index" wx:for-item="coupon" data-coupon="{{coupon}}" catchtap="chooseCoupon">
+          <view class="redPacket-select icon--unSelected {{customerCouponId == coupon.id ? 'icon--selected' : 'icon--unSelected'}}"></view>
+          <CouponModel style="width: 628rpx;" coupon="{{coupon}}"></CouponModel>
+        </view>
+      </block>
+      <block wx:else>
+        <AppDefault image='/images/default/default_redPacket.png' text="您没有可用的优惠券" top="100rpx" />
+      </block>
+    </view>
+    <view class='confirm-button' bindtap='$set' data-key="ifShowSelectRedPacket" data-value="{{false}}">确认选择</view>
+  </view>
+</view>
+<!-- 次卡、时间卡权益明细 -->
+<view class="cover" wx:if="{{ifShowCountDetail}}" bindtap="$set" data-key="ifShowCountDetail" data-value="{{false}}">
+  <view catchtap="prevent">
+    <VipCardCount wx:if="{{ifShowCountDetail}}" list="{{cardPower}}" bind:closeCount="$set" data-key="ifShowCountDetail" data-value="{{false}}" />
+  </view>
+</view>

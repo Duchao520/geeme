@@ -1,0 +1,76 @@
+/* pages/VIP//pages/VipCardPayment/VipCardPayment.wxss */
+.space {
+  width: 750rpx;
+  height: 20rpx;
+  background: #F8F8F8;
+}
+.mgb10 {
+  margin-bottom: 10rpx;
+}
+
+/* 会员卡 */
+.payment-vipcard {
+  width: 686rpx;
+  height: 214rpx;
+  margin: 32rpx auto 10rpx;
+  border-radius: 8rpx;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 0rpx 16rpx 0rpx rgba(174, 184, 229, 0.3);
+}
+.payment-vipcard-info {
+  flex: 1;
+  padding-left: 30rpx;
+  margin-top: 30rpx;
+}
+.payment-vipcard-info view {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+}
+.payment-vipcard-money {
+  width: 150rpx;
+  padding-right: 30rpx;
+  margin-top: 30rpx;
+  position: relative;
+}
+.payment-vipcard-money view:nth-child(2) {
+  width: 92rpx;
+  height: 42rpx;
+  background: #F52D56;
+  border-radius: 20rpx;
+  position: absolute;
+  top: 56rpx;
+  right: 30rpx;
+}
+
+/* 充值记录 */
+.payment-list {
+  width: 686rpx;
+  padding: 20rpx 0;
+  margin: 0 auto;
+  border-bottom: 2rpx solid #EFEFF4;
+}
+.payment-list-item {
+  height: 40rpx;
+  position: relative;
+}
+.payment-list-item text:nth-child(1) {
+  width: 300rpx;
+}
+.payment-list-item text:nth-child(2) {
+  width: 386rpx;
+}
+.payment-list-total {
+  flex-direction: row-reverse;
+}
+
+.payment-list-renew {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 15rpx;
+  background: #58C9F3;
+  position: absolute;
+  left: 60rpx;
+  top: 5rpx;
+}

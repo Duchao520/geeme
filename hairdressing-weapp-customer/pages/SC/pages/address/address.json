@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索城市",
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch"
+  }
+}

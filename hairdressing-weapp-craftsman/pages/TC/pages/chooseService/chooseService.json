@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "AppServiceTree":"/components/App/AppServiceTree/AppServiceTree"
+  },
+  "navigationBarTitleText": "选择服务项目"
+}

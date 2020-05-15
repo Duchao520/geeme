@@ -1,0 +1,158 @@
+.Home{
+  width: 100%;
+  height: auto;
+  position:relative;
+  overflow: hidden;
+}
+
+.header-bg{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+  width:900rpx;
+  margin-left:-75rpx;
+  height:195rpx;
+  background: linear-gradient(to bottom,#5782ff, #4ae7f2);
+  border-radius: 50%/0 0 100% 100%;
+}
+
+/* 品牌信息 */
+.shopname {
+  width: 100%;
+  height: 163rpx;
+  padding-left: 60rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  padding-top: 80rpx;
+  position: relative;
+}
+
+.shop-left {
+  width: 130rpx;
+  height: 130rpx;
+  margin-right: 28rpx;
+  border-radius: 50%;
+  box-shadow:0rpx 4rpx 20rpx 0rpx rgba(0, 0, 0, 0.2);
+  margin-top: -19rpx;
+}
+
+.shop-right {
+  width: calc(100vw-130rpx);
+  height: 130rpx;
+  padding-top: 3rpx;
+  /* color: rgba(255, 255, 255, 1); */
+  color: white;
+}
+
+.shop-info {
+  width: 420rpx;
+  height: 44rpx;
+  font-size: 32rpx;
+  /* line-height: 44rpx; */
+}
+
+.shop-phone {
+  height: 34rpx;
+  font-size: 24rpx;
+  line-height: 34rpx;
+}
+
+/* 功能 */
+.func {
+  margin-top:110rpx;
+  width: 100%;
+  padding: 0 60rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.func-item{
+  width: 116rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 34rpx;
+}
+
+.func-image {
+  width: 116rpx;
+  height: 116rpx;
+  margin-bottom: 20rpx;
+}
+
+.func-text {
+  width: 116rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  font-size: 24rpx;
+  color: rgba(38, 50, 56, 1);
+  white-space: nowrap;
+}
+
+/* 服务者榜单 */
+.staffList{
+  width: 100%;
+  height: auto;
+}
+.staffListTitle{
+  width: 100%;
+  padding: 0 32rpx;
+}
+.staffListContent{
+  width: 100%;
+}
+
+/* 门店榜单 */
+.storeList{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20rpx;
+}
+.storeListTitle{
+  padding: 0 32rpx;
+}
+.storeListContent{
+  width: 100%;
+  height: auto;
+}
+
+
+/* 封面动态 */
+.worksList{
+  width: 100%;
+  height: auto;
+  margin-top: 20rpx;
+}
+.worksListTitle{
+  padding: 0 32rpx;
+}
+.worksListContent{
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+}
+
+/* 社区达人 */
+.starList{
+  width: 100%;
+  height: auto;
+  margin-top: 20rpx;
+}
+.starListTitle{
+  padding: 0 32rpx;
+}
+.startListContent{
+  width: 100%;
+  height: auto;
+}
+
+.options-title{
+  height:108rpx;
+  line-height:108rpx;
+  color:#262628;
+  font-size:40rpx;
+  font-weight:600;
+}

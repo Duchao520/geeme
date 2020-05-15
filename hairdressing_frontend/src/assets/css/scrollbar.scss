@@ -1,0 +1,29 @@
+@mixin scroll-bar ($width, $color, $bg) {
+    &::-webkit-scrollbar {
+        width: $width;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px $color;
+        box-shadow: inset 0 0 5px $color;
+        background: $color;
+    }
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 5px $color;
+        box-shadow: inset 0 0 5px $color;
+        border-radius: 0;
+        background: $bg;
+    }
+}
+
+.scrollbar {
+    @include scroll-bar(6px, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+}
+
+.scrollbarw {
+    @include scroll-bar(8px, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+}
+
+#body /deep/ .el-table {
+    @include scroll-bar(8px, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+}

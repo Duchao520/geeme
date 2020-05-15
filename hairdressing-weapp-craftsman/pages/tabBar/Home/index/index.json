@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "HomeStaffList": "/components/Home/HomeStaffList/HomeStaffList",
+    "HomeStoreList": "/components/Home/HomeStoreList/HomeStoreList",
+    "HomeStarList": "/components/Home/HomeStarList/HomeStarList",
+    "OptionsTitle": "/components/common/OptionsTitle/OptionsTitle",
+    "Masonry": "/components/Masonry/Masonry"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#5782ff",
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "white"
+}

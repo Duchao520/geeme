@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "VipCardAgreement":"/components/VipComponents/VipCardAgreement/VipCardAgreement",
+    "VipCardRecharge":"/components/VipComponents/VipCardRecharge/VipCardRecharge",
+    "VipCardPay": "/components/VipComponents/VipCardPay/VipCardPay",
+    "moveBox":"/components/Common/movebox/movebox",
+    "VipCardDiscount": "/components/VipComponents/VipCardDiscount/VipCardDiscount",
+    "VipCardCount": "/components/VipComponents/VipCardCount/VipCardCount"
+  },
+  "navigationBarTitleText": "我的会员卡"
+}

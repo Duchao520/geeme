@@ -1,0 +1,18 @@
+enterOrderDialog  入库管理、出库管理、出入库统计 页面  -  详情、审核 -  引入文件数 3
+enterProductDialog 入库管理、出库管理  - 创建出入库单  - 2
+
+sp_BarCodeDetailDialog 库存明细 页面   -  条码明细 -  引入文件数 1
+barCodeListDialog 入库管理 页面 - 条码录入明细 - 引入文件数 1
+scanInput 条码录入 - 1
+editBarCodeDialog - 1
+
+chooseGoodsDialog - 库存产品选择组件 2 
+
+-- 门店订货页面的逻辑全部修改了  以下部分组件弃用 --
+createRequireGoodsDialog 门店 - 创建订货单 - 1
+createRequireInDialog 门店 - 订货单创建入库单 - 1
+createRequireOutDialog 品牌 - 订货单创建出库单 - 1
+detailRequireOrderForIO 出货单（品牌总部）、入库单（门店）详情  - 1
+requireOrderDetailDialog 订货单详情 - 1
+signRequireOrderDialog 审核订货单（总部） 1
+-- 门店订货页面的逻辑全部修改了  以上部分组件弃用 --

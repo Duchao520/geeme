@@ -1,0 +1,26 @@
+.SearchInput{
+ 
+}
+.searchInputItem{
+    width: 100%;
+  height: 72rpx;
+  position: relative;
+  padding-left: 86rpx;
+  border-radius: 50rpx;
+  background: #F8F8F8;
+}
+.searchInputItem input{
+  width: 100%;
+  height: 72rpx;
+  color: #AAAAAA;
+  font-size: 28rpx;
+}
+.searchIcon{
+  width: 72rpx;
+  height: 72rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAABMdJREFUWAnFV01oJFUQfu/1xOzNQ0QwsixBEb0Y3STjYmamc3M1gqAHEYwHhYBHvSjIrh78QUT0rpdlV1BxBVnXPbrTk2RNJisE1wXjQVZhQ/S64Eymu8uveqa76/V0J5lkZN9huqpevXo1VfXqfU+rAcfKyvqDnU44qbUeV0TjSmujiW5qRVtkRn6tVo9vDGjSUtcWV8CsrFy939/xF7H5M0T0QIFaJIbBG6T1dyPKfP64O/3Lbrp5c7s6tLy8cXfot0+TUotwZCTPQJEMEQwxd9Y45nSlMv1nkV5WXuhQo7F2MgzUl0rRndlFg/Baq3+VNi/XajOwtffIdcjzmq9RGH6E5U6OiW2l1UWj1KYy5mYYUsj1pCm8j5R+CpE8mrNGwan3arXpU9BFwItHn0ONy6uvI9YfZ5dAcUk75hTC7/XSkVWJ+EZj/TEKwndI0ck+BW0+dN2ZN/vkQmA51E0TfY95GZlbjtavVNzy12LdnqTnrT6B2H2BlI9JZZzJhVqtfE7KJJ04xAXsd9qbsmYQib9Kyswf5LTwJvX6xoRSrYuK1ENi09aovuPhE+6jvwtZQqIUuoNPk3QG0luHcYatuu7kH6XSyJP4Y/90d4l+j+zQzvuCt8goQlGf6QTX5dFGmp4fNE2WZcE0Gs25MAh/FCJlHOdEtTq9KmVMRxHipiedgZdLw3KGN6lWZy4jSueZjgdO8asxLb/dlKEDSyGfJskPhdYllEQ6iNTTCII8PNGk4bsJE/I62OajnS4dDlWrHb+OZnQttUZjSGUl5buU8X16xBKi6e3WZyzdARmjFbeUZOBymUyYHsEpu0cKIcDR/38GafWbtIwWPy55pk0EIaQU14Fkh0vTlrSH6ybHIeAZqcR3k+SHSWOrIGOvlOGVQUHbXueEMbvowHyorIgAN/2dtWUcRVaK+NbOKg2LJ02WbUCT7axtw7BTChlCSH6oNNG8tGdC85PkmTaMgdGZb8QTSOFRhhAxP6wvX7RohlPCXuveY2NXBB+RUUEzBpYTjGckPwxaq/bblh2tL01MTLQsGZjIIQbkshkyuGI8k1U+KN9oXOXILMj1DjmfSD6mI4d6eOdsLOQvwNW5Lp6R0sFpxlkU+OdRCml70fpKZW6qkWctUeLXQQTIEy26i8HV8vLPxxLRgAQ7E/jtCwDRiQ1kYqdU0otFphKHoqcKXgeWIpBe4PtNxjOWfB8MpynotNYQmbKlTurM7OyMuGStWbwfMqNeb76LfL2VEeONCDwDCNG9tbOzKc9p7hXwgpWmREW3Af6erbgzPyQiQfQ5BCPa89Y/gFNvCD1B6mtYdAHHYROVthVdB+jAUdNDn8kcbbFOksVO9TkUL/O8tRcppM/AH4llB/lyzQDkn0EdvYQ/MJrayHcqqaFUsUvxU4VfB/D4m+zcvnmcJqekp2pz5UVtzHMAaO10LY0GRN8u1ZvWzVAYoXShUtHjDxiYYSf+pfXOkno9uoWCuwT6U9cte3IepTAPLA1sXRypfTkUG0V9OQw7GekxuOrhmRLf2nxR8t3E10FeB45t7OXUQA7FRg/75TRxurKRwtNotrCGDrvpbuv5yPPRz9ZUGAYv3BaH2Nl8p1TztqRMRo87OkcGsiYOwVf/AWNa3LhXsSq4AAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  background-size: 34rpx 34rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

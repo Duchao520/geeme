@@ -1,0 +1,49 @@
+.user-defined-tab {
+    /deep/ .el-tabs--card {
+        background: #DEE1E6;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+        height: 32px;
+        .el-tabs__nav {
+            border: 0;
+            border: none !important;
+        }
+        .el-tabs__header {
+            border: 0;
+        }
+        .el-tabs__item {
+            border: 0;
+            height: 32px;
+            line-height: 32px;
+            box-sizing: border-box;
+            border: none !important;
+        }
+        .el-tabs__header .el-tabs__item.is-active {
+            background: #fff;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: url("/src/images/bgImages/icon_tab_left.png");
+                background-size: 100%;
+                left: -8px;
+                bottom: 0;
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: url("/src/images/bgImages/icon_tab_right.png");
+                background-size: 100%;
+                right: -8px;
+                bottom: 0;
+            }
+        }
+    }
+}

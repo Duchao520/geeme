@@ -1,0 +1,12 @@
+.masonry{
+  width:100%;
+  column-count: 2;
+  column-gap: 20rpx;
+  box-sizing: border-box;
+}
+
+.masonry-column{
+  width:328rpx;
+  break-inside: avoid;
+  /* flex:1; */
+}

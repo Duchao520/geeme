@@ -1,0 +1,293 @@
+@import '/utils/wxss/icon.wxss';
+
+page{
+  background-color:#f7f7f7;
+}
+
+/* 描述模块 */
+
+.userDesMoudle {
+  margin-top:20rpx;
+  width: 100%;
+  height: auto;
+  padding: 26rpx 0 0;
+  background-color:#fff;
+}
+
+.userDesTitle {
+  color: #262628;
+  font-size: 30rpx;
+  text-align: left;
+  margin-bottom: 12rpx;
+  padding: 0 32rpx;
+  font-weight: 600;
+}
+
+.userDesTextarea {
+  position: relative;
+}
+
+textarea {
+  width: inherit;
+  height: inherit;
+  margin-right: 32rpx;
+  margin-left: 32rpx;
+}
+
+.userDesTextarea textarea {
+  min-height: 240rpx;
+  font-size: 28rpx;
+  padding: 28rpx;
+  background: #f8f8f8;
+  box-sizing: border-box;
+  color:#999;
+}
+
+.wordLength {
+  color: #aaa;
+  font-size: 24rpx;
+  text-align: right;
+  position: absolute;
+  bottom: 14rpx;
+  right: 54rpx;
+}
+
+/* 擅长项目 */
+
+.userSkillsMoudle {
+  background-color:#fff;
+  width: 100%;
+  height: auto;
+  padding-top: 34rpx;
+}
+
+.userSkillsList {
+  width: 100%;
+  height: auto;
+  margin-top: 24rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.userSkillsItem {
+  padding: 0 30rpx;
+  line-height: 60rpx;
+  border-radius: 50rpx;
+  margin-left: 32rpx;
+  font-size: 24rpx;
+  margin-bottom: 30rpx;
+  border:1px solid #aaaaaa;
+  color:#999;
+}
+
+.userSkillsItem.active{
+  color: #f52d56;
+  border: 1px solid #f52d56;
+}
+
+/* 个人相册 */
+
+.userPhotoMoudle {
+  width: 100%;
+  height: auto;
+  padding-top: 20rpx;
+  background: #f8f8f8;
+}
+
+.userPhotoMoudleItem {
+  width: 100%;
+  height: auto;
+  background: white;
+  padding: 32rpx;
+}
+
+.userPhotoTitle {
+  color: #262628;
+  font-size: 30rpx;
+  text-align: left;
+  margin-bottom: 12rpx;
+  font-weight: 600;
+}
+
+.userPhotoList {
+  padding-left:8rpx;
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.userPhotoList-item{
+  position:relative;
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom:20rpx;
+  margin-right:32rpx;
+}
+
+.userPhotoList-item > image{
+  width:100%;
+  height:100%;
+}
+
+.userPhotoList-item:nth-child(3n){
+  margin-right:0;
+}
+
+.userPhotoAdd {
+  border: 1rpx solid #c8c7cc;
+  position: relative;
+}
+
+.cross {
+  width: 80rpx;
+  height: 4rpx;
+  background: #c8c7cc;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.vertical {
+  width: 4rpx;
+  height: 80rpx;
+  background: #c8c7cc;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.container{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+  padding-top: 20rpx;
+  padding-bottom:240rpx;
+}
+
+.avatar{
+  width: 100%;
+  height: 176rpx;
+  padding:0 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  line-height: 176rpx;
+  color: #333333;
+  font-size: 28rpx;
+  align-items: center;
+  background-color: white;
+}
+.avatar-left{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.avatarTitle{
+  margin-right: 88rpx;
+}
+.avatarImg{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.moreicon{
+  width: 50rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  background-size: 12rpx;
+  background-position-x: 40rpx;
+}
+.userInfo{
+  width: 100%;
+  height: auto;
+  margin-top: 20rpx;
+  padding: 0 34rpx 0 32rpx;
+  background-color: white;
+}
+.item{
+  position:relative;
+  height: 96rpx;
+  line-height:96rpx;
+  border-bottom: 1px solid #EFEFF4;
+}
+.item:last-child{
+  border-bottom: 0;
+}
+
+.itemTitle{
+  float:left;
+  width:140rpx;
+  height:100%;
+  color: #333333;
+  font-size: 28rpx;
+} 
+
+.content{
+  display: block;
+  height:96rpx;
+  font-size:28rpx;
+  color:#999;
+}
+
+.itemRight{
+  position:absolute;
+  right:0;
+  top:0;
+  width: 50rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  background-size: 12rpx;
+  background-position-x: 40rpx;
+}
+
+.experience-module{
+  padding:0 30rpx 60rpx;
+  background-color:#fff;
+  overflow: hidden;
+}
+
+.experience-title{
+  margin-top:60rpx;
+  font-size:30rpx;
+  color:#262628;
+  font-weight: 600;
+}
+
+.experience-add{
+  margin-top:24rpx;
+  height:120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  color:#333;
+  font-size:32rpx;
+  border: 0.5px dashed #c7cad1;
+}
+
+.experience-add > text{
+  display: inline-block;
+  padding-left:50rpx;
+  background: no-repeat left center;
+  background-size:30rpx 30rpx;
+}
+
+.closeIcon{
+  width: 40rpx;
+  height: 40rpx;
+  background: no-repeat center center/100% auto;
+  background-size: 30rpx 30rpx;
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+}
+
+

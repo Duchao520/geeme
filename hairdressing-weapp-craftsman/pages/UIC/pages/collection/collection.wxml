@@ -1,0 +1,10 @@
+<view class='page-container'>
+  <block wx:if="{{worksList && worksList.length}}">
+    <view class='works-container'>
+      <Masonry list="{{worksList}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+    </view>
+  </block>
+  <block wx:else>
+    <AppDefault image="/images/default/default_works.png" text="您还没有收藏作品动态" />
+  </block>
+</view>

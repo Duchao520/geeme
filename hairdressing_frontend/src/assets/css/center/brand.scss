@@ -1,0 +1,23 @@
+@import './list.scss';
+.center-brand__wrap {
+  height: 100%;
+  .brand-body {
+    padding: 2px 0 0 50px;
+  }
+  .brand-header {
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    .title {
+      color: #999999;
+      font-size: 16px;
+      margin-left: 50px;
+    }
+    .create {
+      position: absolute;
+      right: 30px;
+      top: 0;
+    }
+  }
+}

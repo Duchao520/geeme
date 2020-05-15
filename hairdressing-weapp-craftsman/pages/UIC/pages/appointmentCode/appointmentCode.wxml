@@ -1,0 +1,28 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='header-bg'></view>
+<view class="appointmentCode" wx:if="{{userId}}">
+  <view class='appointmentCodeItem'>
+    <view class='staffMoudle'>
+      <image class='staffAvatar' src='{{format.getImageUrl(headPortrait)}}' mode='aspectFill'></image>
+      <view class='staffInfo'>
+        <view class='staffName'>{{nickName}}</view>
+        <view class='staffStore'>
+          <view class='addressIcon'></view>
+          <view class='addressText'>{{format.getCity(storeInfo.storeCity)}}{{storeInfo.storeName}}</view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{success}}">
+      <image class='codeImage' src='{{qrcode}}'></image>
+      <view class='codeMessage'>用微信扫码,快速预约我的服务</view>
+      <view class='buttons'>
+        <view class='buttons-poster' bindtap='initPic'>海报</view>
+        <view class='buttons-save' bindtap='save'>保存</view>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_noapp.png" text="当前品牌暂未开通客户版小程序，无法生成预约码" />
+    </block>
+  </view>
+</view>
+<canvas class='canvas' id='canvas' canvas-id='canvas' />

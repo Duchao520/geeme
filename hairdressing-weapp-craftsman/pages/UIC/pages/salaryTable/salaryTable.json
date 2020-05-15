@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "DateHeadContainer": "/components/DailyWork/DateHeadContainer/DateHeadContainer",
+    "DateHeadBefore": "/components/common/DateHeadBefore/DateHeadBefore",
+    "AppTabs": "/components/App/AppTabs/AppTabs"
+  },
+  "navigationBarTitleText": "业绩报表",
+  "pageOrientation":"landscape"
+}

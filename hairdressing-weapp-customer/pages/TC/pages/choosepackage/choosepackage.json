@@ -1,0 +1,12 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "选择服务",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "Time": "/components/time/time",
+    "movebox": "/components/Common/movebox/movebox",
+    "AppServiceTree":"/components/App/AppServiceTree/AppServiceTree",
+    "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore"
+  }
+}

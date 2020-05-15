@@ -1,0 +1,23 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<block wx:if="{{list && list.length}}">
+  <view class="evaluationDetail">
+    <!-- 评价顶部 -->
+    <view class='evaluationTop'>
+      <view class='evaluation-score'>
+        <text class='score-text'>{{format.fixNum(avgScore, 1)}}</text>
+        <AppAvgScore width="30rpx" height="30rpx" space="10rpx" score="{{avgScore}}" />
+      </view>
+      <view class='evaluationData'>
+        <view class='evaluationDataItem {{tagId === item.tagId ? "active" : ""}}' wx:for="{{tags}}" wx:key="{{index}}" bindtap='switchTagId' data-id="{{item.tagId}}">{{item.tagName}}({{item.num}})</view>
+      </view>
+    </view>
+
+    <!-- 评价底部 -->
+    <view class='evaluationBottom'>
+      <EvaluationList list="{{list}}"></EvaluationList>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_comment.png" text="您还没有评价哦~" />
+</block>

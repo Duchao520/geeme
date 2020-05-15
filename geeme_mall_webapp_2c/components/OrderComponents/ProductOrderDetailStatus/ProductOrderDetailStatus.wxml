@@ -1,0 +1,46 @@
+<!-- 产品订单详情 -->
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='header {{info.orderStatus}}' wx:if="{{isProduct}}">
+  <view class='status'>
+    <view class='status-icon {{info.orderStatus}}'></view>
+    <view class='status-text'>
+      <view class='s-t-paystatus'>{{productObj[info.orderStatus]}}</view>
+      <!-- 待付款 -->
+      <view class='s-t-paytime' wx:if="{{info.orderStatus === 'WAITING_PAY'}}">剩{{hour}}小时{{minute}}分{{second}}秒自动关闭</view>
+      <!-- 待发货 -->
+      <view class='s-t-paytime' wx:elif="{{info.orderStatus === 'WAITING_DELIVER'}}">等待商家发货</view>
+      <!-- 待收货 -->
+      <view class='s-t-paytime' wx:elif="{{info.orderStatus === 'WAITING_CONFIRM'}}">剩{{day}}天{{hour}}小时{{minute}}分钟自动确认收货</view>
+      <!-- 待评价 -->
+      <view class='s-t-paytime' wx:elif="{{info.orderStatus === 'WAITING_ASSESSMENT'}}">期待您的评价</view>
+      <!-- 已完成 -->
+      <view class='s-t-paytime' wx:elif="{{info.orderStatus === 'FINISHED'}}">期待您的再次惠顾</view>
+      <!-- 待拼单 -->
+      <view class='s-t-paytime' wx:elif="{{info.orderStatus === 'GROUP_BUY_WAIT'}}">距拼团失效剩余{{format.formatNumber(hour)}}:{{format.formatNumber(minute)}}:{{format.formatNumber(second)}}</view>
+    </view>
+  </view>
+</view>
+<!-- 服务订单详情 -->
+<view class='header {{info.status}}' wx:else>
+  <view class='status'>
+    <view class='status-icon {{info.status}}'></view>
+    <view class='status-text'>
+      <view class='s-t-paystatus'>{{serviceObj[info.status]}}</view>
+      <!-- 待付款 -->
+      <view class='s-t-paytime' wx:if="{{info.status === 'WAITING_PAY'}}">{{info.online ? '线上订单' : '门店开单'}} | 距支付时间还剩{{hour}}小时{{minute}}分{{second}}秒</view>
+      <!-- 待服务 -->
+      <view class='s-t-paytime' wx:elif="{{info.status === 'WAITING_SERVICE'}}">
+        <text wx:if="{{info.appointTime}}">距离预约时间还剩{{hour}}小时{{minute}}分钟{{second}}秒</text>
+        <text wx:else>未预约</text>
+      </view>
+      <!-- 待评价 -->
+      <view class='s-t-paytime' wx:elif="{{info.status === 'WAITING_ASSESSMENT'}}">期待您的评价</view>
+      <!-- 已完成 -->
+      <view class='s-t-paytime' wx:elif="{{info.status === 'COMPLETED'}}">期待您的再次惠顾</view>
+      <!-- 已关闭 -->
+      <view class='s-t-paytime' wx:elif="{{info.status === 'CLOSED'}}">期待您的再次惠顾</view>
+      <!-- 待拼单 -->
+      <view class='s-t-paytime' wx:elif="{{info.status === 'GROUP_BUY_WAIT'}}">距拼团失效剩余{{format.formatNumber(hour)}}:{{format.formatNumber(minute)}}:{{format.formatNumber(second)}}</view>
+    </view>
+  </view>
+</view>

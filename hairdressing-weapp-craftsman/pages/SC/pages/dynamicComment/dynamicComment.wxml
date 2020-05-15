@@ -1,0 +1,27 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="dynamicComment">
+  <view class="comment-container" wx:for="{{list}}" wx:for-item="comment" wx:key="{{comment.id}}">
+    <!-- 评论头部信息 -->
+    <view class="comment-header">
+      <image class="header-avatar" src='{{format.getImageUrl(comment.headPortrait)}}'></image>
+      <view class="header-info">
+        <view class="header-info_1">{{comment.name}}</view>
+        <view class="header-info_2">{{comment._createTime}}</view>
+      </view>
+      <view class="header-thumb">{{comment.thumbUp || ''}}</view>
+    </view>
+    <!-- 评论主体 -->
+    <view class="comment-main">
+      <!-- 评论正文 -->
+      <view class="main-content">{{comment.content}}</view>
+      <!-- 回复列表 暂时不做 -->
+    </view>
+  </view>
+  <!-- 底部写评论 -->
+  <view class="dynamicComment-bottom">
+    <view class="dynamicComment-bottom-container">
+      <input class="dynamicComment-bottom-input" type='text' confirm-type='send' placeholder='写评论' value='{{content}}' bindinput='setContent' bindconfirm='addComment' cursor-spacing="30"></input>
+      <view class="dynamicComment-bottom-button" bindtap='addComment'>发送</view>
+    </view>
+  </view>
+</view>

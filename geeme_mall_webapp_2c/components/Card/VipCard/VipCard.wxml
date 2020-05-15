@@ -1,0 +1,13 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='card' style='background-image:url({{format.getImageUrl(info.cardCover)}})' bindtap='jumpCardDetail'>
+  <view class='card-title'>
+    <image class='card-logo' src="{{logo}}" mode='aspectFill' lazy-load></image>
+    <text class='card-name'>{{info.cardName}}</text>
+  </view>
+  <view class='card-info'>
+    <view class='card-effect' wx:if="{{info.cardType === 1}}">
+      <text>赠{{info.cardGiftNum}}元</text>
+    </view>
+    <view class='card-price'>¥{{info.cardType === 0 ? info.cardPrice : info.cardFirstRechargeNum}}</view>
+  </view>
+</view>

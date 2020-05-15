@@ -1,0 +1,23 @@
+<!--components/comments/comments.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view>
+  <view style="border-bottom: 2rpx solid #EBEBEB" wx:for="{{notes}}" wx:key="{{index}}" bindtap='jumpEvaluationDetail' data-id="{{item.id}}">
+    <view class='flex_box' style="margin-bottom: 28rpx;">
+      <view style="margin-right: 24rpx;">
+        <AppAvatar avatar="{{format.getImageUrl(item.userInfo.headPortrait)}}" width="80rpx" iconWidth="30rpx" />
+      </view>
+      <view class='flex_box flex_column justify_space_between'>
+        <view class='fc-0D0D0F fz-30 txt-ellipsis'>{{format.getTxt(item.userInfo.nickName)}}</view>
+        <view class='fc-9B9B9B fz-24'>{{format.getTxt(item.createTime)}}</view>
+      </view>
+    </view>
+    <view class="box_padding" style="padding-left: 104rpx;">
+      <view class="fc-666666 fz-28" style="line-height: 44rpx;">
+        {{format.getTxt(item.content)}}
+      </view>
+      <view class='ev-imgs'>
+        <image src='{{format.getImageUrl(imageItem)}}' class='imgs-item' wx:for="{{item.imageList}}" wx:for-item="imageItem" wx:key="{{index}}" mode='aspectFill' lazy-load></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function JudgeOrder(type){
+    switch(type){
+      case 0: return '待结算';
+      case 1: return '已结算';
+      case 2: return '已扣回';
+      default: return '--';
+    }
+  }
+
+  function JudgeOrderClass(type){
+    switch(type){
+      case 0: return 'status-wait';
+      case 1: return 'status-finish';
+      case 2: return 'status-wait';
+      default: return 'status-wait';
+    }
+  }
+  
+  function replaceTimeStr(time){
+    return time.replace('T',' ')
+  }
+
+  module.exports = {
+    JudgeOrder: JudgeOrder,
+    JudgeOrderClass: JudgeOrderClass,
+    replaceTimeStr: replaceTimeStr
+  }
+</wxs>
+<view class="wallet" wx:if="{{recordList.length > 0}}">
+  <view wx:for="{{recordList}}" wx:key="index" wx:for-item="date">
+    <view class="date-head fz-32">{{date.dateHead}}</view>
+    <view class="box_padding" style="padding: 0 32rpx;" wx:for="{{date.RecordInfoList}}" wx:for-index="recordIndex" wx:key="recordIndex">
+      <view style="padding: 24rpx 0;border-bottom: 2rpx solid #EFEFF4" class="flex_box justify_space_between align_center">
+        <view style="margin-bottom: 12rpx;">
+          <view class="fc-333333 fz-32" style="margin-bottom: 12rpx;">
+            <text style="margin-right: 16rpx;">{{item.goodsName}}</text>
+            <text class="status {{wxs.JudgeOrderClass(item.status)}}">{{wxs.JudgeOrder(item.status)}}</text>
+          </view>
+          <view class="fc-999999 fz-28">{{wxs.replaceTimeStr(item.createTime)}}</view>
+        </view>
+        <view class="fc-000000 fz-40">+{{item.amount}}</view>
+      </view>
+    </view>
+  </view>
+
+</view>
+<AppDefault text="暂无收入明细~~" wx:else></AppDefault>
+

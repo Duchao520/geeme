@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索商品",
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "投资保证金",
+  "navigationBarTextStyle": "black"
+}

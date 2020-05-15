@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppModal": "/components/App/AppModal/AppModal"
+  },
+  "navigationBarTitleText": "账单详情",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "Masonry": "/components/Masonry/Masonry",
+    "GoodsCard":"/components/Card/GoodsCard/GoodsCard",
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "PopHeader":"/components/popup/PopHeader/PopHeader",
+    "PopSingleColumn": "/components/popup/PopSingleColumn/PopSingleColumn",
+    "PopDoubleColumn": "/components/popup/PopDoubleColumn/PopDoubleColumn"
+  },
+  "navigationBarTitleText":"优选好物"
+}

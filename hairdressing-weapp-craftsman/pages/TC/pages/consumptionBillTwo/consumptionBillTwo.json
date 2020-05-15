@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "AppPopup":"/components/App/AppPopup/AppPopup"
+  },
+  "navigationBarTitleText": "选择服务者/销售人"
+}

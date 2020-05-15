@@ -1,0 +1,53 @@
+<template name="OrderPreference">
+  <view class='OrderPreference-module'>
+    <view class='OrderPreference-container'>
+      <view class='OrderPreference-totalPrice'>
+        合计金额
+        <text>￥{{info.totalPrice}}</text>
+      </view>
+      <view class='OrderPreference-list'>
+        <view wx:if="{{info.storePreference}}">
+          <text>门店优惠</text>
+          <text>-￥{{info.storePreference}}</text>
+        </view>
+        <view wx:if="{{info.redPacketPreference}}">
+          <text>红包优惠</text>
+          <text>-￥{{info.redPacketPreference}}</text>
+        </view>
+        <view wx:if="{{info.couponPreference}}">
+          <text>优惠券优惠</text>
+          <text>-￥{{info.couponPreference}}</text>
+        </view>
+        <view wx:if="{{info.identityPreference}}">
+          <text>身份卡优惠</text>
+          <text>-￥{{info.identityPreference}}</text>
+        </view>
+        <view wx:if="{{info.prepaidCardPreference}}">
+          <text>储值卡优惠</text>
+          <text>-￥{{info.prepaidCardPreference}}</text>
+        </view>
+        <view wx:if="{{info.pointsDeductMoney}}">
+          <text>积分优惠</text>
+          <text>-￥{{info.pointsDeductMoney}}</text>
+        </view>
+        <view wx:if="{{info.memberPreference}}">
+          <text>{{info.levelName}}优惠</text>
+          <text>-￥{{info.memberPreference}}</text>
+        </view>
+        <view wx:if="{{info.groupBuyPreference}}">
+          <text>团购优惠</text>
+          <text>-￥{{info.groupBuyPreference}}</text>
+        </view>
+        <view wx:if="{{info.unPaidOrderPreference}}">
+          <text>改价优惠</text>
+          <text>-￥{{info.unPaidOrderPreference}}</text>
+        </view>
+      </view>
+
+      <view class="OrderPreference-actualTotalPrice">
+        实付款：
+        <text>￥{{info.received}}</text>
+      </view>
+    </view>
+  </view>
+</template>

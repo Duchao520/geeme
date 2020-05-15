@@ -1,0 +1,41 @@
+<!-- 该页面为商场版与客户版不同请注意不要覆盖代码 -->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class='recommended-page'>
+  <!-- 搜索 -->
+  <view class="goodProduct-header">
+    <view class="flex_box align_center justify_space_between" style="padding-right: 36rpx;">
+      <view class='search-container'>
+        <AppSearch placeholder="搜索门店名称" bind:searchEvent="search" hideText></AppSearch>
+      </view>
+      <image src="/images/button/home_pos_1.png" style="display: block;width: 48rpx;height: 46rpx;" bindtap="jumpMaps" wx:if="{{partition.length > 0}}"></image>
+    </view>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <view>
+        <PopHeader tabs="{{tabs}}" activeIndex="{{activeTab}}" bind:popup="popup" />
+        <view class='popup-container {{isFixed ? "fixed" : ""}}' catchtouchmove='{{true}}'>
+          <PopDoubleColumn wx:if="{{partition}}" list="{{partition}}" bind:clickChild="selectFloor" ifShow="{{activeTab === 0}}" />
+          <PopSingleColumn list="{{businessCategoryInfoList}}" val="name" activeIndex="-1" ifShow="{{activeTab === 1}}" bind:clickItem="selectCategory" />
+          <PopSingleColumn list="{{sortMethods}}" activeItem="全部" ifShow="{{activeTab === 2}}" bind:clickItem="selectIsHot" />
+        </view>
+      </view>
+    </AttachTop>
+  </view>
+  <!-- <view class="flex_box justify_space_between align_center box_padding" style="padding: 20rpx 32rpx 0">
+    <view style="width:540rpx;">
+      <view class="flex_box" style="width: 540rpx;" wx:for="{{partition}}" wx:key="index">
+        <button class="plain active" style="opacity: .7;">{{item.name}}</button>
+        <scroll-view style="width:413rpx;height: 60rpx;"  scroll-x>
+          <view style="width: 413rpx;height: 60rpx;white-space: nowrap;">
+            <button class="plain {{floorid==floor.id ? 'active' : ''}}" wx:for="{{item.floorList}}" wx:for-item="floor" wx:for-index="floorIdx" bindtap="selectFloor" data-floorName="{{floor.name}}"  data-floorId="{{floor.id}}" wx:key="index">{{floor.name}}</button>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="shop-map fz-24" bindtap="jumpMaps">店铺导航</view>
+  </view> -->
+  <view class='body {{isAttach ? "fixed" : ""}}'>
+    <list list="{{shopList}}" latitude="{{address.latitude}}" longitude="{{address.longitude}}" wx:if="{{shopList.length > 0}}" />
+    <AppDefault text="该区暂时还没有门店" image="/images/default/default_shop.png" wx:else></AppDefault>
+  </view>
+  <view class='cover' catchtouchmove='{{true}}' hidden='{{activeTab == -1}}' bindtap='$set' data-key="activeTab" data-value="{{-1}}"></view>
+</view>

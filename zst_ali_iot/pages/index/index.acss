@@ -1,0 +1,21 @@
+.pay{
+	width: 670rpx;
+	height: 90rpx;
+	color: #1AA2DF;
+	font-size:92rpx;
+	font-weight: bold;
+	margin: 0 auto;
+}
+.apily{
+	width:326rpx;
+	height: 46rpx;
+	color: #1AA2DF;
+	font-weight: bold;
+	font-size: 64rpx;
+	margin: 0 auto;
+}
+.swiper-item{
+  display: block;
+  width: 100%;
+  height: 100%;
+}

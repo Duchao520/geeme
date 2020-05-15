@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新人专享",
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

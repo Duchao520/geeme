@@ -1,0 +1,26 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class="container" wx:if="{{sellGoodsInfoForSellerList.length > 0}}">
+  <view class="list-item flex_box" wx:for="{{sellGoodsInfoForSellerList}}" wx:key="index" bindtap="naviageToDetail" data-goods="{{item}}">
+    <view class="card-bg" wx:if="{{item.goodsType == 3}}" style="background-image:url({{format.getImageUrl(item.cycleImageList[0])}})">
+      <view class="flex_box align_center">
+        <image style="width: 24rpx;height: 24rpx;border-radius: 50%;display: block;margin-right: 4rpx;" src="{{logo}}"></image>
+        <view class="fz-20 fc-ffffff txt-ellipsis" style="width: 110rpx;">{{item.goodsName}}</view>
+      </view>
+    </view>
+    <image class="thumb" wx:else  src='{{format.getImageUrl(item.cycleImageList[0] + "?x-oss-process=image/resize,m_fill,h_176,w_176")}}'></image>
+    <view class="detail">
+      <view class="txt-overflow fz-28 fc-333333;" style="height: 80rpx;">{{item.goodsName}}</view>
+      <view class="flex_box justify_space_between" style="align-items: flex-end;">
+        <view>
+          <view>
+            <text class="fz-40 fc-F52D56" style="margin-right: 18rpx;"><text class="fz-26 iconfont iconrenminbidanjia"></text>{{item.price}}</text>
+            <text class="fz-26 fc-999999" style="text-decoration: line-through;"><text class="fz-26 iconfont iconrenminbidanjia"></text>{{item.shopPrice}}</text>
+          </view>
+          <view class="fz-26"><text class="fc-999999">已售:</text><text class="fc-333333">{{item.sellCount}}</text></view>
+        </view>
+        <button class="btn-default fz-22 fc-ffffff iconfont iconfenxiang">赚{{item.sellPercent ? item.sellPercent + '%' : '¥' + item.sellMoney}}</button>
+      </view>
+    </view>
+  </view>
+</view>
+<AppDefault text="暂无推荐商品~~" wx:else></AppDefault>

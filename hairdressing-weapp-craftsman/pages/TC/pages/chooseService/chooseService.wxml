@@ -1,0 +1,21 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="main">
+  <AppServiceTree list="{{list}}" bind:updateService="updateService" />
+  <!-- 备注 -->
+  <view class='note'>
+    <view class='notetitle'>备注</view>
+    <view class='notearea'>
+      <input class='noteinput' placeholder='您的其他要求和爱好,请说明~' placeholder-style='color:#AAAAAA;font-size:28rpx;' bindinput='setnote' maxlength='120' cursor-spacing="40rpx">
+      </input>
+      <view class='wordsnum'>
+        <text>{{notes.length}}</text>/120</view>
+    </view>
+  </view>
+</view>
+
+<view class="page-footer">
+  <view class="footer-button" catchtap="confirm">提交预约</view>
+  <view style="color:#999;padding-left:30rpx">合计金额
+    <text style="color:#f52d56;font-size:40rpx"><text style="font-size:24rpx;">¥</text>{{format.getPrice(_totalPrice)}}</text>
+  </view>
+</view>

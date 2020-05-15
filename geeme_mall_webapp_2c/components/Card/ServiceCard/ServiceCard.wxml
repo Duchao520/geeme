@@ -1,0 +1,16 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='goodsCard' bindtap='toProductDetail' data-id="{{item.id || item.goodsId || item.productId}}" data-type="{{item.type}}">
+  <image class='goods-image' src='{{format.getImageUrl((item.productImage ? item.productImage[0] : item.imageList ?  item.imageList[0] : item.cardCover ? item.cardCover : item.cycleImage[0]) + "?x-oss-process=image/resize,m_lfit,w_328")}}' mode='aspectFill' lazy-load></image>
+  <view class='goods-info'>
+    <view class='goods-title'>{{item.serviceFullTitle || item.fullTitle || item.simpleTitle || item.cardName}}</view>
+    <view class='goods-price'>
+      <text class='discount'><text class='symbol'>¥</text>{{item.specialPrice || item.minMemberPrice || item.cardPrice || 0}}</text>
+      <text class='original' wx:if="{{(item.specialPrice != item.price) || (item.minShopPrice != item.minMemberPrice)}}">¥{{item.price || item.minShopPrice}}</text>
+    </view>
+    <view class="flex_box" style="margin-bottom: 12rpx;">
+      <view class="fz-20 bg-F60F51 fc-ffffff text-center" style="width: 60rpx;height: 30rpx;line-height: 30rpx;border-radius: 15rpx; margin-right: 10rpx;" wx:if="{{item.groupDiscount}}">拼团</view>
+      <view class="fz-20 bg-F60F51 fc-ffffff text-center" style="width: 120rpx;height: 30rpx;line-height: 30rpx;border-radius: 15rpx;" wx:if="{{item.experienceFlag}}">新人专享</view>
+      <view class="fz-20 bg-F60F51 fc-ffffff text-center" style="width: 90rpx;height: 30rpx;line-height: 30rpx;border-radius: 15rpx;" wx:if="{{item.hasCoupon}}">优惠券</view>
+    </view>
+  </view>
+</view>

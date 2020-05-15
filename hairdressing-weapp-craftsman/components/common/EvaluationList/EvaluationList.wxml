@@ -1,0 +1,32 @@
+<wxs src="../../../utils/format.wxs" module="format"></wxs>
+<view class='evaluationbody'>
+  <view class='evitem' wx:for="{{list}}" wx:key="{{index}}" bindtap='toevaluationDetail' data-id="{{item.id}}">
+    <view class='evitem-left'>
+      <AppAvatar avatar="{{item.headPortrait}}" width="80rpx"/>
+    </view>
+    <view class='evitem-right'>
+      <view class='avgScore-container'>
+        <AppAvgScore width="24rpx" height="24rpx" space="6rpx" score="{{item.totalScore}}" />
+      </view>
+      <view class='evinfo'>
+        <view class='username'>{{item.nickName}}</view>
+      </view>
+      <view class='ev-time'>{{format.getDate2(item.createTime)}}</view>
+      <view class='ev-text'>{{item.content}}</view>
+      <view class='ev-imgs'>
+        <image src='{{imageItem}}' class='imgs-item' wx:for="{{item.imageList}}" wx:for-item="imageItem" wx:key="{{index}}"></image>
+      </view>
+      <!-- <view class='hairname' wx:if="{{item.staffName}}">服务者：{{item.staffName}}</view> -->
+      <view class='des'>
+        <view class='des-left'>
+          <view class='ev-logo'>美购</view>
+          <view class='ev-produce'>{{item.serviceTitle}}</view>
+        </view>
+
+        <view class='des-right'>
+          <view class='ev-price'>￥{{item.servicePrice}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

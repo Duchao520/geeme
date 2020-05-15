@@ -1,0 +1,147 @@
+<wxs module="wxs">
+  function JudgeType(type) {
+    switch (type) {
+      case 'current_year':
+        return '于今年年底到期，到期后自动清零';
+      case 'next_year':
+        return '于次年年底到期，到期后自动清零';
+      case 'permanent':
+        return '永久有效'
+    }
+  }
+
+  function JudgeUsage(usageScenarios) {
+    switch (usageScenarios) {
+      case 1:
+        return '线上商城购买服务/产品/卡项';
+      case 2:
+        return '线上消费账单买单';
+    }
+  }
+
+  module.exports = {
+    JudgeType: JudgeType,
+    JudgeUsage: JudgeUsage
+  }
+</wxs>
+<view class="box_padding" style="padding:48rpx 32rpx;">
+  <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;">获取规则</view>
+  <view class="item" wx:if="{{commentDynamic10Integral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">评论动态超过10个字，获得{{commentDynamic10Integral}}积分/次，每日上限100积分。</view>
+  </view>
+  <view class="item" wx:if="{{improvementOfPersonalDataIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">完善个人资料,获得{{improvementOfPersonalDataIntegral}}积分，单次有效。</view>
+  </view>
+  <view class="item" wx:if="{{loginAndBindPhoneIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">首次登录网店并绑定手机号,获得{{loginAndBindPhoneIntegral}}积分，单次有效。</view>
+  </view>
+  <view class="item" wx:if="{{onlineAppointmentAndOrderIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上预约并开单，获得{{onlineAppointmentAndOrderIntegral}}积分/次，每日上限50积分。</view>
+  </view>
+  <view class="item" wx:if="{{onlineBuyCardByCardIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用储值卡购买服务，获得{{onlineBuyCardByCardIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineBuyCardByCashIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用现金类购买服务，获得{{onlineBuyCardByCashIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineBuyProductByCardIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用储值卡购买产品，获得{{onlineBuyProductByCardIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineBuyProductByCashIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用现金类购买产品，获得{{onlineBuyProductByCashIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineBuyServiceByCardIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用储值卡购买卡项，获得{{onlineBuyServiceByCardIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineBuyServiceByCashIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用现金类购买卡项，获得{{onlineBuyServiceByCashIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineConsumerOrderPayByCardIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用储值卡续卡充值，获得{{onlineConsumerOrderPayByCardIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineConsumerOrderPayByCashIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用现金类续卡充值，获得{{onlineConsumerOrderPayByCashIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineGroupBuyAndComplete2Integral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上发起2人拼团成功，获得{{onlineGroupBuyAndComplete2Integral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineGroupBuyAndComplete3Integral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上发起3人拼团成功，获得{{onlineGroupBuyAndComplete3Integral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineRenewCardByCardIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用储值卡进行买单，获得{{onlineRenewCardByCardIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{onlineRenewCardByCashIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">线上使用现金类进行买单，获得{{onlineRenewCardByCashIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{orderEvaluation20Integral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">完成订单评价内容超过20字，获得{{orderEvaluation20Integral}}积分/单。</view>
+  </view>
+  <view class="item" wx:if="{{orderEvaluationIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">完成订单评价内容不足20字，获得{{orderEvaluationIntegral}}积分/单。</view>
+  </view>
+  <view class="item" wx:if="{{shopCheckstandPayByCardIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">门店使用储值卡收银台买单，获得{{shopCheckstandPayByCardIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{shopCheckstandPayByCashIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">门店使用现金类收银台买单，获得{{shopCheckstandPayByCashIntegral}}积分/元。</view>
+  </view>
+  <view class="item" wx:if="{{successfulProductPromotionIntegral}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">推广商品给好友购买成功，获得{{successfulProductPromotionIntegral}}积分/元。</view>
+  </view>
+  <view style="border-bottom: 2rpx solid #EFEFF4;margin: 26rpx 0 58rpx;"></view>
+
+  <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;" wx:if="listBrandPointsUseRuleInfo.length > 0">使用规则</view>
+  <view class="item" wx:for="{{listBrandPointsUseRuleInfo}}" wx:key="index">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">{{wxs.JudgeUsage(item.usageScenarios)}},1积分={{item.pointsValueMoney}}元,抵扣金额不超过应付金额的{{item.orderPointsUsePercent}}%。</view>
+  </view>
+  <view class="item">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">积分不找零，不折现。</view>
+  </view>
+  <view style="border-bottom: 2rpx solid #EFEFF4;margin: 26rpx 0 58rpx;"></view>
+
+  <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;">扣减规则</view>
+  <view class="item">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">订单退款时，按退款金额比例扣减对应订单积分。</view>
+  </view>
+  <view class="item">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">消费账单撤单时，扣减对应账单积分。</view>
+  </view>
+  <view class="item">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">完成订单评价后删除评价时，扣减对应评价积分。</view>
+  </view>
+  <view class="item">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">动态评论后删除评论时，扣减对应评论积分。</view>
+  </view>
+  <view class="item" wx:if="{{integralOverdueType}}">
+    <view class="ul"></view>
+    <view style="width: 656rpx;">积分自获得之日起,{{wxs.JudgeType(integralOverdueType)}}。</view>
+  </view>
+</view>

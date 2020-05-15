@@ -1,0 +1,22 @@
+/* pages/UIC//pages/equityTransferRecords/equityTransferRecords.wxss */
+@import '../WithDrawRecord/WithDrawRecord.wxss';
+
+.equity-header {
+  width: 750rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.popup-container {
+  position: absolute;
+  top: 100rpx;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.box_padding {
+  margin-top: 100rpx;
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ServiceOrderDetailStatus":"/components/OrderComponents/ServiceOrderDetailStatus/ServiceOrderDetailStatus",
+    "ProductOrderDetailStatus": "/components/OrderComponents/ProductOrderDetailStatus/ProductOrderDetailStatus",
+    "GroupOrder_Button": "/components/OrderComponents/GroupOrder_Button/GroupOrder_Button"
+  },
+  "navigationBarTitleText": "订单详情"
+}

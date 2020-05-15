@@ -1,0 +1,40 @@
+.staffListItems{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.staffListItem{
+  width: 200rpx;
+  padding: 22rpx 0;
+  border-radius: 16rpx;
+  box-shadow: 0 0 8rpx 0 rgba(0, 0, 0, .1);
+  flex-shrink: 0;
+  margin: 4rpx 0 4rpx 30rpx;
+}
+.staffAvatar{
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+}
+.staffName{
+  color: #263238;
+  font-size: 34rpx;
+  text-align: center;
+  margin: 12rpx auto 0;
+  font-weight: 400;
+
+}
+.staffLevelName{
+  color: rgb(51, 51, 51);
+  font-size: 24rpx;
+  text-align: center;
+  margin: 10rpx auto 0;
+}
+.RateBox{
+  margin: 8rpx auto 0;
+  display: flex;
+  justify-content: center;
+}

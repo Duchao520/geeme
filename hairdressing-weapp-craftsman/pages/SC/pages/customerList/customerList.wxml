@@ -1,0 +1,20 @@
+<view class="header">
+  <view class="search-container">
+    <AppSearch placeholder="搜索客户昵称/姓名/手机号" bind:input="search" hideText />
+  </view>
+  <view class="header-button" catchtap="jumpCustomer_add"></view>
+</view>
+<view class="main">
+  <block wx:if="{{list && list.length}}">
+    <CustomerCard wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" canSelect="{{select}}" selected="{{selectedCustomerId == item.customerId}}" bindtap="selectCustomer" data-item="{{item}}" />
+  </block>
+  <block wx:else>
+    <AppDefault text="您还没有客户哦~" />
+  </block>
+</view>
+<view class="page-footer" wx:if="{{select}}">
+  <view class="footer-button" catchtap="jumpChooseService">下一步</view>
+  <view style="color:#999;padding-left:30rpx;font-size:28rpx">已选客户
+    <text style="color:#333">{{selectedCustomerName}}</text>
+  </view>
+</view>

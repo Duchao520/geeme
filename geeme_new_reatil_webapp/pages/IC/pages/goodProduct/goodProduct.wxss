@@ -1,0 +1,152 @@
+Page{
+  background:#f7f7f7;
+}
+
+.goodProduct-header{
+  position:relative;
+  z-index:11;
+}
+
+/* 列表模块 */
+.goodProductList{
+  padding: 32rpx;
+}
+
+.popup-container {
+  position: absolute;
+  top: 184rpx;
+  left: 0;
+  width: 100%;
+}
+
+.popup-container.fixed{
+  top:100rpx;
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.filter-pop{
+  position: fixed;
+  top:184rpx;
+  left:0;
+  width:100%;
+  height:calc(100vh - 192rpx);
+  background: #fff;
+  padding-bottom:120rpx;
+  z-index:10;
+  overflow: scroll;
+}
+
+.filter-pop.fixed{
+  top:100rpx;
+  height:calc(100vh - 100rpx);
+}
+
+.filter-content{
+  height:100%;
+  padding:0 32rpx;
+  overflow: scroll;
+}
+
+.filter-type{
+
+}
+
+.type-title{
+  height:90rpx;
+  line-height:90rpx;
+  color:#333;
+  font-size:28rpx;
+}
+
+.type-item-container{
+  margin-right:-28rpx;
+  font-size:0;
+}
+
+.type-item{
+  display: inline-block;
+  margin-right:28rpx;
+  margin-bottom:30rpx;
+  width:210rpx;
+  height:60rpx;
+  line-height:60rpx;
+  text-align: center;
+  font-size:24rpx;
+  color:#999;
+  background-color:#f7f7f7;
+  border-radius:30rpx;
+}
+
+.type-item.active{
+  background-color:#f52d56;
+  color:#fff;
+}
+
+.type-price-container{
+  display: inline-block;
+  font-size:28rpx;
+}
+
+.type-price-container > view{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.price-box{
+  width:210rpx;
+  height:78rpx;
+  line-height:78rpx;
+}
+
+.price-box > input{
+  box-sizing: border-box;
+  padding-left:20rpx;
+  width:100%;
+  height:100%;
+  border: 1px solid #ccc;
+}
+
+.filter-buttons{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:120rpx;
+  line-height:120rpx;
+  border-top:1px solid #efeff4;
+}
+
+.filter-buttons > button{
+  display: inline-block;
+  width:50%;
+  height:100%;
+  font-size:34rpx;
+  text-align: center;
+  line-height:inherit;
+}
+
+.filter-buttons > button:first-child{
+  background-color:#fff;
+  color:#333;
+}
+
+.filter-buttons > button:last-child{
+  background-color:#f52d56;
+  color:#fff;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+}

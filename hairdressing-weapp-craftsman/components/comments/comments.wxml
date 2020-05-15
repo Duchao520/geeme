@@ -1,0 +1,39 @@
+<!--components/comments/comments.wxml-->
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view class='evaluation'>
+  <view class='evaluationbody'>
+      <view class='evitem' wx:for="{{list}}" wx:key="{{index}}" bindtap='jumpEvaluationDetail' data-id="{{item.id}}">
+        <view class='evitem-left'>
+          <image src='{{item.anonymous ? null : format.getImageUrl(item.headPortrait)}}' class='avatar default-avatar' mode='aspectFill'></image>
+        </view>
+        <view class='evitem-right'>
+          <view class='evinfo'>
+            <view class='username'>{{item.anonymous ? '****' : item.nickName}}</view>
+            <view class='score'>
+              <view class='{{index >= item.totalScore ? "lose" : ""}}' wx:for="{{5}}" wx:for-item="starItem" wx:key="{{index}}"></view>
+            </view>
+          </view>
+
+          <view class='ev-time'>{{item.createTime}}</view>
+          <view class='ev-text'>{{item.content}}</view>
+          <view class='ev-imgs'>
+            <image src='{{format.getImageUrl(imageItem)}}' class='imgs-item' wx:for="{{item.images}}" wx:for-item="imageItem" wx:key="{{index}}" mode='aspectFill'></image>
+          </view>
+          <!-- 商家回复 -->
+          <view class='reply' wx:if="{{item.reply}}">商家回复：{{item.replyContent}}</view>
+          <!-- 店铺详情中的数据 -->
+          <!-- <view class='hairname' wx:if="{{item.staffName}}">服务者：{{item.staffName}}</view>
+          <view class='des' wx:if="{{item.serviceInfo.serviceName}}">
+            <view class='des-left'>
+              <view class='ev-logo'>美购</view>
+              <view class='ev-produce'>{{item.serviceInfo.serviceName}}</view>
+            </view>
+
+            <view class='des-right'>
+              <view class='ev-price'>￥{{item.serviceInfo.price}}</view>
+            </view>
+          </view> -->
+        </view>
+      </view>
+  </view>
+</view>

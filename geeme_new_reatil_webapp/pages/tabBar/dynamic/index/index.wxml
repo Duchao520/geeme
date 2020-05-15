@@ -1,0 +1,18 @@
+<view>
+  <view style="position: fixed;top: 0;left: 0;z-index: 1;width: 100%;">
+    <AppTabsScroll tabs="{{businessCategoryInfoList}}" bindswitchTab="switchTab" wx:if="{{isShow}}"></AppTabsScroll>
+  </view>
+  <view style="height: 90rpx;"></view>
+  <block wx:if="{{dynamicList && dynamicList.length}}">
+    <view class='recommended-worksBottom'>
+      <Masonry list="{{dynamicList}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+    </view>
+  </block>
+  <block wx:else>
+    <AppDefault image="/images/default/default_works.png" text="暂时没有作品动态，晚点再来看看吧～" top="100rpx" />
+    <view style="height: 700rpx;"></view>
+  </block>
+  <view style="position: relative;">
+    <AppFooter />
+  </view>
+</view>

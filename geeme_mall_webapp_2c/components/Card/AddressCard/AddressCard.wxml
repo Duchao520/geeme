@@ -1,0 +1,20 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="address-card">
+  <view class="card-left" wx:if="{{showLeft}}" bindtap="select">
+    <view class="select {{isSelected ? 'icon--selected' : 'icon--unSelected'}}"></view>
+  </view>
+  <view class="card-main" bindtap="select" style="padding-left:{{showLeft ? '58rpx' : ''}};padding-right:{{showRight ? '80rpx' : '0'}};">
+    <view class="card-line-1">
+      <text style="color:#1f1f1f;">{{item.name}}</text>
+      <text style="color:#555">{{format.encriptPhone(item.mobile)}}</text>
+      <text class="default" wx:if="{{item.isDefault}}">默认</text>
+    </view>
+    <view class="card-line-2">
+      {{item.province}}{{item.city}}{{item.district}} {{item.address}}
+    </view>
+  </view>
+  <view class="card-right" wx:if="{{showRight}}" bindtap="jump" data-id="{{item.id}}">
+    <view class="icon--edit" wx:if="{{showEdit}}"></view>
+    <view class="arrow--right" wx:if="{{showArrow}}"></view>
+  </view>
+</view>

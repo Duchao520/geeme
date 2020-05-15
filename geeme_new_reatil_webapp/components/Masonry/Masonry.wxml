@@ -1,0 +1,10 @@
+<view class='masonry'>
+  <view class='masonry-column' style='margin-right:{{columnSpace}}' wx:for="{{list}}" wx:key="index">
+      <masonry-item wx:key="index"  item="{{item}}" info="{{item}}"></masonry-item>    
+  </view>
+  <!-- <view class='masonry-column'>
+    <view class='column-inner' id='right'>
+      <masonry-item wx:for="{{list}}" wx:key="index"  item="{{item}}"></masonry-item>
+    </view>
+  </view> -->
+</view>

@@ -1,0 +1,1316 @@
+<template>
+  <div id="gm_service_add">
+    <seed-header :title="operate === 'add' ? '新增服务' : '编辑服务'" origin="editProduct" :hasTabs="false"></seed-header>
+    <div class="center-con">
+      <div class="full-container">
+        <div class="form_container">
+          <el-form
+            :model="serviceForm"
+            class="quick_order_form"
+            :rules="rules"
+            ref="serviceForm"
+            label-position="right"
+            label-width="120px"
+          >
+            <div class="form-title">
+              <el-form-item label="服务标题" prop="name">
+                <el-input
+                  placeholder="请输入服务项目的标题，不超过30个中文字符"
+                  v-model="serviceForm.name"
+                  maxlength="30"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <div class="code" v-if="serviceForm.serialNo">
+              <el-form-item label="商品编号">
+                <el-input v-model="serviceForm.serialNo" disabled></el-input>
+              </el-form-item>
+            </div>
+            <div class="little-title">
+              <el-form-item label="服务短标题" prop="shortName">
+                <el-input
+                  placeholder="2-20个字符"
+                  maxlength="20"
+                  style="width:200px"
+                  v-model="serviceForm.shortName"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <div class="little-title">
+              <el-form-item label="店内编码">
+                <el-input
+                  maxlength="109"
+                  placeholder="请输入店内编码"
+                  v-model="serviceForm.keyword"
+                  style="width:200px"
+                ></el-input>
+              </el-form-item>
+            </div>
+            <el-form-item label="服务分类" prop="classification">
+              <el-cascader
+                v-model="serviceForm.classification"
+                :options="classifications"
+                :props="{ expandTrigger: 'hover' ,label:'sortName',value:'jimeiClassId',children:'sortTwo'}"
+                @change="modifySort = true"
+                style="width:200px"
+              ></el-cascader>
+            </el-form-item>
+            <!-- 旧版 关联职务 -->
+            <!-- <el-radio-group v-model="associateAllJobs" class="job-associated">
+              <el-form-item label="关联职务">
+                <div class="some-store">
+                  <el-radio :label="true">不限职务</el-radio>
+                  <el-radio :label="false">指定职务</el-radio>
+                </div>
+              </el-form-item>
+              <el-form-item class="select">
+                <el-select
+                  v-model="staffLevel"
+                  multiple
+                  placeholder="请选择职务"
+                  :popper-append-to-body="false"
+                  v-show="!associateAllJobs"
+                >
+                  <el-option
+                    v-for="item in ranks"
+                    :key="item.id"
+                    :label="item.name"
+                    :value="item.id"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-radio-group> -->
+
+            <!-- 3工位版 关联职务 -->
+            <el-form-item
+              label="关联职务"
+              prop="something"
+              :rules="{required: true, validator: validatorJobs, trigger: 'change'}"
+            >
+              <div class="associate-jobs-box">
+                <!-- 工位1 -->
+                <div class="jobs-item">
+                  <div class="title">工位1:</div>
+                  <div class="jobs-content">
+                    <el-radio-group v-model="associateAllJobs">
+                      <el-radio :label="'UN_LIMITED'">不限职务</el-radio>
+                      <el-radio :label="'APPOINTED'">指定职务</el-radio>
+                    </el-radio-group>
+                    <el-select
+                      v-model="staffLevel"
+                      multiple
+                      placeholder="请选择职务"
+                      :popper-append-to-body="false"
+                      v-show="associateAllJobs==='APPOINTED'"
+                    >
+                      <el-option
+                        v-for="item in ranks"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                      ></el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <!-- 工位2 -->
+                <div class="jobs-item" v-show="jobsNum > 1">
+                  <div class="title">工位2:</div>
+                  <div class="jobs-content">
+                    <el-radio-group v-model="associateAllJobsTwo">
+                      <el-radio :label="'UN_LIMITED'">不限职务</el-radio>
+                      <el-radio :label="'APPOINTED'">指定职务</el-radio>
+                    </el-radio-group>
+                    <el-select
+                      v-model="staffLevelTwo"
+                      multiple
+                      placeholder="请选择职务"
+                      :popper-append-to-body="false"
+                      v-show="associateAllJobsTwo==='APPOINTED'"
+                    >
+                      <el-option
+                        v-for="item in ranks"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                      ></el-option>
+                    </el-select>
+                    <i
+                      v-if="jobsNum === 2"
+                      style="margin-left:2px;cursor:pointer;"
+                      @click="delItem(1)"
+                      class="icon iconfont icon-icon_operate_delete"
+                    ></i>
+                  </div>
+                </div>
+                <!-- 工位3 -->
+                <div class="jobs-item" v-show="jobsNum === 3">
+                  <div class="title">工位3:</div>
+                  <div class="jobs-content">
+                    <el-radio-group v-model="associateAllJobsThree">
+                      <el-radio :label="'UN_LIMITED'">不限职务</el-radio>
+                      <el-radio :label="'APPOINTED'">指定职务</el-radio>
+                    </el-radio-group>
+                    <el-select
+                      v-model="staffLevelThree"
+                      multiple
+                      placeholder="请选择职务"
+                      :popper-append-to-body="false"
+                      v-show="associateAllJobsThree==='APPOINTED'"
+                    >
+                      <el-option
+                        v-for="item in ranks"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                      ></el-option>
+                    </el-select>
+                    <i
+                      v-if="jobsNum===3"
+                      style="margin-left:2px;cursor:pointer;"
+                      @click="delItem(2)"
+                      class="icon iconfont icon-icon_operate_delete"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="add-button" @click="addJobs" v-if="jobsNum < 3">
+                <i style="margin-right:2px;" class="icon iconfont icon-icon_ope_append"></i>
+                <span>添加工位</span>
+              </div>
+            </el-form-item>
+
+            <el-radio-group v-model="serviceForm.carouselImagesOrigin">
+              <el-form-item label="轮播图" prop="carouselImagesOrigin" class="radio-form-item">
+                <el-radio label="STORAGE" class="select-form-material-library">
+                  <div class="radio-title">
+                    <span>从素材库选择</span>
+                    <input-search 
+                      v-model="keyWordCarousel"
+                      @search="$refs.chooseCarousel.getMediaByGroupKey(keyWordCarousel)"
+                      placeholder="搜索素材名称"
+                    ></input-search>
+                  </div>
+                  <choose-images
+                    ref="chooseCarousel"
+                    width="800px"
+                    url="getMediaByGroupKey"
+                    type="square"
+                    v-model="serviceForm.fileListFromStorage"
+                    :param="{groupKey:3,mediaType:'image'}"
+                    :pageSize="10"
+                    :limits="5"
+                    showLists
+                    showImageName
+                    background-size="cover"
+                    @change="$refs.serviceForm.validateField('fileList')"
+                  ></choose-images>
+                </el-radio>
+
+              </el-form-item>
+              <el-form-item>
+                <div>
+                  <el-radio label="NORMAL" class="user-defined-radio">
+                    <span>自定义</span>
+                    <el-form-item prop="fileList">
+                      <el-upload
+                        :action="uploadUrl"
+                        :headers="myHeaders"
+                        list-type="picture-card"
+                        multiple
+                        :on-exceed="carouselExceed"
+                        :on-success="handleLunBoSuccess"
+                        :before-upload="beforeLunBoUpload"
+                        :on-preview="handlePictureCardPreview"
+                        :on-remove="handleLunBoRemove"
+                        :file-list="serviceForm.fileList"
+                        :limit="5"
+                      >
+                        <i class="el-icon-plus"></i>
+                      </el-upload>
+                    </el-form-item>
+                  </el-radio>
+
+                  <el-dialog :visible.sync="dialogVisible" width="790px">
+                    <img style="display:block;max-width: 750px" :src="dialogImageUrl" alt>
+                  </el-dialog>
+                  <p class="picture-tip">支持jpg，png，gif格式，建议像素800*800px以上，大小不超过2M；最多5张</p>
+                </div>
+              </el-form-item>
+            </el-radio-group>
+            <el-form-item label="服务价格" label-width="120px" required>
+              <template v-for="(specialItem,index) in serviceForm.priceForm">
+                <div :key="index" class="specifications" v-show="!specialItem.deleted">
+                  <i
+                    class="icon iconfont icon-icon_operate_delete"
+                    v-if="index>0"
+                    @click="delSpecialForm(specialItem,index)"
+                  ></i>
+                  <div class="specialItem-line">
+                    <el-form-item
+                      label-width="80px"
+                      :label="`规格${converter.toWords(index+1)}`"
+                      v-show="!specialItem.deleted"
+                      :prop="'priceForm.'+index+'.specificationName'"
+                      :rules="{required: serviceForm.priceForm.length > 1, message: '规格名不能为空'}"
+                    >
+                      <el-input
+                        v-model="specialItem.specificationName"
+                        maxlength="16"
+                        placeholder="请输入规格"
+                        style="width:200px"
+                      ></el-input>
+                      <p
+                        style="color:#CCCCCC;margin-top:-8px;font-size:12px;height:13px"
+                        v-if="serviceForm.priceForm.length === 1"
+                      >如果不填写则默认只有一种规格</p>
+                    </el-form-item>
+                    <span class="label">服务时长</span>
+                    <el-form-item
+                      label-width="0"
+                      :prop="'priceForm.'+index+'.serviceTime'"
+                      :rules="{
+                      required: true,validator:serviceTimeValidator
+                    }"
+                    >
+                      <el-input
+                        type="number"
+                        v-model="specialItem.serviceTime"
+                        placeholder="请输入服务时长"
+                        style="width: 200px;"
+                        @mousewheel.native.prevent
+                      >
+                        <el-button slot="append">分钟</el-button>
+                      </el-input>
+                    </el-form-item>
+                  </div>
+                  <div class="specialItem-line">
+                    <el-form-item
+                      label="门店价"
+                      label-width="80px"
+                      :prop="'priceForm.'+index+'.shopPrice'"
+                      :rules="{required: true,validator:priceValidator}"
+                    >
+                      <el-input
+                        type="number"
+                        v-model="specialItem.shopPrice"
+                        placeholder="请输入门店价"
+                        style="width: 200px;"
+                        @mousewheel.native.prevent
+                      >
+                        <el-button slot="append">元</el-button>
+                      </el-input>
+                    </el-form-item>
+                   
+                  </div>
+                  <div class="specialItem-line">
+                    <el-form-item label="会员价" label-width="80px" required class="member-price">
+                      <el-radio-group v-model="serviceForm.priceConstant">
+                        <el-radio :label="true">固定的会员价
+                           <el-form-item
+                            label=""
+                            label-width="60px"
+                            :prop="'priceForm.'+index"
+                            :rules="{required: serviceForm.priceConstant ,validator:priceValidatorNew}"
+                          >
+                            <el-input
+                              type="number"
+                              v-model="specialItem.memberPrice"
+                              placeholder="请输入会员价"
+                              style="width: 200px"
+                              @mousewheel.native.prevent
+                            >
+                              <el-button slot="append">元</el-button>
+                            </el-input>
+                          </el-form-item>
+                        </el-radio>
+                        <el-radio :label="false"><span>根据会员级别变动</span><span
+                          class="reminder-text">如何设置会员级别？</span>
+                        </el-radio>
+                      </el-radio-group>
+                      <p class="member-level-prices" v-if="!serviceForm.priceConstant&&memberLevelPrices">
+                        <span v-for="(item,index) in memberLevelPrices(specialItem.shopPrice)" :key="index">
+                          <span class="name">{{item.levelName}}：</span>
+                          <span class="price">{{item.memberLevelPrice.toFixed(2) || '0'}}元；</span>
+                        </span>
+                      </p>
+                    </el-form-item>
+                  </div>
+                  <div class="specialItem-line">
+                    <span class="label">成本</span>
+                    <el-form-item
+                      :prop="'priceForm.'+index+'.cost'"
+                      :rules="{
+                          required: true,validator:costValidator
+                        }"
+                    >
+                      <el-input
+                        type="number"
+                        v-model="specialItem.cost"
+                        placeholder="请输入成本"
+                        style="width: 200px;"
+                        @mousewheel.native.prevent
+                      >
+                        <el-button slot="append">元</el-button>
+                      </el-input>
+                    </el-form-item>
+                  </div>
+                </div>
+              </template>
+            </el-form-item>
+
+            <p class="add-specification" @click="addSpecification">
+              <i class="icon iconfont icon-icon_ope_append"></i>添加规格
+            </p>
+            <div class="rank" style="width:360px;">
+              <el-form-item label="排序" prop="sortNum">
+                <number-input
+                  v-model="serviceForm.sortNum"
+                  width="200px"
+                  placeholder="请输入排序"
+                  :min="0"
+                  :max="9999"
+                ></number-input>
+              </el-form-item>
+              <el-form-item label="虚拟销量">
+                <number-input
+                  v-model="serviceForm.virtualNum"
+                  :decimal="false"
+                  width="200px"
+                  placeholder="仅限填写数字"
+                  :min="0"
+                ></number-input>
+              </el-form-item>
+            </div>
+            <el-radio-group v-model="serviceForm.detailImagesOrigin">
+              <el-form-item label="服务详情" class="radio-form-item" required>
+                <el-radio label="STORAGE" class="select-form-material-library">
+                  <div class="radio-title">
+                    <span>从素材库选择</span>
+                    <input-search v-model="keyWordDetailImage"
+                                  @search="$refs.chooseDetailImage.getMediaByGroupKey(keyWordDetailImage)"></input-search>
+                  </div>
+                  <choose-images
+                    ref="chooseDetailImage"
+                    width="800px"
+                    url="getMediaByGroupKey"
+                    type="square"
+                    v-model="serviceForm.richTextImagesFromStorage"
+                    :param="{groupKey:4,mediaType:'image'}"
+                    :pageSize="10"
+                    showLists
+                    showImageName
+                    background-size="contain"
+                    @change="$refs.serviceForm.validateField('richTextImages')"
+                  ></choose-images>
+                </el-radio>
+              </el-form-item>
+              <el-form-item>
+                <el-radio label="NORMAL" class="user-defined-radio">
+                  <span>自定义</span>
+                  <el-form-item prop="richTextImages">
+                    <el-upload
+                      :action="uploadUrl"
+                      :headers="myHeaders"
+                      list-type="picture-card"
+                      multiple
+                      :on-success="handleRichImagesSuccess"
+                      :before-upload="examineImage"
+                      :on-preview="handlePictureCardPreview"
+                      :on-remove="handleRichImagesRemove"
+                      :file-list="serviceForm.richTextImages"
+                    >
+                      <i class="el-icon-plus"></i>
+                    </el-upload>
+                    <p class="picture-tip">支持jpg，png，gif格式，大小不超过5M</p>
+                  </el-form-item>
+                </el-radio>
+              </el-form-item>
+            </el-radio-group>
+            <el-form-item label="上架时间">
+              <el-radio-group v-model="serviceForm.shelveType">
+                <el-radio :label="true">立即上架</el-radio>
+                <el-radio :label="false">指定时间</el-radio>
+              </el-radio-group>
+              <el-date-picker
+                v-if="!serviceForm.shelveType"
+                v-model="serviceForm.onTimeValue"
+                format="yyyy-MM-dd HH:mm"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                type="datetime"
+                placeholder="选择日期时间"
+                style="margin-left:10px;"
+                :append-to-body="false"
+                :picker-options="pickerOptions"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="网店展示">
+              <el-radio-group v-model="serviceForm.shopShow">
+                <el-radio :label="false">隐藏</el-radio>
+                <el-radio :label="true" :disabled="!shopShowDisabled">展示</el-radio>
+              </el-radio-group>
+            </el-form-item>
+            <el-form-item label="是否特价">
+              <el-checkbox v-model="serviceForm.isDiscount">是</el-checkbox>
+            </el-form-item>
+            <el-form-item label="首页推荐">
+              <el-checkbox v-model="serviceForm.isRecommend">推荐</el-checkbox>
+            </el-form-item>
+            <el-form-item label>
+              <el-button
+                type="primary"
+                class="normal_blue_btn"
+                :disabled="submitButtonLoading"
+                :loading="submitButtonLoading"
+                @click="submitForm('serviceForm', true)"
+              >{{this.operate === 'add' ? '发布' : '保存'}}
+              </el-button>
+              <!-- <el-button class="normal_light_gray_btn" v-show="this.operate === 'add'">存为草稿</el-button> -->
+              <el-button
+                class="normal_light_gray_btn"
+                :disabled="submitButtonLoading"
+                v-show="this.operate === 'add'"
+                @click="$router.go(-1)"
+              >取消
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import * as api from "@/assets/js/interface";
+  import * as axios from "@/util/axios";
+  import * as utils from "@/assets/js/utils";
+  import {reg, checkReg} from "@/assets/js/RegExp";
+  import SeedHeader from "@/components/common/SeedHeader";
+  import InputWithCount from "@/components/common/InputWithCount";
+  import converter from "number-to-chinese-words";
+  import ChooseImages from "@/components/common/ChooseImages";
+
+  export default {
+    components: {SeedHeader, InputWithCount, ChooseImages},
+    data() {
+      let validateFileList = (rule, value, callback) => {
+        if (Array.isArray(value) && value.length === 0) {
+          callback(new Error("至少需要上传一张图片"));
+        } else {
+          callback();
+        }
+      };
+      let validateFileListFileList = (rule, value, callback) => {
+        let cycleImage = this.serviceForm[this.serviceForm.carouselImagesOrigin === "NORMAL" ? "fileList" : "fileListFromStorage"];
+        validateFileList(rule, cycleImage, callback)
+      };
+      let validateFileListDetailImages = (rule, value, callback) => {
+        let detailImages = this.serviceForm[this.serviceForm.detailImagesOrigin === "NORMAL" ? "richTextImages" : "richTextImagesFromStorage"];
+        validateFileList(rule, detailImages, callback)
+      };
+      let keywordValidator = (rule, value, callback) => {
+        let arr = value.split(" ");
+        if (arr.length >= 3 && arr.length <= 10) {
+          callback();
+          return;
+        }
+        callback(new Error("关键字在三到十个之间"));
+      };
+      let simpleTitleValidator = (rule, value, callback) => {
+        if (value.length >= 2 && value.length <= 20) {
+          callback();
+        } else {
+          callback("请输入2到20个字符");
+        }
+      };
+      function getLength(value) {
+        let str = value ? value + "" : "";
+        let l = str.indexOf(".") === -1 ? 0 : str.split(".").pop().length;
+        return l;
+      }
+      let serviceTimeValidator = (rule, value, callback) => {
+        let l = getLength(value);
+        let value_ = Number(value);
+        if (typeof value_ === "number" && (value_ < 0 || value_ > 720)) {
+          callback("服务时长不小于0，且不能大于720分钟");
+        } else if (l > 0) {
+          callback("不可以输入小数");
+        } else {
+          callback();
+        }
+      };
+      let costValidator = (rule, value, callback) => {
+        let l = getLength(value);
+        let value_ = Number(value);
+        if (typeof value_ === "number" && value_ < 0) {
+          callback("成本不可以小于0");
+        } else if (l > 2) {
+          callback("最多输入两位小数");
+        } else {
+          callback();
+        }
+      };
+      let priceValidator = (rule, value, callback) => {
+        if (value <= 0) {
+          callback("价格必填")
+        }
+        let l = getLength(value);
+        if (l > 2) {
+          callback("最多输入两位小数");
+        } else {
+          callback();
+        }
+      };
+      return {
+        serviceTimeValidator,
+        costValidator,
+        priceValidator,
+        classifications: [],
+        discountInfoList: [],
+        keyWordCarousel: null,
+        keyWordDetailImage: null,
+        ranks: [], // 职务列表
+        rankIds: [],
+        submitButtonLoading: false,
+        converter: converter,
+        serviceForm: {
+          richText: null,
+          richTextImages: [],
+          richTextImagesFromStorage: [],
+          classification: [],
+          id: null,
+          name: "",
+          code: "",
+          shortName: "",
+          keyword: "",
+          carouselImagesOrigin: "STORAGE",
+          fileList: [],
+          fileListFromStorage: [],
+          priceForm: [
+            {
+              id: null,
+              specificationName: null,
+              serviceTime: null,
+              serviceTimeUnit: "",
+              shopPrice: null,
+              bookingAmount: null,
+              cost: null,
+              vipPrice: null,
+              memberPrice: null
+            }
+          ],
+          priceConstant: true,
+          sortNum: null,
+          virtualNum: null,
+          detailImagesOrigin: "STORAGE",
+          type: [],
+          notes: null,
+          shelveType: true,
+          onTimeValue: "",
+          shopShow: false,
+          payBefore: true,
+          isDiscount: false,
+          isRecommend: false,
+          shareTamplate: null,
+          something: null, // - 关联职务
+        },
+        dialogImageUrl: "",
+        dialogVisible: false,
+        rules: {
+          name: {
+            required: true,
+            message: "请输入服务项目的标题，不超过30个中文字符"
+          },
+          richText: {
+            required: true,
+            message: "请输入服务详情"
+          },
+          shortName: {
+            required: true,
+            validator: simpleTitleValidator
+          },
+          keyword: {required: false, validator: keywordValidator},
+          notes: {required: true, message: "请选择购买须知"},
+          category: {required: true, message: "请选择服务分类"},
+          carouselImagesOrigin: {required: true, message: "请选择轮播图"},
+          fileList: {required: true, validator: validateFileListFileList},
+          richTextImages: {required: true, validator: validateFileListDetailImages},
+          shopPrice: {required: true, message: "请输入门店价"},
+          classification: {
+            required: true,
+            message: "请选择服务分类"
+          }
+        },
+        pickerOptions: {
+          disabledDate(time) {
+            return (
+              time.getTime() < new Date(new Date().toLocaleDateString()).getTime()
+            );
+          },
+          selectableRange: `${new Date().getHours()}:${new Date().getMinutes() +
+          1}:00 - 23:59:59`
+        },
+        // associateAllJobs: true, // 旧的是否关联职务- 是否限定职务
+        // staffLevel: [], // 旧的关联职务，指定职务
+
+        // -3个工位- 需求变更版: start
+        jobsNum: 1, // 默认显示几个工位  
+        associateAllJobs: 'UN_LIMITED', // 工位1 APPOINTED - 指定; UN_LIMITED - 不限;  UN_ADD - 未添加, 这里没有，2,3工位才有.
+        staffLevel: [], 
+        associateAllJobsTwo: 'UN_ADD', // 工位2
+        staffLevelTwo: [], 
+        associateAllJobsThree: 'UN_ADD', // 工位3
+        staffLevelThree: [], 
+        // -3个工位- 需求变更版: end
+      };
+    },
+    computed: {
+      uploadUrl() {
+        return api.uploadPicture.URL;
+      },
+      currentInfo() {
+        return this.$store.state.manage.currentInfo;
+      },
+      myHeaders() {
+        return utils.getUploadHeader();
+      },
+      operate() {
+        return this.$route.fullPath
+          .split("/")
+          .pop()
+          .split("-")
+          .pop();
+      },
+      // 旧版工位
+      // computedStaffLevel() {
+      //   if (this.associateAllJobs) {
+      //     return this.ranks.map(item => item.id);
+      //   } else {
+      //     return this.staffLevel;
+      //   }
+      // },
+
+      shopShowDisabled() {
+        return this.serviceForm.priceForm.every(item => {
+          return item.memberPrice > 0 && item.shopPrice > 0
+        })
+      }
+    },
+    mounted() {
+      this.getSimpleStoreStaffLevelList();
+      this.getServiceSortListByBrandId();
+      this.getBrandMemberLevelDiscount()
+    },
+    watch: {
+      "serviceForm.fileList"(data) {
+        let len = data.length;
+        document.getElementsByClassName(
+          "el-upload el-upload--picture-card"
+        )[0].style.display = len >= 5 ? "none" : "inline-block";
+      }
+    },
+    methods: {
+      getServiceSortListByBrandId() {
+        axios
+          .get(`/getServiceSortListByBrandId/${this.currentInfo.brandId}`)
+          .then(res => {
+            this.classifications = res.sortInfos;
+          });
+      },
+      getSimpleStoreStaffLevelList() {
+        axios
+          .get("/getSimpleStoreStaffLevelList/" + this.currentInfo.brandId)
+          .then(res => {
+            this.getStaffLevelListByStoreIdRes(res);
+          });
+      },
+      getStaffLevelListByStoreIdRes(res) {
+        this.ranks = res.levelList;
+        let rankIds = [];
+        this.rankIds = res.levelList
+          .filter(item => item.id !== null)
+          .forEach(i => {
+            rankIds.push(i.id);
+          });
+        this.rankIds = rankIds;
+        if (this.operate === "edit") {
+          this.initEdit();
+        }
+      },
+      initEdit() {
+        let serviceId = this.$store.state.queryParams.serviceId;
+        axios.get(api.getServiceInfo.URL + serviceId).then(res => {
+          this.getSingleServiceRes(res);
+        });
+      },
+      getSingleServiceRes(data) {
+        this.serviceForm.id = data.id;
+        this.serviceForm.name = data.title;
+        this.serviceForm.code = data.serialNo;
+        this.serviceForm.shortName = data.simpleTitle;
+        this.serviceForm.keyword = data.keyword;
+        this.serviceForm.priceForm = data.specificationAndPrices;
+        this.serviceForm.sortNum = data.orderBy;
+        this.serviceForm.virtualNum = parseInt(data.virtualSaleCount);
+        this.serviceForm.type = data.serviceGuarantee;
+        this.serviceForm.notes = data.buyNote;
+        this.serviceForm.shareTamplate = data.shareCopyWriting;
+        this.serviceForm.onTimeValue = data.shelveShopsTime;
+        this.serviceForm.shopShow = data.showInShop;
+        this.serviceForm.payBefore = data.needPrePay === true;
+        this.serviceForm.isRecommend = data.recommendInFirstPage;
+        this.serviceForm.isDiscount = data.specialPrice;
+        this.serviceForm.shelveType = data.shelveType;//
+        this.serviceForm.priceConstant = data.priceConstant;
+
+        this.serviceForm.classification = [
+          data.serviceLevelOne,
+          data.serviceLevelTwo
+        ];
+        this.serviceForm.serviceLeveleOneInfo = data.serviceLeveleOneInfo;
+        this.serviceForm.serviceLeveleTwoInfo = data.serviceLeveleTwoInfo;
+        this.serviceForm.serialNo = data.serialNo;
+
+        this.serviceForm.detailImagesOrigin = data.serviceDetailOrigin;
+        if (data.serviceDetailOrigin === "NORMAL") {
+          this.serviceForm.richTextImages = data.richText.split(",").map(item => {
+            return {
+              name: `${Math.random()}`,
+              url: utils.formatPicImg(item)
+            };
+          });
+          this.serviceForm.richTextImagesFromStorage = []
+        } else {
+          this.serviceForm.richTextImagesFromStorage = data.richText.split(",").map(item => {
+            return {
+              name: `${Math.random()}`,
+              url: utils.formatPicImg(item)
+            };
+          });
+          this.serviceForm.richTextImages = []
+        }
+
+        this.serviceForm.carouselImagesOrigin = data.cycleImageOrigin;
+        if (data.cycleImageOrigin === "NORMAL") {
+          this.serviceForm.fileList = data.cycleImage.map(item => {
+            return {
+              name: `${Math.random()}`,
+              url: utils.formatPicImg(item)
+            };
+          });
+          this.serviceForm.fileListFromStorage = [];
+        } else {
+          this.serviceForm.fileListFromStorage = data.cycleImage.map(item => {
+            return {
+              name: `${Math.random()}`,
+              url: utils.formatPicImg(item)
+            };
+          });
+          this.serviceForm.fileList = [];
+        }
+        this.staffLevel = data.staffLevel;
+        this.associateAllJobs = data.associateAllJobs;
+        // - 新版3工位
+        this.staffLevelTwo = data.staffLevelTwo
+        this.associateAllJobsTwo = data.associateAllJobsTwo
+        this.staffLevelThree = data.staffLevelThree
+        this.associateAllJobsThree = data.associateAllJobsThree
+        if (data.associateAllJobsThree !== 'UN_ADD') {
+          this.jobsNum = 3
+        } else if (data.associateAllJobsTwo !== 'UN_ADD') {
+          this.jobsNum = 2
+        } else {
+          this.jobsNum = 1
+        }
+      },
+      carouselExceed(files, fileList) {
+        if (files.length + fileList.length > 5) {
+          this.$message.error("最多上传5张");
+        }
+      },
+      handleLunBoSuccess(res, file, fileList) {
+        this.serviceForm.fileList = fileList;
+        this.$refs.serviceForm.validateField("fileList");
+      },
+      beforeLunBoUpload(file) {
+        return this.beforeUpload(file, 2);
+      },
+      beforeUpload(file, size) {
+        const isJPG = utils.checkImgTypes(file.type);
+        const isLt2M = file.size / 1024 / 1024 <= size;
+        if (!isJPG) {
+          this.$message.error("上传图片只能是 JPG/PNG/GIF 格式!");
+          return false;
+        }
+        if (!isLt2M) {
+          this.$message.error(`上传图片大小不能超过${size}M!`);
+        }
+        return isJPG && isLt2M;
+      },
+      examineImage(file) {
+        return this.beforeUpload(file, 5);
+      },
+      handleLunBoRemove(file, fileList) {
+        this.serviceForm.fileList = fileList;
+        this.$refs.serviceForm.validateField("fileList");
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
+      publishServerRes(data) {
+        this.submitButtonLoading = false;
+        if (data.success) {
+          this.$router.push("/shop-inner/goods/service-list");
+        }
+        this.$message({
+          message: data.message,
+          type: data.success ? "success" : "warning"
+        });
+      },
+      submitForm(formName) {
+        this.$refs[formName].validate(valid => {
+          if (!valid) {
+            console.warn("ERROR SUBMIT!");
+          } else {
+            let cycleImage = this.serviceForm[this.serviceForm.carouselImagesOrigin === "NORMAL" ? "fileList" : "fileListFromStorage"].map(item =>
+              item.response ? item.response.fileKey : item.url.split("/").pop()
+            );
+            let specificationss = this.serviceForm.priceForm.map(item => {
+              return {
+                id: item.id,
+                specificationName: item.specificationName,
+                serviceTime: Number(item.serviceTime) || 0,
+                shopPrice: Number(item.shopPrice),
+                bookingAmount: Number(item.bookingAmount),
+                memberPrice: Number(item.memberPrice),
+                cost: Number(item.cost),
+                deleted: item.deleted,
+              };
+            });
+            let classification = this.serviceForm.classification;
+            let serviceLeveleOneInfo, serviceLeveleTwoInfo;
+            /**
+             * 分类
+             * */
+            for (let i in this.classifications) {
+              if (this.classifications[i].jimeiClassId === classification[0]) {
+                let temServiceLeveleOneInfo = JSON.parse(
+                  JSON.stringify(this.classifications[i])
+                );
+                delete temServiceLeveleOneInfo.sortTwo;
+                serviceLeveleOneInfo = temServiceLeveleOneInfo;
+                let sortTwo = this.classifications[i].sortTwo;
+                for (let j in sortTwo) {
+                  if (sortTwo[j].jimeiClassId === classification[1]) {
+                    serviceLeveleTwoInfo = sortTwo[j];
+                    break;
+                  }
+                }
+                break;
+              }
+            }
+            serviceLeveleOneInfo.brandId = this.currentInfo.brandId;
+            serviceLeveleTwoInfo.brandId = this.currentInfo.brandId;
+            // console.log(serviceLeveleOneInfo, serviceLeveleTwoInfo);
+            let params = {
+              serviceLeveleOneInfo,
+              serviceLeveleTwoInfo,
+              storeId: this.currentInfo.shopId,
+              id: this.serviceForm.id,
+              title: this.serviceForm.name,
+              serialNo: this.serviceForm.code,
+              simpleTitle: this.serviceForm.shortName,
+              keyword: this.serviceForm.keyword,
+              richText: this.serviceForm[this.serviceForm.detailImagesOrigin === "NORMAL" ? "richTextImages" : "richTextImagesFromStorage"]
+                .map(item =>
+                  item.response
+                    ? item.response.fileKey
+                    : item.url.split("/").pop()
+                )
+                .join(","),
+              detailImagesOrigin: this.serviceForm.detailImagesOrigin,
+              cycleImage: cycleImage,
+              specificationAndPrices: specificationss,
+              orderBy: this.serviceForm.sortNum,
+              virtualSaleCount: this.serviceForm.virtualNum,
+              serviceGuarantee: this.serviceForm.type,
+              buyNote: this.serviceForm.notes,
+              shareCopyWriting: this.serviceForm.shareTamplate,
+              shelveShopsTime: this.serviceForm.onTimeValue
+                ? this.serviceForm.onTimeValue
+                : utils.formatDateTime(new Date()),
+              showInShop: this.serviceForm.shopShow,
+              needPrePay: this.serviceForm.payBefore,
+              recommendInFirstPage: this.serviceForm.isRecommend,
+              specialPrice: this.serviceForm.isDiscount,
+              shelveType: this.serviceForm.shelveType,
+              carouselImagesOrigin: this.serviceForm.carouselImagesOrigin,
+              priceConstant: this.serviceForm.priceConstant,
+              // 工位相关
+              // staffLevel: this.computedStaffLevel,
+              staffLevel: this.staffLevel,
+              associateAllJobs: this.associateAllJobs,
+              associateAllJobsTwo: this.associateAllJobsTwo,
+              associateAllJobsThree: this.associateAllJobsThree,
+              staffLevelTwo: this.staffLevelTwo,
+              staffLevelThree: this.staffLevelThree,
+            };
+            // console.log(params);
+            this.submitButtonLoading = true;
+            axios.post(api.addService.URL, params).then(res => {
+              this.publishServerRes(res);
+            }).catch(err => {
+              this.submitButtonLoading = false;
+            })
+          }
+        });
+      },
+      addSpecification() {
+        this.serviceForm.priceForm.push({
+          id: null,
+          specificationName: null,
+          serviceTime: null,
+          serviceTimeUnit: "",
+          shopPrice: null,
+          bookingAmount: null,
+          cost: null,
+          vipPrice: null,
+          memberPrice: null
+        });
+      },
+      delSpecialForm(specialItem, index) {
+        let list = JSON.parse(JSON.stringify(this.serviceForm.priceForm));
+        if (specialItem.id) {
+          list[index].deleted = true;
+        } else {
+          list.splice(index, 1);
+        }
+        this.serviceForm.priceForm = list;
+      },
+      handleRichImagesSuccess(res, file, fileList) {
+        this.serviceForm.richTextImages = fileList;
+        this.$refs.serviceForm.validateField("richTextImages");
+      },
+      handleRichImagesRemove(file, fileList) {
+        this.serviceForm.richTextImages = fileList;
+        this.$refs.serviceForm.validateField("richTextImages");
+      },
+      getBrandMemberLevelDiscount() {
+        axios.post("/getBrandMemberLevelDiscount", {
+          brandId: this.currentInfo.brandId
+        }).then(res => {
+          this.discountInfoList = res.discountInfoList;
+        })
+      },
+      memberLevelPrices(price) {
+        if (!price) {
+          return undefined
+        }
+        let priceArray = [];
+        let classification = this.serviceForm.classification;
+        let selClassification = this.serviceForm.classification.length === 2;
+        this.discountInfoList.forEach(item => {
+          let discountList = item.lvlAppointServiceDiscList;
+          let matchDiscount = selClassification ? discountList.filter((discount) => {
+            return discount.levelOne === classification[0] && discount.levelTwo === classification[1]
+          })[0] : undefined;
+          priceArray.push({
+            levelName: item.levelName,
+            memberLevelPrice: matchDiscount ? price * matchDiscount.discount / 10 : price * item.lvlAllServiceDisc / 10
+          });
+        });
+        return priceArray
+      },
+      // ================ 添加工位 ================ 
+      addJobs() {
+        if (this.jobsNum === 1) {
+          this.associateAllJobsTwo = 'UN_LIMITED'
+        } else {
+          this.associateAllJobsThree = 'UN_LIMITED'
+        }
+        this.jobsNum++
+      },
+      // ================ 删除工位 ================ 
+      delItem(num) {
+        this.jobsNum = num
+        if (this.jobsNum === 1) {
+          this.associateAllJobsTwo = 'UN_ADD'
+        } else {
+          this.associateAllJobsThree = 'UN_ADD'
+        }
+      },
+      // - 校验关联职务
+      validatorJobs(rule, value, callback) {
+        if (this.associateAllJobs === 'APPOINTED' && this.staffLevel.length === 0) {
+          callback(new Error("工位1指定职务不能为空"))
+        } else if (this.associateAllJobsTwo === 'APPOINTED' && this.staffLevelTwo.length === 0) {
+          callback(new Error("工位2指定职务不能为空"))
+        } else if (this.associateAllJobsThree === 'APPOINTED' && this.staffLevelThree.length === 0) {
+          callback(new Error("工位3指定职务不能为空"))
+        } else {
+          callback()
+        }
+      },
+      // - 校验固定会员价时的会员价输入
+      priceValidatorNew(rule, obj, callback) {
+        if (this.serviceForm.priceConstant) {
+          if (obj.memberPrice <= 0) {
+            callback("固定会员价必填")
+          }
+          let str = obj.memberPrice + ''
+          let l = str.indexOf(".") === -1 ? 0 : str.split(".").pop().length;
+          if (l > 2) {
+            callback("最多输入两位小数");
+          } else {
+            callback();
+          }
+        } else {
+          callback()
+        }
+      }
+    }
+  };
+</script>
+
+<style lang="scss">
+  #gm_service_add {
+    box-sizing: border-box;
+    padding-top: 80px;
+
+    .center-con {
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+  }
+</style>
+
+<style lang="scss" scoped>
+  .full-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px 0;
+    background-color: #fff;
+    border-radius: 8px;
+
+    .picture-tip {
+      color: #9b9b9b;
+      font-size: 14px;
+    }
+
+    .form_container {
+      box-sizing: border-box;
+      padding-left: 30px;
+
+      .form-title,
+      .service-key-words {
+        width: 580px;
+      }
+
+      .code {
+        width: 360px;
+      }
+
+      .some-store {
+        .some-store-select {
+          max-width: 200px;
+          display: inline-block;
+          margin-left: 20px;
+        }
+      }
+
+      .el-form-item {
+        .specifications {
+          width: 800px;
+          background: #f1f2f7;
+          border-radius: 5px;
+          position: relative;
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 15px;
+          box-sizing: border-box;
+          padding-top: 20px;
+
+          .icon-icon_operate_delete {
+            z-index: 2;
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            color: #999999;
+            transition: all 0.6s;
+            cursor: pointer;
+
+            &:hover {
+              color: #666666;
+            }
+          }
+
+          .specialItem-line {
+            width: 100%;
+            display: flex;
+
+            .label {
+              display: inbline-block;
+              white-space: nowrap;
+              margin-right: 5px;
+              width: 80px;
+              text-align: right;
+            }
+
+            > .el-form-item {
+              width: 380px;
+              margin-bottom: 20px;
+
+              /deep/ .el-form-item__content {
+                .el-input-group__append {
+                  border: none;
+                  padding: 0 13px;
+                  color: #333333;
+                }
+              }
+
+
+            }
+
+            .member-price {
+              /deep/ .el-form-item__content {
+                .el-radio-group {
+                  margin-top: 13px;
+                  .el-radio {
+                    display: block;
+                    margin-left: 0;
+
+                    .el-form-item {
+                      display: inline-block;
+                    }
+
+                    &:nth-child(1) {
+                      margin-bottom: 20px;
+                    }
+
+                    &:nth-child(2) {
+                      color: #333333;
+
+                      .reminder-text {
+                        color: #58C9F3;
+                        margin-left: 20px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .member-level-prices {
+                line-height: 24px;
+                margin-top: 15px;
+                width: 600px;
+
+                .name {
+                  color: #999999;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .el-radio-group {
+        .el-form-item.radio-form-item {
+          margin-bottom: 0;
+
+          /deep/ .el-form-item__label {
+            line-height: 35px;
+          }
+
+          .select-form-material-library {
+            display: flex;
+
+            /deep/ .el-radio__inner {
+              margin-top: 10px;
+            }
+
+            .radio-title {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+          }
+
+
+        }
+
+        .user-defined-radio {
+          display: flex;
+
+          .el-form-item {
+            margin-top: 15px;
+
+            /deep/ .el-form-item__content {
+              .el-upload-list--picture-card {
+                max-width: 780px;
+                display: flex;
+                flex-wrap: wrap;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .job-associated {
+    display: flex;
+    flex-wrap: wrap;
+
+    .select {
+      margin-left: 10px;
+    }
+  }
+
+  .add-specification {
+    font-size: 14px;
+    color: #58c9f3;
+    margin: 0 0 20px 120px;
+    transition: all 0.6s;
+    cursor: pointer;
+    white-space: nowrap;
+    width: 80px;
+
+    i {
+      margin-right: 5px;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  // 3工位
+  .associate-jobs-box {
+    padding-left: 4px;
+  }
+  .jobs-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+    .title {
+      margin-right: 12px;
+    }
+    /deep/ .icon-icon_operate_delete {
+      color: #DFE1E3;
+      &:hover { color: #41CAC0; }
+    }
+  }
+  .add-button {
+    color: #58c9f3;
+    font-size: 14px;
+    display: inline;
+    cursor: pointer;
+  }
+</style>

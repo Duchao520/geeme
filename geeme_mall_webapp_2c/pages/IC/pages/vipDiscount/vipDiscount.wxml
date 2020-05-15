@@ -1,0 +1,21 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+
+<view class="container" wx:if="{{weExpShowGoodsList.length > 0 }}">
+  <view class="flex_box justify_space_between goods-item" bindtap="jumpProductDetail" wx:for="{{weExpShowGoodsList}}" wx:key="index" data-type="{{item.goodsType}}" data-id="{{item.goodsId}}">
+    <image class="thumb" src='{{format.getImageUrl(item.cycleImage + "?x-oss-process=image/resize,m_fill,h_200,w_200")}}' mode='aspectFill'></image>
+    <view class="content">
+      <view style="height: 72rpx;" class="fz-28 txt-overflow fc-333333">{{item.goodsSimpleTitle}}</view>
+      <view style="margin-bottom: 12rpx;">
+        <text class="bg-F60F51 fc-ffffff fz-20" style="margin-right: 16rpx;padding: 0 6rpx;">新人专享</text>
+      </view>
+      <!-- <view class="iconfont icondingwei fz-24 fc-999999 txt-ellipsis">杭州庆春路店</view> -->
+      <view>
+        <text class="fz-28 fc-F52D56"><text class="iconfont iconrenminbidanjia fz-20"></text>{{item.experiencePrice}}</text>
+        <text class="fz-24 fc-999999 iconfont iconrenminbidanjia" style="text-decoration: line-through;">{{item.shopPrice}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<AppDefault text="暂无新人专享活动~~" wx:else></AppDefault>
+

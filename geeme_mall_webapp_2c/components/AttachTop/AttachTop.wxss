@@ -1,0 +1,11 @@
+.AttachTop {
+  width:100%;
+  background: #fff;
+}
+
+.AttachTop.isFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:1000;
+}

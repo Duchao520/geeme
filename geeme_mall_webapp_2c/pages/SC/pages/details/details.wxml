@@ -1,0 +1,132 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<!-- 店铺背景 -->
+<view class='shopbg'>
+  <image lazy-load src="{{format.getImageUrl(shopInfo.shopImg + '?x-oss-process=image/resize,m_fill,h_376,w_750')}}" mode="aspectFill"></image>
+</view>
+<!-- 店铺信息 -->
+<view class="shopInfo-container">
+  <image class="logo" lazy-load src="{{format.getImageUrl(shopInfo.brandLogo + '?x-oss-process=image/resize,m_lfit,h_140,w_140')}}" mode="aspectFill"></image>
+  <view class='shopname'>{{format.getCity(shopInfo.city)}} {{shopInfo.shopName}}</view>
+  <view class='shopstores'>
+    <AppAvgScore width="26rpx" height="26rpx" space="8rpx" score="{{shopInfo.shopScore}}" />
+    <view class='shopscore'>{{format.fixNum(shopInfo.shopScore,1)}}分</view>
+  </view>
+  <view class='shoptime'>
+    <view class='timeicon icon--clock'></view>
+    <view class='timetext'>
+      {{shopInfo.workDays}} {{shopInfo.startTime}}-{{shopInfo.endTime}}
+    </view>
+    <view class='working {{shopInfo.status == "ONLINE" || shopInfo.status == "TRYING" ? "" : "nowork"}}'>{{shopInfo.status == "ONLINE" || shopInfo.status == "TRYING" ? "营业中" : "暂停营业"}}</view>
+  </view>
+  <view class='shopaddress'>
+    <view class='addressicon icon--address'></view>
+    <view class='addresstext'>
+      <text class="addresstext-address">{{shopInfo.address}}</text>
+      <text class="addresstext-nav arrow--right_red" data-address="{{shopInfo.address}}" data-name="{{shopInfo.shopName}}" data-laitude="{{shopInfo.latitude}}" data-longitude="{{shopInfo.longitude}}" bindtap='navigation'>导航</text>
+    </view>
+  </view>
+  <view class='shopphone'>
+    <view class='phoneicon icon--phone'></view>
+    <view class='phonetext' data-phone="{{shopInfo.phone}}" bindtap='call'>{{shopInfo.phone}}</view>
+  </view>
+</view>
+<AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bindswitchTab="switchTab" padding="0 40rpx"></AppTabs>
+<!-- 优惠 -->
+<view class="container-all">
+  <view class="container-1" wx:if="{{currentTab === 0}}">
+    <view class='Service'>
+      <view class='Service-item' wx:for="{{serviceInfoList}}" wx:key="index">
+        <view class='s-title'>
+          <view class='s-title-left'>{{item.sortOne}}</view>
+        </view>
+        <view class='s-contents'>
+          <Masonry list="{{item.serviceInfoList}}" key="id" column-space="30rpx" generic:masonry-item="ServiceCard"></Masonry>
+        </view>
+      </view>
+    </view>
+    <AppDefault wx:if="{{showDefault}}" text="本店还没有推荐服务，去主打服务看看吧" />
+  </view>
+  <!-- 评价 -->
+  <view class="container-2" wx:if="{{currentTab === 1}}">
+    <!-- 评价星级 -->
+    <view class='evaluationHeadScore'>
+      <view class='headScoreLeft'>
+        <view class='headScoreLeft-score'>{{shopInfo.shopScore}}</view>
+        <view class='headScoreLeft-title'>总体评分</view>
+      </view>
+      <view class='headScoreMiddle'>
+        <view class='score-professional'>
+          <view class='scoreTitle'>专业</view>
+          <AppAvgScore width="24rpx" height="24rpx" space="8rpx" score="{{4}}" />
+          <view class='scoreNumber'>4.0</view>
+        </view>
+        <view class='score-professional'>
+          <view class='scoreTitle'>环境</view>
+          <AppAvgScore width="24rpx" height="24rpx" space="8rpx" score="{{5}}" />
+          <view class='scoreNumber'>5.0</view>
+        </view>
+        <view class='score-professional'>
+          <view class='scoreTitle'>服务</view>
+          <AppAvgScore width="24rpx" height="24rpx" space="8rpx" score="{{4.5}}" />
+          <view class='scoreNumber'>4.5</view>
+        </view>
+      </view>
+      <view class='headScoreRight'>
+        <view class='headScoreRight-score'>{{shopInfo.goodAssessmentRate}}%</view>
+        <view class='headScoreRight-title'>好评率</view>
+      </view>
+    </view>
+    <!-- 评价数据统计 -->
+    <view class='evaluationData'>
+      <view class='evaluationDataItem {{evaluation.tagId == item.tagId ? "active" : ""}}' wx:for="{{TAG_FLAG ? tags : format.arrSlice(tags,0,8)}}" wx:key="index" bindtap='changeTagId' data-id="{{item.tagId}}">{{item.tagName}}({{item.num}})</view>
+      <view class="subscript {{TAG_FLAG ? 'upscript' : 'downscript'}}" bindtap='TagSwitcher'>{{TAG_FLAG ? '收起' : '展开'}}</view>
+    </view>
+    <!-- 评价底部 -->
+    <view class='evaluationBottom'>
+      <block wx:if="{{evaluation.list && evaluation.list.length}}">
+        <comments list="{{evaluation.list}}" />
+      </block>
+      <block wx:else>
+        <AppDefault image="/images/default/default_comment.png" text="暂无评价哦，快去预约抢沙发吧" top="100rpx" />
+      </block>
+    </view>
+  </view>
+  <!-- 动态 -->
+  <view class="container-3" wx:if="{{currentTab == 2}}">
+    <block wx:if="{{dynamic.list && dynamic.list.length}}">
+      <view class='recommended-worksBottom'>
+        <Masonry list="{{dynamic.list}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+      </view>
+    </block>
+    <block wx:if="{{ifShowDefault}}">
+      <AppDefault image="/images/default/default_works.png" text="暂时没有作品动态，晚点再来看看吧～" top="100rpx" />
+    </block>
+  </view>
+  <!-- 相册 -->
+  <view class="container-4" wx:if="{{currentTab == 3}}">
+    <block wx:if="{{shopInfo.images.length > 0}}">
+      <view class='photo-item' wx:for="{{shopInfo.images}}" wx:key="index">
+        <image lazy-load src="{{format.getImageUrl(item + '?x-oss-process=image/resize,m_fill,h_280,w_280')}}" mode='aspectFill' bindtap='$previewImage' data-urls="{{format.getImageArr(shopInfo.images)}}" data-current="{{format.getImageUrl(item + '?x-oss-process=image/resize,m_fill,h_140,w_140')}}"></image>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_works.png" text="暂时没有上传相册～" top="100rpx" />
+    </block>
+  </view>
+  <!-- 简介 -->
+  <view class="container-5" wx:if="{{currentTab == 4}}">
+    <block wx:if="{{shopInfo.des}}">
+      <text selectable space="ensp" decode >{{shopInfo.des}}</text>    
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_works.png" text="暂时没有门店简介" top="100rpx" />
+    </block>
+  </view>
+</view>
+<view style="position: relative;">
+  <AppFooter />
+</view>
+<view style="height: 250rpx;"></view>
+<view class='bottombtn'>
+  <view class='button' bindtap='jumpAppointment'>探店</view>
+</view>

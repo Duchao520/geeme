@@ -1,0 +1,1 @@
+<AppDefault image="/images/default/default_shop.png" top="{{top}}" text="该门店已到期，查看历史记录请前往个人中心哦～" button="前往个人中心" bind:click="jumpUC" />

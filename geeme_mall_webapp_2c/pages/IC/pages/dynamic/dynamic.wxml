@@ -1,0 +1,12 @@
+<view class="works-page">
+  <view class="works-header">
+    <AppSearch placeholder="搜索风格/服务者昵称" bind:input="search"></AppSearch>
+    <!-- 空白 -->
+    <view class="header-blank"></view>
+    <AppTabs tabs="{{tabList}}" bindswitchTab="switchTab" style="margin-top:40rpx;"></AppTabs>
+  </view>
+
+  <view style="padding:0 32rpx;margin-top:28rpx;">
+    <Masonry list="{{worksList}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+  </view>
+</view>

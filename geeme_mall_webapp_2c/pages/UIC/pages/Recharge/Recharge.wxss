@@ -1,0 +1,106 @@
+/* pages/UIC/pages/Recharge/Recharge.wxss */
+.recharge{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F8F8F8;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+}
+.recharge .money{
+  width: 100%;
+  height: 194rpx;
+  background: #FFFFFF;
+  padding: 26rpx;
+}
+.fc-F52D56{
+  color: #F52D56;
+}
+
+.pay-body {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  padding: 0 32rpx;
+}
+
+.payitem {
+  width: 100%;
+  height: 120rpx;
+  line-height:120rpx;
+  border-bottom: 1px solid rgba(239, 239, 244, 1);
+  position: relative;
+  
+}
+.payitem:last-child{
+  border-bottom: 0;
+}
+
+.itemicon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right:24rpx;
+  width: 64rpx;
+  height: 64rpx;
+  background-size: 100% 100%;
+}
+
+.itemicon.icon-weixin{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAyVBMVEUAAAAAyAAAyAAAywAAyQAAyAAAyQAAyAAAywAAygAAyAD////9/v3U9tQt0i0TzBMNyw0Iygj4/fjp+un6/frw+/BU2lSp7Klv4G8azhrt++3a99ql66Wf6p+Z6ZmL5ot9431B1kE61Toezh7y/PLk+eTQ9NDM9My477i077Rn3mdf3F9Y21hN2U010zX0/PTR9dHI88jE8sS88Ly78LuR55GG5IZ14XVl3WVI10hE10Qn0CcizyLh+OGU55ST55OE5ISw7bCh6qG0qu7BAAAACnRSTlMA/PMb2baba05uV9ovmAAAAkxJREFUWMO1l+l6qjAQhgHXJmGniNYFsXXXWvet7Tnn/i/qlBIUJSnLPP1+jT7MG2aYJDMCVaFSKkoopaRiqVIQoiqURZRRYjmCqEooh6Rq6P8golwSH+j61D8Hofodv4RyS/LzUEYAlb9eQIQAxIJQQSBVhBIMUBKKMEBRkGAASUBA/QZAP25Xsmk1npabaT07QGkZ+CoytLMBeiN8L/mQATB5xAzVtLSADWZLPqcDdDBPL/U0gDHma6ElA+o0/nZd31G3Z1vvLQPzMxlQo/H6thzYuy9zHphESQKoVgSwCGznCsDNJICDqToa2lOzcUTqMAxHTwBcK4hEStEg/h+Df52d20sAyJijwURVbfej1uo4yk+AZ04NzfRxn2Aq8/PMBTSY/k1tbOKoSEvlAN5Y/q46ilflkQ1oMvzbKiszls0EjBnp0/qYJevAAuixJBCvQ43LJqeGqbJK+c894K9CgsfPaGb5hjFHXoBosQDa0x1guqGZCFO8uuwYS2UAkPJ6429o5uUw6Brf1awghQbqsADIJjcl1LugXsLsvZOwPpgAdIgeicMu5mvJBqBTJA/NGearHwPEP8VIwXzVeIDIG8ga4QNcDsBfdN31nNZKNt/1NdefnDiALV57kWsmIQIG4MO7+dnn+L+eUl7vc8IOwE7dH0yZBDdDgzEx4us7mToUJXak2BlbHH1/t0tn2Xuk7vbt0c/9or0fYtzO12TpdS2ADUxolza9vaLAjSa41QU32+B2HzxwQEce8NAFHfvAgyd89IUP3+Dx/z85JrPWc1yxVwAAAABJRU5ErkJggg==);
+}
+
+.itemicon.wallet{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAflBMVEUAAAD/xgD/xgD/ywD/xwD/xwD/xwD/yAD/xwD/xwD/xgD/////7rH/5In/8sf/44L//ff/++//+ur/66f/7bD/1EL/ziX/yxb/yAz/9tn/7Kz/6p3/zyv/+eT/88z/8cT/77n/5pL/4Hb/3Wn/22D/2Vb/0DH/8MD/10//0jgDJC72AAAACnRSTlMA/PMb2baba05uV9ovmAAAATFJREFUWMPt1+tOg0AQhuE9cGgHKNDl1EKrbW3V+79BNxEriW467Gc0Jn1/8PMhQDbMiDEdh4EiZioIYy2m6UjSzGQ0IRaKPFILMbaU5JVcjveX5JlcCJtW5J3SFogIKBJCSwSQWsQEFYsQA0IRYEAgFAYoQayOpuoH+i4W8LRNbdvOE6hN+l7uBQx9+lHVzAfarEo/O8wFumOVTqte3YD73U3rZwHn/GstA2DkBtpTdrNT6wYuZcJoPTiB54TVoxMoeEDpBBJexR3wBIry2s4D2NTkiAcUDWHAA1GXZ50/YIgO9goBxp4B6BGa1f7ydy8R/4y2Yn1t90/Pwh34LWDDA/ZO4MwDXpwA1WZ1M1P/7O8dHjThURcetuFxH1440JUHXrrQtQ9ePPHVF1++4fX/DTn6pTYebggTAAAAAElFTkSuQmCC);
+}
+
+.itemicon.icon-card{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAdVBMVEUAAACTbP+RZv+QZv+PZf+PZf+QZv+PZv+QZf+PZf/////Hsv+XcP/CrP+6oP/m3P/d0P/Zyv/r4//+/f+def/u6P/h1P+/p//8+v/28v+RaP/Ktf+ylf+ifv/49v/08f/OvP+nhv+Zc//bzv+4nP+qi/+Vbf/4OZEXAAAACXRSTlMAG2zz8tm2m04mD7MwAAABWUlEQVRYw+3Xx5KDMAyAYTqRRZwlpqe3ff9HXENyIBlsGXTamXxHyo/HB8byXvwgiUNwFMZJ4HtjfgqzpaPEKoIFopX3EsBCwev7sNiwBj+CxaJ+H1JgSPUCgMWndpDexwRYEi+GCYVcy0sHDmIvnHofe+sL0EJv4mJX41N9ANJU4ICaOUEHJI7IYnbgipo5QQf2+Ol+nRPocMI+cw9ccNL+1zVQI1oSdOAqje4HOlDINUEWtkCtBEnV5sBDOHkYA5VwUhkDJ323/LEq9SMnY0DfbHZotWv0Q7aAogKKCIh2Y9UKIkD6Br6Bb+C/BlS51YYf2bZ3nBuocFCJFgdnNTOQ4yAXJT41MwPHW67d9Mo3eW8rbAElnChjoBROSmPgLJycjYGsFQ7a7C0QwkhRNYLQVAWMhJ9H3S4jdPAmZh+22cd99sDBHXnYQxd37GMPnvzRlz98s8f/P7NUmm1a3MoDAAAAAElFTkSuQmCC);
+}
+
+.itemname {
+  display: inline-block;
+  vertical-align: middle;
+  line-height:normal;
+  color: #666;
+  font-size: 32rpx;
+}
+
+.item-right{
+  float:right;
+  height:100%;
+}
+
+.item-right > view{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-select {
+  width: 40rpx;
+  height: 40rpx;
+  background-size:100% 100%;
+}
+
+.footer{
+  width: 100%;
+  height: 180rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #FFFFFF;
+}
+.footer .submit{
+  width: 684rpx;
+  height: 100rpx;
+  background-color: rgba(245, 45, 86, 1);
+  border-radius: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #FFFFFF;
+  margin: 20rpx auto;
+}
+.footer .hover-submit{
+  background: #cccccc;
+}

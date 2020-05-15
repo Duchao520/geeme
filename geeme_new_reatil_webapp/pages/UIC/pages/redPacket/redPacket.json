@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "RedPacketCard":"/components/Card/RedPacketCard/RedPacketCard"
+  },
+  "navigationBarTitleText": "我的红包"
+}

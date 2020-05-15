@@ -1,0 +1,45 @@
+<view style="position: relative;">
+  <view style="height: 100rpx;"></view>
+  <view class="AppFooter">
+    <text class="text text1">及美</text>
+    <text class="text" style="margin-right: 12rpx;">提供技术支持</text>
+    <text class="fc-F52D56" bindtap="showModal">我要定制</text>
+  </view>
+</view>
+<view class="shade" wx:if="{{SHOW_MODAL_SWITCHER}}" catchtouchmove='{{true}}'>
+  <view class="modal">
+    <view class="close iconfont iconguanbi fz-40 fc-999999" bindtap="closeModal"></view>
+    <view class="fz-40 text-center" style="margin-bottom: 30rpx;">快速定制小程序</view>
+    <input-group label="商家名称" required>
+      <input placeholder="请填写商家名称" bindblur="bindValue" data-key="brandName" value="{{brandName}}" type="text"></input>
+    </input-group>
+    <input-group label="您的姓名" required>
+      <input placeholder="请填写您的姓名" bindblur="bindValue" data-key="username" value="{{username}}" type="text"></input>
+    </input-group>
+    <input-group label="手机号码" required>
+      <input placeholder="请填写您的手机号码" bindblur="bindValue" data-key="mobile" value="{{mobile}}" type="text"></input>
+    </input-group>
+    <input-group label="所在城市" required>
+      <picker mode="region" bindchange="changeRegion">
+        <view class="flex_box align_center justify_space_between">
+          <view class="content" style="color: #808080;">
+            {{province ? province+ '/' + city : '请选择省市'}}
+          </view>
+          <view class="iconfont iconxiala fz-24" style="color: #808080;"></view>
+        </view>
+      </picker>
+    </input-group>
+    <input-group label="经营行业">
+      <picker mode="selector" range="{{industryList}}" range-key="name" bindchange="changeSelector">
+        <view class="flex_box align_center justify_space_between">
+          <view class="content" style="color: #808080;">
+            {{tradeName ? tradeName : '请选择行业'}}
+          </view>
+          <view class="iconfont iconxiala fz-24" style="color: #808080;"></view>
+        </view>
+      </picker>
+    </input-group>
+
+    <button class="submit" bindtap="createWebsiteForm">确认提交</button>
+  </view>
+</view>

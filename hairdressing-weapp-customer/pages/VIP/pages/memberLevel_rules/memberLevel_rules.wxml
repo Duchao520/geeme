@@ -1,0 +1,45 @@
+<wxs module="wxs">
+  function getLimit(ifLimit, limitVal) {
+    if (ifLimit == 'UN_LIMIT') {
+      return '每日无上限。'
+    } else {
+      return '每日上限为' + limitVal + '成长值。'
+    }
+  }
+
+  module.exports = {
+    getLimit: getLimit
+  }
+</wxs>
+<view style="padding-bottom:200rpx;">
+  <view class="des-container">
+    <view class="des-header">获得规则</view>
+    <view class="des-items">
+      <view class="des-item" wx:if="{{info.accessStoreExp}}">访问门店后，获得{{info.accessStoreExp}}成长值/店/次，{{wxs.getLimit(info.asExpLimitType, info.asExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.servicePayCardExp}}">购买服务后，使用储值卡支付，获得{{info.servicePayCardExp}}成长值/元，{{wxs.getLimit(info.spdExpLimitType, info.spdExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.servicePayCashExp}}">购买服务后，使用现金支付，获得{{info.servicePayCashExp}}成长值/元，{{wxs.getLimit(info.sphExpLimitType, info.sphExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.productPayCardExp}}">购买产品后，使用储值卡支付，获得{{info.productPayCardExp}}成长值/元，{{wxs.getLimit(info.pcdExpLimitType, info.pcdExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.productPayCashExp}}">购买产品后，使用现金支付，获得{{info.productPayCashExp}}成长值/元，{{wxs.getLimit(info.pchExpLimitType, info.pchExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.cardPayCardExp}}">购买卡项后，使用储值卡支付，获得{{info.cardPayCardExp}}成长值/元，{{wxs.getLimit(info.cpdExpLimitType, info.cpdExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.cardPayCashExp}}">购买卡项后，使用现金支付，获得{{info.cardPayCashExp}}成长值/元，{{wxs.getLimit(info.cphExpLimitType, info.cphExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.assessmentOverExp}}">完成订单评价后，评价超过20个字符，获得{{info.assessmentOverExp}}成长值/次，{{wxs.getLimit(info.aoExpLimitType, info.aoExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.assessmentUnderExp}}">完成订单评价后，评价不超过20个字符，获得{{info.assessmentUnderExp}}成长值/次，{{wxs.getLimit(info.auExpLimitType, info.auExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.cardRenewalCashExp}}">会员卡续卡充值，使用现金支付，获得{{info.cardRenewalCashExp}}成长值/元，{{wxs.getLimit(info.crcExpLimitType, info.crcExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.rechargeEWalletCashExp}}">充值钱包，使用现金支付，获得{{info.rechargeEWalletCashExp}}成长值/元，{{wxs.getLimit(info.rewExpLimitType, info.rewExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.confirmReceiptExp}}">主动收货，获得{{info.confirmReceiptExp}}成长值/次，{{wxs.getLimit(info.crExpLimitType, info.crExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.appointmentBillExp}}">预约且开单，获得{{info.appointmentBillExp}}成长值/次，{{wxs.getLimit(info.abExpLimitType, info.abExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.archivePublicExp}}">同意公开档案，获得{{info.archivePublicExp}}成长值/次，{{wxs.getLimit(info.apExpLimitType, info.apExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.perfectDataExp}}">完善个人资料，获得{{info.perfectDataExp}}成长值/次，{{wxs.getLimit(info.pdExpLimitType, info.pdExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.collectDynamicExp}}">收藏动态后，获得{{info.collectDynamicExp}}成长值/次，{{wxs.getLimit(info.cdExpLimitType, info.cdExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.assessmentDynamicExp}}">评论动态后，获得{{info.assessmentDynamicExp}}成长值/次，{{wxs.getLimit(info.adExpLimitType, info.adExpLimitVal)}}</view>
+      <view class="des-item" wx:if="{{info.thumbsUpDynamicExp}}">点赞动态后，获得{{info.thumbsUpDynamicExp}}成长值/次，{{wxs.getLimit(info.tudExpLimitType, info.tudExpLimitVal)}}</view>
+    </view>
+  </view>
+  <view class="des-container" style="margin-top:60rpx;">
+    <view class="des-header">扣减规则</view>
+    <view class="des-items">
+      <view class="des-item">退款订单，所获成长值相应扣除</view>
+      <view class="des-item">会员卡退款后，所获成长值相应扣除</view>
+    </view>
+  </view>
+</view>

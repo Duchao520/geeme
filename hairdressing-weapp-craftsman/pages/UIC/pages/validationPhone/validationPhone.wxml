@@ -1,0 +1,13 @@
+<view class="container">
+  <view class='containerTitle'>请获取验证码验证身份</view>
+  <view class='phone'>
+    <input type='number' class='phoneinput' placeholder='请输入手机号' placeholder-class='place-phone' bindinput='bindphone' value="{{mobile}}"></input>
+  </view>
+  <view class='code'> 
+    <input class='codeinput' placeholder='请输入验证码' placeholder-class='place-code' bindinput='bindcode'></input>
+    <view class='getcode' wx:if="{{code}}" bindtap='getcode'>获取验证码</view>
+    <view class='againcode' wx:else>{{time}}s后重新发送</view>
+  </view>
+</view>
+  <view class='button' bindtap='submit'>下一步</view>
+  <view class='titleMessage'>原手机号已无法使用，请 <text>联系客服</text></view>

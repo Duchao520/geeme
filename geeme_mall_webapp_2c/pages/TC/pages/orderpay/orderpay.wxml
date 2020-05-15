@@ -1,0 +1,72 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<AppNavBar title="订单支付" onNavigateBack bind:navigateBack="onNavigateBack" />
+<view class='container'>
+  <!-- 服务列表 -->
+  <view class='packagelist'>
+    <view class='listitems'>
+      <view class='listitem' wx:for="{{(type == 'appointment' || type == 'bill' || type == 'shopCar') ? payInfo.products : [payInfo]}}" wx:key="{{index}}">
+        <view class='listitemicon'></view>
+        <view class='listitemdes text--ellipsis_1'>{{item.title}}</view>
+        <view class='listitemcount'>X{{item.count || item.number}}</view>
+      </view>
+    </view>
+    <view class='total'>
+      <view class='totaltitle'>合计金额</view>
+      <view class='totalnums'>
+        <text style='font-size:20rpx'>¥</text>{{format.getPrice(format.isNumber(payInfo.finalTotalCharge) || payInfo.totalCharge)}}</view>
+    </view>
+  </view>
+  <!-- 支付方式 -->
+  <view class='pay'>
+    <view class='pay-header'>选择支付方式 </view>
+    <view class='pay-body'>
+
+      <view class='payitem' data-payway="0" bindtap="payWayEvent">
+        <view class='itemicon icon-weixin'></view>
+        <view class='itemname'>微信支付</view>
+        <view class='item-right'>
+          <view class='icon-select  {{payInfo.billingType == 0 ? "icon--selected" : payInfo.billingType == 1 ? "icon--cantSelect" : ""}}'></view>
+        </view>
+      </view>
+
+      <view class='payitem' data-payway="2" bindtap="payWayEvent">
+        <view class='itemicon wallet'></view>
+        <view class='itemname'>
+          <view>钱包支付</view>
+          <view class='warning2'>{{CAN_USE_WALLET ? '余额：¥' + walletMoney : '余额不足（余额：¥' + walletMoney + '）'}}</view>
+        </view>
+        <view class='item-right'>
+          <view class='icon-select  {{payInfo.billingType == 2 ? "icon--selected" : (payInfo.billingType == 1 || !CAN_USE_WALLET) ? "icon--cantSelect" : ""}}'></view>
+        </view>
+      </view>
+
+      <view class='payitem'>
+        <view class='itemicon icon-card'></view>
+        <view class='itemname'>
+          <view>会员卡支付
+            <text class='warning1' wx:if="{{payInfo.billingType != 1}}">(不可用)</text>
+          </view>
+          <view class='warning2' wx:if="{{payInfo.billingType != 1}}">确认订单时未选择储值卡，本单不支持储值卡支付。</view>
+        </view>
+        <view class='item-right'>
+          <view class='icon-select  {{payInfo.billingType == 1 ? "icon--selected" : "icon--cantSelect"}}'></view>
+        </view>
+      </view>
+    </view>
+    <view class='pay-footer'>订单已生成，请在24小时内完成支付，否则订单将自动关闭。</view>
+  </view>
+
+  <!-- 确认支付按钮 -->
+  <view class='paybtn'>
+    <view class='{{paySwitcher ? "btnitem" : "disable-btnitem"}}' bindtap='pay'>
+      确认支付
+    </view>
+  </view>
+</view>
+<AppModal 
+  show="{{ifShowModal}}" 
+  title="确认要放弃支付吗？"
+  content="放弃后，如果您要继续支付，可以在“消费账单-待支付”里找到该账单。" 
+  button1="继续支付" 
+  button2="确认离开" 
+  bind:action='modalAction' />

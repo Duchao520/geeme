@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "AppModal": "/components/App/AppModal/AppModal",
+    "PopHeader": "/components/popup/PopHeader/PopHeader",
+    "PopSingleColumn": "/components/popup/PopSingleColumn/PopSingleColumn"
+  },
+  "navigationBarTitleText": "权益金转出"
+}

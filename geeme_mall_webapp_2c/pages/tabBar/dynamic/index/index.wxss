@@ -1,0 +1,7 @@
+page{
+  position: relative;
+  padding-bottom: 138rpx;
+}
+.recommended-worksBottom {
+  padding: 0 32rpx 32rpx;
+}

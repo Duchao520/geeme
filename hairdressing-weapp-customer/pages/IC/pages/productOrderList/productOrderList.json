@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "ProductOrderListStatus": "/components/OrderComponents/ProductOrderListStatus/ProductOrderListStatus",
+    "ProductOrderListButtons": "/components/OrderComponents/ProductOrderListButtons/ProductOrderListButtons",
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "OrderListItem": "/components/OrderComponents/OrderListItem/OrderListItem",
+    "OrderListItemTime": "/components/OrderComponents/OrderListItem_Time/OrderListItem_Time",
+    "GroupOrder_Button": "/components/OrderComponents/GroupOrder_Button/GroupOrder_Button",
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "AppFooter": "/components/App/AppFooter/AppFooter"
+  },
+  "navigationBarTitleText": "产品订单"
+}

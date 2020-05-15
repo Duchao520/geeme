@@ -1,0 +1,29 @@
+<!--pages/TC/appointmentsuccess/appointmentsuccess.wxml-->
+<view class='container'>
+  <view class='successicon'></view>
+  <view class='alttitle'>
+    <view class='altitle-one'>恭喜预约成功</view>
+    <view class='altitle-two'>到店凭手机号享受服务</view>
+  </view>
+
+  <view class='packageinfo'>
+    <view class='package-item' wx:for="{{serviceList}}" wx:key="{{index}}">
+      <text>{{item.name}}</text>
+      <text>{{item.specificationName}}</text> 
+      <text> ￥{{item.price * item.count}}</text>
+      <text style='color:#F75778;' wx:if="{{!payStatus}}">暂未付款</text>
+    </view>
+    <view class='preferential'>
+      <text>现在支付,更享线上</text>
+      <text style='color:#F75778;'>专属红包</text>
+      <!-- 优惠券1.0不要 -->
+      <!-- <text style='color:#F75778;'>专属红包/优惠券</text> -->
+    </view>
+  </view>
+  <view class='buttons'>
+    <view class='showappointment' bindtap='toappointment'>继续预约</view>
+    <view class='showappointment' bindtap='jumpAppointment'>查看预约</view>
+  </view>
+</view>
+
+<view class='paying' bindtap='jumpPay' wx:if="{{!payStatus}}">立即支付</view>

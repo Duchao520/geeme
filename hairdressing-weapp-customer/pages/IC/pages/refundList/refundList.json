@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "OrderListItem": "/components/OrderComponents/OrderListItem/OrderListItem",
+    "AppSearch":"/components/App/AppSearch/AppSearch"
+  },
+  "navigationBarTitleText": "退款/售后"
+}

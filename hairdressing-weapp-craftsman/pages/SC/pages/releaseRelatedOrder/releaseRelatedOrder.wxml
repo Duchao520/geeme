@@ -1,0 +1,16 @@
+<view class='page-container'>
+  <block wx:if="{{list && list.length}}">
+  <view class='card-container' wx:for="{{list}}" wx:key="{{index}}">
+    <view class='card-container-left' bindtap='selectOrder' data-item="{{item}}">
+      <view class='selectIcon {{currentOrder.id == item.id ? "icon--selected" : "icon--unSelected"}}'></view>
+    </view>
+    <ServiceOrderCard item="{{item}}" can-select />
+  </view>
+  <view class='bottom-fixed'>
+    <button class='bottom-button' bindtap='confirm'>完成</button>
+  </view>
+  </block>
+  <block wx:else>
+    <AppDefault text="你还没有关联服务单哦~" />
+  </block>
+</view>

@@ -1,0 +1,27 @@
+.DateTitle{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #666666;
+}
+.DateTitleItem.active{
+  color: #F52D56;
+}
+.DateTitleItem{
+  text-align: center;
+}
+.week{
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+}
+.date{
+  color:#666;
+  font-size: 24rpx;
+}
+
+.DateTitleItem.active .date{
+  color:#f52d56;
+}

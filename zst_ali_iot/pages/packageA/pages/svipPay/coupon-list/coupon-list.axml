@@ -1,0 +1,28 @@
+<view class="coupon-list box_padding" style="padding: 143rpx 36rpx 0">
+  <text class="iconfont icon-guanbi fz-28 close" style="color: #7D7D7D"  onTap="close"></text>
+  <scroll-view scroll-y="{{true}}" class="scroll">
+    <view style="margin-bottom: 15rpx;" a:for="{{COUPON_LIST}}" data-index="{{index}}" onTap="chooseCoupon">
+      <view class="coupon-item {{totalAmount >= item.consumeMoney_ceil ? 'coupon-active' : ''}} flex_box">
+        <image mode="scaleToFill" src="/pages/packageA/static/imgs/active.png" class="active" a:if="{{COUPON_ACTIVE_INDEX === index}}"/>
+        <view class="box_padding" style="width:225rpx;height:100%;padding:20rpx 0;">
+          <view class="text-center" style="margin-bottom:20rpx;">
+            <text class="fz-38 fc-ffffff">￥</text>
+            <text class="fc-ffffff" style="font-size:68rpx;">{{item.couponMoney}}</text>
+          </view>
+          <view class="fc-ffffff fz-24 text-center" a:if="{{item.couponType == 1}}"> 满{{item.consumeMoney}}元可用</view>
+          <view class="fc-ffffff fz-24 text-center" a:else>现金券</view>
+        </view>
+        <view class="box_padding" style="width:445rpx;height: 100%;padding: 35rpx 0 0 24rpx;">
+          <view class="fz-26" style="margin-bottom: 15rpx;">{{item.couponTitle}}</view>
+          <view class="fz-22" style="color: #7D7D7D;margin-bottom: 8rpx;">{{item.times}}</view>
+          <view class="fz-22 txt-ellipsis" style="color: #7D7D7D;margin-bottom: 10rpx;">{{item.shopStore.storeName}}</view>
+          <view class="fz-22" style="color: #7D7D7D;" a:if="{{item.isAllowSuperposition == '0'}}">该优惠券只能单独使用</view>
+        </view>
+      </view>
+      <view class="box_padding bg-FFFFFF" style="padding: 14rpx 21rpx;" a:if="{{totalAmount < item.consumeMoney_ceil}}">
+        <view class="fc-F7094D fz-20" style="margin-bottom: 10rpx;">不可用原因</view>
+        <text class="ul fz-20" style="color: #7D7D7D;">商品需消费满{{item.consumeMoney}}元使用</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

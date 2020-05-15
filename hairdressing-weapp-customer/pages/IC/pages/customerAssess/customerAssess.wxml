@@ -1,0 +1,11 @@
+<view class="box_padding" style="padding: 32rpx;">
+  <view class="border-bottom" style="padding-bottom: 36rpx;">
+    <view class="flex_box align_center" style="margin-bottom: 16rpx;">
+      <AppAvgScore width="40rpx" height="40rpx;" space="8rpx;" score="{{brandScore ? brandScore : 5}}"></AppAvgScore>  
+      <view class="fc-F52D56 fz-40" style="margin-left: 12rpx;">{{brandScore ? brandScore : 5}}分</view>
+    </view>
+    <view class="fz-24 fc-999999">{{brandTotal ? brandTotal : 0}}条评价，好评{{brandRate ? brandRate : 100}}%</view>
+  </view>
+  <comments list="{{staffAssessmentList}}" wx:if="{{staffAssessmentList.length > 0}}"></comments>
+  <AppDefault text="暂无客户评价" image="/images/default/default_comment.png" wx:else></AppDefault>
+</view>

@@ -1,0 +1,69 @@
+<!--pages/UIC//pages/equityTransfer/equityTransfer.wxml-->
+<view>
+
+  <!-- 头部切换部分 -->
+  <view class="equity-header" catchtouchmove='prevent'>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <view style="border:2rpx solid #ebebeb">
+        <PopHeader tabs="{{tabs}}" activeIndex="{{activeTab}}" bind:popup="popup" />
+        <view class='popup-container'>
+          <PopSingleColumn list="{{sortStores}}" activeItem="选择门店" ifShow="{{activeTab === 0}}" bind:clickItem="selectStore" />
+          <PopSingleColumn list="{{sortMethods}}" activeItem="选择转出方式" ifShow="{{activeTab === 1}}" bind:clickItem="selectSort" />
+        </view>
+      </view>
+    </AttachTop>
+  </view>
+
+  <!-- 提现金额 -->
+  <view class="withdrawal-amount box_padding">
+    <view class="withdrawal-amount-info flex_box align_center">
+      <view class="flex_box align_center">
+        <text class="fz-24 fc-333333">提现金额</text>
+        <text class="fz-24 fc-999999" wx:if="{{typeName !== ''}}">（{{typeName}}）</text>
+      </view>
+      <view class="fz-24 fc-999999" bindtap="onTapRecords">转出记录</view>
+    </view>
+    <view class="withdrawal-amount-input flex_box">
+      <text class="fz-24 fc-F52D56" wx:if="{{queryParamApply.amount !== ''}}">￥</text>
+      <input class="fz-38 fc-F52D56" type="text" value="{{queryParamApply.amount}}" bindblur="bindAmount" data-key="amount" auto-focus placeholder="请输入提现金额"/>
+    </view>
+  </view>
+
+  <!-- 提现金额详情 -->
+  <view class="withdrawal-amount-detail flex_box" wx:if="{{withdrawal.canOut}}">
+    <view>
+      <view class="fz-24 fc-333333 text_left">可用余额：{{withdrawal.preMoney}}元</view>
+      <view class="fz-24 fc-666666 text_left">(含冻结余额：{{withdrawal.frozenMoney}}元)</view>
+    </view>
+    <view class="fz-28 fc-F52D56 white_nowrap" bindtap="onTapAllWithdral">全部转出</view>
+  </view>
+
+  <!-- 银行账户信息 -->
+  <view class="withdrawal-bank" wx:if="{{queryParamApply.type == 2}}">
+    <view class="withdrawal-bank-header fz-28 fc-333333">填写银行账户</view>
+    <view class="withdrawal-bank-input flex_box box_padding align_center">
+      <view class="fz-28 fc-333333 text_left">户名</view>
+      <input class="fz-26 fc-999999 text_right" type="text" value="{{queryParamBank.accountName}}" bindblur="bindValue" data-key="accountName" placeholder="请输入收款人户名"/>
+    </view>
+    <view class="withdrawal-bank-input flex_box box_padding align_center">
+      <view class="fz-28 fc-333333 text_left">账号</view>
+      <input class="fz-26 fc-999999 text_right" type="number" value="{{queryParamBank.accountNum}}" bindblur="bindValue" data-key="accountNum" placeholder="请输入收款人账号"/>
+    </view>
+    <view class="withdrawal-bank-input flex_box box_padding align_center">
+      <view class="fz-28 fc-333333 text_left">银行</view>
+      <input class="fz-26 fc-999999 text_right" type="text" value="{{queryParamBank.bankName}}" bindblur="bindValue" data-key="bankName" placeholder="请输入银行名称"/>
+    </view>
+    <view class="withdrawal-bank-input flex_box box_padding align_center">
+      <view class="fz-28 fc-333333 text_left">开户行</view>
+      <input class="fz-26 fc-999999 text_right" type="text" value="{{queryParamBank.openBank}}" bindblur="bindValue" data-key="openBank" placeholder="请输入开户行名称"/>
+    </view>
+    <view class="space"></view>
+  </view>
+
+  <!-- 确认按钮 -->
+  <view class="withdrawal-submit">
+    <button class="{{EQUITY_SUBMIT ? '' : 'bg-ccc'}} withdrawal-btn fc-ffffff fs-34 text_center" bindtap="submit">确认转出</button>
+  </view>
+
+</view>
+<AppModal show="{{SUCCESS_MODAL}}" title="申请转出成功!" content="款项正在等待商家处理，如有疑问，请咨询：{{phone}}" button1="返回我的资产" button2="继续提现" bind:cancle="jumpBack" bind:confirm="jumpGiftCard"></AppModal>

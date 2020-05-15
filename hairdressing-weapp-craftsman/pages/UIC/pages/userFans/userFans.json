@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "FansCard": "/components/Card/FansCard/FansCard"
+  },
+  "navigationBarTitleText": "我的粉丝"
+}

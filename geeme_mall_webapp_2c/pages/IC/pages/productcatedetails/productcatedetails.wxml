@@ -1,0 +1,38 @@
+<!--pages/IC/pages/productcatedetails/productcatedetails.wxml-->
+<view class='container'>
+  <!-- 搜索头部 -->
+  <!-- <view style="background:#fff;padding-bottom:30rpx;">
+    <AppSearch placeholder="日式剪发" showCart />
+  </view> -->
+  <!-- 服务主体 -->
+  <view class='body'>
+    <!-- <view class='b-head'>
+      <view class='b-h-left' data-type="one" bindtap='clickFilter'>
+        <view class='b-l-text'>{{'全部分类'}}</view>
+        <view class='b-l-icon'></view>
+      </view>
+      <view class='b-h-middle' data-type="two" bindtap='clickFilter'>
+        <view class='b-m-text'>{{currentTwo}}</view>
+        <view class='b-m-icon'></view>
+      </view>
+      <view class='b-h-right' data-type="three" bindtap='clickFilter'>
+        <view class='b-r-text'>筛选</view>
+        <view class='b-r-icon'></view>
+      </view>
+      <view class='bg {{flagOne||flagTwo?"active":""}}' bindtap='close'></view>
+
+      <FilterOne listOneLeft="{{listOneLeft}}" listOneRight="{{listOneRight}}" flagOne="{{flagOne}}" bindsetOneCurrent="setOneCurrent"></FilterOne>
+      <FilterTwo listTwo="{{listTwo}}" flagTwo="{{flagTwo}}" bindsetTwoCurrent="setTwoCurrent"></FilterTwo>
+      <FilterThree flagThree="{{flagThree}}"></FilterThree>
+    </view> -->
+
+    <view class='b-content' wx:if="{{serviceList.length}}">
+      <Masonry list="{{serviceList}}" column-space="30rpx" generic:masonry-item="ServiceCard"></Masonry>
+    </view>
+    <view class='default' wx:else>
+      <view class='default-icon'></view>
+      <view class='default-text'>暂时没有任何服务哦</view>
+    </view>
+
+  </view>
+</view>

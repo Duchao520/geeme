@@ -1,0 +1,12 @@
+<view class="container">
+  <view class='containerTitle'>绑定新手机号</view>
+  <view class='phone'>
+    <input type='number' class='phoneinput' placeholder='请输入手机号' placeholder-class='place-phone' bindinput='inputPhone' value="{{mobile}}"></input>
+  </view>
+  <view class='code'>
+    <input class='codeinput' placeholder='请输入验证码' placeholder-class='place-code' bindinput='inputCode'></input>
+    <view class='getcode' wx:if="{{countdown == 0}}" bindtap='getCode'>获取验证码</view>
+    <view class='againcode' wx:else>({{countdown}}s)后重新发送</view>
+  </view>
+</view>
+<view class='button' bindtap='submit'>确认修改</view>

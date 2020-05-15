@@ -1,0 +1,19 @@
+<!--pages/home/address/address.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<AppSearch placeholder="搜索" bind:confirm="search"></AppSearch>
+
+<view class='footer'>
+  <view class='showcity'> 
+    <view class='showicon'></view>
+    <view class='showtext'>{{format.getCity(address.city)}}</view>
+  </view>
+  <view class='choosecity'>
+    选择城市
+  </view>
+
+  <view class='cityitem {{currentindex==item.id?"active":""}}' data-index="{{item.id}}" data-name="{{item.name}}" wx:for="{{cityList}}" wx:key="{{index}}" bindtap='setcurrentcity'>
+    {{format.getCity(item.name)}}
+    <view class='selecticon' wx:if="{{currentindex == item.id}}"></view>
+  </view>
+
+</view>

@@ -1,0 +1,61 @@
+.worksCard {
+  margin-bottom:30rpx;
+  height: auto;
+  box-shadow: 0 4rpx 4rpx 0 rgba(174, 184, 229, 0.3);
+  border-radius: 8rpx;
+  padding-bottom:14rpx;
+  overflow: hidden;
+}
+
+.w-image {
+  width: 100%;
+  height:328rpx;
+}
+
+.w-dsc {
+  line-height: 40rpx;
+  padding: 0 12rpx;
+  color: #262628;
+  font-size: 24rpx;
+  text-overflow: ellipsis;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.hairinfo {
+  line-height:34rpx;
+  padding: 0 12rpx;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.h-avatar {
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  vertical-align: middle;
+}
+
+.h-name {
+  display: inline-block;
+  color: #263238;
+  font-size: 24rpx;
+  vertical-align: middle;
+}
+
+.type {
+  margin-top:12rpx;
+  padding-right:12rpx;
+  font-size: 20rpx;
+  color: #f52d56;
+}
+
+.type-item {
+  display: inline-block;
+  margin-left: 12rpx;
+}

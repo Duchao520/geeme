@@ -1,0 +1,97 @@
+<!--pages/UIC//pages/equityTransferRecords/equityTransferRecords.wxml-->
+<wxs module="wxs">
+  function JudgeStatus(status, type) {
+    switch (status) {
+      case 1:
+        return {
+          class: "WAIT",
+          statusMean: "待审核"
+        };  
+      case 2:
+        return {
+          class: "FINISH",
+          statusMean: "已转出"
+        };
+      case 3:
+        return {
+          class: type == 2 ? "FINISH" : "WAIT",
+          statusMean: type == 2 ? '已转出' : "待审核"
+        };
+      case 4:
+        return {
+          class: type == 2 ? "REJECT" : "WAIT",
+          statusMean: type == 2 ? "已拒绝" : '待审核'
+        };
+      case 5:
+        return {
+          class: "FINISH",
+          statusMean: "已转出"
+        };
+      case 6:
+        return {
+          class: "WAIT",
+          statusMean: "待审核"
+        };
+      case 7:
+        return {
+          class: "MODIFY",
+          statusMean: "已取消"
+        };
+      default:
+        return {
+          class: "",
+          statusMean: ""
+        };
+    }
+  }
+
+  function JudgeOrderType(type) {
+    switch (type) {
+      case 1:
+        return '转出到钱包余额';
+      case 2:
+        return '转出到银行卡';
+      default:
+        return '';
+    }
+  }
+
+  module.exports = {
+    JudgeStatus: JudgeStatus,
+    JudgeOrderType: JudgeOrderType
+  }
+</wxs>
+<view>
+  <!-- 头部切换部分 -->
+  <view class="equity-header" catchtouchmove='prevent'>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <view style="border:2rpx solid #ebebeb">
+        <PopHeader tabs="{{tabs}}" activeIndex="{{activeTab}}" bind:popup="popup" />
+        <view class='popup-container'>
+          <PopSingleColumn list="{{sortStores}}" activeItem="选择门店" ifShow="{{activeTab === 0}}" bind:clickItem="selectStore" />
+          <PopSingleColumn list="{{sortMethods}}" activeItem="选择转出方式" ifShow="{{activeTab === 1}}" bind:clickItem="selectSort" />
+        </view>
+      </view>
+    </AttachTop>
+  </view>
+
+  <!-- 转出记录列表 -->
+  <view class="box_padding" style="padding: 0 26rpx;" wx:if="{{preMoneyApplyOutInfoList.length != 0}}">
+    <view class="record-item" wx:for="{{preMoneyApplyOutInfoList}}" wx:key="index" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="navigateToProgress">
+      <view class="flex_box justify_space_between align_center" style="margin-bottom: 8rpx;">
+        <view class="fz-32 fc-333333">{{wxs.JudgeOrderType(item.type)}}</view>
+        <view class="fz-40 fc-333333 flex_box align_center">{{item.amount}}
+          <text class="iconfont iconyoujiantou fc-AAAAAA fz-20"></text>
+        </view>
+      </view>
+      <view class="flex_box justify_space_between">
+        <view class="fz-24 fc-999999">
+          <view style="margin-bottom: 4rpx;" wx:if="{{item.createTime}}">申请：{{item.createTime}}</view>
+          <view wx:if="{{item.status == 2}}">转账：{{item.modifyTime}}</view>
+        </view>
+        <view class="status {{wxs.JudgeStatus(item.status, item.type).class}}">{{wxs.JudgeStatus(item.status, item.type).statusMean}}</view>
+      </view>
+    </view>
+  </view>
+  <AppDefault wx:if="{{preMoneyApplyOutInfoList.length == 0 || preMoneyApplyOutInfoList.length == null}}" text="没有搜索到相关的转出记录哦～" image="/images/default/default.png" />
+</view>

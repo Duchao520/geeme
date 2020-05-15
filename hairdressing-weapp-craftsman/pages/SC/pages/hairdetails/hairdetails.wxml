@@ -1,0 +1,153 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function formatDate(date) {
+    return date = date.replace('-', '年') + '月'
+  }
+  module.exports = {
+    formatDate: formatDate
+  }
+</wxs>
+<AppBackHome storeId="{{staffInfo.shopId}}" />
+<view class='header' style='background-image:url({{format.getImageUrl(staffInfo.shopImage)}})'>
+  <!-- 分享按钮 -->
+  <!-- <view class='productimg-button share' bindtap='initPic'></view> -->
+  <view class='hairinfo'>
+    <view class="hairinfo-left">
+      <image class='hairavatar' src="{{format.getImageUrl(staffInfo.avatar)}}" mode='aspectFill'></image>
+    </view>
+    <view class='hairtext'>
+      <view class='htname'>
+        <view class='hn-text'>{{staffInfo.name}}</view>
+      </view>
+      <view class='htlevel'>{{staffInfo.levelName}}</view>
+      <view class='htaddress icon--address'>
+        {{format.getCity(staffInfo.city)}}{{staffInfo.shopName}}
+      </view>
+      <view class='stores'>
+        <AppAvgScore width="24rpx" height="24rpx" space="8rpx" score="{{staffInfo.score}}" />
+        <view class='reservation'>
+          <text>预约</text>
+          <text style='color:#999;'>{{staffInfo.appointmentMount}}</text>
+        </view>
+        <view class='showworks'>
+          <text>作品</text>
+          <text style="color:#999;">{{staffInfo.worksMount}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='follow-button {{staffInfo.focus ? "followed" : ""}}' wx:if="{{!isSelf}}" catchtap="follow">{{staffInfo.focus ? "已关注" : "关注"}}</view>
+  </view>
+</view>
+
+<view class='content'>
+  <view class='content-head'>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <AppTabs tabs="{{tabList}}" currentTab="{{show}}" bindswitchTab="switchTab"></AppTabs>
+    </AttachTop>
+  </view>
+
+  <!-- 简介 -->
+  <view class='content-show {{isFixed?"active":""}}' wx:if="{{show==0}}">
+    <view class='des-container' wx:if="{{format.IF(staffInfo.skillList)}}">
+      <view class='des-title'>擅长</view>
+      <view class='long-items'>
+        <view class='long-item' wx:for="{{staffInfo.skillList}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+    </view>
+
+    <view class='des-container'>
+      <view class='des-title'>签名</view>
+      <view class='des-content'>{{staffInfo.sign || "暂无"}}</view>
+    </view>
+
+    <view class='des-container'>
+      <view class='des-title'>简介</view>
+      <view class='des-content'>{{staffInfo.description || "暂无"}}</view>
+    </view>
+
+    <view class="des-container">
+      <view class="des-title">获奖经历</view>
+      <view class="des-content">
+        {{staffInfo.awardsList.length ? '' : '暂无'}}
+        <view class="des-experience" wx:for="{{staffInfo.awardsList}}" wx:key="{{index}}">
+          <text>{{wxs.formatDate(item.date)}}</text>
+          <text>{{item.awardName}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="des-container">
+      <view class="des-title">从业经历</view>
+      <view class="des-content">
+        {{staffInfo.workList.length ? '' : '暂无'}}
+        <view class="des-experience" wx:for="{{staffInfo.workList}}" wx:key="{{index}}">
+          <text>{{wxs.formatDate(item.dateFrom)}}至{{wxs.formatDate(item.dateTo)}}</text>
+          <text>{{item.workExperience}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="des-container">
+      <view class="des-title">学习经历</view>
+      <view class="des-content">
+        {{staffInfo.educationList.length ? '' : '暂无'}}
+        <view class="des-experience" wx:for="{{staffInfo.educationList}}" wx:key="{{index}}">
+          <text>{{wxs.formatDate(item.dateFrom)}}至{{wxs.formatDate(item.dateTo)}}</text>
+          <text>{{item.eduExperience}}</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 作品 -->
+  <view class='content-works' wx:if="{{show==1}}">
+    <block wx:if="{{worksInfo.list.length}}">
+      <view style='padding:0 32rpx 200rpx;margin-top:20rpx;'>
+        <Masonry list="{{worksInfo.list}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_works2.png" text="TA还没有发布作品哦~" top="100rpx" />
+    </block>
+  </view>
+  <!-- 评价 -->
+  <view class='content-ident' wx:if="{{show==2}}" style='padding-bottom:200rpx;'>
+    <!-- 评价顶部 -->
+    <block wx:if="{{!assessmentInfo.ifShowDefault}}">
+      <view class='evaluationTop'>
+        <view class='Score'>
+          <view class='scoreLeft'>
+            <text>{{format.fixNum(assessmentInfo.avgScore, 1)}}</text>
+            <AppAvgScore width="30rpx" height="30rpx" space="10rpx" score="{{assessmentInfo.avgScore}}"></AppAvgScore>
+          </view>
+        </view>
+        <view class='evaluationData'>
+          <view class='evaluationDataItem {{assessmentInfo.tagId === item.tagId ? "active" : ""}}' wx:for="{{assessmentInfo.tags}}" wx:key="{{index}}" bindtap='changeTagId' data-id="{{item.tagId}}">{{item.tagName}}({{item.num}})</view>
+        </view>
+      </view>
+      <comments list="{{assessmentInfo.list}}" />
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_comment.png" text="暂无评价哦，快去预约抢沙发吧" top="100rpx" />
+    </block>
+  </view>
+  <!-- 相册 -->
+  <view class='content-photo' wx:if="{{show==3}}">
+    <block wx:if="{{staffInfo.personPhotos && staffInfo.personPhotos.length}}">
+      <view class="photo-container" style='margin-top:40rpx;padding-bottom:200rpx;'>
+        <view class='photo-item' wx:for="{{staffInfo.personPhotos}}" wx:key="{{index}}">
+          <image src="{{format.getImageUrl(item)}}" mode='aspectFill' bindtap='$previewImage' data-urls="{{format.getImageArr(staffInfo.personPhotos)}}" data-current="{{format.getImageUrl(item)}}"></image>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_photos.png" text="TA还没有上传相册哦" top="100rpx" />
+    </block>
+  </view>
+</view>
+
+<!-- 预约按钮 -->
+<view class='appointment'>
+  <view class='appointment-item' bindtap='addAppointment'>立即预约</view>
+</view>
+<canvas class='canvas' id='canvas' canvas-id='canvas' />

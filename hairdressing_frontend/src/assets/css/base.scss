@@ -1,0 +1,134 @@
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex_column_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_row_center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+*::-webkit-scrollbar-thumb {
+    cursor: pointer;
+}
+
+//顶部切换tab样式
+.container_empty {
+    margin-top: 20px;
+}
+
+.appo_submenu {
+    width: 100%;
+    height: 60px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    .tabs {
+        flex: 1;
+        span {
+            display: inline-block;
+            color: #9B9B9B;
+            height: 60px;
+            line-height: 60px;
+            font-size: 16px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        .router-link-active {
+            box-sizing: border-box;
+            color: #E22C37;
+            border-bottom: 2px solid #E22C37;
+        }
+    }
+    .add_appo {
+        button {
+            width: 140px;
+            height: 40px;
+            border: none;
+            // background:#FB598F;
+            background: -webkit-linear-gradient(to left, #FB598F, #F52D56);
+            /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(to left, #FB598F, #F52D56);
+            /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(to left, #FB598F, #F52D56);
+            /* Firefox 3.6 - 15 */
+            background: -ms-linear-gradient(to left, #FB598F, #F52D56);
+            /* Firefox 3.6 - 15 */
+            background: linear-gradient(to left, #FB598F, #F52D56);
+            /* 标准的语法 */
+            // background: url('../../../static/images/icon_bt_add.png') 100% 100% no-repeat;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            // border-radius:20px;
+            margin: 0 34px 0 20px;
+            cursor: pointer;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            padding-left: 12px;
+            line-height: 40px;
+            .add_btn {
+                width: 17px;
+                height: 17px;
+                vertical-align: middle;
+                margin-left: 12px;
+                color: #fff;
+                font-size: 14px;
+                padding: 4px;
+                border-radius: 50%;
+                background: #F6315B;
+            }
+            img {
+                width: 24px;
+                height: 24px;
+                margin-left: 12px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+// 动画
+.slide-fade-enter,
+.slide-fade-leave-active {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: all 5s ease-in-out;
+    -webkit-transition: all 5s ease-in-out;
+    -moz-transition: all 5s ease-in-out;
+    -ms-transition: all 5s ease-in-out;
+    -o-transition: all 5s ease-in-out;
+}
+
+// 清除浮动
+.clearfix {
+    clear: both;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

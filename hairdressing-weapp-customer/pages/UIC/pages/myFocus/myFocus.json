@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "StaffCard":"/components/Card/StaffCard/StaffCard"
+  },
+  "navigationBarTitleText": "我的关注"
+}

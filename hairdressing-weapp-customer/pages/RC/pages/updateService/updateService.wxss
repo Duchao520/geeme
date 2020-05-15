@@ -1,0 +1,85 @@
+/* 发型师信息 */
+
+.container {
+  width: 100%;
+  height: auto;
+  padding: 28rpx 32rpx 200rpx;
+} 
+
+.header {
+  width: 100%;
+  padding: 24rpx 26rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  box-shadow: 0 0 8rpx 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hairavatar {
+  width: 96rpx;
+  height: 96rpx;
+  background: no-repeat center center/100% auto;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.hairname {
+  line-height: 48rpx;
+  color: #263238;
+  font-size: 34rpx;
+}
+
+.hairlevel {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hl-title {
+  display: inline-block;
+  color: #333;
+  line-height: 56rpx;
+  font-size: 24rpx;
+  margin-right: 12rpx;
+}
+
+.hairaddress {
+  height: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.ha-icon {
+  width: 18rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAYCAMAAADAi10DAAAAXVBMVEUAAAC4ydDEy9ewv8axv8axvsaxv8axvsazwMixvsWxvsaxwMeywMexwMixv8awv8axv8awv8Wxv8Wxv8axv8eyv8ayv8axv8i0wMa1wMi1xcXHx+OwwMWyvsewvsWZh0eNAAAAHnRSTlMACgf67NO68j3QopVAROff18+bf2pXTDcqIB8EhXroT2xQAAAApklEQVQY03WP2RKDIAxFL4iC4Fbr1try/5/ZSUgVHzwvZM7cLIBxoTamDg5/3lUUqlcyq4kHZuWMGHGUk66ikF7AcVG2SrUllw0CGwUAml0APy2YhuoBhuaopDTNs+hI6Ux1aWGTNVaY6Kk1hx5UT1CWndPasbEKeF5P/VC8jxk9L19ytYAZT+ORUIMI+piw2WTshoM5qfk0cskXF3yMI67s3u+45QdzcRjDEixsZAAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+  margin-right: 4rpx;
+}
+
+.ha-text {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.page-footer{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:120rpx;
+  line-height:120rpx;
+  font-size:34rpx;
+  background-color:#fff;
+  border-top: 1px solid #efeff4;
+}
+
+.footer-button{
+  float:right;
+  width:240rpx;
+  height:100%;
+  text-align: center;
+  background:#f52d56;
+  color:#fff;
+}

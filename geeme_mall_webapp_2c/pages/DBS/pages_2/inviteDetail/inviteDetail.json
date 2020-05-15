@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "邀请奖金明细",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "AppOptions": "/components/App/AppOptions/AppOptions",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

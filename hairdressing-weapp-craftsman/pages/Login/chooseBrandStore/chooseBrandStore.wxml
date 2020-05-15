@@ -1,0 +1,30 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<block wx:if="{{brandList && brandList.length}}">
+  <view class="chooseBrandStore">
+    <view class='pageTitle'>请选择您要去的门店</view>
+    <view class='pageContent'>
+      <view class='pageItem' wx:for="{{brandList}}" wx:key="{{index}}">
+        <view class='brandMoudle'>
+          <image src='{{format.getImageUrl(item.brandLogo)}}' lazy-load mode="aspectFill"></image>
+          <view class='brandName'>{{item.brandName}}</view>
+        </view>
+        <view class='storeMoudle'>
+          <view class='storeItem {{currentStoreId == storeItem.storeId ? "active" : ""}}' wx:for="{{item.storeList}}" wx:key="{{index}}" wx:for-item="storeItem" bindtap='setBrandAndStore' data-store="{{storeItem}}">
+            <image src='{{format.getImageUrl(storeItem.storeImage)}}' class='storeImage' mode="aspectFill"></image>
+            <view class='storeInfo'>
+              <view class='storeInfo-top'>
+                <text>{{format.getCity(storeItem.storeCity)}}</text>
+                <text>{{storeItem.storeName}}</text>
+              </view>
+              <view class='storeInfo-bottom {{currentStoreId == storeItem.storeId ? "icon--address_red" : "icon--address"}} text--ellipsis_1'>{{storeItem.storeAddress}}</view>
+            </view>
+            <view class="store-state {{storeItem.status == 'ONLINE' || storeItem.status == 'TRYING' ? '' : 'unable'}}">{{storeItem.status == 'ONLINE' || storeItem.status == 'TRYING' ? '营业中' : '暂停营业'}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_store.png" text="你还没有所属门店，暂时无法使用哦~" />
+</block>

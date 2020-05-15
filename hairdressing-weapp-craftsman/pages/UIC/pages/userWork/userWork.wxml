@@ -1,0 +1,8 @@
+<block wx:if="{{list && list.length}}">
+  <view style='padding:30rpx 32rpx;'>
+    <Masonry list="{{list}}" column-space="30rpx" isMine generic:masonry-item="WorksCard"></Masonry>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_works2.png" text="你还没有发布作品哦~" />
+</block>

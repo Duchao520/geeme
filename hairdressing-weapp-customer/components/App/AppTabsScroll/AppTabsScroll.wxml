@@ -1,0 +1,12 @@
+<view class="component-container" style="padding:{{padding}}">
+  <scroll-view scroll-x>
+    <view class="tabs-container">
+      <view class="activeLine" style="left:{{lineLeft}}" wx:if='{{currentTab >= 0}}'></view>
+      <view wx:for="{{tabs}}" wx:key="index" class="{{tabs.length > 7 ? 'tabs-item-scroll' : 'tabs-item'}} {{currentTab == index ? 'active' : ''}}" bindtap="switchTab" data-index="{{index}}" data-type="{{item.type}}" data-id="{{item.id}}">
+        <view style="width: {{(item.showName.length || item.length) * 30}}rpx">{{item.showName ? item.showName : item}}</view>
+        <view style="width: {{(item.showName.length || item.length) * 30}}rpx" class='hiddenLine'></view>
+      </view>
+      <!-- <view style="width: 200rpx;height: 20rpx;"></view> -->
+    </view>
+  </scroll-view>
+</view>

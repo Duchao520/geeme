@@ -1,0 +1,248 @@
+.VipCardDetail{
+  overflow:hidden;
+}
+
+.card-instruction {
+  margin-top:340rpx;
+  padding-top:200rpx;
+  padding-bottom:200rpx;
+  background-color: white;
+  box-shadow: 0rpx -8rpx 8rpx 0rpx rgba(174, 184, 229, 0.3);
+}
+
+/* 底部按钮 */
+
+.button {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 40rpx;
+  background-color: white;
+  z-index:100;
+}
+
+.agreement {
+  width: 100%;
+  height: 40rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.selectIcon {
+  width: 32rpx;
+  height: 32rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAhFBMVEUAAAD2LVb/NWD/Tnb1LVf2Llb2Llf2Llf2LVf3Llf2Llf1LVb4L1b5L1r1LVb////+9vj95ur2Q2f1PGL++/z+6u72UHL2R2z1NFz1MVn+8PP93+b919780Nn8ydP7tsT7q7z6pbf5jaL4eZP3Z4X3V3j8wMz7u8j6mq75k6j4c473Xn2FGwNaAAAADnRSTlMA9BgG8ePZx7+WlYJHLVmhsncAAAD9SURBVDjLhZPpuoIgEIZBjBBpxiWz/Zy2c1ru//5KDaSw5v0jjx/D7KxHGK0k51JpI1hIlMTgiJPoTRYphxd4Kl7MxxAw9h6ZjGCA0cTZd3p4I3r6t++HXro4UvhI2jrg8BHeOEngCwljIoYvxIKZYWXxmxfN1zA9qJcbzNoLmqkhfZZjPmtPisnuV117+jHDTdkdJXsmmWcnp++n+DO3idoLO6wKGx7ipa+EdbHY4rq1KreYXcEhXZDlCv+a8FZYnaBH9WnWS9zBcYnrAjy0V6jbI7Yp/s/Bx/ilPiDiOSi136x9dQiaRbWbGhhy5KihJceeXhx69ejlJdf/DkJPLgMfjiAXAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  border-radius: 50%;
+}
+
+.text {
+  color: #666;
+  font-size: 28rpx;
+  margin-left: 12rpx;
+}
+
+.payButton {
+  width: 684rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: #f52d56;
+  color: white;
+  font-size: 34rpx;
+  text-align: center;
+  line-height: 100rpx;
+  margin: 0 auto;
+}
+
+.card {
+  position: absolute;
+  top:50rpx;
+  left:60rpx;
+  width: 630rpx;
+  height: 400rpx;
+  border-radius: 20rpx;
+  background-size: 100% 100%;
+  color: white;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.card-title {
+  padding-left: 25rpx;
+  margin-top: 25rpx;
+  font-size: 0;
+  display: flex;
+}
+
+.tag{
+  width: 88rpx;
+  height: 32rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #FFFFFF;
+  color: #FFFFFF;
+  font-size: 20rpx;
+  line-height: 30rpx;
+  text-align: center;
+}
+
+.card-logo {
+  margin-right: 12rpx;
+  width: 82rpx;
+  height: 82rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.card-name {
+  font-size: 46rpx;
+  margin-bottom: 4rpx;
+  width: 480rpx;
+}
+
+.card-info {
+  position: absolute;
+  bottom: 10rpx;
+  width: 100%;
+  text-align: right;
+  padding: 0 20rpx;
+}
+
+.card-effect > text {
+  padding: 0 12rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 24rpx;
+  color: #333;
+  border-radius: 18rpx;
+  background-color: #fff;
+}
+
+.card-price {
+  font-size: 56rpx;
+}
+
+/* 权益说明 */
+
+.power {
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+}
+
+.powerTitle {
+  width: 100%;
+  line-height: 48rpx;
+  color: #484848;
+  font-size: 34rpx;
+  text-align: left;
+  margin-bottom: 28rpx;
+  font-weight: 600;
+}
+
+.powerBody {
+  width: 100%;
+  height: auto;
+}
+
+.powerItem {
+  width: 100%;
+  line-height: 48rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.point {
+  margin-right: 10rpx;
+  background-color: black;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+}
+
+.powerText{
+  position: relative;
+  font-size:28rpx;
+  padding-left:28rpx;
+  color:#666;
+}
+
+.powerText::before{
+  position: absolute;
+  left:0;
+  top:0;
+  content:'● ';
+  color:#000;
+}
+
+.detail-text {
+  margin-left: 10rpx;
+  color: #58c9f3;
+}
+
+.notes-container{
+  margin-top:20rpx;
+}
+
+.notes {
+  margin: 0 32rpx;
+  border-bottom: 1px solid #efeff4;
+}
+
+.notes:first-child{
+  border-top:1px solid #efeff4;
+}
+
+.notes-title {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+}
+
+.notes-title.border-top {
+  border-top: 1px solid #efeff4;
+}
+
+.notes-title > view {
+  height: 100%;
+  display: inline-block;
+}
+
+.notes-title-left {
+  float: left;
+  font-weight: 600;
+  color: #484848;
+}
+
+.notes-title-right {
+  float: right;
+  color: #aaa;
+}
+
+.notes-title-right > text {
+  background: no-repeat right center;
+  background-size: 18rpx 12rpx;
+  padding-right: 24rpx;
+}
+
+.notes-detail{
+  font-size:28rpx;
+  color:#666;
+  padding-bottom:26rpx;
+}
+
+.cover{
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index:1000;
+}

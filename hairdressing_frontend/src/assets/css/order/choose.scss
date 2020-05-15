@@ -1,0 +1,270 @@
+@import "../scrollbar.scss";
+// 选择开单人
+@import "@/assets/css/order/shadow.scss";
+
+@mixin remark {
+  line-height: 37px;
+  color: #333333;
+  font-size: 12px;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  .input {
+    flex: auto;
+    border: none;
+    outline: none;
+    color: #666666;
+    font-size: 12px;
+    margin: 0;
+    line-height: 37px;
+  }
+  ::-webkit-input-placeholder {
+    color: #999;
+  }
+  :-moz-placeholder {
+    color: #999;
+  }
+  ::-moz-placeholder {
+    color: #999;
+  }
+  :-ms-input-placeholder {
+    color: #999;
+  }
+}
+
+.choose_person-wrap {
+  padding: 20px 0 20px 20px;
+
+  .c-header-search {
+    width: 360px;
+  }
+}
+
+// 选择服务项目
+.choose-service-wrap {
+  box-sizing: content-box;
+  padding: 20px 0 20px 0px;
+  overflow: hidden;
+  height: calc(100vh - 145px);
+  @include scroll-bar(8px, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  @include display-flex(flex);
+
+  .choose-goods-left-wrap {
+    height: 100%;
+    @include flex(1);
+    display: flex;
+    flex-direction: column;
+    .header-search {
+      // width: 260px;
+      display: flex;
+      padding: 0 20px;
+      justify-content: space-between;
+    }
+
+    .content-list {
+      flex: auto;
+      width: 100%;
+      overflow-y: auto;
+
+      .choose-service-list {
+        height: 100%;
+
+        .card-lists {
+          height: calc(100%);
+          display: flex;
+          flex-wrap: wrap;
+          overflow-y: auto;
+          @include scroll-y(6px);
+          padding: 20px;
+          box-sizing: border-box;
+          align-content: flex-start;
+        }
+        .search-default{
+          height: calc(100vh - 180px);
+        }
+      }
+    }
+  }
+  // 旧的 choose-service-right-box 组件样式所在位置
+}
+.choose-goods-right-warp {
+  width: 410px;
+  // height: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background: #fff;
+  @include border-radius(6px);
+  // position: relative;
+  margin: 0 20px;
+  box-shadow: 0px 0px 8px 0px rgba(174, 184, 229, 0.3);
+  overflow: hidden;
+
+  .choose-service-rightbox {
+    box-sizing: border-box;
+    height: 100%;
+    .top-content {
+      box-sizing: border-box;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .info-list {
+        position: relative;
+        box-sizing: border-box;
+        padding: 10px 0 0 20px;
+
+        .list-item {
+          padding-bottom: 10px;
+          font-size: 14px;
+          color: #333333;
+
+          i {
+            color: #58c9f3;
+            display: inline-block;
+            margin-left: 10px;
+          }
+
+          .title,
+          .span {
+            color: #666666;
+            margin-right: 20px;
+            line-height: 24px;
+          }
+
+          img {
+            @include border-radius(50%);
+            width: 35px;
+            height: 35px;
+            vertical-align: middle;
+            margin-right: 5px;
+          }
+
+          .name {
+            font-weight: 600;
+          }
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          background: #f0f1f4;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+      }
+
+      .info-box {
+        box-sizing: border-box;
+        padding: 15px 0 20px 20px;
+        position: relative;
+
+        .title {
+          color: #333333;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .customer-content {
+          // padding-top: 10px;
+
+          .box-item {
+            display: inline-block;
+          }
+
+          .box-item-userbox {
+            margin-top: 10px;
+          }
+        }
+
+        .service-list {
+          margin-top: 10px;
+          margin-right: 20px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          @include scroll-y(6px);
+        }
+
+        .clear {
+          float: right;
+          margin-right: 20px;
+          color: #58c9f3;
+          font-size: 14px;
+          cursor: pointer;
+        }
+      }
+
+      .info-box.selected-lists {
+        flex: auto;
+        overflow-y: auto;
+        @include scroll-bar(6px, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+
+        .title-service {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      .info-box.select-customer {
+        border-bottom: 1px solid #f0f1f4;
+        padding-bottom: 10px;
+      }
+    }
+
+    .info-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+
+      .select-vip-card-enter-active {
+        transition: all 0.3s cubic-bezier(0.465, 0.325, 0.265, 1.225);
+      }
+
+      .select-vip-card-leave-active {
+        transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+      }
+
+      .select-vip-card-enter, .select-vip-card-leave-to {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      .info-footer-settle-accounts {
+        display: flex;
+        border-top: 1px solid #f0f1f4;
+
+        .buttons {
+          display: flex;
+          .el-button {
+            width: 110px;
+            line-height: 76px;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            border: none;
+            flex: auto;
+            margin: 0;
+            border-radius: 0;
+          }
+
+          .up {
+            background: #58c9f3;
+          }
+
+          .open {
+            background: #ff6d61;
+          }
+        }
+      }
+    }
+  }
+}

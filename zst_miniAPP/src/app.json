@@ -1,0 +1,177 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/personal/main",
+    "pages/isCarder/main",
+    "pages/shopdetail/main",
+    "pages/loginpage/main",
+    "pages/worldBuy/main",
+    "pages/nearbyShop/main",
+    "pages/webPay/main",
+    "pages/scanPay/main"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "助商通",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "subPackages": [
+    {
+      "root": "pages/packageA",
+      "pages": [
+        "pages/currentStoreLink/main",
+        "pages/lakeWater/main",
+        "pages/createShare/main",
+        "pages/currentStoreAct/main",
+        "pages/searChpage/main",
+        "pages/worldDetail/main",
+        "pages/aboutUs/main",
+        "pages/myaddress/main",
+        "pages/inlineshop/main",
+        "pages/howCreat/main",
+        "pages/replPhone/main",
+        "pages/orderpage/main",
+        "pages/verInf/main",
+        "pages/perInfo/main",
+        "pages/comPro/main",
+        "pages/svipRules/main",
+        "pages/collectPage/main",
+        "pages/purHistory/main",
+        "pages/allMyDetail/main",
+        "pages/inviterDetail/main",
+        "pages/incomeDetail/main",
+        "pages/inviter/main",
+        "pages/goeditor/main",
+        "pages/vipCenter/main",
+        "pages/memPro/main",
+        "pages/enterShop/main",
+        "pages/freeTourism/main",
+        "pages/upgradeVip/main",
+        "pages/worldPay/main",
+        "pages/qrPay/main",
+        "pages/signPage/main",
+        "pages/lookSayDetail/main",
+        "pages/wxPublicPay/main",
+        "pages/worldPayEnd/main",
+        "pages/bindingPage/main",
+        "pages/refundMoney/main",
+        "pages/couponList/main",
+        "pages/cardFriend/main",
+        "pages/couponDetail/main",
+        "pages/couQrCode/main",
+        "pages/couponPay/main",
+        "pages/couponStore/main",
+        "pages/lotterRecord/main",
+        "pages/minLottery/main",
+        "pages/mypurhistory/main",
+        "pages/purDetail/main",
+        "pages/lookGoodsCode/main",
+        "pages/orderSuc/main",
+        "pages/minDrawRecord/main",
+        "pages/drawItem/main",
+        "pages/payLottery/main",
+        "pages/allienceDesc/main",
+        "pages/packet/main",
+        "pages/withdrawTeach/main"
+      ]
+    },
+    {
+      "root": "pages/packageB",
+      "pages": [
+        "pages/shareCardDetail/main",
+        "pages/payMoney/main",
+        "pages/svipCard/main",
+        "pages/shopRecDet/main",
+        "pages/couponPage/main",
+        "pages/paySuc/main"
+      ]
+    },
+    {
+      "root": "pages/packageC",
+      "pages": [
+        "pages/index/main",
+        "pages/canJoin/main",
+        "pages/cutHistory/main",
+        "pages/activeRules/main",
+        "pages/lookCode/main",
+        "pages/cutFree/main",
+        "pages/goodsDetail/main",
+        "pages/opingActive/main",
+        "pages/expiredCode/main",
+        "pages/commonPage/main",
+        "pages/winRule/main"
+      ]
+    },
+    {
+      "root": "pages/packageD",
+      "pages": [
+        "pages/carderPay/main",
+        "pages/mySvipcard/main",
+        "pages/svipCardDetail/main",
+        "pages/payHistory/main",
+        "pages/myShareCard/main",
+        "pages/togShareDetail/main",
+        "pages/creatVipCard/main",
+        "pages/howMoney/main",
+        "pages/shareCardHistory/main",
+        "pages/shaHisDetail/main",
+        "pages/shopRecom/main",
+        "pages/typeRecome/main",
+        "pages/nearTypeShop/main",
+        "pages/notFound/main",
+        "pages/noticeMes/main",
+        "pages/howOpenMoney/main",
+        "pages/downApp/main",
+        "pages/enjoyMemDis/main",
+        "pages/Monologue/main",
+        "pages/shareParent/main",
+        "pages/cardpaySuc/main",
+        "pages/carderPay_hangbai/main",
+        "pages/rechargeHistory/main",
+        "pages/alliance/main"
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#202020",
+    "selectedColor": "#ec5045",
+    "list": [{
+      "pagePath": "pages/index/main",
+      "text": "首页",
+      "iconPath": "/static/img/first.png",
+      "selectedIconPath": "/static/img/first_red.png"
+    },
+      {
+        "pagePath": "pages/worldBuy/main",
+        "text": "话呗购",
+        "iconPath": "/static/img/world.png",
+        "selectedIconPath": "/static/img/worldRed.png"
+      },
+      {
+        "pagePath": "pages/isCarder/main",
+        "text": "卡主",
+        "iconPath": "/static/img/isCargrey.png",
+        "selectedIconPath": "/static/img/isCarred.png"
+      },
+      {
+        "pagePath": "pages/nearbyShop/main",
+        "text": "周边商家",
+        "iconPath": "/static/img/nearBy.png",
+        "selectedIconPath": "/static/img/nearByRed.png"
+      },
+      {
+        "pagePath": "pages/personal/main",
+        "text": "个人中心",
+        "iconPath": "/static/img/mine.png",
+        "selectedIconPath": "/static/img/mine_red.png"
+      }
+    ]
+  }
+}

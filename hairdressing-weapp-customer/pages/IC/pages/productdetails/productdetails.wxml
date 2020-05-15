@@ -1,0 +1,424 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  function JudgeCoupon(coupon) {
+    var useUnLimited = coupon.couponTemplateSnapshot.useUnLimited,
+      purchaseAboveMoney = coupon.couponTemplateSnapshot.purchaseAboveMoney,
+      money = coupon.couponTemplateSnapshot.money;
+    if (useUnLimited) {
+      return money + "元无门槛现金券";
+    } else {
+      return "满" + purchaseAboveMoney + "元减" + money + "元"
+    }
+  }
+
+  module.exports = {
+    JudgeCoupon: JudgeCoupon
+  }
+</wxs>
+<block wx:if="{{productInfo.productId || productInfo.id || HTTP_REQUEST_SWITCHER}}">
+  <!-- <image src="{{goodsPic}}" style="width: 750rpx;height: 400rpx;"></image> -->
+  <canvas canvas-id="goodsPic" style="width: 750rpx;height: 400rpx;position: absolute;opacity: 0;z-index: -1;top: -400rpx;left:-750rpx;"></canvas>
+
+  <!-- <rich-text nodes="{{productInfo.richText}}"></rich-text> -->
+  <!-- <view>{{productInfo.richText[0]}}</view> -->
+  <view class='container' wx:if="{{productInfo}}" style="z-index: 1;">
+    <!-- 商品信息 -->
+    <view class='productinfo'>
+      <view class='productimg'>
+        <!-- 以后再打开 -->
+        <view class="productimg-button shopCar iconfont icongouwuche fc-ffffff fz-40" bindtap="jumpShopCar">
+          <view class="car-count" wx:if="{{shopCarCount}}">{{shopCarCount}}</view>
+        </view>
+        <view class='productimg-button collect {{productInfo.collect ? "active" : ""}}' bindtap='collect'></view>
+        <view class='productimg-button share' bindtap='$set' data-key="ifShowSharePop" data-value="{{true}}"></view>
+        <view class='swiper-container'>
+          <view class='soldQuantity'>已售 {{productInfo.salesCount}}</view>
+          <swiper class="image-swiper" bindchange="mp4Pause" indicator-dots="{{productInfo.video ? productInfo.productImage.length+1 > 1 : productInfo.productImage.length > 1}}" autoplay="{{SWIPER_SWITCHER}}" interval='3000' duration='1000' circular>
+            <block wx:if="{{productInfo.video}}">
+              <swiper-item>
+                <video style="width: 750rpx;height: 750rpx;" poster="{{format.getImageUrl(productInfo.productImage[0] + '?x-oss-process=image/resize,m_fill,h_750,w_750')}}" controls="{{false}}" show-play-btn="{{false}}" show-center-play-btn="{{false}}" id="mp4" src="{{format.getImageUrl(productInfo.video)}}"
+                  bindended="mp4End" bindtap="mp4Play"></video>
+                <view style="position: absolute;top: 0;left:0;right:0;bottom: 0;background: rgba(0,0,0,.5)" wx:if="{{SWIPER_SWITCHER}}">
+                  <image src="/images/button/icon_play.png" class="video-play" bindtap="mp4Play"></image>
+                </view>
+              </swiper-item>
+            </block>
+            <block wx:for="{{productInfo.productImage}}" wx:key="index">
+              <swiper-item>
+                <image src="{{format.getImageUrl(item + '?x-oss-process=image/resize,m_fill,h_750,w_750')}}" class="slide-image" width="750rpx" height="750rpx" mode='aspectFill' bindtap='$previewImage' data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(productInfo.productImage)}}"
+                  lazy-load/>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </view>
+      <!-- 拼团价 -->
+      <view class="groupBuy-module" wx:if="{{format.isNumber(package.groupPrice)}}">
+        <view class="groupBuy-left">
+          <view class="groupBuy-left-l1 flex_box align_center">
+            <text style="font-size:26rpx;">¥</text>{{package.groupPrice}}
+            <image src="/images/icon_tag_yellow.png" bindtap="showGroupModal" wx:if="{{package.cashReward}}" style="display: block;width: 134rpx;height: 50rpx;margin-left: 12rpx;"></image>
+          </view>
+          <view class="groupBuy-left-l2">
+            <text>{{package.groupCondition}}人拼团价</text>
+          </view>
+        </view>
+        <view class="groupBuy-right">
+          <view class="groupBuy-right-text text-center">
+            <block wx:if="{{package.countDown}}">
+              <view class="text-center">距结束还剩</view>
+              <view class="text-center">
+                <text class="groupBuy-right-time">{{format.formatNumber(package.hour)}}</text>:
+                <text class="groupBuy-right-time">{{format.formatNumber(package.minute)}}</text>:
+                <text class="groupBuy-right-time">{{format.formatNumber(package.second)}}</text>
+              </view>
+            </block>
+            <block wx:else>
+              享更多优惠
+            </block>
+          </view>
+        </view>
+      </view>
+      <!-- 生日惊喜价 -->
+      <view class="birthday-module" wx:if="{{productInfo.customerBirthday && package.birthdayPrice}}">
+        <view class="birthday-left">
+          <view class="birthday-price">
+            <text style="font-size:26rpx;">¥</text>{{package.birthdayPrice}}</view>
+          <view class="birthday-price-des">
+            <view class="birthday-des-triangle"></view>
+            <view class="birthday-des-text">生日惊喜价</view>
+          </view>
+        </view>
+        <view class="birthday-right">
+          <view class="right-container">
+            <view class="birthday-right-1">距结束倒计时</view>
+            <view class="birthday-right-2">
+              <view class="birthday-time-box">{{format.formatNumber(_birthdayCountdown.hour)}}</view>
+              <text>:</text>
+              <view class="birthday-time-box">{{format.formatNumber(_birthdayCountdown.minute)}}</view>
+              <text>:</text>
+              <view class="birthday-time-box">{{format.formatNumber(_birthdayCountdown.second)}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 商品标题 -->
+      <view class='productdes'>
+        {{productInfo.title}}
+      </view>
+
+      <view class='productprice' style="height:{{productInfo.levelName && package.specialPrice != package.price ? '90rpx' : '110rpx'}}">
+        <view class='price-num'>
+          <view class='specialprice'>
+            <text style="font-size:30rpx;">￥</text>
+            <text>{{package.experiencePrice ? package.experiencePrice : package.specialPrice}}</text>
+          </view>
+          <view class='normalprice' wx:if="{{package.specialPrice != package.price}}">
+            <text style="font-size:20rpx;">￥</text>
+            <text>{{package.price}}</text>
+          </view>
+        </view>
+        <view wx:if="{{!isProduct}}" class='appointmentbtn' bindtap='setservice'>预约</view>
+      </view>
+      <view class="customer-level-module">
+        <view class="customer-level" wx:if="{{package.expPriceActivityId}}">新人专享价</view>
+        <view class="customer-level" wx:elif="{{productInfo.levelName && package.specialPrice != package.price}}">{{productInfo.levelName}}专享价</view>
+      </view>
+    </view>
+
+
+    <!-- 优惠信息等 -->
+    <view class='preferential'>
+      <!-- 优惠券 -->
+      <view class='flex_box' style="border-bottom: 2rpx solid #EFEFF4;padding:30rpx 0;" hidden="{{couponSendRecordList.length==0}}">
+        <view class="slogan">优惠券</view>
+        <view style="width: 600rpx;">
+          <view class="flex_box align_center justify_space_between" style="margin-bottom:12rpx;" wx:for="{{couponSendRecordList}}" wx:key="index">
+            <view class="fz-28 fc-666666">{{wxs.JudgeCoupon(item)}}</view>
+            <button class="plain" hover-class="hover-plain" bindtap="weBrandCustomerTakeCoupons" data-couponSendRecordId="{{item.id}}">领取</button>
+          </view>
+        </view>
+      </view>
+      <!-- 保障 -->
+      <view class='flex_box' style="border-bottom: 2rpx solid #EFEFF4;padding:30rpx 0;" wx:if="{{productInfo.serverTempInfoList && productInfo.serverTempInfoList.length > 0}}" bindtap='$set' data-key="flagServerTemp" data-value="{{true}}">
+        <view class='cy-alt'>保障</view>
+        <view style="width: 600rpx;flex-wrap: wrap;" class="flex_box">
+          <view class="fz-28 fc-333333 flex_box align_center" style="margin-right: 48rpx;margin-bottom: 24rpx;" wx:for="{{productInfo.serverTempInfoList}}" wx:key="index">
+            <text class="iconfont icongouxuan1 fz-32 fc-F52D56"></text>{{item.title}}</view>
+        </view>
+      </view>
+      <!-- 已选规格 -->
+      <view class='choose' bindtap='setpackage'>
+        <view class='choose-yes' wx:if="{{package.name}}">
+          <view class='cy-alt'>已选</view>
+          <view class='cy-pack'>
+            <text class='packname'>{{package.name}} <text class="fc-999999 fz-22" wx:if="{{package.duration}}">(服务时长: {{package.duration}}分钟)</text></text>
+            <text>x{{package.count}}</text>
+          </view>
+        </view>
+        <view class='choose-no' wx:else>
+          选择规格
+        </view>
+        <view class='moreicontwo arrow--right'></view>
+      </view>
+    </view>
+
+    <!-- 拼团详情 -->
+    <view class="box_padding bg-FFFFFF" style="padding: 0 32rpx;margin-top: 20rpx;">
+      <view class="flex_box justify_space_between align_center" style="border-bottom: 2rpx solid #F8F8F8;padding: 32rpx 0;" wx:if="{{package.customerCount}}">
+        <view class="assessmentHeader-left fz-28">已有
+          <text class="fc-F52D56">{{package.customerCount}}人</text>成功拼团</view>
+        <!-- <view class="assessmentHeader-right arrow--right">
+          <text>谁在拼</text>
+        </view> -->
+      </view>
+      <view class="flex_box justify_space_between" style="padding: 20rpx 0;" wx:if="{{package.groupPurchaseTeamList.length > 0}}" wx:for="{{package.groupPurchaseTeamList}}" wx:key="index">
+        <view class="flex_box align_center">
+          <image class="headPortrait" src='{{format.getImageUrl(item.businessHeadPortrait)}}' mode='aspectFill' lazy-load></image>
+          <view class="fz-26 fc-333333">{{item.businessName}}</view>
+        </view>
+        <view class="flex_box align_center">
+          <view style="margin-right: 54rpx;">
+            <view class="fz-24 fc-999999" style="text-align: right;">还差{{item.numberRemain}}人</view>
+            <view class="fz-24 fc-999999" style="text-align: right;">剩余{{format.formatNumber(item.hour)}}:{{format.formatNumber(item.minute)}}:{{format.formatNumber(item.second)}}</view>
+          </view>
+          <button class="fz-24 fc-ffffff {{item.remainMillisTime <= 0 ?  'bg-cccccc' : ''}}" style="width: 90rpx;height: 48rpx;background: #F52D56;border-radius: 24rpx;line-height: 48rpx;text-align: center;" bindtap="setSelectedGroupTeam" data-index="{{index}}"
+            data-remaintime="{{item.remainMillisTime}}">参团</button>
+        </view>
+      </view>
+
+    </view>
+
+    <!-- 店铺信息 -->
+    <view class='shopInfo' bindtap='toShopDetail'>
+      <image class='shopInfo-image' src='{{format.getImageUrl(productInfo.shopInfo.shopImg + "?x-oss-process=image/resize,m_fill,h_76,w_76")}}' mode='aspectFill' lazy-load></image>
+      <view class='shopInfo-text'>
+        <view class='shopInfo-text-1 text--ellipsis_1'>{{productInfo.shopInfo.brandName}} {{productInfo.shopInfo.shopName}}</view>
+        <view class='shopInfo-text-2 icon--address text--ellipsis_1' catchtap="navigation">{{productInfo.shopInfo.city}}{{productInfo.shopInfo.area}}{{productInfo.shopInfo.address}}</view>
+      </view>
+      <view class='shopInfo-phone' catchtap='makephone'>
+        <view></view>
+      </view>
+    </view>
+
+    <!-- 服务评价 -->
+    <view>
+      <view class="assessmentHeader" bindtap='jumpEvaluationList'>
+        <view class="assessmentHeader-left">
+          <text>评价</text>
+          <text class="amount">（{{productInfo.assessmentNum}}）</text>
+        </view>
+        <view class="assessmentHeader-right arrow--right">
+          <text>好评率{{productInfo.assessmentNum ? productInfo.goodAssessmentRate + '%' : ''}}</text>
+        </view>
+      </view>
+      <comments wx:if="{{productInfo.assessmentNum > 0}}" list="{{assessmentList}}" />
+    </view>
+
+    <!-- 商品详情 相关作品 -->
+    <view style='margin-top:20rpx;'>
+      <view class="box_padding bg-FFFFFF" style="padding: 32rpx 32rpx;margin-bottom: 24rpx;" wx:if="{{productInfo.purchaseNoteInfoList && productInfo.purchaseNoteInfoList.length > 0}}">
+        <block>
+          <view class="fz-36 font-weight" style="margin-bottom: 48rpx;">购买须知</view>
+          <view class="fz-28 fc-666666" style="margin-bottom: 38rpx;letter-spacing:2rpx;line-height: 48rpx;" wx:for="{{productInfo.purchaseNoteInfoList}}" wx:key="index">{{index+1}}.【{{item.title}}】{{item.content}}</view>
+        </block>
+      </view>
+      <AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bindswitchTab="switchTab"></AppTabs>
+      <view class='detail-info' wx:if="{{productInfo.richText}}" hidden='{{currentTab != 0}}'>
+        <!-- 规格参数 -->
+        <view class="box_padding bg-FFFFFF" style="padding: 0 32rpx;margin-bottom: 24rpx;">
+          <view class="flex_box justify_space_between" style="padding: 32rpx 0;border-bottom: 2rpx solid #eeeeee;" wx:for="{{package.paramList}}" wx:key="index">
+            <view class="item-title fz-28 fc-999999" style="width: 120rpx;">{{item.title}}</view>
+            <view class="fz-28 fc-333333" style="width: 540rpx;line-height: 40rpx;">{{item.content}}</view>
+          </view>
+        </view>
+        <image src='{{format.getImageUrl(item + "?x-oss-process=image/resize,m_lfit,w_750")}}' mode="widthFix" lazy-load wx:for="{{productInfo.richTextArr}}" wx:key="index"></image>
+        <view class="box_padding bg-FFFFFF" style="padding: 32rpx 32rpx;margin-bottom: 24rpx;">
+          <block wx:if="{{productInfo.serverTempInfoList && productInfo.serverTempInfoList.length > 0}}">
+            <view class="fz-36 font-weight" style="margin-bottom: 48rpx;">服务保障</view>
+            <view class="fz-28 fc-666666" style="margin-bottom: 38rpx;" wx:for="{{productInfo.serverTempInfoList}}" wx:key="index">
+              <view class="fz-30 fc-333333" style="margin-bottom: 8rpx;">
+                <text class="iconfont icongouxuan1 fz-32 fc-F52D56"></text>{{item.title}}
+              </view>
+              <view style="letter-spacing:2rpx;line-height: 48rpx;">{{item.content}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class='works-container' wx:if="{{works.list}}" hidden='{{currentTab != 1}}'>
+        <Masonry list="{{works.list}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+        <AppDefault wx:if="{{works.list.length == 0}}" image="/images/default/default_works.png" top="100rpx" text="此商品暂无相关动态" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 单独购买 发起拼团 -->
+  <view class="bottom-2" wx:if="{{format.isNumber(package.groupPrice)}}">
+    <view catchtap="clickBuy">
+      <view>¥{{format.getPrice((package.experiencePrice || package.specialPrice) * package.count)}}</view>
+      <view>单独购买</view>
+    </view>
+    <view catchtap="clickGroupBuy" class="{{package.canGroupBuy ? '' : 'bg-cccccc'}}" data-promotion="group" wx:if="{{package.canGroupBuy}}">
+      <view>¥{{package.groupPrice}}</view>
+      <view>发起拼团</view>
+    </view>
+    <view class="bg-cccccc" bindtap="showSeason" data-promotion="group" wx:else>
+      <view>¥{{package.groupPrice}}</view>
+      <view>发起拼团</view>
+    </view>
+  </view>
+  <!-- 加入购物车 立即购买 -->
+  <view class='bottom' wx:else>
+    <view class='bottom-left'>
+      <view class='vip-pricename'>合计</view>
+      <view class='vip-pricenum'>
+        <text style='font-size:30rpx'>￥</text>{{format.getPrice((package.experiencePrice || package.specialPrice) * package.count)}}
+      </view>
+    </view>
+    <view class='bottom-right'>
+      <view class='nowbuy' style="background: #FF7E99;" bindtap="addShopCar">加入购物车</view>
+      <view class='nowbuy' bindtap='clickBuy'>立即购买</view>
+    </view>
+  </view>
+
+  <!-- 弹出套餐 -->
+  <view class='cover {{flagpackage || ifShowSharePop || ifShowGroup || flagGroupModal || flagServerTemp ?"active":""}}' catchtouchmove='{{true}}' bindtap="hide">
+    <view catchtap="prevent">
+      <!-- 选择套餐 -->
+      <view class='package {{flagpackage?"movepackage":""}}'>
+        <image class='packageavatar' mode="aspectFill" src="{{format.getImageUrl(productInfo.productImage[0] + '?x-oss-process=image/resize,m_fill,h_160,w_160')}}" lazy-load></image>
+        <view class='packageinfo'>
+          <view class="packageinfo-left">
+            <view class='packagename text--ellipsis_1'>{{productInfo.shortTitle}}</view>
+            <view class="packagestock" wx:if="{{isProduct}}">库存 {{package.stock}}</view>
+          </view>
+          <view class="packageinfo-right">
+            <view class='packageSpecialPrice'>￥{{package.specialPrice}}</view>
+            <view class='packagePrice' wx:if="{{package.specialPrice != package.price}}">￥{{package.price}}</view>
+          </view>
+        </view>
+        <view class='packagelists'>
+          <view class='packagesize'>规格</view>
+          <view class='packageitems'>
+            <view class='pi-item {{item.selected?"active":""}}' wx:for="{{productInfo.packageList}}" wx:key="index" wx:key="index" data-price="{{item.specialPrice}}" data-id="{{item.id}}" data-count="{{item.count}}" bindtap='setCurrentPackage'>
+              {{item.name}}
+              <view class="pi-item-symbol" wx:if="{{format.isNumber(item.groupPrice)}}">拼</view>
+            </view>
+          </view>
+
+          <view class='packagecount'>
+            <view class='packagetext'>数量{{package.hasGroupBuyNumLimit ? "(剩余" + package.groupBuyNumLimit + "份)" : ""}}</view>
+            <AppASAmount bind:changeAmount="changeAmount" maxAmount="{{package.hasGroupBuyNumLimit ? package.groupBuyNumLimit : -1}}" amount="{{package.count}}" height="56rpx" style="float:right"></AppASAmount>
+          </view>
+        </view>
+        <view class='totalprice'>
+          <view class='totalnum'>
+            <view class='totaldes'>合计金额</view>
+            <view class='totalnumber'>
+              <text style='font-size:24rpx;'>￥</text>{{format.getPrice(_totalPrice)}}</view>
+          </view>
+          <view class='buttonnext' bindtap='choosepackage'>确认选择</view>
+        </view>
+      </view>
+      <!-- 弹出分享 -->
+      <view class='pop-share {{ifShowSharePop ? "active" : ""}}'>
+        <view class='share-title'>
+          分享至
+          <view class="title-close icon--close" bindtap='$set' data-key="ifShowSharePop" data-value="{{false}}"></view>
+        </view>
+        <view class='share-button-container'>
+          <view class='share-button-item canvas' bindtap='sharePic'>
+            <image src="/images/button/share_canvas.png" />
+            <view>生成画报</view>
+          </view>
+          <button class='share-button-item weixin' open-type="share">
+            <image src="/images/button/share_weixin.png" />
+            <view>微信</view>
+          </button>
+        </view>
+      </view>
+      <!-- 选择拼单 -->
+      <view class="pop-group" wx:if="{{ifShowGroup}}">
+        <view class="group-close icon--close_2" bindtap="$set" data-key="ifShowGroup" data-value="{{false}}"></view>
+        <block wx:if="{{!format.isNumber(selectedTeamIndex)}}">
+          <view class="group-title">正在拼单</view>
+          <view class="group-main">
+            <view class="group-item" wx:for='{{package.groupPurchaseTeamList}}' wx:key="index">
+              <image class="group-item-image" src="{{format.getImageUrl(item.businessHeadPortrait)}}" mode="aspectFill" lazy-load></image>
+              <view class="group-item-text">
+                <view class="group-item-name">{{item.businessName}}
+                  <text wx:if="{{item.numberRemain == 1}}">还差1人</text>
+                </view>
+                <view class="group-item-time">剩余{{format.formatNumber(item.hour)}}:{{format.formatNumber(item.minute)}}:{{format.formatNumber(item.second)}}</view>
+              </view>
+              <view class="group-item-button" catchtap="setSelectedGroupTeam" data-index="{{index}}">去拼单</view>
+            </view>
+          </view>
+          <view class="group-footer" wx:if="{{package.groupPurchaseTeamList.length >= 3}}">仅显示3个正在拼单的人</view>
+        </block>
+        <!-- 跟TA拼了 -->
+        <block wx:else>
+          <view class="group-join">
+            <view class="group-join-title">参与
+              <text style="color:#f52d56">{{package.groupPurchaseTeamList[selectedTeamIndex].businessName}}</text> 的拼单</view>
+            <view class="group-join-tips">仅剩
+              <text style="color:#f52d56">{{package.groupPurchaseTeamList[selectedTeamIndex].numberRemain}}</text>个名额，{{format.formatNumber(package.groupPurchaseTeamList[selectedTeamIndex].hour)}}:{{format.formatNumber(package.groupPurchaseTeamList[selectedTeamIndex].minute)}}:{{format.formatNumber(package.groupPurchaseTeamList[selectedTeamIndex].second)}}后结束
+            </view>
+            <view class="group-join-images">
+              <view>
+                <view class="head-symbol">团长</view>
+                <image src="{{format.getImageUrl(package.groupPurchaseTeamList[selectedTeamIndex].businessHeadPortrait)}}" mode="aspectFill" lazy-load></image>
+              </view>
+              <view>
+                <image></image>
+              </view>
+            </view>
+            <button class="group-join-button" catchtap="clickBuy" data-promotion="group" data-teamid="{{package.groupPurchaseTeamList[selectedTeamIndex].id}}">跟TA拼了</button>
+          </view>
+        </block>
+      </view>
+      <!--  拼团返现-->
+      <view class="pop-cash" wx:if="{{flagGroupModal}}">
+        <view class="flex_box align_center justify_space_between" style="margin-bottom: 50rpx;">
+          <view>
+            <view class="fc-F52D56 text-center" style="font-size: 72rpx;">
+              <text class="iconfont iconrenminbidanjia fz-32"></text>{{package.cashReward}}</view>
+            <view class="fz-333333 fz-28 bg-FEB623 text-center" style="width: 150rpx;padding: 8rpx;">团长返现</view>
+          </view>
+          <view style="height: 110rpx;border-left: 2rpx solid #eeeeee;"></view>
+          <view class="fz-32 fc-999999" style="width: 350rpx;">发起拼团并邀请好友拼团成功,可享{{package.cashReward}}元返现</view>
+        </view>
+        <view class="flex_box" style="justify-content: space-around;">
+          <button class="text-center fz-30 fc-ffffff bg-F60F51" style="display: block;width: 200rpx;height: 70rpx;border-radius: 70rpx;line-height: 70rpx;" catchtap="clickBuy" data-promotion="group">抢做团长</button>
+          <button class="text-center fz-30 fc-999999" style="border: 1rpx solid #999999;display: block;width: 200rpx;height: 70rpx;border-radius: 70rpx;line-height: 70rpx;background: #eeeeee;" bindtap="hide">取消</button>
+        </view>
+      </view>
+
+      <!-- 服务保障 -->
+      <view class="pop-bottom" wx:if="{{flagServerTemp}}">
+        <view class="fz-34 fc-333333 text-center font-weight" style="margin-bottom: 40rpx;">服务保障</view>
+        <scroll-view scroll-y style="height: 548rpx;border-bottom: 1rpx solid #eeeeee;margin-bottom: 20rpx;">
+          <view class="fz-24 fc-999999" style="margin-bottom: 38rpx;" wx:for="{{productInfo.serverTempInfoList}}" wx:key="index">
+            <view class="fz-28 fc-333333" style="margin-bottom: 8rpx;">
+              <text class="iconfont icongouxuan1 fz-30 fc-F52D56"></text>{{item.title}}
+            </view>
+            <view style="letter-spacing:2rpx;line-height: 48rpx;">{{item.content}}</view>
+          </view>
+        </scroll-view>
+        <button class="bg-F52D56 fz-34 fc-ffffff font-weight text-center" style="display: block;width: 684rpx;height: 100rpx;margin: 0 auto;border-radius: 50rpx;line-height: 100rpx;" bindtap="hide">关闭</button>
+      </view>
+    </view>
+  </view>
+
+  <view style="position: relative;">
+    <AppFooter></AppFooter>
+  </view>
+
+  <AppBackHome storeId="{{productInfo.storeId || productInfo.shopId}}" />
+
+</block>
+
+<block wx:else>
+  <AppDefault image="/images/default/default_underline.png" width="144rpx" height="144rpx;" text="该商品已下架"></AppDefault>
+
+</block>

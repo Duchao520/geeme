@@ -1,0 +1,11 @@
+.getaddress-button{
+  width: 224rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius:36rpx;
+  margin: 40rpx auto;
+  color: #F52D56;
+  font-size: 28rpx;
+  text-align: center;
+  border: 1px solid #F52D56;
+}

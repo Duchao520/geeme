@@ -1,0 +1,241 @@
+@headerH: 55px;
+@headerB: #ffffff;
+@headerS: 0px 2px 8px 0px rgba(174, 184, 229, 0.3);
+
+@siderW: 185px;
+@siderB: #3788FD;
+@siderTransi: all 0.2s;
+
+/* 主内容区域（一级路由） */
+@mainContentB: #F1F2F7;
+@mainContentH: calc(100vh - 95px);
+
+/* 公用滚动条 */
+.common-scrollbar() {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 页面级 nav content */
+.page-content {
+  height: calc(100vh - 127px);
+  background: #ffffff;
+  box-shadow: 0px -1px 4px 0px rgba(174, 184, 229, 0.3);
+  border-radius: 0 0 6px 6px ;
+  overflow: auto;
+}
+
+/* 普通 content, 不指定高度 边框弧度 4px*/
+.normal-content-one {
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 4px 0px rgba(174, 184, 229, 0.3);
+}
+
+/* 普通 content, 不指定高度 边框弧度 6px*/
+.normal-content-two {
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 4px 0px rgba(174, 184, 229, 0.3);
+}
+
+.full-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #F1F2F7;
+  z-index: 999;
+}
+
+/* 表格组件样式覆写 */
+.ant-table-content() {
+  /deep/.ant-table-thead > tr > th {
+    background: #ffffff !important;
+    padding: 32px 16px 20px 16px;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: none;
+  }
+  /deep/.ant-table-tbody > tr > td {
+    height: 60px;
+    padding: 0 16px;
+    border-bottom: none;
+  }
+  /deep/.ant-table-tbody tr:nth-child(odd) {
+    background: #F4F5F7;
+  }
+  /deep/ .ant-table-header {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow:#ffffff;
+      box-shadow: #ffffff;
+      background: #ffffff;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: #ffffff;
+      box-shadow: #ffffff;
+      border-radius: 0;
+      background:#ffffff;
+    }
+  }
+  /deep/ .ant-table-body {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+.table-scroll-bar(){
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+/* 列数较多时试用，用于缓解 antd表格组件中因固定表头引发的列不对齐的问题 */
+.ant-complex-table-content() {
+  /deep/.ant-table-thead > tr > th {
+    background: #ffffff !important;
+    padding: 32px 0px 20px 0px;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: none;
+    text-align: center;
+  }
+  /deep/.ant-table-tbody > tr > td {
+    height: 60px;
+    padding: 0 0px;
+    border-bottom: none;
+    text-align: center;
+  }
+  /deep/.ant-table-tbody tr:nth-child(odd) {
+    background: #F4F5F7;
+  }
+  /deep/ .ant-table-header {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow:#ffffff;
+      box-shadow: #ffffff;
+      background: #ffffff;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: #ffffff;
+      box-shadow: #ffffff;
+      border-radius: 0;
+      background:#ffffff;
+    }
+  }
+  /deep/ .ant-table-body {
+    .table-scroll-bar()
+  }
+}
+/* 次级表格组件通用样式 */
+.ant-inside-table-content() {
+  /deep/.ant-table-thead > tr > th {
+    background: #ffffff !important;
+    padding: 15px 16px 11px 16px;
+    font-size: 14px;
+    color: #333333;
+    border-bottom: none;
+  }
+  /deep/.ant-table-tbody > tr > td {
+    height: 60px;
+    padding: 0 16px;
+    border-bottom: none;
+  }
+  /deep/.ant-table-tbody tr:nth-child(odd) {
+    background: #F4F5F7;
+  }
+  /deep/ .ant-table-header {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow:#ffffff;
+      box-shadow: #ffffff;
+      background: #ffffff;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: #ffffff;
+      box-shadow: #ffffff;
+      border-radius: 0;
+      background:#ffffff;
+    }
+  }
+  /deep/ .ant-table-body {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+/* form-item 组件公共样式：去除冒号，适当扩大label和表单组件之间的间距 */
+.normal-form-item() {
+  /* 去除冒号 */
+  /deep/ .ant-form-item-label label {
+    padding: 0 10px 0 0;
+    &:after {
+      content: '' !important;
+    }
+  }
+}
+
+
+

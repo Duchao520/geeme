@@ -1,0 +1,56 @@
+.FilterOne{
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  /* align-items: center; */
+  overflow: hidden;  
+  position: absolute;
+  top: 100rpx;
+  right: 0;
+  background: white;
+  transition: all .625s ease;
+  z-index: 900;
+
+}
+.FilterOne.active{
+  height: 800rpx;
+  overflow-y: scroll;
+  z-index: 999;
+
+}
+.FilterOne-left{
+  width: 172rpx;
+  height: auto;
+  background: #F5F5F5;
+}
+.f-l-item{
+  line-height: 96rpx;
+   color: #797979;
+  font-size: 28rpx;
+  padding-left: 30rpx;
+}
+.f-l-item.active{
+  color: #F52D56;
+  border-left: 4rpx solid #F52D56;
+  background: white;
+}
+.FilterTwo-right{
+  padding: 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: auto;
+}
+.f-r-item{
+  min-width: 242rpx;
+  height: 60rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 60rpx;
+  margin-bottom: 30rpx;
+  background: #F52D56;
+  border-radius: 50rpx;
+}

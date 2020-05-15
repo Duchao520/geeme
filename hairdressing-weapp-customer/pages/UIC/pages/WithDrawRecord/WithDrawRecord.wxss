@@ -1,0 +1,30 @@
+.record-item{
+  padding: 26rpx 0;
+  border-bottom: 2rpx solid #EFEFF4;
+}
+.status{
+  width: 92rpx;
+  height: 38rpx;
+  border-radius: 4rpx;
+  background: #58C9F3;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 38rpx;
+  margin-right: 20rpx;
+}
+.WAIT{
+  background: #58C9F3;  
+}
+.REJECT{
+  background: #F52D56;
+}
+.FINISH{
+  background: #00CF82;
+}
+.CANCEL{
+  background: #AAAAAA;
+}
+.MODIFY{
+  background: #FEB623;
+}

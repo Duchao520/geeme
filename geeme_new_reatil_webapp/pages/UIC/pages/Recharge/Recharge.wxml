@@ -1,0 +1,22 @@
+<view class="recharge">
+  <view class="money box_padding">
+    <view class="fc-333333 fz-28" style="margin-bottom: 32rpx;">充值金额</view>
+    <view class="flex_box" style="align-items: flex-end;">
+      <text class="fz-24 fc-F52D56">￥</text>
+      <input class="fz-38 fc-F52D56" type="number" value="{{amount}}" bindblur="bindAmount" auto-focus placeholder="请输入充值金额"/>
+    </view>
+  </view>
+  <view class="box_padding fz-28 fc-333333" style="width: 100%;padding: 24rpx 30rpx;">选择支付方式</view>
+  <view class='pay-body'>
+    <view class='payitem'>
+      <view class='itemicon icon-weixin'></view>
+      <view class='itemname'>微信支付</view>
+      <view class='item-right'>
+        <view class='icon-select icon--selected'></view>
+      </view>
+    </view>
+  </view>
+  <view class="footer">
+    <button class="submit fz-34 font-weight" hover-class="hover-submit" bindtap="submit">确认支付</button>
+  </view>
+</view>

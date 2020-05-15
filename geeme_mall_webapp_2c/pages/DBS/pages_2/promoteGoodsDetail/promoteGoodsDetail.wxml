@@ -1,0 +1,122 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  function JudgeCoupon(coupon) {
+    var useUnLimited = coupon.couponTemplateSnapshot.useUnLimited,
+      purchaseAboveMoney = coupon.couponTemplateSnapshot.purchaseAboveMoney,
+      money = coupon.couponTemplateSnapshot.money;
+    if (useUnLimited) {
+      return money + "元无门槛现金券";
+    } else {
+      return "满" + purchaseAboveMoney + "元减" + money + "元"
+    }
+  }
+
+  module.exports = {
+    JudgeCoupon: JudgeCoupon
+  }
+</wxs>
+<view class='container' wx:if="{{goods}}">
+  <!-- 商品信息 -->
+  <view class='productinfo'>
+    <view class="box_padding bg-FFFFFF" style="padding: 44rpx;" wx:if="{{goods.goodsType == 3}}">
+      <view class="bg-cover fc-ffffff" style='background-image:url({{format.getImageUrl(goods.cycleImageList[0])}});margin-bottom: 12rpx;'>
+        <view class="flex_box">
+          <image style="width: 82rpx;height: 82rpx;border-radius: 50%;margin-right: 12rpx;" src="{{logo}}" mode='aspectFill' lazy-load></image>
+          <view class="flex_box flex_column" style="width: 460rpx;">
+            <view class="fz-44 txt-ellipsis">{{goods.goodsName}}</view>
+            <!-- <view class="card-border">{{wxs.JudgeCardType(goods.cardType)}}</view> -->
+          </view>
+        </view>
+        <!-- <text class="present" wx:if="{{item.cardGiftNum}}">赠{{item.cardGiftNum}}元</text> -->
+        <view class="price" style="font-size: 56rpx;">
+          <text class="iconfont iconrenminbidanjia" style="font-size: 44rpx;"></text>{{goods.price}}
+        </view>
+        <view class="saleCount">已售 {{goods.sellCount}}</view>
+      </view>
+    </view>
+    <view class='productimg' wx:else>
+      <view class='swiper-container'>
+        <view class='soldQuantity'>已售 {{goods.sellCount}}</view>
+        <swiper class="image-swiper" indicator-dots autoplay interval='3000' duration='1000' circular>
+          <block wx:for="{{goods.cycleImageList}}" wx:key="index">
+            <swiper-item>
+              <image src="{{format.getImageUrl(item + '?x-oss-process=image/resize,m_fill,h_750,w_750')}}" class="slide-image" width="750rpx" height="750rpx" mode='aspectFill' bindtap='$previewImage' data-current="{{format.getImageUrl(item + '?x-oss-process=image/resize,m_lfit,w_750')}}"
+                data-urls="{{format.getImageArr(productInfo.productImage)}}" lazy-load/>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+
+    </view>
+    <!-- 商品标题 -->
+    <view class="flex_box justify_space_between bg-FFFFFF box_padding" style="padding: 20rpx 32rpx 0;">
+      <view class='productdes'>
+        {{goods.goodsName}}
+      </view>
+      <view style="color: #262628;" bindtap="navigateToDetail">
+        <view class="iconfont iconicon-chakanxq fz-60 text-center"></view>
+        <view class="fz-32">详情</view>
+      </view>
+    </view>
+
+
+    <view class='productprice' style="height: 110rpx">
+      <view class='price-num'>
+        <view class='specialprice'>
+          <text style="font-size:30rpx;">￥</text>
+          <text>{{goods.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 优惠信息等 -->
+  <view class='preferential'>
+    <!-- 优惠券 -->
+    <view class='flex_box' style="border-bottom: 2rpx solid #EFEFF4;padding:30rpx 0;" hidden="{{couponSendRecordList.length==0}}">
+      <view class="slogan">优惠券</view>
+      <view style="width: 600rpx;">
+        <view class="flex_box align_center justify_space_between" style="margin-bottom:12rpx;" wx:for="{{couponSendRecordList}}" wx:key="index">
+          <view class="fz-28 fc-333333">{{wxs.JudgeCoupon(item)}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='flex_box' style="border-bottom: 2rpx solid #EFEFF4;padding:30rpx 0;">
+      <view class="slogan" style="background: #F58F2D;padding: 4rpx 16rpx;">佣金</view>
+      <view style="width: 600rpx;">
+        <view class="flex_box align_center justify_space_between" style="margin-bottom:12rpx;">
+          <view class="fz-28 fc-333333">佣金{{goods.sellPercent}}%(预计¥{{goods.sellPercent ? goods.prospectIncome : goods.sellMoney}})</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="preferential" style="padding-top:88rpx;">
+    <button class="shareBtn" bindtap='$set' data-key="ifShowSharePop" data-value="{{true}}">立即分享</button>
+  </view>
+</view>
+
+
+<!-- 弹出套餐 -->
+<view class='cover {{ifShowSharePop ?"active":""}}' bindtap="hide">
+  <view catchtap="prevent">
+    <!-- 弹出分享 -->
+    <view class='pop-share {{ifShowSharePop ? "active" : ""}}'>
+      <view class='share-title'>
+        分享至
+        <view class="title-close icon--close" bindtap='$set' data-key="ifShowSharePop" data-value="{{false}}"></view>
+      </view>
+      <view class='share-button-container'>
+        <view class='share-button-item canvas' bindtap='sharePic'>
+          <image src="/images/button/share_canvas.png" />
+          <view>生成画报</view>
+        </view>
+        <button class='share-button-item weixin' open-type="share">
+          <image src="/images/button/share_weixin.png" />
+          <view>微信</view>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

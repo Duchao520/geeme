@@ -1,0 +1,1 @@
+<view class="AppBackHome" bindtap="backHome" wx:if="{{ifShow}}"></view>

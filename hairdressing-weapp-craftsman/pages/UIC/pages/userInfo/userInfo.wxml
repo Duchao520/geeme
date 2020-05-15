@@ -1,0 +1,104 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs1">
+  function isActive(userSkills, item) {
+    if (userSkills && userSkills.length) {
+      return userSkills.indexOf(item) > -1
+    } else {
+      return false
+    }
+  }
+  module.exports.isActive = isActive
+</wxs>
+<template name="experience">
+  <view>
+    <view class="experience-title">{{title}}</view>
+    <view class="experience-add" bindtap="jumpExperience" data-type="{{type}}">
+      <text class="icon--add">添加{{title}}</text>
+    </view>
+  </view>
+</template>
+<view class="container">
+  <view class='avatar' bindtap='choosePortrait'>
+    <view class='avatar-left'>
+      <view class='avatarTitle'>头像</view>
+      <image class='avatarImg default-avatar' src="{{format.getImageUrl(userInfo.headPortrait)}}" mode='aspectFill'></image>
+    </view>
+    <view class='moreicon'></view>
+  </view>
+  <view class='userInfo'>
+    <view class='item'>
+      <view class='itemTitle'>姓名</view>
+      <input class="content" type='text' value='{{userInfo.name}}' bindinput='updateName'></input>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>昵称</view>
+      <input class="content" type='text' value='{{userInfo.nickName}}' bindinput='updateNickname'></input>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>签名</view>
+      <input class="content" type='text' value='{{userInfo.sign || ""}}' bindinput='updateSign'></input>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>性别</view>
+      <picker bindchange="sexChange" value="{{sexIndex}}" range="{{sexArray}}">
+        <view class="content">
+          {{userInfo.isMale}}
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+
+    <view class='item'>
+      <view class='itemTitle'>生日</view>
+      <picker mode="date" bindchange="birthdayChange" value="{{userInfo.birthday}}">
+        <view class="content">
+          {{userInfo.birthday || ''}}
+        </view>
+      </picker>
+      <view class='itemRight'></view>
+    </view>
+
+    <view class='item' bindtap='jumpSkills'>
+      <view class='itemTitle'>擅长</view>
+      <view class='content'>{{userInfo.skillNum ? "已选项目" + userInfo.skillNum + "个" : "未设置"}}</view>
+      <view class='itemRight'></view>
+    </view>
+  </view>
+
+  <view class='userDesMoudle'>
+    <view class='userDesTitle'>简介</view>
+    <view class='userDesTextarea'>
+      <textarea placeholder='请输入个人简介' value='{{userInfo.description}}' bindinput='descriptionChange' maxlength='150'></textarea>
+      <view class='wordLength'>{{userInfo.description ? userInfo.description.length : 0}}/150</view>
+    </view>
+  </view>
+
+  <view class="experience-module">
+    <template is="experience" data="{{title:'获奖经历', type:0}}" />
+    <template is="experience" data="{{title:'从业经历', type:1}}" />
+    <template is="experience" data="{{title:'学习经历', type:2}}" />
+  </view>
+
+  <view class='userPhotoMoudle'>
+    <view class='userPhotoMoudleItem'>
+      <view class='userPhotoTitle'>个人相册</view>
+      <view class='userPhotoList'>
+        <view class='userPhotoList-item userPhotoAdd' bindtap='chooseImage'>
+          <view class='cross'></view>
+          <view class='vertical'></view>
+        </view>
+        <view class="userPhotoList-item" wx:for="{{userInfo.personPhotos}}" wx:key="{{index}}">
+          <image mode="aspectFill" src='{{format.getImageUrl(item)}}' bindtap="$previewImage" data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(userInfo.personPhotos)}}" lazy-load></image>
+          <view class='closeIcon icon--close' data-url="{{item}}" data-index="{{index}}" catchtap='deleteImage'></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='bottom-fixed'>
+  <button class='bottom-button' bindtap='save'>保存修改</button>
+</view>

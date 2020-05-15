@@ -1,0 +1,87 @@
+<!--pages/appointment/index/index.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<block wx:if="{{!abnormal}}">
+  <view class='container'>
+    <!-- 头部 -->
+    <view class='header' wx:if="{{shopInfo.id}}">
+      <AppHeader bind:selectEvent="initPage"></AppHeader>
+      <!-- 店铺名字 -->
+      <view class='sh-body' wx:if="{{shopInfo.id && !STORE_DUE_STATUS}}">
+        <navigator class='des' url='../../../SC/pages/details/details?id={{shopInfo.id}}' hover-class='false'>
+          <view class='desChild'>
+            简介
+          </view>
+        </navigator>
+        <view class='shopstores'>
+          <AppAvgScore width="24rpx" height="24rpx" space="8rpx" score="{{shopInfo.shopScore}}" />
+          <view class='shopscore'>{{format.fixNum(shopInfo.shopScore,1)}}分</view>
+        </view>
+        <view class='shoptime'>
+          <view class='timeicon icon--clock'></view>
+          <view class='timetext'>
+            {{shopInfo.workDays}} {{shopInfo.startTime}}-{{shopInfo.endTime}}</view>
+          <view class='work {{!(shopInfo.status == "ONLINE" || shopInfo.status == "TRYING") ? "nowork" : ""}}'>{{!(shopInfo.status == "ONLINE" || shopInfo.status == "TRYING") ? "暂停营业" : "营业中"}}</view>
+        </view>
+        <view class='shopaddress'>
+          <view class='addressicon icon--address'></view>
+          <view class='addresstext'>{{shopInfo.address}}</view>
+          <view class='addresshelp' data-address="{{shopInfo.address}}" data-name="{{shopInfo.shopName}}" data-latitude="{{shopInfo.latitude}}" data-longitude="{{shopInfo.longitude}}" bindtap='location'>导航></view>
+        </view>
+        <view class='shopphone'>
+          <view class='phoneicon icon--phone'></view>
+          <view class='phonetext' data-number="{{shopInfo.phone}}" bindtap='makePhone'>{{shopInfo.phone}}</view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{!STORE_DUE_STATUS}}">
+      <!-- 推荐服务者 -->
+      <view class='recommended' wx:if="{{firsthair.length}}" style="padding-top: 24rpx;">
+        <view class='recommended-head'>
+          <view class='rh-left'>推荐服务者</view>
+          <view class="rh-right arrow--right" bindtap="jumpMyFocus">我的关注</view>
+        </view>
+
+        <scroll-view scroll-x style="box-sizing:border-box">
+          <view class='recommended-body'>
+            <view class='rb-item' wx:for="{{firsthair}}" lazy-load wx:key="index" hover-class='false' bindtap='tostaffDetail' data-id="{{item.id}}">
+              <image class='rb-avatar' src='{{format.getImageUrl(item.avatar + "?x-oss-process=image/resize,m_fill,h_96,w_96")}}' mode='aspectFill'></image>
+              <view class='rb-name'>{{item.name}}</view>
+              <view class='rb-levelName'>{{item.levelName}}</view>
+              <!-- <block wx:if="{{item.focus === 0 || item.focus === 1}}">
+            <view class='rb-starus-false' wx:if="{{item.focus}}">已关注</view>
+            <view class='rb-starus' wx:else>未关注</view>
+          </block> -->
+            </view>
+            <navigator class='rb-item-debug'>
+            </navigator>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 功能选择 -->
+      <view class='choose' wx:if="{{hairlist}}">
+        <view class='choose-head {{isFixed?"active":""}}'>
+          <navigator class='ch-people' hover-class='none'>
+            选服务者
+            <view class='ch-line'></view>
+          </navigator>
+          <navigator class='ch-time' url='../../../TC/pages/choose/choose?index=2&shopid={{shopInfo.id}}&chooseServer={{shopInfo.appointmentSettings.chooseServer}}' hover-class='none'>先选时间</navigator>
+          <!-- <navigator class='ch-works' url='../../../TC/pages/choose/choose?index=3&shopid={{shopInfo.id}}' hover-class='none'>先看作品</navigator> -->
+        </view>
+        <view class='chooseBody {{isFixed?"active":""}}'>
+          <StaffCard wx:for="{{hairlist}}" wx:key="index" item="{{item}}" />
+        </view>
+        <AppDefault wx:if="{{hairlist.length == 0}}" text="还没有服务者接受网上预约，可到店安排哦" />
+      </view>
+    </block>
+    <block wx:else>
+      <OffLineDefault top="0"/>
+    </block>
+  </view>
+</block>
+<block wx:else>
+  <OffLineDefault />
+</block>
+<view style="position: relative;">
+  <AppFooter />
+</view>

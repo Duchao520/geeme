@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "探店",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "SearchList": "/components/SearchList/SearchList",
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "PopHeader": "/components/popup/PopHeader/PopHeader",
+    "PopSingleColumn": "/components/popup/PopSingleColumn/PopSingleColumn",
+    "PopDoubleColumn": "/components/popup/PopDoubleColumn/PopDoubleColumn"
+  }
+}

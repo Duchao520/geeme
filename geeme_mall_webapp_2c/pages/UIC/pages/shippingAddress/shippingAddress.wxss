@@ -1,0 +1,14 @@
+@import '/utils/wxss/icon.wxss';
+page{
+  background: #f7f7f7;
+}
+
+.page-container{
+  margin-top:20rpx;
+  padding-bottom:150rpx;
+}
+
+.address-container{
+  padding:0 32rpx;
+  background-color:#fff;
+}

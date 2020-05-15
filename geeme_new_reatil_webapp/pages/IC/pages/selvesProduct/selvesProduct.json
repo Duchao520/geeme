@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "getlike": "../../../../components/getlike/getlike"
+  },
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "商品已下架",
+    "navigationBarTextStyle": "black"
+}

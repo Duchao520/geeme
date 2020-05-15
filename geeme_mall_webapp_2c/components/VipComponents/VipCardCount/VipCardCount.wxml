@@ -1,0 +1,21 @@
+<wxs src='../../../utils/format.wxs' module="format" />
+<view class="VipCardDiscount">
+  <view class="header">
+    可用服务
+    <view class="icon--close" catchtap="close"></view>
+  </view>
+  <scroll-view class="container" scroll-y>
+    <view class="main">
+      <view class="row title">
+        <view class="column-1">服务项目</view>
+        <view class="column-2">规格</view>
+        <view class="column-3">剩余次数</view>
+      </view>
+      <view class="row" wx:for="{{list}}" wx:key="{{index}}">
+        <view class="column-1 text--ellipsis_1">{{item.serviceName}}</view>
+        <view class="column-2 text--ellipsis_1">{{item.serviceSpecificationName}}</view>
+        <view class="column-3">{{format.isNumber(item.countLimit) || '无限'}}次</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

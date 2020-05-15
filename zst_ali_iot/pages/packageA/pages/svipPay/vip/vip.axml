@@ -1,0 +1,57 @@
+<view>
+  <view class="box_padding" style="padding: 0 0 0 47rpx;margin-bottom: 40rpx;">
+    <view class="option-item flex_box" style="padding-top: 45rpx;" data-priType="1" catchTap="changePritype" a:if="{{SHARE_CARD_LIST.length > 0}}">
+      <view class="picker {{priType == 1 ? 'active icon-choosehandle iconfont' : ''}}"></view>
+      <view class="right box_padding" style="padding: 0 0 45rpx 18rpx;border-bottom: 3rpx solid #E5E5E5">
+        <view class="flex_box justify_space_between" style="margin-bottom: 12rpx;">
+          <view>
+            <text class="fz-28" style="margin-right:12rpx;">共享会员卡</text>
+            <text class="fz-26 fc-FE3F10">享{{SHARE_CARD.shareCardDiscount_ceil}}折</text>
+          </view>
+          <view class="flex_box" style="width:180rpx;">
+            <text class="fz-26" style="color: #7D7D7D" catchTap="showShareCardList">选择更多</text>
+            <text class="iconfont icon-youjiantou1 fz-26" style="color: #7D7D7D"></text>
+          </view>
+        </view>
+        <view class="fz-24" style="color: #7D7D7D">卡主：{{SHARE_CARD.realName}}，余额￥{{SHARE_CARD.money_ceil}}，累计使用{{SHARE_CARD.consumeAmount}}次</view>
+      </view>
+    </view>
+
+    <view class="option-item flex_box" style="padding-top: 45rpx;" data-priType="2" onTap="changePritype" a:if="{{STORE_ACTIVE.lstBiIntegralactive.length > 0}}">
+      <view class="picker {{priType == 2 ? 'active icon-choosehandle iconfont' : ''}}"></view>
+      <view class="right box_padding" style="padding: 0 0 45rpx 18rpx;border-bottom: 3rpx solid #E5E5E5">
+        <view class="flex_box justify_space_between box_padding" style="margin-bottom: 12rpx;padding-right:76rpx;">
+          <view>
+            <view class="fz-28" style="margin-right:12rpx;">选择话呗抵扣活动</view>
+            <view class="fz-26 fc-FE3F10">{{INTERGRAL_ACT.disMsg}}</view>
+          </view>
+          <view style="width:180rpx;text-align: right;">
+            <text class="fz-26" style="color: #7D7D7D;">-￥{{INTERGRAL_ACT.discount_ceil}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="option-item flex_box" style="padding-top: 45rpx;" catchTap="changeCouponFlag" a:if="{{COUPON_LIST.length > 0}}">
+      <view class="picker {{couponPayFlag ? 'active icon-choosehandle iconfont' : ''}}"></view>
+      <view class="right box_padding" style="padding: 0 0 45rpx 18rpx;border-bottom: 3rpx solid #E5E5E5">
+        <view class="flex_box justify_space_between" style="margin-bottom: 12rpx;">
+            <text class="fz-28" style="margin-right:12rpx;">选择优惠券</text>          
+          <view class="flex_box" style="width:180rpx;" catchTap="showCoupon" a:if="{{COUPON_LIST.length}}">
+            <text class="fz-26" style="color: #7D7D7D">可用{{COUPON_LIST.length}}张</text>
+            <text class="iconfont icon-youjiantou1 fz-26" style="color: #7D7D7D"></text>
+          </view>
+          <text class="fz-26" style="color: #7D7D7D" a:else>暂无优惠券</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="floatWindow">
+    <text class="content">总金额￥{{totalAmount}}，优惠<text class="font-weight fz-26" style="color: #A46F23">￥{{PAY_INFO.discount_ceil}}</text> </text>
+    <image mode="scaleToFill" src="/pages/packageA/static/imgs/rad.png" style="width: 31rpx;height:13rpx;display:block;margin:10rpx 0 0 95rpx;"/>
+  </view>
+  <button size="default" type="primary" class="fz-34 fc-ffffff bg-0095D9" hover-class="btn-hover"
+          style="margin: 0 auto;width: 559rpx;height: 94rpx;line-height:94rpx;position: relative;" onTap="clickPayEvent">
+          继续支付￥{{PAY_INFO.actPay_ceil}}</button>
+</view>

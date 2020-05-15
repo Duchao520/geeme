@@ -1,0 +1,28 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<!-- 时间列表 -->
+<view class="time">
+  <view class='t-left'>
+    <view class='t-l-icon'></view>
+    <view class='t-l-item'>
+      <text>{{dueTime}}</text>
+    </view>
+  </view>
+  <view class='t-right' bindtap='nextnohair'>
+    <view class='t-r-text' wx:if="{{!chooseServer}}">不知道选谁, 到店后安排</view>
+    <view class='t-r-icon'></view>
+  </view>
+</view>
+<!-- 服务者列表 -->
+<view class='choose-content'>
+  <StaffCard wx:if="{{item.hasCapacity}}" wx:for="{{hairlist}}" wx:key="{{index}}" item="{{item}}" selected="{{currentid == item.staffId}}" bindtap="setcurrenthair" data-item="{{item}}" hideReserve />
+</view>
+<AppDefault wx:if="{{!hairlist.length}}" text='请到店后安排服务者' />
+
+<!-- 已选服务者  下一步 -->
+<view class='bottom'>
+  <view class='bottom-word'>
+    <view class='alt'>已选服务者</view>
+    <view class='hairname'>{{hairname}}</view>
+  </view>
+  <view class='bottom-btn' bindtap='next'>下一步</view>
+</view>

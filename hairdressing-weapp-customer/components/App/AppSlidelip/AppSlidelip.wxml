@@ -1,0 +1,38 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<wxs module="AppSlidelip">
+  function isActive(item,str){
+    if(str.indexOf(item.id) > -1){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  module.exports = {
+    isActive: isActive
+  }
+</wxs>
+<view class="row" wx:for="{{list}}" wx:key="id" bindtap="toProductDetail" data-id="{{item.serviceId || item.productId}}" data-type="{{item.productId ? 'product' : 'service'}}">
+    <movable-area class="list_item">
+     <!-- 坑就在这里，当你向右滑动一点点距离的时候它就停住了，不回去。坑 -->
+      <movable-view class="itmem_wrap" direction="horizontal" inertia="{{true}}" out-of-bounds="{{true}}" x="{{item.x}}" damping="{{60}}" data-index="{{index}}" bind:touchstart="touchMoveStartHandle" bind:touchend="touchMoveEndHandle">
+        <view class="{{AppSlidelip.isActive(item,selected) ? 'checkbox iconfont icon2xuanzhong' : 'uncheckbox'}} fz-42 flex_box align_center" style="justify-content: left;" catchtap="chooseItem" data-id="{{item.id}}"></view>
+        <view class="detail flex_box">
+          <image class="thumb" src='{{format.getImageUrl(item.cycleImage[0] + "?x-oss-process=image/resize,m_fill,h_328,w_328")}}' mode='aspectFill' lazy-load></image>
+          <view class="desc">
+            <view class="txt-overflow fz-230 fc-333333" style="margin-bottom: 12rpx;">{{item.title}}</view>
+            <view class="fz-24 fc-999999 txt-ellipsis">
+              <text style="margin-right: 20rpx;">{{item.specificationName}}</text>
+              <text wx:if="{{item.serviceTime}}">{{item.serviceTime}}分钟</text>
+            </view>
+            <view class="flex_box justify_space_between" style="align-items: flex-end;position:relative;">
+              <view class="fz-28 fc-F52D56">¥{{item.memberPrice ? item.memberPrice : item.shopPrice}}</view>
+              <AppASAmount bind:changeAmount="changeAmount" amount="{{item.number}}" data-index="{{index}}" height="50rpx" style="position:absolute;right:0;bottom:-30rpx;"></AppASAmount>
+            </view>
+          </view>
+        </view>
+      </movable-view>
+      <view class="delete_wrap">
+        <view class="delete_btn" catchtap="deleteGoods" data-index="{{index}}">删除</view>
+      </view>
+    </movable-area>
+  </view>

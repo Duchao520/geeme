@@ -1,0 +1,21 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="QuickOrder">
+  <view class='header-bg' style="background:{{format.getSkin(themeId).color1}}"></view>
+  <view class='QuickOrder-container'>
+    <view class='userinfo'>
+      <image class='userinfo-avatar' lazy-load src='{{userInfo.storeHeadIcon}}' mode='aspectFill'></image>
+      <view class='userinfo-text'>
+        <view class='text--ellipsis_1'>{{userInfo.nickName}}</view>
+        <view class='text--ellipsis_1'>{{userInfo.memberNo}}</view>
+      </view>
+      <view class='userinfo-level icon--diamond'>{{userInfo.memberLevel}}</view>
+    </view>
+    <view class='qrcode-info'>
+      <image class='qrcode-image' lazy-load src="{{format.getImageUrl(qrcode + '?x-oss-process=image/resize,m_lfit,h_440,w_440')}}"></image>
+      <view class='text-1'>扫描上方二维码快速开单</view>
+      <view class='text-2'>{{countdown > 0 ? '有效期' + countdown + 's' : '已失效'}}
+        <text bindtap='getQrcode'>刷新</text>
+      </view>
+    </view>
+  </view>
+</view>

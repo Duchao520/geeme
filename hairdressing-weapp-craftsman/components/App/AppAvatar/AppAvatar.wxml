@@ -1,0 +1,16 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getImage(gender) {
+    if (gender == '男') {
+      return '/images/default/default_boy.png'
+    } else if (gender == '女') {
+      return '/images/default/default_girl.png'
+    } else {
+      return '/images/default/default_someone.png'
+    }
+  }
+</wxs>
+<view class="AppAvatar {{gender == '男' ? 'male' : gender == '女' ? 'female' : 'someone'}}" style="width:{{width}};height:{{width}}">
+  <image src="{{format.getImageUrl(avatar)}}" mode="aspectFill"></image>
+  <view class="icon" wx:if="{{gender != '保密'}}" style="width:{{iconWidth}};height:{{iconWidth}}"></view>
+</view>

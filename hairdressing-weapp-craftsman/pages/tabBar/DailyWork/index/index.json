@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "AppointmentItem": "/components/common/AppointmentItem/AppointmentItem",
+    "DateHeadAfter": "/components/common/DateHeadAfter/DateHeadAfter"
+  },
+  "navigationBarTitleText": "工作",
+  "enablePullDownRefresh": true
+}

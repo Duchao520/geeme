@@ -1,0 +1,27 @@
+<view class="box-padding" style="padding-top: 264rpx;">
+  <view class="fz-34 fc-0095D9 text-center" style="margin-bottom:30rpx;">消费金额</view>
+  <view class="text-center font-weight" style="font-size: 68rpx;margin-bottom:120rpx;">￥{{totalAmount}}</view>
+  <button class="fz-34 fc-ffffff bg-0095D9" style="width:559rpx;height:94rpx;border-radius:9rpx;margin: 0 auto 38rpx;" onTap="facePay" hover-class="hover-class">刷脸支付</button>
+  <button type="ghost" plain class="fz-34 pos" style="width:559rpx;height:94rpx;border-radius:9rpx;border:2rpx solid #0095D9;margin: 0 auto 6rpx;" hover-class="plain-hover-class" onTap="goRegister">
+    <view class="fz-24 fc-ffffff text-center" style="width:166rpx;height:38rpx;line-height:38rpx;position: absolute;top:0;right: 0;background: #F4A038;">会员优惠买单</view>
+    会员支付
+    </button>
+  <view class="fz-26 text-center" style="color: #7D7D7D;margin-bottom:210rpx;">支持一键开通会员</view>
+  <view style="display:blcok;width: 666rpx;height: 169rpx;margin: 0 auto;">
+    <swiper 
+        style="display:blcok;width: 100%;height:100%;box-shadow:0 0 11rpx 1rpx rgba(0, 0, 0, 0.07);border-radius:9rpx;"
+        class="swiper"
+        indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}"
+        vertical="{{vertical}}"
+        interval="{{interval}}"
+        circular="{{circular}}"
+      >
+    <block a:for="{{banner}}">
+      <swiper-item key="swiper-item-{{index}}">
+        <image mode="scaleToFill" src="{{item.imghref}}" class="swiper-item"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  </view>
+</view>

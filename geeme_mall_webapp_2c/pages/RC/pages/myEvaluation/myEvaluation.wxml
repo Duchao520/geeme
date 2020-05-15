@@ -1,0 +1,94 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs1">
+  function getDes(score) {
+    var desArr = ['很差', '差', '满意', '非常满意', '无可挑剔']
+    return desArr[score - 1]
+  }
+  module.exports.getDes = getDes
+</wxs>
+<!-- ~~~~~~~~~~~~~我是工具与页面wxml文档的分割线~~~~~~~~~~~~ -->
+<view class='container'>
+  <!-- 商品信息 -->
+  <view class='serviceList'>
+    <view class='serviceItem'>
+      <image class='serviceImage' lazy-load src='{{format.getImageUrl(goodsInfo.image)}}' mode='aspectFill' />
+      <view class='serviceInfo'>
+        <view class='serviceDes text--ellipsis_2'>{{goodsInfo.title}}</view>
+        <view class='servicePackage'>{{goodsInfo.specificationName}}
+          <text wx:if="{{!isProduct}}">  {{goodsInfo.serverTime}}分钟</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 评价 -->
+  <view class='scores'>
+    <view class='scores-all'>
+      <view class='all-stars'>
+        <view class='star' wx:for="{{assessment.totalScore}}" wx:key="{{index}}"></view>
+      </view>
+      <view class='all-des'>{{wxs1.getDes(assessment.totalScore)}}</view>
+    </view>
+    <view class='scores-sperate'>
+      <view class='scores-item'>
+        <view class='title'>{{isProduct ? '商品质量' : '专业度'}}</view>
+        <view class='face' wx:for="{{assessment.productQuality || assessment.professionScore}}" wx:key="{{index}}"></view>
+        <view class='des'>
+          <view>{{wxs1.getDes(assessment.productQuality || assessment.professionScore)}}</view>
+        </view>
+      </view>
+      <view class='scores-item'>
+        <view class='title'>{{isProduct ? '发货速度' : '环境'}}</view>
+        <view class='face' wx:for="{{assessment.deliverSpeed || assessment.environmentScore}}" wx:key="{{index}}"></view>
+        <view class='des'>
+          <view>{{wxs1.getDes(assessment.deliverSpeed || assessment.environmentScore)}}</view>
+        </view>
+      </view>
+      <view class='scores-item'>
+        <view class='title'>{{isProduct ? '快递物流' : '服务'}}</view>
+        <view class='face' wx:for="{{assessment.express || assessment.serviceScore}}" wx:key="{{index}}"></view>
+        <view class='des'>
+          <view>{{wxs1.getDes(assessment.express || assessment.serviceScore)}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 印象标签 -->
+  <view class='tags'>
+    <view class='tags-title'>印象标签</view>
+    <view class='tags-container'>
+      <view class='tag' wx:for="{{assessment.tagInfos}}" wx:key="{{index}}">{{item.tag}}</view>
+    </view>
+  </view>
+  <!-- 服务者评分 -->
+  <view class='staff' wx:if="{{!isProduct}}">
+    <view class='staff-text'>
+      <view class='staff-title'>服务者评分</view>
+    </view>
+    <view class="staff-container">
+      <view class='staff-body' wx:for="{{assessment.serverInfoList}}" wx:key="{{index}}">
+        <image class='staff-avatar' lazy-load src='{{format.getImageUrl(item.realHeadPortrait)}}' mode='aspectFill'></image>
+        <view class='staff-info'>
+          <view class='staff-name text--ellipsis_1'>{{item.nickName}}  <text style="font-size:24rpx;color:#999">{{item.staffLevelName}}</text></view>
+          <view class="assessment-item">
+            <view class="star-container">
+              <view class='star' wx:for="{{item.serverScore}}" wx:key="{{index}}"></view>
+            </view>
+            <view class='des' style='margin-top:5rpx;'>
+              <view>{{wxs1.getDes(item.serverScore)}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 评价内容 -->
+  <view class='content' wx:if="{{assessment.content}}">{{assessment.content}}</view>
+  <!-- 评价图片 -->
+  <view class='photos'>
+    <image class='photo' lazy-load wx:for="{{assessment.images}}" src='{{format.getImageUrl(item)}}' wx:key="{{index}}" mode='aspectFill' bindtap="$previewImage" data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(assessment.images)}}"></image>
+  </view>
+  <!-- 商家回复 -->
+  <view class='reply' wx:if="{{assessment.reply}}">
+    商家回复：{{assessment.replyContent}}
+  </view>
+</view>

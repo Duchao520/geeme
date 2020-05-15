@@ -1,0 +1,320 @@
+.currentMonthResults{
+  padding-bottom:150rpx;
+}
+
+/* 日报 */
+
+.DayReport {
+  width: 100%;
+  height: auto;
+  padding: 18rpx 32rpx;
+}
+
+/* 数据预览 */
+
+.dayDataShow {
+  width: 100%;
+  height: 280rpx;
+  margin-top: 44rpx;
+  box-shadow: 0 2rpx 28rpx 0 rgba(174, 184, 229, 0.3);
+}
+
+.dayDataShowItem {
+  position: relative;
+  display: inline-block;
+  width: 33.3%;
+  height: 140rpx;
+  line-height: 140rpx;
+  text-align: center;
+}
+
+.dayDataShowItem::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -32rpx;
+  width: 1px;
+  height: 64rpx;
+  background: #efeff4;
+}
+
+.dayDataShowItem:nth-child(3n)::after {
+  content: '';
+  display: none;
+}
+
+.dataItem-content {
+  margin-top: 25rpx;
+  display: inline-block;
+  line-height: normal;
+}
+
+.dayShow-top {
+  color: #333;
+  font-size: 36rpx;
+}
+
+.dayShow-bottom {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.dayShow-bottom.more{
+  padding-right: 30rpx;
+  background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAATlBMVEUAAACYmJiYmJiampqXl5ecnJyYmJiZmZmZmZmZmZmbm5ucnJyYmJiYmJiZmZmZmZmZmZmYmJiXl5eYmJiYmJiYmJiampqampqbm5uXl5cot64CAAAAGXRSTlMA7ag/5xZ6c1o3JB/QlY6EBcPiutWaU0kuLkqvlgAAALRJREFUKM+NkkkWgyAQRMMkMyhkvP9F85TWgmShbOz2Y1k93C4da7Q29v+9ijLwlHiQUY1kYtm1yGU29eRRPBK/cCR8mfuL81IPtUYUWCFNxZraHcyzFsdMH3c/zHF7SEe5Lm5HTm6VhuOuke89DHbNO6tPaXfTZpVJne8XoyDpXyQ+AmgQFExAkGyAwAaZB4F5lAyCkhXzIGgUdYgaj9YfI6t1HMo4sH6UpZ4swPnajMt2fr7jIgZWP6T9OwAAAABJRU5ErkJggg==') no-repeat right center;
+  background-size: 26rpx 26rpx;
+}
+
+/* 劳动业绩 */
+
+.dayDataDetail {
+  width: 100%;
+  height: auto;
+  margin-top: 60rpx;
+}
+
+.dayDataDetailTitle {
+  color: #262628;
+  font-size: 40rpx;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 40rpx;
+  background: no-repeat right center;
+  background-size: 14rpx 28rpx;
+}
+
+.dayDataDetailContent {
+  width: 100%;
+  height: auto;
+}
+
+.infoByDay-line{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size:26rpx;
+  padding:16rpx 0;
+  line-height: 1.5;
+}
+
+.infoByDay-line.title{
+  color:#999;
+  font-size:24rpx;
+  background: #fff;
+}
+
+.infoByDay-line:nth-child(2n){
+  background-color:#f8f8f8;
+}
+
+.infoByDay-cell{
+  width: 100rpx;
+}
+
+.infoByDay-cell:first-child{
+  padding-left:16rpx;
+  width: 216rpx;
+}
+
+.infoByDay-cell.c9{
+  color:#999;
+}
+
+.infoByDay-cell.red{
+  color:#f52d56;
+}
+
+/* 月报 */
+
+.MonthReport {
+  width: 100%;
+  height: auto;
+  padding: 18rpx 32rpx;
+}
+
+/* 月报数据 */
+
+.monthData {
+  width: 100%;
+  height: auto;
+  margin-top: 60rpx;
+}
+
+.monthClomnName {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.monthClomnNameItem {
+  width: 16.66%;
+}
+
+.monthClomnNameItem:first-child {
+  padding-left: 16rpx;
+}
+
+.monthClomnContent {
+  margin-top: 20rpx;
+}
+
+.monthLine {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 26rpx;
+  text-align: left;
+}
+
+.monthLine:nth-child(2n-1){
+  background: #f8f8f8;
+}
+
+.monthLine > view{
+  width: 16.66%;
+}
+
+.monthLine > view:first-child{
+  color: #999;
+}
+
+/* 薪资明细 */
+
+.PriceDetail {
+  width: 100%;
+  height: auto;
+  padding: 18rpx 32rpx;
+}
+
+/* 排行榜 */
+
+.RankList {
+  width: 100%;
+  height: auto;
+  padding: 18rpx 32rpx;
+}
+
+.rankListBanner {
+  width: 100%;
+  height:80rpx;
+  background-color:#f7f7f7;
+  color: #666;
+  font-size: 28rpx;
+  padding:0 100rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rankBannerItem.active {
+  color:#f52d56;
+}
+
+.rankListContent {
+  width: 100%;
+  height: auto;
+  margin-top: 40rpx;
+}
+
+.rankContentHead {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.ranking {
+  width: 77rpx;
+  margin-left:30rpx;
+  margin-right: 6rpx;
+  font-size:32rpx;
+}
+
+.ranking-icon{
+  width: 77rpx;
+  height:40rpx;
+  margin-left:30rpx;
+  margin-right: 6rpx;
+  background: no-repeat left center;
+  background-size:30rpx 40rpx;
+}
+
+.ranking-icon.first{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAoCAMAAACo9wirAAAAkFBMVEUAAAD/6gD/4AD//wD/4QD/4QD/4AD/4AD/4AD/4AD/4gD/4gD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/4wD/4wD/sgD/4AD/AAD5+Pj/tAX82Ib/uBT/3AD/zQD/0wD/wAD/xAD/uQD/1wD/rAD/hAD58+f/cwD/PwD/FgD59Or735/82Yr9zmL9xkr/vCKONnNBAAAAFnRSTlMAGJYG9OPy2ce/gkfGUt7X0WZeRi4tRwn9pQAAAU5JREFUOMu1k9digzAMRR2zwshuGQ57ZHT+/9/VEq1VY1qech8AW0fDsmAkK+S+Z9uez0OLmVpxN1Fy+WpitgI70WQHlua+TgytfwV5cnCrKOtWiLYuC1w6z8rfQXMTKzUFEt8xLIxfCTTlnzm8RIVZxjoC+C5j1MdLdo5RJewGmMAG/9H9nGUAoCCGDUk45Mf4r9JMgIA6uKwA+tPgTpZd3gmIG+iYxUIIMLpc3vJcAVIQImScKpR5NKDEHL581mpPA2pp8pknn+080EqTx+CQYh4QcNAlwF1MsVgkHRNlHpMahTIbRa0mQG81XRYC5mXRdROgXzcNDIkGRh85Eo3c8tAujz3G6BNDvfb3pddON3fXlGlAeh8qMlfDPZ0AoNvQ111X98MNlyZAeiSwPRy2/wC7I3wfd38A+83ParOfASI0KySaANGJTXSKGOoLsENVeWukYd0AAAAASUVORK5CYII=);
+}
+
+.ranking-icon.second{
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAoCAMAAACo9wirAAAApVBMVEUAAADf39/d3d3c3Nzc3Nzd3d3d3d3c3Nzc3Nze3t7f39/////////c3Nz/AAD/AADe3t7/AAD/AAD/AAD/AAD/AAD/AAC6urrc3Nz/AAD4+Pi8vLzY2Ni/v7/Ozs7MzMzDw8PR0dHIyMjf39/e0tLy8vLw8PDBwcHt7e3m5ubj4+Pa2trU1NTGxsbivLzkrKzlpaXrgoLrgYHucXH2Pj78FRXV1dUOSF3+AAAAF3RSTlMAGJbj8vTZx7+CRwcG89TGLd5mXlZORukzrgcAAAGPSURBVDjLtVLZYoIwEEQUBBTwLiQEUEHqfff/P627ibocbX3qPMAmM9lbI/Qd3TJd17R0p6810dI7wQsdvVWje7YRVGDYvcrzbtBAt+Rk0JZXUZwKzkUaR/LYHrzeSz5afLywiKSi9Ygv/c85EEWyS1JU8LmMovKw0Y7hVmwYYlOgJMZbWwYw8D3yK8byT1CsOCrQh4FBdIyPV0vGQCcixpYyCuahQ/+wP5hfigQiZyuVKXasrznoQLpkDHTKE5cGunBkhBiPW8aEvF+zXBUbyxgWfKEyQsHYWlkpUJZmwleUeA517JUpgDI1F76c+BT46KkFyq0J4lzyJOhUQnAoIE/QohDlJAW4XysxJUllylZvHxyVSY3CBu2eHDWKWr2HKSUPcGo1DeuLEQoaFo17WRHQuGlhCLQw1ZUj0Mq9X9r3a698HIMGjvCeEF6zKp1dQ60iCO/nrESf72FNgLhdTocsO5wuN3lsCgj/KRiORsM/BN4Y7bH3i8CbPE8T7weBPy2fp35N4M+0Gma++n8DlWdb7rVKigkAAAAASUVORK5CYII=');
+}
+
+.ranking-icon.third{
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAoCAMAAACo9wirAAAAw1BMVEUAAADqyqrmyqP/2bHkyaPlyqPlyaPlyqLkyaPkyqPmyqPmyaXlyaP/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AADpzabozKTlyaLZnWzkyaL/AAD4+PjZn2/jxZ3dqn3gtozbo3ThvJLerYHit5T28u7mwJvfrob39PLy5dvju5r06+TpyrDhsozcpXnwdl/v28zt18Ts08DmwKL18Oz07efw4dXqz7jhtZDprIrqnX/rl3ryZ1P4OC79ExDmxKj44VMBAAAAGnRSTlMAGJYG4/Tx2ce/gkfz3tfRycJmXlZORi4t8rdU/TIAAAGpSURBVDjLtVLpeoJADKTgfd9t0SCgggoirffd93+qJosSjrb+6nwfsGFmJ9lsJIZSlov5SiVflMuKlMaLnOuHyMkvCVopZfsxZEtKbHuhn0IhYvKaEb+Ghm5qmqkbQxFm3sL9GUGP1RDjoVDcPRThP9KQmDpfzpQU2khkCeoo0dogeg6EnZAY9LckEmRpP/EzZF18LJ0U5JGlJDLl19DVBWttqssFwIfIQnXIWAH1h+qbAOxVwhY2QaXUMUUqkwHFCwutCSuYqQJkUaYMokLGnFIQDJGjiG+dWe2wApgEax2popTHtxnyLp5kPr0HJlJ5qYJvLRQgD3Pv4YZUJSEwde8TYMGC9zAFAxU6p+Ai12uqLWiIw0XyMXfghoIJHzPSKIDDI8WSG8Wt1i3YoPVyRXfBrebLUh1AWPhsTb4svm6EJ+Zhthc8XzcPDPp7EzoRD0xi5Bg8cs+H9vnYC49TP4UT7mcMLnacti8DKSYY3Hw7Qvu3QUJAuPrno20fz/5VhGkB4z8F1Var+oeg1qZ1u/aLoN55RJ36D4JGNxp3GwlBsycl0GsG329wY2iiguT+tgAAAABJRU5ErkJggg==');
+}
+
+.rankStaffInfo {
+  width: 312rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.results {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex: auto;
+  color: #333;
+  font-size: 26rpx;
+}
+
+.resultsText {
+  margin-right: 8rpx;
+  padding-right:26rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKCAYAAAC9vt6cAAAAAXNSR0IArs4c6QAAARlJREFUKBWtjz1KxFAUhfOSMSmMneIPbkJB1FJQhDRpksBgMRuYHdjoCJa6A0sH8lOENCJIbATBxtYNDM4KQoqX+F3BgViMgj447577zj2H+wzjj0clSfLctu0giqK332Tleb5R1/WNUmod37bJtUvzQlD4U0Acx0eYX5k7xrfoum7PxDymWQIxIddlWfa+B2G00Ea834EVPPfUfc/zaiXDDAwpV2ABPDmOE/m+P4GLtka5BQdAYz4LguCS2tAbnwFCsizba5omYZNN2qllWX2ttehiXgXvmPphGD7CZ2cWIC9FUSxXVTWGHgINRJdvPti2fcJWU/rO6QSIwgZmmqbn0FN4i/mClUdfK3fc8xq+tEPQ1ryZf9E+AD/kbpOB1GFRAAAAAElFTkSuQmCC) no-repeat right center/100% auto;
+  background-size:16rpx 12rpx;
+}
+
+.rankContentBody {
+  width: 100%;
+  height: auto;
+}
+
+.rankContentItem {
+  width: 100%;
+  height: 116rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rankContentItem.active {
+  background: #f8f8f8;
+}
+
+.rankStaffAvatar {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.rankStaffName {
+  color: #333;
+  font-size: 28rpx;
+}

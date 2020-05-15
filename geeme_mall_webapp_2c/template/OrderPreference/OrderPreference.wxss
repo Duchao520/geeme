@@ -1,0 +1,65 @@
+/* 价格模块 */
+
+.OrderPreference-module {
+  width: 100%;
+  padding: 20rpx 0;
+  background: #f8f8f8;
+}
+
+.OrderPreference-container {
+  width: 100%;
+  height: auto;
+  background: white;
+  padding-left: 32rpx;
+}
+
+.OrderPreference-totalPrice {
+  width: 100%;
+  height: 64rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 24rpx;
+  padding-right: 32rpx;
+  border-bottom: 2rpx solid #efeff4;
+}
+
+.OrderPreference-totalPrice text {
+  color: #333;
+}
+
+.OrderPreference-list > view {
+  padding-right: 32rpx;
+  margin-top: 16rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 24rpx;
+}
+
+.OrderPreference-list > view:last-child {
+  padding-bottom: 16rpx;
+  border-bottom: 1px solid #efeff4;
+}
+
+.OrderPreference-actualTotalPrice {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  color: #333;
+  font-size: 24rpx;
+  padding-right: 32rpx;
+}
+
+.OrderPreference-actualTotalPrice text {
+  color: #f52d56;
+  font-size: 32rpx;
+  font-weight: 600;
+}

@@ -1,0 +1,51 @@
+// 基本资料
+.center-person__wrap {
+  padding-top: 40px;
+  .form_area {
+    .avatar-wrap {
+      .el-form-item__label {
+        line-height: 66px;
+      }
+    }
+    
+    .person-form-item {
+      margin-left: 10px;
+      &.input {
+        width: 200px!important;
+      }
+      &.avatar {
+        width: 70px;
+        height: 70px;
+        @include border-radius(50%);
+        vertical-align: middle;
+      }
+    } 
+    .tip {
+      margin-left: 10px;
+      font-size: 14px;
+      color: #C7CAD1;
+    }
+    .mobile {
+      font-size: 14px;
+      color: #333333;
+    }
+    .group-item {
+      display: inline-block;
+      &:last-child {
+        margin-left: 20px;
+      }
+    }
+  }
+  &.modify-avatar {
+    padding: 40px;
+    .top-avatar {
+      min-height: 200px;
+    }
+    .group-item {
+      display: inline-block;
+      &:last-child {
+        margin-left: 20px;
+      }
+    }
+  }
+}

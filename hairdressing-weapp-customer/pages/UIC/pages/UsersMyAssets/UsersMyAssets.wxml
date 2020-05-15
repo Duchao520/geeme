@@ -1,0 +1,80 @@
+<view class="UsersMyAssets">
+  <view class='vipCardImage box_padding'>
+    <view class="flex_box justify_space_between">
+      <view class='userAssetsInfo'>
+        <view class='userAssetsInfoTitle'>总资产（元）</view>
+        <view class='userAssetsInfoNumber'>
+          <view class='userAssetsInfoNumber-l'>{{walletMoney ? walletMoney : '--'}}</view>
+          <view class='userAssetsInfoNumber-r'>
+            <view class='userAssetsInfoNumber-r-item' bindtap="navgateToWallet">查看明细</view>
+          </view>
+        </view>
+      </view>
+      <view class="flex_box">
+        <button class="btn fz-24 fc-ffffff" hover-class="hover-btn" bindtap="navigateToRecharge">充值</button>
+        <button class="btn fz-24 fc-ffffff" hover-class="hover-btn" bindtap="navgateToWithdraw">提现</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 权益金 -->
+  <view class="equity flex_box align_center">
+    <view class="equity-image"></view>
+    <view class="equity-amount">
+      <view>
+        <text>¥</text>
+        <text>{{totalPreMoney}}</text>
+      </view>
+      <view class="flex_box align_center" bindtap="onTapEquityDetails">
+        <text>权益金</text>
+        <text>查看明细</text>
+      </view>
+    </view>
+    <view class="equity-btn">
+      <button class="btn fz-24 fc-302E36" hover-class="hover-btn" bindtap="navigateToEquity">转出</button>
+    </view>
+  </view>
+
+  <view class='assetsContainer'>
+    <view class="assetsInfo">
+      <view class='assetsInfo-l' bindtap='tovipCard'>
+        <view class='vipCardIcon'></view>
+        <view class='typeInfo'>
+          <view class='typeCount'>{{cardCount}}张</view>
+          <view class='typeName'>会员卡</view>
+        </view>
+      </view>
+      <view class='assetsInfo-r' bindtap="jumpRedPacket">
+        <view class='redEnvelopeCardIcon'></view>
+        <view class='typeInfo'>
+          <view class='typeCount'>{{packetCount}}张</view>
+          <view class='typeName'>红包</view>
+        </view>
+      </view>
+    </view>
+    <view class="assetsInfo">
+      <view class='assetsInfo-l' bindtap='navgateToCoupon'>
+        <image src="/images/button/icon_coupon.png" class="icon"></image>
+        <view class='typeInfo'>
+          <view class='typeCount'>{{couponCount}}张</view>
+          <view class='typeName'>优惠券</view>
+        </view>
+      </view>
+      <view class='assetsInfo-r' bindtap="navgateToGiftCard">
+        <image src="/images/button/icon_gift.png" class="icon"></image>
+        <view class='typeInfo'>
+          <view class='typeCount'>{{giftCardCount}}张</view>
+          <view class='typeName'>礼品卡</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <AppModal show="{{walletAuthModal}}" title="确定要开通钱包吗" content="钱包余额由商家存管，与及美公司无关" bindcancle="cancle" bindconfirm="putNext">
+    <view class="flex_box align_center switch">
+      <switch type="checkbox" checked="{{AUTHOR_SWITCHER}}" bindchange="authorSwitch"/>
+      <text class="fz-20 fc-333333">同意</text>
+      <text class="fz-20 fc-0095D9">《及美钱包充值提现协议》</text>
+    </view>
+  </AppModal>
+  <WalletAuth isShow="{{DETAIL_SWITCHER}}" bindsubmit="authorize"></WalletAuth>
+</view>

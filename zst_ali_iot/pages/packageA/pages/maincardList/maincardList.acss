@@ -1,0 +1,26 @@
+
+.bg{
+  width: 100%;
+  height: 589rpx;
+  background: url("https://zhushangtong.oss-cn-hangzhou.aliyuncs.com/guide/2019/10/18/9aaf94e62a8b584b22e7e4371722585c.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+.bg .userInfo{
+  width: 666rpx;
+  background:rgba(255,255,255,1);
+  border-radius:19rpx;
+  margin: 0 auto
+}
+.bg .userInfo view:last-child{
+  margin-bottom: 0!important;
+}
+.maincard-item{
+  width: 656rpx;
+  height: 188rpx;
+  background: url("/pages/packageA/static/imgs/maincard_bg.png") center center no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto 38rpx;
+}
+.hoverClass{
+  opacity: .7;
+}

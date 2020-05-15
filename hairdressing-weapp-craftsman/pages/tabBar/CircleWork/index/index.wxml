@@ -1,0 +1,21 @@
+<view class='CircleWork'>
+  <!-- 搜索框 -->
+  <view style="margin-top:20rpx">
+    <AppSearch value="{{keyWord}}" placeholder="搜索风格/服务者昵称" bind:input="search"></AppSearch>
+  </view>
+
+  <view class='CircleWorkBody'>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <AppTabs tabs="{{tabList}}" currentTab="{{curTab}}" bindswitchTab="switchTab"></AppTabs>
+    </AttachTop>
+    <block wx:if="{{!ifDefault}}">
+      <view class='Masonry-container {{isFixed ? "fixed" : ""}}'>
+        <Masonry list="{{worksList}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_works.png" text="暂时没有作品动态，晚点再来看看吧~" />
+    </block>
+  </view>
+</view>
+<Release bindtoRelease="toRelease"></Release>

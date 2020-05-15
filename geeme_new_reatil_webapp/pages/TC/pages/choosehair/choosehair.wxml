@@ -1,0 +1,41 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<!-- 服务列表 -->
+<view class='packagelist'>
+  <!-- <view class='packageitem'>
+    <view class='pi-alt'>已选服务</view>
+    <view class='hs-body'>
+      <view class='serviceitem active'>
+        <view class='serviceitem-child'>
+          <view class='counsts'>
+          </view>
+          <image class='serimg' lazy-load src='{{format.getImageUrl(serviceInfo.image)}}' mode='aspectFill'></image>
+          <view class='sercontext'>
+            <view class='serdes'>{{serviceInfo.serviceName}}</view>
+            <view class='sershortdes'>
+              <view class='sershorttext'>{{serviceInfo.specificationName}}</view>
+              <view class='sertime'>{{serviceInfo.serverTime}}分钟</view>
+            </view>
+            <view class='seraddress'>
+              <view class='serprice'>
+                <text id='moneyicon'>￥</text>{{serviceInfo.price}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+</view>
+
+<view class='choose-content'>
+  <StaffCard wx:for="{{hairList}}" wx:key="{{index}}" item="{{item}}" selected="{{currentId == item.staffId}}" bindtap="sethair" data-id="{{item.staffId}}" data-name="{{item.name}}" hideReserve />
+</view>
+
+
+<!-- 已选服务者  下一步 -->
+<view class='bottom'>
+  <view class='bottom-word'>
+    <view class='alt'>已选服务者</view>
+    <view class='hairname'>{{hairname}}</view>
+  </view>
+  <view class='bottom-btn' bindtap='clickNext'>下一步</view>
+</view>

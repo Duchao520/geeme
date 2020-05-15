@@ -1,0 +1,252 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    createTime = Date.parse(getDate())
+    if (finishTime - createTime < 0) {
+      return 0
+    } else {
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+  module.exports = {
+    getCountdownDay: getCountdownDay
+  }
+</wxs>
+<view class="customerDetail">
+  <!-- 头部 -->
+  <view class='customerDetail-head'>
+    <!-- 用户信息模块 -->
+    <view class='customerInfoMoudle'>
+      <view class='customer-left'>
+        <AppAvatar avatar="{{format.getImageUrl(baseInfo.headPortrait)}}" width="96rpx" gender="{{baseInfo.sex}}" iconWidth="30rpx" />
+      </view>
+      <view class='customer-right'>
+        <view class='customerBasicInfo'>
+          <view class='customerName'>{{baseInfo.name}}</view>
+          <view class='customerLevel icon--diamond'>{{baseInfo.memberLevel}}</view>
+        </view>
+        <view class='customerAccount'>会员号：{{baseInfo.memberSerialNo}}</view>
+      </view>
+    </view>
+    <!-- 用户数据模块 -->
+    <view class='customerDataMoudle'>
+      <view class='dayDataShow'>
+        <view class='dayDataShowItem'>
+          <view class='dayShow-top'>{{info.consumeCount ? info.consumeCount : '-'}}</view>
+          <view class='dayShow-bottom'>消费次数</view>
+        </view>
+        <view class='dayDataShowItem active'>
+          <view class='dayShow-top'>{{info.consumeTotalAmount ? info.consumeTotalAmount : '-'}}</view>
+          <view class='dayShow-bottom'>消费金额</view>
+        </view>
+        <view class='dayDataShowItem active'>
+          <view class='dayShow-top'>{{info.perConsumeOrderPrice ? info.perConsumeOrderPrice : '-'}}</view>
+          <view class='dayShow-bottom'>客单价</view>
+        </view>
+        <view class='dayDataShowItem'>
+          <view class='dayShow-top'>{{info.consumptionCycle ? info.consumptionCycle : '-'}}</view>
+          <view class='dayShow-bottom'>消费周期</view>
+        </view>
+        <view class='dayDataShowItem active'>
+          <view class='dayShow-top'>{{info.integral ? info.integral : '-'}}</view>
+          <view class='dayShow-bottom'>积分</view>
+        </view>
+        <view class='dayDataShowItem active'>
+          <view class='dayShow-top'>{{info.experience ? info.experience : '-'}}</view>
+          <view class='dayShow-bottom'>成长值</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 主体 -->
+  <view class='customerDetail-body'>
+    <AppTabs tabs="{{tabList}}" padding="0 40rpx" bind:switchTab="switchTab" />
+    <view hidden="{{currentTab != 0}}">
+      <!-- 基本资料 -->
+      <view class='basicInfoModle'>
+        <!-- 头像 -->
+        <view class='avatar'>
+          <view class='avatarTitle'>头像</view>
+          <image src='{{format.getImageUrl(baseInfo.remarkHeadPortrait)}}' mode="aspectFill"></image>
+        </view>
+
+        <!-- 主要信息 -->
+        <view class='importantInfo'>
+          <view class='importantInfoItem active'>
+            <view class='importantInfoItemOne'>
+              <view class='itemTitle'>姓名</view>
+              <input disabled="{{!editable}}" class='{{editable?"":"active"}}' value="{{baseInfo.name}}"></input>
+            </view>
+            <view class='importantInfoItemOne'>
+              <view class='itemTitle'>备注昵称</view>
+              <input disabled="{{!editable}}" class='{{editable?"":"active"}}' value="{{baseInfo.nickName}}"></input>
+            </view>
+            <view class='importantInfoItemOne'>
+              <view class='itemTitle'>手机号码</view>
+              <input disabled="{{!editable}}" class='{{editable?"":"active"}}' value="{{format.encriptPhone(baseInfo.mobile)}}"></input>
+            </view>
+            <view class='importantInfoItemOne'>
+              <view class='itemTitle'>性别</view>
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{['男','女']}}">
+                <view class="picker {{editable?'':'active'}}">
+                  {{baseInfo.sex}}
+                </view>
+              </picker>
+              <view class='moreIcon' wx:if="{{editable}}"></view>
+              <view class='disabledBox' wx:else></view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 次要信息 -->
+        <view class='secondaryInfo'>
+          <view class='secondaryInfoItem'>
+            <!-- 生日 -->
+            <view class='secondaryItemOne'>
+              <view class='itemTitle'>生日</view>
+              <picker bindchange="bindPickerChange" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01">
+                <view class="picker {{editable?'':'active'}}">
+                  {{baseInfo.birthDay || ''}}
+                </view>
+              </picker>
+              <view class='moreIcon' wx:if="{{editable}}"></view>
+              <view class='disabledBox' wx:else></view>
+
+            </view>
+            <!-- 居住地 -->
+            <view class='secondaryItemOne'>
+              <view class='itemTitle'>居住地</view>
+              <picker bindchange="bindPickerChange" mode="region" value="{{['浙江省','杭州市','西湖区']}}">
+                <view class="picker {{editable?'':'active'}}">
+                  {{baseInfo.liveProvince || ''}} {{baseInfo.liveCity || ''}}
+                </view>
+              </picker>
+              <view class='moreIcon' wx:if="{{editable}}"></view>
+              <view class='disabledBox' wx:else></view>
+            </view>
+
+            <!-- 微信号 -->
+            <view class='secondaryItemOne'>
+              <view class='itemTitle'>微信号</view>
+              <input disabled="{{!editable}}" class='{{editable?"":"active"}}' value="{{baseInfo.weChat || ''}}"></input>
+            </view>
+
+            <!-- 归属门店 -->
+            <view class='secondaryItemOne'>
+              <view class='itemTitle'>归属门店</view>
+              <input disabled="{{!editable}}" class='{{editable?"":"active"}}' value="{{baseInfo.belongStoreName || ''}}"></input>
+            </view>
+
+            <!-- 备注 -->
+            <view class='secondaryItemNotes'>
+              <view class='itemTitle'>备注</view>
+              <view class='secondaryItemNotes-box'></view>
+              <input disabled="{{!editable}}" class='{{editable?"":"active"}}' value="{{baseInfo.remark || ''}}"></input>
+            </view>
+          </view>
+        </view>
+
+        <!-- 私人备注 -->
+        <!-- <view class='proviteInfo'>
+          <view class='proviteTitle'>
+            <view class='proviteTitle-left'>私人备注</view>
+            <view class='proviteTitle-right'>仅限您本人可见</view>
+          </view>
+
+          <view class='proviteAvatar'>
+            <view class='proviteAvatar-left'>头像</view>
+            <view class='proviteAvatar-right'></view>
+          </view>
+
+          <view class='importantInfoItemOne'>
+            <view class='itemTitle'>备注昵称</view>
+            <input value="刘三姐"></input>
+          </view> -->
+
+        <!-- 备注 -->
+        <!-- <view class='secondaryItemNotes isBorder'>
+            <view class='itemTitle'>备注</view>
+            <view class='secondaryItemNotes-box'></view>
+            <input placeholder='添加备注' value='这是一个非常重要的客户，这是一个非常重要的客户，这是一个非常重要！'></input>
+          </view>
+        </view> -->
+
+        <!-- 保存修改按钮 -->
+        <!-- <view class='saveButton'>
+          <view class='saveButton-item'>保存修改</view>
+        </view> -->
+      </view>
+
+    </view>
+    <!-- 消费记录 -->
+    <view hidden="{{currentTab != 1}}" style="padding-bottom:120rpx;">
+      <view class="record-item" wx:for="{{records}}" wx:key="{{index}}">
+        <view class="record-header">
+          <view><text style="color:#999">服务时间： </text>{{item.createTime}}</view>
+          <view style="margin-top:14rpx;"><text style="color:#999">服务门店： </text>{{format.getCity(item.storeCity)}} {{item.storeName}}</view>
+        </view>
+        <view class="record-goodsList">
+          <view class="goodsList-row title">
+            <view class="goodsList-row-c1">项目/产品/卡项</view>
+            <!-- <view class="goodsList-row-c2">金额</view> -->
+            <view class="goodsList-row-c3">服务者/销售人</view>
+          </view>
+          <view class="goodsList-row" wx:for='{{item.goodsList}}' wx:key="{{index}}">
+            <view class="goodsList-row-c1 text--ellipsis_1">{{item.goodsName}}</view>
+            <view class="goodsList-row-c3">
+              <block wx:if="{{item.goodsType === 'service'}}">
+                <view wx:if="{{item.stationOne && item.stationOne.length}}">工位1：<text wx:for="{{item.stationOne}}" wx:for-item="item2" wx:key="{{index}}">{{item2}}</text></view>
+                <view wx:if="{{item.assistantOrSellers && item.assistantOrSellers.length}}">工位2：<text wx:for="{{item.assistantOrSellers}}" wx:for-item="item2" wx:key="{{index}}">{{item2}}</text></view>
+                <view wx:if="{{item.stationThree && item.stationThree.length}}">工位3：<text wx:for="{{item.stationThree}}" wx:for-item="item2" wx:key="{{index}}">{{item2}}</text></view>
+              </block>
+              <block wx:else>
+                <view wx:if="{{item.assistantOrSellers && item.assistantOrSellers.length}}"><text wx:for="{{item.assistantOrSellers}}" wx:for-item="item2" wx:key="{{index}}">{{item2}}</text></view>
+              </block>
+            </view>
+          </view>
+          <view class="goodsList-row total">
+            <view class="goodsList-row-c1">消费总额</view>
+            <view class="goodsList-row-c2"><text class="price">¥{{item.price}}</text></view>
+          </view>
+        </view>
+        <view class="record-photos" wx:if="{{item.image.length}}">
+          <view class="photos-title">影集</view>
+          <view class="photos-container">
+            <image wx:for="{{item.image}}" wx:if="{{index < 6}}" wx:key="{{index}}" wx:for-item="image" src="{{format.getImageUrl(image)}}" mode="aspectFill" bindtap="$previewImage" data-current="{{format.getImageUrl(image)}}" data-urls="{{format.getImageArr(item.image)}}"></image>
+          </view>
+        </view>
+        <view class="record-space"></view>
+      </view>
+    </view>
+    <!-- 会员卡 -->
+    <view hidden="{{currentTab != 2}}">
+      <view class='vipCardMoudle'>
+        <view class='card' wx:for="{{cards}}" wx:key="{{index}}" style='background-image:url({{format.getImageUrl(item.cardCover)}})'>
+          <view class='card-title'>
+            <image class='card-logo' src="{{format.getImageUrl(logo)}}" mode='aspectFill'></image>
+            <text class='card-name'>{{item.cardName}}</text>
+          </view>
+          <view class='card-info'>
+            <view class='card-price'>
+              <view wx:if="{{item.cardType == 1}}">
+                <view>¥{{format.getPrice(item.giftMoney + item.rechargeMoney)}}</view>
+                <view style="font-size:32rpx">(含赠送金：¥{{item.giftMoney}})</view>
+              </view>
+              <view wx:else>{{item.validPermanent ? '永久' : wxs.getCountdownDay(item.finishTime) + '天'}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 备注 -->
+    <view hidden="{{currentTab != 3}}" class="box_padding" style="padding: 36rpx 32rpx;">
+      <block wx:if="{{Notes && Notes.length > 0}}">
+        <Notes notes="{{Notes}}"></Notes>        
+      </block>
+      <block wx:else>
+        <AppDefault image="/images/default/default_works.png" text="暂时没有备注，去试试添加~" />
+      </block>
+      <Release bindtoRelease="toAddNotes"></Release>
+    </view>
+  </view>
+</view>

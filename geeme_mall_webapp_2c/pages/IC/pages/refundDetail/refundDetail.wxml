@@ -1,0 +1,121 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getPhaseObj(phaseName){
+    var icon = 'right'
+    var text;
+    if(phaseName === 'REFUND_APPLY' || phaseName === 'AFTER_SALE_APPLY'){
+      text = '提交申请'
+    }else if(phaseName === 'REFUND_HANDLING' || phaseName === 'AFTER_SALE_HANDLING'){
+      text = '你的申请单已受理，待商家审核中'
+      icon = 'wait'
+    }else if(phaseName === 'REFUND_REJECT' || phaseName === 'AFTER_SALE_REJECT'){
+      text = '你的申请单被商家拒绝'
+      icon = 'reject'
+    }else if(phaseName === 'REFUND_MODIFY' || phaseName === 'AFTER_SALE_MODIFY'){
+      text = '修改退款申请'
+    }else if(phaseName === 'REFUND_SUCCESS' || phaseName === 'AFTER_SALE_SUCCESS'){
+      text = '商家已同意退款申请，退款完成'
+    }else if(phaseName === 'REFUND_CANCEL' || phaseName === 'AFTER_SALE_CANCEL'){
+      text = '取消退款'
+    }
+
+    return {
+      icon:icon,
+      text:text
+    }
+  }
+
+  module.exports = {
+    getPhaseObj:getPhaseObj
+  }
+</wxs>
+<view class="refundDetail-page">
+
+  <!-- 头部 -->
+  <view class="gray-line"></view>
+  <view class="refundDetail-header">
+    <view>申请时间：
+      <text> {{info.createTime}}</text>
+    </view>
+    <view>{{info.type == 0 ? '退款原因' : '售后类型'}}：
+      <text> {{info.refundReason}}</text>
+    </view>
+  </view>
+
+  <!-- 时间线 -->
+  <view class="gray-line"></view>
+  <view class="timeLine-container">
+    <view class="timeLine" wx:for="{{info.refundPhaseInfoList}}" wx:key="{{index}}">
+      <view class="icon {{wxs.getPhaseObj(item.phaseName).icon}}"></view>
+      <view class="title">{{wxs.getPhaseObj(item.phaseName).text}}</view>
+      <view class="time">
+        <text wx:if="{{item.reason}}">{{(item.phaseName === 'REFUND_REJECT' || item.phaseName === 'AFTER_SALE_REJECT') ? '拒绝理由' : '原因'}}：{{item.reason}}</text>
+        <text wx:if="{{item.refundPrice}}">金额：{{item.refundPrice}}元</text>
+      </view>
+      <view class="time">{{info.createTime}}</view>
+    </view>
+  </view>
+
+  <!-- 退款金额 -->
+  <view class="gray-line"></view>
+  <view class="refundMoney-container">
+    <view class="refundMoney">申请退款金额
+      <text>¥{{info.refundPrice}}</text>
+    </view>
+    <view class="refundMoney">实际退款金额
+      <text>¥{{info.received}}</text>
+    </view>
+  </view>
+
+
+  <!-- 留言与回复 -->
+  <view class="gray-line"></view>
+  <view class="message">
+    <view class="message-header">留言/沟通记录
+      <view class="header-button" wx:if="{{info.status != 3 && info.status != 1}}" bindtap='showLayer'>补充留言</view>
+    </view>
+    <view wx:for="{{info.refundNotes}}" wx:key="{{index}}" wx:for-item="note">
+      <view class="message-h2">{{note.sendMan === 'CUSTOMER' ? '我的留言' : '商家回复'}}</view>
+      <view class="customer-msgContainer">
+        <view class="msgContainer-time">{{note.createTime}}</view>
+        <view class="msgContainer-text">{{note.note}}</view>
+        <view class="msgContainer-image">
+          <image wx:for="{{note.images}}" lazy-load wx:key="{{index}}" src="{{format.getImageUrl(item)}}" mode='aspectFill' bindtap="$previewImage" data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(note.images)}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="bottom-button-container" wx:if="{{info.status != 3}}">
+    <view class='orderListButtons'>
+      <view class='button-item black' wx:if="{{info.status == 0 || info.status == 2}}" bindtap="cancel">取消申请</view>
+      <view class='button-item red' wx:if="{{info.status == 0 || info.status == 2}}" bindtap="modify">修改申请</view>
+      <block wx:if="{{info.refundOrderStatus == 'AFTER_SALES_CLOSE'}}">
+        <view wx:if="{{!info.assessment}}" class='button-item red'>评价售后</view>
+        <view wx:else class='button-item black'>评价详情</view>
+      </block>
+    </view>
+  </view>
+</view>
+<!-- 补充留言 -->
+<view>
+  <!-- 遮盖层 -->
+  <view class="app-maskLayer" catchtap="hideLayer" hidden='{{!ifShowLayer}}'></view>
+  <!-- 容器 -->
+  <view class="leaveMessage-container {{ifShowLayer ? 'active' : ''}}">
+    <view class="leaveMessage-header">补充留言
+      <view class="app-icon-close refundDetail" catchtap="hideLayer"></view>
+    </view>
+    <view class="leaveMessage-message">
+      <textarea bindinput="inputNote" fixed="true" maxlength="300" placeholder='请输入您的留言'></textarea>
+      <view class="message-length">{{note.length}}/300</view>
+    </view>
+    <view class='updatePic'>
+      <view class='picItem' wx:for="{{images}}" wx:key="{{index}}">
+        <image src="{{format.getImageUrl(item)}}" lazy-load mode="aspectFill" bindtap="$previewImage" data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(images)}}"></image>
+      </view>
+      <view class='updatePicItem' bindtap="uploadImage" hidden="{{!(images.length < 3)}}"></view>
+    </view>
+    <view class="leaveMessage-bottom-button" bindtap="leaveMessage">提交留言</view>
+  </view>
+</view>

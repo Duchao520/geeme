@@ -1,0 +1,80 @@
+<!--pages/TC/choosetime/choosetime.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<canvas canvas-id="serverPic" style="width: 750rpx;height: 640rpx;position: absolute;opacity: 0;z-index: -1;top: -640rpx;left: -750rpx;"></canvas>
+  <view class='container'>
+    <view class='header' wx:if="{{hairInfo}}" bindtap="navigateToPerson">
+      <image class='hairavatar' lazy-load src="{{format.getImageUrl(hairInfo.avatar + '?x-oss-process=image/resize,m_lfit,h_96,w_96')}}" mode='aspectFill'></image>
+      <view class='hairinfo'>
+        <view class='hairname'>{{hairInfo.name}}</view>
+        <view class='hairlevel'>
+          <view class='hl-title'>{{hairInfo.levelName}}</view>
+          <view class='hl-store'></view>
+        </view>
+        <view class='hairaddress'>
+          <view class='ha-icon'></view>
+          <view class='ha-text'>{{hairInfo.shopName}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 服务列表 -->
+    <view class='packagelist' wx:if="{{service && service.length}}">
+      <view class='packageitem'>
+        <view class='pi-alt'>已选服务</view>
+        <view class='hs-body'>
+          <view class='serviceitem' wx:for="{{service}}" wx:key="{{index}}">
+            <view class='serviceitem-child'>
+              <view class='counsts'>
+              </view>
+              <image class='serimg' lazy-load src="{{format.getImageUrl(item.image + '?x-oss-process=image/resize,m_fill,h_160,w_160')}}" mode='aspectFill'></image>
+              <view class='sercontext'>
+                <view class='serdes'>{{item.serviceName}}</view>
+                <view class='sershortdes'>
+                  <view class='sershorttext'>{{item.specificationName}}</view>
+                  <view class='sertime'>{{item.serverTime}}分钟</view>
+                </view>
+                <view class='seraddress'>
+                  <view class='serprice'>
+
+                    <template is="priceShow" data="{{price:item.price,count:item.count}}"></template>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 日历 -->
+    <view class='calendar'>
+      <view class='choose-time'>
+        <Time dates="{{dates}}" wx:if="{{isShow}}" type="show" times="{{times}}" bindsetCurrentDate="setCurrentDate" bindsetCurrentTime="setCurrentTime">
+          <view class='timeCalendarIcon' slot="timeCalendarIcon"></view>
+        </Time>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class='note'>
+      <view class='notetitle'>备注</view>
+      <view class='notearea'>
+        <input class='noteinput' placeholder='您的其他要求和爱好,请说明~' placeholder-style='color:#AAAAAA;font-size:28rpx;' bindinput='setnote' maxlength='120' cursor-spacing="40rpx" value='{{words}}'>
+        </input>
+        <view class='wordsnum'>
+          <text>{{words.length}}</text>/120</view>
+      </view>
+    </view>
+
+    <!-- 提交预约 -->
+    <view class='submit'>
+      <view class='submittime'>
+        <text class="des-word">已选时间</text>
+        <text class='timeitem'>{{currentdate}} {{currenttime}}</text>
+      </view>
+      <form wx:if="{{service && service.length}}" report-submit bindsubmit="submitappointment">
+        <button class='submitbtn' form-type="submit">提交预约</button>      
+      </form>
+      <view class='submitbtn' wx:else hover-class='none' bindtap='nextStep'>下一步</view>
+    </view>
+  </view>

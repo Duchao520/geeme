@@ -1,0 +1,26 @@
+.AppASAmount {
+  display: inline-block;
+  box-sizing: content-box;
+  border:1px solid #dcdcdc;
+}
+
+.item {
+  box-sizing: content-box;
+  float: left;
+  height:100%;
+}
+
+.sub {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAACVBMVEUAAADR0dHQ0ND6HoykAAAAAnRSTlMAtc2YijsAAAAUSURBVBjTYxgsIGsVCDggGIMDAAB53Af5LgiVMgAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+}
+
+.amount {
+  text-align:center;
+  border:1px solid #dcdcdc;
+  border-top:none;
+  border-bottom:none;
+}
+
+.add {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAACVBMVEUAAAD1LVf1LVa4mqLRAAAAAnRSTlMAnmEkc3sAAAAgSURBVBjTYyASMDpAGUwNtGFkrQKClXAGLe1CeIcwAAAtUBIhP7qroQAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+}

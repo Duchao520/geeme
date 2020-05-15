@@ -1,0 +1,10 @@
+<scroll-view scroll-x>
+  <view class='starListItems'>
+    <view class='startListItem' wx:for="{{10}}" wx:key="{{index}}" bindtap='tostaffDetail'>
+      <image class='avatar' src='https://image-test.geeme.cn/images/4e1548d71162426a8360224d2fe2a2be'></image>
+      <view class='starName'>刘一刀</view>
+      <view class='focus-no'>关注</view>
+      <view class='focus-yes' wx:if="{{7>8}}">已关注</view>
+    </view>
+  </view>
+</scroll-view>

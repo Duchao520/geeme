@@ -1,0 +1,41 @@
+@import './mixin.scss';
+// 引入个人中心的header
+@import './header.scss';
+// 引入左边导航菜单
+@import './menu.scss';
+// 引入我的品牌
+@import './brand.scss';
+// 引入我的店铺
+@import './shop.scss';
+// 引入修改密码
+@import './password.scss';
+// 引入个人资料
+@import './person.scss';
+// 引入动画
+@import "@/assets/css/transition.scss";
+.center-page {
+    width: 100%;
+    box-sizing: border-box;
+    // padding: 0 20px 20px 20px;
+    .body-center {
+        padding-top: 85px;
+        .body-container {
+            max-width: 1440px;
+            min-height: calc(100vh - 105px);
+            margin: 0 auto;
+            margin-bottom: 20px;
+            background: #fff;
+            @include display-flex(flex);
+            @include border-radius(8px);
+            display: flex;
+            .left-body {
+                min-width: 170px;
+                @include box-shadow-card();
+            }
+            .right-body {
+                min-width: 1050px;
+                flex: auto;
+            }
+        }
+    }
+}

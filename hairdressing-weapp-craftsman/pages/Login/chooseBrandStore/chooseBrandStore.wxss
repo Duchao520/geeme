@@ -1,0 +1,130 @@
+@import '/utils/wxss/icon.wxss';
+
+.chooseBrandStore{
+  width: 100%;
+  height: auto;
+  padding-bottom:150rpx;
+}
+.pageTitle{
+  width: 100%;
+  padding: 58rpx 0 0 32rpx;
+  text-align: left;
+  color: #999999;
+  font-size: 28rpx;
+}
+.pageContent{
+  width: 100%;
+  height: auto;
+  padding: 40rpx 74rpx 0;
+}
+.pageItem{
+  width: 100%;
+  height: auto;
+  margin-bottom: 60rpx;
+}
+.brandMoudle{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.brandMoudle image{
+  width: 62rpx;
+  height: 62rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.brandName{
+  color: #333333;
+  font-size: 36rpx;
+
+}
+.storeMoudle{
+  width: 100%;
+  margin-top: 20rpx;
+}
+.storeItem{
+  position: relative;
+  width: 100%;
+  border-radius: 8rpx;
+  box-shadow: 0 0 12rpx 0 rgba(0, 0, 0, .1);
+  margin-bottom: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.storeItem.active{
+  color:#f52d56;
+}
+
+.storeImage{
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  border-radius: 8rpx;
+}
+.storeInfo{
+  height: 88rpx;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.storeInfo-top{
+  max-width: 350rpx;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  color: #263238;
+  font-size: 32rpx;
+}
+
+.storeItem.active .storeInfo-top{
+  color:#f52d56;
+}
+
+.storeInfo-top > text{
+  display: inline-block;
+  vertical-align: middle;
+}
+.storeInfo-top > text:first-child{
+  max-width: 100rpx;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  margin-right:10rpx;
+}
+.storeInfo-bottom{
+  max-width: 450rpx;
+  color: #999999;
+  font-size: 24rpx;
+  padding-left: 26rpx;
+  position: relative;
+  background: no-repeat left center;
+  background-size: 24rpx 24rpx;
+}
+.storeItem.active .storeInfo-bottom{
+  color:#f52d56;
+}
+
+.store-state{
+  position: absolute;
+  top:30rpx;
+  right:30rpx;
+  padding:0 8rpx;
+  height:28rpx;
+  line-height:28rpx;
+  border-radius:4rpx;
+  color:#fff;
+  font-size:16rpx;
+  background:#7ed321;
+}
+
+.store-state.unable{
+  background:#758c97;
+}

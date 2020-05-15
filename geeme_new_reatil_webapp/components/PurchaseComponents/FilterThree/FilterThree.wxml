@@ -1,0 +1,35 @@
+<view class="FilterThree {{flagThree?'active':''}}">
+  <view class='FilterTop'>
+    <!-- 优惠福利项目 -->
+    <view class='Filter-t-item'>
+      <view class='item-title'>优惠福利</view>
+      <view class='itemBoxs'>
+        <view class='item-box'>剪发</view>
+      </view>
+    </view>
+     <view class='Filter-t-item'>
+      <view class='item-title'>服务保障</view>
+      <view class='itemBoxs'>
+        <view class='item-box'>正品保障</view>
+      </view>
+    </view>
+
+    <!-- 价格区间 -->
+    <view class='priceInterval'>
+      <view class='priceInterval-left'>价格区间:</view>
+      <view class='priceInterval-right'>
+        <input class='minPrice' placeholder='最低价'></input>
+        <view class='priceLine'></view>
+        <input class='minPrice' placeholder='最高价'></input>
+      </view>
+    </view>
+  </view>
+  <view class='FilterBottom'>
+    <view class='FilterBottom-l'>
+      重置
+    </view>
+    <view class='FilterBottom-r'>
+      确定
+    </view>
+  </view>
+</view> 

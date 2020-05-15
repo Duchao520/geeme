@@ -1,0 +1,55 @@
+/* pages/UIC//pages/equityDetails/equityDetails.wxss */
+.equity-header {
+  width: 750rpx;
+  background: #fff;
+}
+.equity-store {
+  width: 686rpx;
+  height: 150rpx;
+  margin: 32rpx 32rpx 40rpx;
+  border-radius: 8rpx;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 0rpx 16rpx 0rpx rgba(174, 184, 229, 0.3);
+}
+.equity-store-item {
+  width: 240rpx;
+  text-align: left;
+  margin-left: 30rpx;
+}
+
+.equity-store-more {
+  width: 126rpx;
+  margin-right: 20rpx;
+}
+.equity-store-more text {
+  width: 102rpx;
+  padding-right: 24rpx;
+  text-align: right;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center right;
+  background-size: 8rpx 16rpx;
+}
+
+.popup-container {
+  position: absolute;
+  top: 320rpx;
+  left: 0;
+  width: 100%;
+}
+
+.popup-container.fixed{
+  top:100rpx;
+}
+
+.wallet{
+
+}
+.wallet .date-head{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18rpx 32rpx;
+  background: #F8F8F8;
+  color: #666666;
+}
+.fc-999999{
+  color: #999999;
+}

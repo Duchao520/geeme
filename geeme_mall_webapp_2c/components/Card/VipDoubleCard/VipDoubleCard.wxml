@@ -1,0 +1,37 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function JudgeCardType(cardType){
+    switch(cardType){
+      case 0:
+        return '身份卡';
+      case 1:
+        return '储值卡';
+      case 2:
+        return '次卡';
+      case 3:
+        return '时间卡';
+      default:
+        return '';
+    }
+  }
+
+  module.exports = {
+    JudgeCardType: JudgeCardType
+  }
+</wxs>
+<view class="card-item" bindtap='jumpCardDetail'>
+  <view class="bg-cover fc-ffffff" style='background-image:url({{format.getImageUrl(item.cardCover)}});margin-bottom: 12rpx;'>
+    <view class="flex_box">
+      <image style="width: 40rpx;height: 40rpx;border-radius: 50%;margin-right: 8rpx;"  src="{{logo}}" mode='aspectFill' lazy-load></image>
+      <view class="flex_box flex_column" style="width: 200rpx;">
+        <view class="fz-26 txt-ellipsis" style="text-align: left;">{{item.cardName}}</view>
+        <view class="card-border">{{wxs.JudgeCardType(item.cardType)}}</view>
+      </view>
+    </view>
+    <text class="present" wx:if="{{item.cardGiftNum}}">赠{{item.cardGiftNum}}元</text>
+    <view class="fz-32 price"><text class="iconfont iconrenminbidanjia fz-24"></text>{{item.cardPrice == -1 ? item.cardFirstRechargeNum : item.cardPrice}}</view>
+  </view>
+  <view class="fz-26 fc-333333 txt-ellipsis flex_box" style="margin-bottom: 8rpx;">{{item.cardName}}</view>
+  <view class="fz-24 fc-999999 txt-ellipsis flex_box align_center" style="margin-bottom: 8rpx;" wx:if="{{item.address}}"><image src="/images/button/store_icon.png" style="width: 20rpx;height: 20rpx;margin-right: 8rpx;"></image>{{item.address}}</view>
+  <view class="fc-F52D56 flex_box align_center"><text class="iconfont iconrenminbidanjia fz-20"></text>{{item.cardPrice == -1 ? item.cardFirstRechargeNum : item.cardPrice}}</view>
+</view>

@@ -1,0 +1,34 @@
+.options-container{
+  display: flex;
+  width: 100%;
+  height: 52rpx;
+  border-radius: 30rpx;
+  border: 2rpx solid #F52D56;
+  overflow: hidden;
+  position: relative;
+}
+.options{
+  box-sizing: border-box;
+  border-right: 2rpx solid #F52D56;
+  width: 25%;
+  height: 100%;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 52rpx;
+  color: #F52D56;
+}
+.options:last-child{
+  border-right: none;
+}
+.active-options{
+  color: #FFFFFF;
+}
+.active-ele{
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background: #F52D56;
+  z-index: -1;
+  transition: ease .3s;
+}

@@ -1,0 +1,17 @@
+<view class="selvesProduct">
+  <!-- 头部 -->
+  <view class='selevesHeader'>
+    <view class='selvesIcon'></view>
+    <view class='selvesIconName'>该商品已下架</view>
+  </view>
+
+  <!-- 可能喜欢 -->
+  <view class='selevesBody'>
+    <view class='sellves-b-head'>
+      <view class='selleves-b-headItem'>您可能喜欢</view>
+    </view>
+    <view class='selves-b-content'>
+        <getlike bindclickGetLike="clickGetLike" likeList="{{likeList}}"></getlike>
+    </view>
+  </view>
+</view>

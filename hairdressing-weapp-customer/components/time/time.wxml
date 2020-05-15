@@ -1,0 +1,35 @@
+<wxs module="timestatus">
+  var timestatus = function(available, noCapacity) {
+    if (!available && !noCapacity) {
+      return 'outtime'
+    } else if (!available && noCapacity) {
+      return 'outtimepeople'
+    } else if (available && noCapacity) {
+      return 'outpeople'
+    } else if (available && !noCapacity) {
+      return ''
+    }
+  }
+  module.exports = {
+    timestatus: timestatus
+  }
+</wxs>
+<view class='choose-time'>
+  <view class='ct-head {{dates.length<=5?"firstTime":"updateTime"}}'>
+    <!-- 若没有activetimestamp则给dates第一个元素添加active CSS类 -->
+    <view class='cth-item {{(activetimestamp && activetimestamp == item.timestamp || !activetimestamp && index == 0) ? "active" : "" }}' wx:for="{{dates}}" wx:key="{{index}}" data-item="{{item}}" bindtap='setcurrentdate'>
+      <text class='cth-text1'>{{currenttimestamp == item.timestamp?"今天":item.week}}</text>
+      <text class='cth-text2'>{{item.month}}/{{item.day}}</text>
+    </view>
+    <view class='calendaricon' bindtap='clickCalendar' wx:if="{{dates.length<=5}}">
+      <slot name="timeCalendarIcon"></slot>
+    </view>
+  </view>
+
+  <view class='ct-body'>
+    <view class='ctb-item {{timestatus.timestatus(item.available,item.noCapacity)}} {{item.time==currentTime?"normal":""}}' wx:for="{{times}}" wx:key="{{index}}" data-item="{{item}}" bindtap='setcurrenttime'>
+      {{item.time}}
+    </view>
+    <view wx:for="{{3}}" style='width:148rpx;' wx:key="{{index}}"></view>
+  </view>
+</view>

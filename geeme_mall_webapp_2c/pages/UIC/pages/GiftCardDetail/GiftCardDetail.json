@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "AppModal": "/components/App/AppModal/AppModal",
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "AppShareModal": "/components/App/AppShareModal/AppShareModal",
+    "VipCardCount": "/components/VipComponents/VipCardCount/VipCardCount"
+  },
+  "navigationBarTitleText": "礼品卡详情"
+}

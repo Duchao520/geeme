@@ -1,0 +1,13 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class='goodProduct'>
+  <!-- 列表模块 -->
+  <view class='goodProductList' wx:if="{{goodsList.length > 0}}">
+    <image class="thumb" src="{{format.getImageUrl(photo)}}" mode="widthFix"></image>  
+    <view class="box_padding" style="padding: 32rpx;">
+      <view class="fz-42 fc-333333 font-weight" style="margin-bottom: 30rpx;">{{title}}</view>  
+      <Masonry list="{{goodsList}}" column-space="30rpx" generic:masonry-item="OptiCard"></Masonry>    
+    </view>
+  </view>
+  <AppDefault wx:else text="本店暂无商品" />
+</view>
+<AppFooter></AppFooter>

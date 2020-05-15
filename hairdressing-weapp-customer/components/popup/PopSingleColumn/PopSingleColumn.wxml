@@ -1,0 +1,6 @@
+<!--components/popup/PopSingleColumn/PopSingleColumn.wxml-->
+<view class='PopSingleColumn' hidden='{{!ifShow}}'>
+  <view class='item {{activeItem === item ? "active" : ""}}' wx:for="{{list}}" wx:key="index" bindtap='clickItem' data-index="{{index}}" data-item="{{item}}">
+    {{item}}
+  </view>
+</view>

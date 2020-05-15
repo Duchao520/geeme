@@ -1,0 +1,4 @@
+<view class="OrderListItem_Time" wx:if="{{state.text}}">
+  {{state.text}}：
+  <text>{{orderItem[state.attr]}}</text>
+</view>

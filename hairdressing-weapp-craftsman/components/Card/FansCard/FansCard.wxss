@@ -1,0 +1,54 @@
+.userFocusItem {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 24rpx 26rpx 20rpx;
+  position: relative;
+  box-shadow: 0 0 8rpx 0 rgba(0, 0, 0, 0.1);
+  margin-top: 32rpx;
+  border-radius: 14rpx;
+}
+
+.userFocusItem image {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.userFocusName {
+  color: #263238;
+  font-size: 34rpx;
+  text-align: left;
+}
+
+.levelName {
+  color: #333;
+  font-size: 24rpx;
+  margin-right: 12rpx;
+}
+
+.userFocusTime {
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.focus {
+  width:88rpx;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 50rpx;
+  border: 1rpx solid #999;
+  font-size: 20rpx;
+  color: #999;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+.focus.not {
+  border: 1rpx solid #f52d56;
+  color: #f52d56;
+}

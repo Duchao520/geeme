@@ -1,0 +1,74 @@
+
+.component-container{
+  background: #FFFFFF;
+}
+.tabs-container{
+  position:relative;
+  width: 100%;
+  padding: 0 20rpx;
+  display: flex;
+  height:60rpx;
+  line-height:60rpx;
+  font-size:28rpx;
+  color:#484848;
+  background-color:#fff;
+}
+
+.tabs-item{
+  /* position:relative; */
+  /* max-width: 180rpx; */
+  height: 100%;
+  text-align: center;
+  margin-right: 40rpx;
+}
+
+.tabs-item-scroll{
+  /* position:relative; */
+  /* max-width: 180rpx; */
+  height: 100%;
+  text-align: center;
+  margin-right: 40rpx;
+}
+
+.tabs-item.active{
+  color:#f52d56;
+  font-weight: bold;
+}
+
+
+
+.tabs-item > .hiddenLine{
+  display: inline-block;
+  position:relative;
+  width:100rpx;
+  height:4rpx;
+  background:transparent;
+  vertical-align: bottom;
+}
+
+.tabs-item-scroll.active{
+  color:#f52d56;
+  font-weight: bold;
+}
+
+
+
+.tabs-item-scroll > .hiddenLine{
+  display: inline-block;
+  position:relative;
+  width:56rpx;
+  height:4rpx;
+  background:transparent;
+  vertical-align: bottom;
+}
+
+.activeLine{
+  position:absolute;
+  left:0;
+  top:56rpx;
+  width:48rpx;
+  height:4rpx;
+  background:#f52d56;
+  border-radius: 4rpx;
+  transition:all .625s ease;
+}

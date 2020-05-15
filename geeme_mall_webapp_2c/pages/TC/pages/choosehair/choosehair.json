@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "选择服务者",
+  "usingComponents": {
+    "StaffCard": "/components/Card/StaffCard/StaffCard"
+  }
+}

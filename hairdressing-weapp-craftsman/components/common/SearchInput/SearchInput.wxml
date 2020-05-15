@@ -1,0 +1,6 @@
+<view class="SearchInput">
+  <view class='searchInputItem input-view'>
+    <view class='searchIcon' wx:if="{{icon}}"></view>
+    <input placeholder='{{placeholder}}' bindinput='searchInput' placeholder-style='color:#AAAAAA;' value="{{value}}" maxlength='12'></input>
+  </view>
+</view>

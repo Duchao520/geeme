@@ -1,0 +1,97 @@
+<!--pages/UIC//pages/equityDetails/equityDetails.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function JudgeOrder(type){
+    switch(type){
+      case 1: return '转出到钱包';
+      case 2: return '转出到银行卡';
+      case 3: return '推广佣金';
+      case 4: return '推广邀请奖励';
+      case 5: return '礼品卡奖励';
+      case 6: return '拼团奖励';
+      case 7: return '股东介绍费';
+      case 8: return '股东分红';
+      case 9: return '推广撤单';
+      case 10: return '返还保证金';
+      case 11: return '分红回退';
+      case 12: return '介绍费回退';
+      case 13: return '返还保证金回退';
+      case 14: return '团长返现退回';
+      default: return '--';
+    }
+  }
+
+  function JudgeOrderType(type){
+    switch(type){
+      case 1: return '-';
+      case 2: return '-';
+      case 3: return '+';
+      case 4: return '+';
+      case 5: return '+';
+      case 6: return '+';
+      case 7: return '+';
+      case 8: return '+';
+      case 9: return '-';
+      case 10: return '-';
+      case 11: return '-';
+      case 12: return '-';
+      case 13: return '-';
+      case 14: return '-';
+      default: return '';
+    }
+  }
+
+  module.exports = {
+    JudgeOrder: JudgeOrder,
+    JudgeOrderType: JudgeOrderType
+  }
+</wxs>
+<view>
+  <view class="equity-header" catchtouchmove='prevent'>
+    <view class="equity-store flex_box align_center" wx:if="{{STORE_LIST_SHOW}}">
+      <view class="equity-store-item">
+        <view class="fz-36 fc-333333">¥{{storePreMoneyList[0].preMoney}}</view>
+        <view class="fz-24 fc-666666">{{storePreMoneyList[0].storeName}}</view>
+      </view>
+      <view class="equity-store-item" wx:if="{{storePreMoneyList.length > 2}}">
+        <view class="fz-36 fc-333333">¥{{storePreMoneyList[1].preMoney}}</view>
+        <view class="fz-24 fc-666666">{{storePreMoneyList[1].storeName}}</view>
+      </view>
+      <view class="equity-store-more" wx:if="{{storePreMoneyList.length > 2}}" catchtap="onTapMoreStore">
+        <text class="box fz-24 fc-666666">更多</text>
+      </view>
+    </view>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <view style="border:2rpx solid #ebebeb">
+        <PopHeader tabs="{{tabs}}" activeIndex="{{activeTab}}" bind:popup="popup" />
+        <view class='popup-container {{isFixed ? "fixed" : ""}}'>
+          <PopSingleColumn list="{{sortStores}}" activeItem="全部" ifShow="{{activeTab === 0}}" bind:clickItem="selectStore" />
+          <scroll-view scroll-y="true" style="height: {{windowHeight - 294}}rpx;">
+            <PopSingleColumn list="{{sortMethods}}" activeItem="全部" ifShow="{{activeTab === 1}}" bind:clickItem="selectSort" />
+          </scroll-view>
+        </view>
+      </view>
+    </AttachTop>
+  </view>
+
+  <!-- 权益金明细 -->
+  <view class="wallet" wx:if="{{RecordInfoList.length != 0}}">
+    <view wx:for="{{RecordInfoList}}" wx:for-index="dateIndex" wx:for-item="date" wx:key="dateIndex">
+      <view class="date-head fz-32">{{format.getTxt(date.dateHead)}}</view>
+      <view class="box_padding" style="padding: 0 32rpx;" wx:for="{{date.RecordList}}" wx:for-index="recordIndex" wx:for-item="record" wx:key="recordIndex">
+        <view style="padding: 24rpx 0;border-bottom: 2rpx solid #EFEFF4">
+          <view class="flex_box justify_space_between align_center" style="margin-bottom: 12rpx;">
+            <text class="fc-333333 fz-32">{{wxs.JudgeOrder(record.type)}}</text>
+            <text class="fc-000000 fz-40" style="margin-bottom: -40rpx;">{{wxs.JudgeOrderType(record.type) + record.amount}}</text>
+          </view>
+          <view class="flex_box justify_space_between align_center">
+            <text class="fc-999999 fz-24">{{format.getTxt(record.createTime)}}</text>
+            <!-- <text class="fc-999999 fz-24">余额：{{record.walletMoney}}</text> -->
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <AppDefault wx:if="{{RecordInfoList.length == 0}}" text="没有搜索到相关的权益金明细哦～" image="/images/default/default.png" />
+</view>

@@ -1,0 +1,15 @@
+.hover-class{
+  opacity: .6;
+}
+.swiper-item{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.plain-hover-class{
+  background: #108DE9;
+  color: #FFFFFF;
+}
+.pos{
+  position: relative;
+}

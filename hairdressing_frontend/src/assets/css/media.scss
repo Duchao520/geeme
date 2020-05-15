@@ -1,0 +1,34 @@
+/** 
+  此文件是存放公用的媒体查询
+  用来适配不同的电脑
+*/
+
+// 规则：当屏幕大于1480px时，内容宽度为1440px，左右两边间隙20px
+//      当屏幕小于1480px时，内容宽度为1210px，左右间隙自适应
+//      所有的尺寸内容居中
+@media screen and (min-width: 1480px) {
+    // 个人中心部分的适配
+    // 头部 
+    // 我的品牌列表
+    .media-brand-list {
+        width: 190px;
+    }
+    //登录页面适配
+    .login-box {
+        width: 1000px;
+        height: 300px;
+    }
+}
+
+@media screen {
+    // 个人中心部分的适配
+    // 头部 
+    .media {
+        flex: auto;
+        margin: 0;
+    }
+    // 我的品牌列表
+    .media-brand-list {
+        width: 130px;
+    }
+}

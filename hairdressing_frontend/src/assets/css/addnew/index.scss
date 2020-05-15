@@ -1,0 +1,126 @@
+.addnew-page {
+    width: 100%;
+    .body-center {
+        padding: 60px 18px 0 18px;
+        .body-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            background: #fff;
+            @include border-radius(8px);
+            .form_area {
+                position: relative;
+                padding: 60px;
+                .customer-btn {
+                    position: absolute;
+                    left: 406px;
+                    bottom: 0px;
+                }
+                .form-gap {
+                    margin-right: 20px;
+                }
+                .form-tip {
+                    margin-left: 1.73rem;
+                    font-size: 14px;
+                    color: #606266;
+                    margin-bottom: 16px;
+                }
+                .select-item {
+                    width: 220px;
+                    display: inline-block;
+                }
+                .nopay {
+                    color: #ff6d61;
+                    margin-left: 15px;
+                    cursor: pointer;
+                }
+                .delete-icon {
+                    cursor: pointer;
+                    font-size: 18px;
+                    color: #e22c37;
+                    margin-left: 10px;
+                }
+                .btn-group {
+                    .group-item {
+                        display: inline-block;
+                        &:first-child {
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.el-popper {
+    .customer_popover {
+        width: 380px;
+        padding: 10px 0;
+        display: block;
+        .pop-tip {
+            text-align: center;
+            color: #c0c4cc;
+        }
+        &.menu-list {
+            height: 250px;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                /*滚动条整体样式*/
+                width: 4px;
+                /*高宽分别对应横竖滚动条的尺寸*/
+                height: 4px;
+            }
+            &::-webkit-scrollbar-thumb {
+                /*滚动条里面小方块*/
+                border-radius: 5px;
+                -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                background: rgba(0, 0, 0, 0.2);
+            }
+            &::-webkit-scrollbar-track {
+                /*滚动条里面轨道*/
+                -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                border-radius: 0;
+                background: rgba(0, 0, 0, 0.1);
+            }
+        }
+        /*滚动条样式*/
+        // 选择客户
+        .customer-list {
+            max-height: 250px;
+            overflow-y: auto;
+            @include scroll-y(4px);
+            .customer-item {
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                padding: 0 20px;
+                box-sizing: border-box;
+                &.active {
+                    background: rgb(236, 245, 255);
+                }
+                .item {
+                    display: inline-block;
+                    margin-left: 10px;
+                    vertical-align: middle;
+                    @include word-dot();
+                    &.name {
+                        width: 30%;
+                    }
+                    &.sex {
+                        margin-right: 5%;
+                        // width: 10%;
+                    }
+                    &.tel {
+                        width: 40%;
+                    }
+                }
+                &:hover {
+                    background-color: #ecf5ff;
+                }
+            }
+        }
+    }
+    .customer-add {
+        display: inline-block;
+    }
+}

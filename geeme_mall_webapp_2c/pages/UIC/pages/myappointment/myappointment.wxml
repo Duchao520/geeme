@@ -1,0 +1,98 @@
+<!--pages/UIC/pages/myappointment/myappointment.wxml-->
+<wxs src="../../../../utils/util.wxs" module="util"></wxs>
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="m1">
+  function getStatusCls(status) {
+    var cls;
+    switch (status) {
+      case '待服务':
+        cls = 'one'
+        break
+      case '已服务':
+        cls = 'two'
+        break
+      case '已超时':
+        cls = 'three'
+        break
+      case '已取消':
+        cls = 'four'
+        break
+    }
+    return cls
+  }
+  module.exports.getStatusCls = getStatusCls
+</wxs>
+<view class='container'>
+  <!-- <view class='choose-search'>
+    <AppSearch placeholder="搜索服务者昵称/服务名称"></AppSearch>
+  </view> -->
+
+  <!-- 预约列表主体 -->
+  <view style="position: fixed;width: 100%;top: 0;left: 0;background: #FFFFFF;z-index:1;">
+    <AppTabs tabs="{{tabList}}" bindswitchTab="switchTab"></AppTabs>  
+  </view>
+  <view style="height: 92rpx;"></view>
+  <view class='myappointment'>
+
+    <!-- 预约列表 -->
+    <view class='appointment-body' wx:if="{{orderList.length}}">
+      <view class='appointment-item' wx:for="{{orderList}}" wx:key="index">
+        <view class='ap-top' data-appointmentId="{{item.appointmentId}}" bindtap='jumpdetail'>
+          <view class='headinfo'>
+            <image class='headavatar default-avatar' src="{{format.getImageUrl(item.avatar + '?x-oss-process=image/resize,m_fill,h_94,w_94')}}" mode='aspectFill' lazy-load='true'></image>
+            <view class='headtext'>
+              <view class='headname' wx:if="{{item.staffId}}">{{item.staffName || ''}}</view>
+              <view class='headname' wx:else>未选发型师</view>
+              <view class='headposition txt-ellipsis'>
+                <view class='headposition-text' wx:if="{{item.level}}">{{item.level}}</view>
+                <view class='headposition-address'>
+                  <view class='ha-icon'></view>
+                  <view class='ha-text'>{{util.addressRules(item.city)}}{{item.shopName}}</view>
+                </view>
+              </view>
+              <view class='headtime'>预约时间：{{item.dueTime}}</view>
+            </view>
+          </view>
+          <view class='status'>
+            <view class='headstatus {{m1.getStatusCls(item.status)}}'>{{item.status}}</view>
+            <view class='paystatus {{item.payStatus ? "yes" : ""}}' wx:if="{{item.status == '待服务'}}">{{item.payStatus ? '已支付' : '待支付'}}</view>
+          </view>
+
+        </view>
+        <view class='ap-bottom' data-appointmentId="{{item.appointmentId}}" bindtap='jumpdetail'>
+          <view class='ap-item' wx:for="{{item.serviceInfoForAppointments}}" wx:for-item="seritem" wx:key="index">
+            <view class='species text--ellipsis_1'>{{seritem.serviceName}}</view>
+            <view class='speciesname'>
+              <text class='text--ellipsis_1'>{{seritem.specificationName}}</text>
+              <text>x{{seritem.count}}</text>
+            </view>
+            <view class='speciesprice'>￥{{util.totalPrice(seritem.count,seritem.price)}}</view>
+          </view>
+        </view>
+
+        <!-- 按钮 -->
+        <view class='buttons'>
+          <block wx:if="{{item.status == '待服务'}}">
+            <view class='btn' data-appointmentId="{{item.appointmentId}}" bindtap='jumpdetail'>修改</view>
+            <form class='btn' wx:if="{{!item.payStatus}}" report-submit bindsubmit='cancelAppointment' data-index="{{index}}" data-id="{{item.appointmentId}}">
+              <button form-type="submit">取消</button>
+            </form>
+            <view class='btn red' bindtap='clickPay' data-id="{{item.appointmentId}}" wx:if="{{!item.payStatus}}">支付</view>
+          </block>
+          <block wx:elif="{{item.status == '已服务'}}">
+            <view class='btn red' bindtap='clickPay' data-id="{{item.appointmentId}}" wx:if="{{!item.payStatus}}">支付</view>
+            <view class='btn' bindtap='jumpServiceOrderList'>查看订单</view>
+          </block>
+          <block wx:else>
+            <view class='btn' bindtap="againAppointment" data-item="{{item}}">重新预约</view>
+            <view class='btn' data-id="{{item.appointmentId}}" data-index="{{index}}" bindtap="deleteAppointment">删除</view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- 没有订单 -->
+    <AppDefault wx:if="{{isDefault}}" text="暂时没有任何预约哦" />
+  </view>
+</view>
+<AppFooter />

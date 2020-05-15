@@ -1,0 +1,24 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='codeItems'>
+  <view class='copyButton' bindtap='copy'>复制</view>
+  <view class='codeItem' wx:if="{{format.IF(info.code)}}">
+    订单编号：
+    <text>{{info.code}}</text>
+  </view>
+  <view class='codeItem' wx:if="{{format.IF(info.createTime)}}">
+    下单时间：
+    <text>{{info.createTime}}</text>
+  </view>
+  <view class='codeItem' wx:if="{{format.IF(info.paymentTime) && info.orderStatus != 'WAITING_PAY'}}">
+    支付时间：
+    <text>{{info.paymentTime}}</text>
+  </view>
+  <view class='codeItem' wx:if="{{format.IF(info.deliverStart) && info.orderStatus == 'WAITING_ASSESSMENT' || info.orderStatus == 'FINISHED'}}">
+    发货时间：
+    <text>{{info.deliverStart}}</text>
+  </view>
+  <view class='codeItem' wx:if="{{format.IF(info.assessmentTime) && info.orderStatus === 'FINISHED'}}">
+    评价时间：
+    <text>{{info.assessmentTime}}</text>
+  </view>
+</view>

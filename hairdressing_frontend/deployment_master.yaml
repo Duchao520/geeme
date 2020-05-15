@@ -1,0 +1,64 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hairdressing-frontend-${CICD_GIT_BRANCH}-service
+  namespace: ${CICD_GIT_BRANCH}
+spec:
+  selector:
+    app: hairdressing-frontend-${CICD_GIT_BRANCH}
+  ports:
+    - name: hairdressing-frontend-${CICD_GIT_BRANCH}-service-port
+      protocol: TCP
+      port: 8080
+      targetPort: 80
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hairdressing-frontend-${CICD_GIT_BRANCH}
+  namespace: ${CICD_GIT_BRANCH}
+  labels:
+    app: hairdressing-frontend-${CICD_GIT_BRANCH}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hairdressing-frontend-${CICD_GIT_BRANCH}
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hairdressing-frontend-${CICD_GIT_BRANCH}
+    spec:
+      imagePullSecrets:
+      - name: registry-cn-hangzhou-aliyuncs-com
+      containers:
+      - name: hairdressing-frontend-${CICD_GIT_BRANCH}
+        image: ${CICD_IMAGE}:${CICD_GIT_COMMIT}
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+          - name: NODE_ENV
+            value: ${CICD_GIT_BRANCH}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingressing-hairdressing-frontend-${CICD_GIT_BRANCH}
+  namespace: ${CICD_GIT_BRANCH}
+spec:
+  rules:
+  - host: test.geeme.cn
+    http:
+      paths:
+      - backend:
+          serviceName: hairdressing-frontend-${CICD_GIT_BRANCH}-service
+          servicePort: 8080
+        path: /
+          
+  

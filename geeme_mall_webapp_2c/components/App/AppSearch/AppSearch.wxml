@@ -1,0 +1,26 @@
+<view class="AppSearch">
+  <view class='search-text' bindtap='confirm' wx:if="{{!hideText && !showCart}}">搜索</view>
+  <!-- 以后再打开注释 -->
+  <!-- <view class='cart' bindtap='toCart' wx:if="{{showCart}}"></view> -->
+  <view class="search-rect {{border}}">
+    <view class="search-selectType" bindtap='clickType' wx:if="{{selectType || (selectTypes && selectTypes.length)}}">
+      <view class="v-type">{{selectType}}</view>
+      <view class="v-line">|</view>
+    </view>
+    <view class="search-icon" wx:else></view>
+    <input 
+      class="search-input" 
+      placeholder-style='color:#AAAAAA;' 
+      placeholder="{{placeholder}}" 
+      disabled="{{disabled}}"
+      bindtap="clickInput"
+      bindinput='input'
+      bindblur="search"
+      confirm-type='search'
+      bindconfirm='confirm'
+      value="{{inputStr}}"
+      focus="{{focus}}"
+    ></input>
+    <view class='search-clearIcon' bindtap='clear' hidden='{{!ifShowClear}}'></view>
+  </view>
+</view>

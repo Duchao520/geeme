@@ -1,0 +1,50 @@
+<view class='goodProduct'>
+  <!-- 搜索模块 -->
+  <view class='goodProduct-header' catchtouchmove='prevent'>
+    <view style='background:#fff;padding-bottom:20rpx;'>
+      <AppSearch placeholder="搜索产品名称" bind:input="search" showCart></AppSearch>
+    </view>
+    <AttachTop scroll-top="{{scrollTop}}" bind:change="changeFix">
+      <view>
+        <PopHeader tabs="{{tabs}}" activeIndex="{{activeTab}}" bind:popup="popup" />
+        <view class='popup-container {{isFixed ? "fixed" : ""}}'>
+          <PopSingleColumn list="{{sortMethods}}" activeItem="智能排序" ifShow="{{activeTab === 1}}" bind:clickItem="selectSort" />
+          <PopDoubleColumn wx:if="{{sortInfoList}}" list="{{sortInfoList}}" bind:clickChild="selectClass" ifShow="{{activeTab === 0}}" />
+          <view class='filter-pop {{isFixed ? "fixed" : ""}}' hidden="{{activeTab != 2}}" catchtouchmove='prevent'>
+            <scroll-view scroll-y class='filter-content'>
+              <view class='filter-type'>
+                <view class='type-title'>标签：</view>
+                <view class='type-item-container'>
+                  <view class='type-item {{activeTagId == item.id ? "active" : ""}} text--ellipsis_1' wx:for="{{tagsInfoList}}" wx:key="index" catchtap="$set" data-key="activeTagId" data-value="{{item.id}}">{{item.name}}</view>
+                </view>
+              </view>
+              <view class='filter-type'>
+                <view class='type-title' style="display:inline-block">价格区间： </view>
+                <view class="type-price-container">
+                  <view class="price-box">
+                    <input placeholder="最低价" type="number" bindinput="inputPriceRange_from" value="{{priceRange_from}}"></input>
+                  </view>
+                  <text style="margin:0 20rpx;font-size:20rpx;color:#999">——</text>
+                  <view class="price-box">
+                    <input placeholder="最高价" type="number" bindinput="inputPriceRange_to" value="{{priceRange_to}}"></input>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+            <view class='filter-buttons'>
+              <button catchtap='resetFilter'>重置</button>
+              <button catchtap='confirmFilter'>确定</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </AttachTop>
+  </view>
+  <view class='cover' hidden='{{activeTab == -1}}' bindtap='$set' data-key="activeTab" data-value="{{-1}}" catchtouchmove='prevent'></view>
+
+  <!-- 列表模块 -->
+  <view class='goodProductList'>
+    <Masonry list="{{goodsList}}" column-space="30rpx" generic:masonry-item="GoodsCard"></Masonry>
+  </view>
+  <AppDefault wx:if="{{!goodsList.length}}" text="本店暂无商品" />
+</view>

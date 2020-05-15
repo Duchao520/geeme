@@ -1,0 +1,293 @@
+/* 外部样式类 */
+page{
+  position:relative;
+  min-height:100vh;
+}
+
+.myorder{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+/* 预约列表主体 */
+.myappointment {
+  width: 100%;
+  height: auto;
+}
+
+.appointment-body {
+  width: 100%;
+  min-height:1000rpx;
+  padding: 28rpx;
+}
+
+.appointment-item {
+  width: 100%;
+  border-radius: 16rpx;
+  padding: 24rpx 0 26rpx 24rpx;
+  background-color: white;
+  margin-top: 28rpx;
+}
+
+.appointment-item:first-child {
+  margin-top: 0rpx;
+}
+
+/* 按钮的综合样式 */
+.buttons {
+  width: 100%;
+  height: 54rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.buttons > view{
+  width:150rpx;
+  height:50rpx;
+  line-height:50rpx;
+  border-radius:25rpx;
+  border:.5px solid #d8d8d8;
+  margin-right: 30rpx;
+  text-align:center;
+}
+
+.buttons > view.red{
+  color:#f52d56;
+  border:.5px solid #f52d56;
+}
+
+/* 状态样式 */
+.orderstatus{
+  width: 92rpx;
+  height: 38rpx;
+  color: white;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 38rpx;
+  background-color: #F52D56;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 4rpx;
+}
+
+.orderstatus.one{
+  background-color: #F52D56;
+}
+.orderstatus.two{
+  background-color: #58C9F3;
+}
+.orderstatus.three{
+  background-color: #FF9E02;
+}
+.orderstatus.four{
+  background-color: #F52D56;
+}
+.orderstatus.five{
+  background-color: #00CF82;
+}
+.orderstatus.six{
+  background-color:#C1C0C9;
+}
+.orderstatus.seven{
+  background-color: #F52D56;
+}
+/* 订单主体样式 */
+
+.serviceitem {
+  padding-bottom: 32rpx;
+  padding-right: 30rpx;
+  border-bottom: 2rpx solid #efeff4;
+}
+
+.serviceitem.active {
+  background-color: #eee;
+}
+
+.serviceitem-child {
+  width: 100%;
+  /* height: 226rpx; */
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  /* z-index: 999; */
+}
+
+.counsts {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
+#moneyicon{
+  font-size: 20rpx;
+}
+
+.serprice {
+  width: auto;
+  height: 36rpx;
+  color: #f52d56;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.counst {
+  margin-top:14rpx;
+  color: #a3a3a3;
+  font-size: 24rpx;
+}
+
+.serimg {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 24rpx;
+}
+
+.serimg > .symbol{
+  position: absolute;
+  top:-17rpx;
+  right:-17rpx;
+  width:34rpx;
+  height:34rpx;
+  line-height: 34rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color:#fff;
+  background: #f52d56;
+  border-radius:50%;
+}
+
+.serimg > image{
+  width: 100%;
+  height: 100%;
+  border-radius: 6rpx;
+}
+
+.sercontext {
+  padding-top: 6rpx;
+}
+
+.serdes {
+  width: 320rpx;
+  height: 64rpx;
+  color: #333;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  box-orient: vertical;
+  line-clamp: 2;
+}
+
+.sershortdes {
+  color: #aaa;
+  font-size: 24rpx;
+  line-height: 62rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.sershorttext {
+  margin-right: 20rpx;
+}
+
+.seraddress {
+  height: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.sa-hairname{
+    color: #aaa;
+  font-size: 24rpx;
+  margin-right: 20rpx;
+}
+
+.sa-icon {
+  width: 18rpx;
+  height: 32rpx;
+  margin-right: 4rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAYCAMAAADAi10DAAAAXVBMVEUAAAC4ydDEy9ewv8axv8axvsaxv8axvsazwMixvsWxvsaxwMeywMexwMixv8awv8axv8awv8Wxv8Wxv8axv8eyv8ayv8axv8i0wMa1wMi1xcXHx+OwwMWyvsewvsWZh0eNAAAAHnRSTlMACgf67NO68j3QopVAROff18+bf2pXTDcqIB8EhXroT2xQAAAApklEQVQY03WP2RKDIAxFL4iC4Fbr1try/5/ZSUgVHzwvZM7cLIBxoTamDg5/3lUUqlcyq4kHZuWMGHGUk66ikF7AcVG2SrUllw0CGwUAml0APy2YhuoBhuaopDTNs+hI6Ux1aWGTNVaY6Kk1hx5UT1CWndPasbEKeF5P/VC8jxk9L19ytYAZT+ORUIMI+piw2WTshoM5qfk0cskXF3yMI67s3u+45QdzcRjDEixsZAAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+}
+
+.sa-text {
+  width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  box-orient: vertical;
+  line-clamp: 1;
+  color: #aaa;
+  font-size: 24rpx;
+}
+
+.totast {
+  color: #f52d56;
+  font-size: 24rpx;
+  margin-top: 22rpx;
+  text-align: left;
+  margin-left: 94rpx;
+}
+
+/* 订单俩种状态显示的内容差异 */
+
+/* 第一种(已下单) */
+
+.alredyyorder {
+  width: 100%;
+  margin-bottom:24rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  line-height: 64rpx;
+  font-size: 24rpx;
+}
+
+.ay-des {
+  color: #333;
+}
+
+.ay-cutline {
+  color: #999;
+  margin: 0 14rpx 0 20rpx;
+}
+
+.ay-starttime {
+  color: #999;
+}
+.ay-notappoin{
+  color: #F52D56;
+}
+
+.groupBuy{
+  height: 56rpx;
+  line-height: 56rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.groupBuy-left{
+  font-size:24rpx;
+  color:#333;
+  display: flex;
+  align-items: center;
+}
+
+.groupBuy-left > image{
+  vertical-align: middle;
+  margin-right: 10rpx;
+  width: 54rpx;
+  height:54rpx;
+  border-radius: 50%;
+}

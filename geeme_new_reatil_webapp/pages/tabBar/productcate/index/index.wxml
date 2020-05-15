@@ -1,0 +1,19 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='productcate'>
+  <!-- 分类主体 -->
+  <view class='servicebody' wx:if="{{list1.length && list2.length}}">
+    <view class='service-l'>
+      <!-- 一级分类列表 -->
+      <view class='s-l-item {{currentClass1.id == item.id ? "active":""}}' data-class1="{{item}}" wx:for="{{list1}}" wx:key="{{index}}" bindtap='setCurrentClass1'>
+        {{item.sortName}}
+      </view>
+    </view>
+    <view class='service-r'>
+      <view class='s-r-item' wx:for="{{list2}}" wx:key="{{index}}" bindtap='jumpClass' data-parent="{{item.parentId}}" data-id='{{item.id}}' data-type="{{item.goodsTypeScope}}" data-name="{{item.sortName}}">
+        <image src='{{format.getImageUrl(item.image + "?x-oss-process=image/resize,m_lfit,h_132,w_132")}}' class='s-r-img' mode='aspectFill' lazy-load></image>
+        <view class='service-name'>{{item.sortName}}</view>
+      </view>
+    </view>
+  </view>
+  <AppDefault wx:else text="暂无数据" />
+</view>

@@ -1,0 +1,25 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="card {{selected ? 'selected' : ''}}"> 
+  <view class="selected-icon icon--selected_corner" wx:if="{{selected}}"></view>
+  <view class="card-left" bindtap="jumpCustomerDetail" data-id="{{item.customerId}}">
+    <AppAvatar gender="{{item.sex}}" avatar="{{item.headPortrait}}" width="96rpx" iconWidth="30rpx" />
+  </view>
+  <view class="card-right" bindtap="jumpCustomerDetail" data-id="{{item.customerId}}">
+    <view class="right-1">
+      <text>{{item.nickName}}</text>
+      <text class="right-level">{{item.memberLevel}}</text>
+    </view>
+    <view class="right-2">{{format.encriptPhone(item.mobile)}}</view>
+    <view class="right-3">
+      <image wx:if="{{index < 5}}" wx:for="{{item.photos}}" wx:key="{{index}}" wx:for-item="photo" src="{{format.getImageUrl(photo)}}" mode="aspectFill"></image>
+    </view>
+    <view class="right-buttons" wx:if="{{!canSelect}}">
+      <view catchtap="jumpConsumptionBillOne">开单</view>
+      <view catchtap="jumpChooseTime">预约</view>
+    </view>
+    <!-- <view class="right-price">
+      <view style="font-size:32rpx;color:#f52d56;font-weight:600;"><text style="font-size:24rpx;font-weight:normal;">¥</text>68</view>
+      <view style="font-size:20rpx;color:#999">客单价</view>
+    </view> -->
+  </view>
+</view>

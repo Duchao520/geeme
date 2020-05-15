@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "appointmentStatus":"/components/DailyWork/appointmentStatus/appointmentStatus",
+    "Time": "/components/time/time",
+    "movebox": "/components/common/movebox/movebox"
+  },
+    "navigationBarTitleText": "预约详情"
+    
+}

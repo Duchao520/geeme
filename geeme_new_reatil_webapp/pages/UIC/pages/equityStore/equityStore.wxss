@@ -1,0 +1,52 @@
+/* pages/UIC//pages/equityStore/equityStore.wxss */
+.container{
+  width: 100%;
+  height: auto;
+  padding-bottom: 110rpx;
+}
+
+.equity-store-header {
+  width: 682rpx;
+  height: 80rpx;
+  margin: 20rpx auto 0;
+  background: #F8F8F8;
+}
+.equity-store-header view {
+  width: 311rpx;
+  margin-left: 30rpx;
+}
+.equity-store-header view:nth-child(2) {
+  margin-left: 0rpx;
+  margin-right: 30rpx;
+}
+
+.equity-store-item {
+  width: 686rpx;
+  height: 100rpx;
+  margin: 0 auto;
+  border-bottom: 2rpx solid #EFEFF4;
+}
+.equity-store-item view:nth-child(1) {
+  margin-left: 32rpx;
+  width: 372rpx;
+}
+.equity-store-item view:nth-child(2) {
+  margin-right: 32rpx;
+  width: 250rpx;
+}
+
+
+/* 权益金总计 */
+.equity-store-total {
+  width: 750rpx;
+  height: 100rpx;
+  justify-content: flex-end;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+.mgr56 {
+  margin-right: 56rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "AppModal": "/components/App/AppModal/AppModal",
+    "WalletAuth": "./components/WalletAuth/WalletAuth"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "我的资产",
+  "navigationBarTextStyle": "black"
+}

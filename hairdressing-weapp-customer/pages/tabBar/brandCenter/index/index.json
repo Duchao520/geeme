@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "品牌主页",
+  "usingComponents": {
+    "comments": "/components/comments/comments",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "AppAvgScore": "/components/App/AppAvgScore/AppAvgScore",
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "list": "/components/list/list"
+  }
+}

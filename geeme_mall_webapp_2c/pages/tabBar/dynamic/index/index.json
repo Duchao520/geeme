@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "发现",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "AppTabsScroll": "/components/App/AppTabsScroll/AppTabsScroll",
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "Masonry": "/components/Masonry/Masonry",
+    "AppFooter": "/components/App/AppFooter/AppFooter"
+  }
+}

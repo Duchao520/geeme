@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/system/system",
+    "pages/order/order",
+    "pages/createSelectorQuery/createSelectorQuery"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/packageA",
+      "pages": [
+        "pages/pay/pay",
+        "pages/register/register",
+        "pages/svipPay/svipPay",
+        "pages/maincardList/maincardList",
+        "pages/recharge/recharge"
+      ]
+    }
+  ],
+  "window": {
+    "transparentTitle": "always",
+    "pullRefresh": false
+  }
+}

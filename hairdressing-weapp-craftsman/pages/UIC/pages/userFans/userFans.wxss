@@ -1,0 +1,10 @@
+.page-container{
+  padding-bottom:150rpx;
+}
+
+.userFocusList {
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+  padding-bottom: 150rpx;
+}

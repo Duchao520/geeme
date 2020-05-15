@@ -1,0 +1,17 @@
+<view class='Rate-small' wx:if="{{type == 'small'}}">
+  <view class='scoreBox-small'>
+    <view class='scoreWidth-small' style="width:{{score * 28.5}}rpx">
+      <view class='scoreImage-small'></view>
+    </view>
+  </view>
+  <view class='scoreNumber-small' wx:if="{{numberShow}}">{{3}}分</view>
+</view>
+
+<view class='Rate-big' wx:else>
+  <view class='scoreBox-big'>
+    <view class='scoreWidth-big' style="width:{{score * 31.2}}rpx">
+      <view class='scoreImage-big'></view>
+    </view>
+  </view>
+  <view class='scoreNumber-big' wx:if="{{numberShow}}">{{3}}分</view>
+</view>

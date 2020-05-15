@@ -1,0 +1,33 @@
+.OrderButtonByStatus {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.invitationButton {
+  padding: 8rpx 24rpx;
+  border: 1rpx solid rgba(245, 45, 86, 1);
+  color: #f52d56;
+  font-size: 26rpx;
+  border-radius: 50rpx;
+  margin-right: 20rpx;
+}
+
+.selectButton {
+  padding: 8rpx 24rpx;
+  border: 1rpx solid rgba(245, 45, 86, 1);
+  color: #f52d56;
+  font-size: 26rpx;
+  border-radius: 50rpx;
+  margin-right: 20rpx;  
+}
+
+.sendButton {
+  padding: 8rpx 24rpx;
+  border: 1rpx solid #D8D8D8;
+  color: #666666;
+  font-size: 26rpx;
+  border-radius: 50rpx;
+  margin-right: 20rpx;
+}

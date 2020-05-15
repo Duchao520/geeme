@@ -1,0 +1,23 @@
+<view class="shareCard-list box_padding" style="padding: 180rpx 42rpx 0">
+  <text class="iconfont icon-guanbi fz-28 close" style="color: #7D7D7D"  onTap="close"></text>
+  <scroll-view scroll-y="{{true}}" class="scroll">
+    <view class="sharecard-item" a:for="{{SHARE_CARD_LIST}}">
+      <view class="flex_box align_center justify_space_between" style="margin-bottom: 6rpx;">
+        <view class="flex_box"  style="width: 390rpx">
+          <text class="sharecard_slogan text-center fz-20 font-weight" style="line-height: 33rpx; color:#A46F23;">卡主分享卡</text>
+          <text class="fz-24 fc-ffffff">(累计使用：{{item.consumeAmount}}次)</text>
+        </view>
+        <text class="fz-24 fc-ffffff">持卡人：{{item.realName}}</text>
+      </view>
+      <view class="fz-28 fc-ffffff" style="margin-bottom: 52rpx;">余额：{{item.money_ceil}}元</view>
+      <view class="flex_box justify_space_between align_center">
+        <view style="width: 240rpx;">
+          <text class="fz-48 fc-ffffff" style="letter-spacing: 6rpx;">{{item.shareCardDiscount_ceil}}</text>
+          <text class="fz-22 fc-ffffff" style="letter-spacing: 6rpx;">折</text>
+          <text class="fz-22 fc-ffffff" style="border: 2rpx solid #FFFFFF">会员折扣</text>
+        </view>
+        <button class="fz-24 fc-ffffff bg-0095D9" hover-class="hoverClass" style="width: 142rpx;height: 52rpx;line-height: 52rpx;border-radius: 9rpx;" data-sharecardId="{{item.id}}" onTap="chooseShareCard">分享卡付款</button>      
+      </view>
+    </view>
+  </scroll-view>
+</view>

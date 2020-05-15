@@ -1,0 +1,12 @@
+<!--components/Card/OptiCard/OptiCard.wxml-->
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='goodsCard' bindtap='toProductDetail' data-type="{{item.type}}" data-id="{{item.goodsId}}">
+  <image class='goods-image' src='{{format.getImageUrl(item.imageList[0] + "?x-oss-process=image/resize,m_fill,h_328,w_328")}}' mode='aspectFill' lazy-load></image>
+  <view class='goods-info'>
+    <view class='goods-title'>{{item.fullTitle}}</view>
+    <view class='goods-price'>
+      <text class='discount'><text class='symbol'>¥</text>{{item.specialPrice}}</text>
+      <text class='original' wx:if="{{item.price}}">¥{{item.price}}</text>
+    </view>
+  </view>
+</view>

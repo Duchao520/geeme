@@ -1,0 +1,32 @@
+<wxs src="../../utils/util.wxs" module="util"></wxs>
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+<view class='recommended-item' wx:for="{{list}}" wx:key="index">
+  <view class='r-nav' bindtap='toDetail' data-id='{{item.id}}'>
+    <image src='{{format.getImageUrl(item.shopImg || item.shopImage) + "?x-oss-process=image/resize,m_fill,h_180,w_180"}}' class='recommended-left' mode='aspectFill' lazy-load></image>
+    <view class='recommended-right'>
+      <view class='recommended-one'>
+        <view class='r-name'><text class='city'>{{format.getCity(item.city)}}</text> <text style='margin-left:10rpx'>{{item.shopName}}</text></view>
+        <view class='r-distance txt-ellipsis'>
+          <view class='r-address' style='margin-right:5rpx'></view>
+          <text class="txt-ellipsis" style="width: 100rpx;">{{util.distance(item.latitude,item.longitude,latitude,longitude)}}km</text>
+        </view>
+        <view class="phone" data-phone="{{item.phone}}" catchtap='call'></view>
+
+      </view>
+      <view class='recommended-two'>
+        <AppAvgScore score="{{item.shopScore}}" width="25rpx" height="25rpx" space="8rpx" />
+        <text>{{format.fixNum(item.shopScore, 1)}}分</text>
+      </view>
+      <view class="flex_box justify_space_between align_center">
+        <view class='recommended-three'>{{item.phone}}</view>
+        <view class='r-distance'>
+          <view class='r-address' style='margin-right:5rpx'></view>
+          <text>{{util.distance(item.latitude,item.longitude,latitude,longitude)}}km</text>
+        </view>
+      </view>
+
+      <view class='recommended-four'>{{item.address}}</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,53 @@
+.card {
+  text-align: left;
+  position:relative;
+  display: inline-block;
+  margin-bottom:50rpx;
+  width: 630rpx;
+  height: 400rpx;
+  border-radius: 20rpx;
+  background-size: 100% 100%;
+  color:white;
+}
+
+.card-title{
+  padding-left:25rpx;
+  margin-top:25rpx;
+  font-size:0;
+}
+
+.card-logo {
+  margin-right:12rpx;
+  width: 82rpx;
+  height: 82rpx;
+  border-radius:50%;
+  vertical-align: middle;
+}
+
+.card-name {
+  display: inline-block;
+  font-size:46rpx;
+  vertical-align: middle;
+}
+
+.card-info{
+  position:absolute;
+  bottom:10rpx;
+  width:100%;
+  text-align: right;
+  padding:0 20rpx;
+}
+
+.card-effect > text{
+  padding:0 12rpx;
+  height:36rpx;
+  line-height:36rpx;
+  font-size:24rpx;
+  color:#333;
+  border-radius:18rpx;
+  background-color:#fff;
+}
+
+.card-price{
+  font-size:56rpx;
+}

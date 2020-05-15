@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "StaffCard": "/components/Card/StaffCard/StaffCard"
+  },
+  "navigationBarTitleText": "更换服务者"
+}

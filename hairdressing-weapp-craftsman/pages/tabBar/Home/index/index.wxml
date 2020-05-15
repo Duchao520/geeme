@@ -1,0 +1,84 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="Home">
+  <view class='header-bg'></view>
+  <!-- 搜索 -->
+  <!-- <view style='padding-top: 64rpx;'>
+    <AppSearch placeholder="搜索门店名称" disabled selectType="杭州" border="SQUARE" bindtap="$wait" hideText></AppSearch>
+  </view> -->
+
+  <!-- 品牌信息 -->
+  <view class='shopname'>
+    <image class='shop-left' src='{{format.getImageUrl(brand.logo)}}' mode='aspectFill'></image>
+    <view class='shop-right'>
+      <view class='shop-info text--ellipsis_1'>{{brand.slogan}}</view>
+      <view class='shop-phone' bindtap='makePhone'>{{brand.hotline}}</view>
+    </view>
+  </view>
+  <!-- 功能 -->
+  <view class='func'>
+    <view class='func-item'>
+      <image class='func-image' src='/images/button/home_action1.png' bindtap='quickEntry' data-index="{{0}}"></image>
+      <view class='func-text'>预约码</view>
+    </view>
+    <view class='func-item'>
+      <image class='func-image' src='/images/button/home_action2.png' bindtap='quickEntry' data-index="{{1}}"></image>
+      <view class='func-text'>我的预约</view>
+    </view>
+    <view class='func-item'>
+      <image class='func-image' src='/images/button/home_action3.png' bindtap='quickEntry' data-index="{{2}}"></image>
+      <view class='func-text'>扫码开单</view>
+    </view>
+    <view class='func-item'>
+      <image class='func-image' src='/images/button/home_action4.png' bindtap='quickEntry' data-index="{{3}}"></image>
+      <view class='func-text'>我的服务单</view>
+    </view>
+  </view>
+
+  <!-- 门店榜单 -->
+  <view class='storeList' wx:if="{{brand.shopList && brand.shoplist.length}}">
+    <view class="storeListTitle">
+      <OptionsTitle title="门店榜单" bindtomoudleList="tostoreList"></OptionsTitle>
+    </view>
+
+    <view class='storeListContent'>
+      <HomeStoreList bindtostoreDetail="tostoreDetail"></HomeStoreList>
+    </view>
+  </view>
+
+  <!-- 服务者榜单 -->
+  <!-- <view class='staffList'>
+    <view class='staffListTitle'>
+      <OptionsTitle title="服务者榜单" bindtomoudleList="tostaffList"></OptionsTitle>
+    </view>
+    <view class='staffListContent'>
+      <HomeStaffList bindtostaffDetail="tostaffDetail" bindtostaffDetail="tostaffDetail"></HomeStaffList>
+    </view>
+  </view> -->
+
+  <!-- 社区达人 -->
+  <!-- 暂时不做 -->
+  <!-- <view class='starList'>
+    <view class='starListTitle'>
+      <OptionsTitle title="社区达人" bindtostaffList="tostaffList"></OptionsTitle>
+    </view>
+
+    <view class='startListContent'>
+      <HomeStarList bindtostaffDetail="tostaffDetail"></HomeStarList>
+    </view>
+  </view> -->
+
+  <!-- 封面动态 -->
+  <view class='worksList'>
+    <view class='worksListTitle'>
+      <view class="options-title">封面动态</view>
+    </view>
+    <block wx:if="{{worksList && worksList.length}}">
+      <view class='worksListContent' wx:if="{{worksList && worksList.length}}">
+        <Masonry list="{{worksList}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault image="/images/default/default_works.png" text="暂时没有作品动态，晚点再来看看吧~" top="100rpx"  />
+    </block>
+  </view>
+</view>

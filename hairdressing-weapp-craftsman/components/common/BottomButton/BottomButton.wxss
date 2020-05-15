@@ -1,0 +1,22 @@
+/* 保存修改按钮 */
+
+.updateButton {
+  width: 100%;
+  padding: 0 34rpx 40rpx;
+  background: white;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.updateButtonItem {
+  width: 100%;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: #F52D56;
+  color: white;
+  font-size: 34rpx;
+  text-align: center;
+  line-height: 100rpx;
+}

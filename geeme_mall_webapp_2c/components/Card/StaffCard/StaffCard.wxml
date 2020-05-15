@@ -1,0 +1,36 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="StaffCard {{selected ? 'selected' : ''}}">
+  <view class='selected-icon' wx:if="{{selected}}"></view>
+  <view class='left'>
+    <image class='avatar' src="{{format.getImageUrl(item.headPortrait + '?x-oss-process=image/resize,m_fill,h_104,w_104')}}" mode='aspectFill' catchtap='jumpStaffDetail' data-id="{{item.staffId}}" lazy-load></image>
+    <view class='left-follow' wx:if="{{!hideReserve}}">
+      <button class='{{item.followed ? "followed" : ""}}' catchtap='follow'>{{item.followed ? "已关注" : "关注"}}</button>
+    </view>
+  </view>
+  <view class='right'>
+    <view class='right-1' catchtap='jumpStaffDetail' data-id="{{item.staffId}}">{{item.name}}</view>
+    <view class='right-2'>
+      <text>{{item.level}}</text>
+      <AppAvgScore width="24rpx" height="24rpx" score="{{item.score}}" space="8rpx" />
+    </view>
+    <view class='right-3'>
+      <text class='icon--address'>{{format.getCity(item.city)}}{{item.storeName}}</text>
+    </view>
+    <view class='right-4' wx:if="{{item.skillList && item.skillList.length}}">
+      <text class='static'>擅长</text>
+      <scroll-view class='scroll-view' scroll-x>
+        <text class='skill' wx:for="{{item.skillList}}" wx:key="index">{{item}}</text>
+      </scroll-view>
+    </view>
+    <view class='right-5' wx:if="{{item.works && item.works.length}}">
+      <image wx:for="{{item.works}}" wx:key="index" wx:for-item="img" src='{{format.getImageUrl(img + "?x-oss-process=image/resize,m_fill,h_88,w_88")}}' mode='aspectFill' wx:if="{{index <= 5}}" lazy-load catchtap="jumpStaffDetail" data-id="{{item.staffId}}" data-tabindex="{{2}}"></image>
+    </view>
+  </view>
+  <view class='baseService' wx:if="{{item.baseServiceName && item.hairCutPrice}}">
+    <text class='baseService-1'>{{item.baseServiceName}}</text>
+    <text class='baseService-2'>¥{{item.hairCutPrice}}</text>
+  </view>
+  <view class='reserve-line' wx:if="{{!hideReserve}}">
+    <button catchtap='reserve' data-id="{{item.staffId}}">预约</button>
+  </view>
+</view>

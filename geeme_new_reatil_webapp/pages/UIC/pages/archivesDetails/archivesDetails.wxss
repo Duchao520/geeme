@@ -1,0 +1,240 @@
+.container{
+  width: 100%;
+  height: auto;
+  border-top: 1px solid #EBEBEB;
+  padding: 0 32rpx 300rpx;
+}
+/* 店铺信息 */
+.shopInfo{ 
+  width: 100%;
+  height: 140rpx;
+  padding: 32rpx 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.shopImage{
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 12rpx;
+  border-radius: 8rpx;
+}
+
+.shopText{
+  color: #333333;
+  font-size: 24rpx;
+}
+.cityName{
+  color: #333333;
+  font-size: 24rpx;
+}
+.time{
+  margin-top:10rpx;
+  color: #999999;
+  font-size: 24rpx;
+}
+/* 档案照片 */
+.imageList{
+  margin:30rpx -16rpx 50rpx 0;
+  height: auto;
+  font-size:0;
+}
+.imageItem{
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 4rpx; 
+  margin-bottom: 12rpx;
+  margin-right:14rpx;
+  background-image: #c8c7cc;
+}
+/* 服务者说 */
+.staffWords{
+  width: 100%;
+  height: auto;
+}
+.staffWords-title{
+  color: #262628;
+  font-weight: 600;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  text-align: left;
+  line-height:40rpx;
+}
+.title-right{
+  float:right;
+  height:100%;
+  color:#999;
+  font-size:24rpx;
+  font-weight: normal;
+}
+.staffWords-body{
+  width: 100%;
+  height: auto;
+  padding: 20rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  background-color: #F8F8F8;
+  border-radius: 8rpx;
+}
+.staffImage{
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+.staffInfo{
+  width: 528rpx;
+}
+.staffText{
+
+  height: 48rpx;
+  margin-bottom: 12rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.staffName{
+  color: #263238;
+  font-size: 34rpx;
+  line-height: 48rpx;
+  margin-right: 16rpx;
+}
+.staffLevel{
+  padding-top: 16rpx;
+  color: #333333;
+  font-size: 24rpx;
+}
+.staffDes{
+  color: #666666;
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+
+/* 相关服务 */
+.aboutService{
+
+}
+.a-s-title{
+  color: #262628;
+  font-weight: 600;
+  font-size: 30rpx;
+  margin-bottom: 24rpx;
+  text-align: left;
+}
+.serviceList{
+  padding-left: 32rpx;
+  background-color: #F8F8F8;
+  border-radius: 8rpx;
+}
+.item {
+  position:relative;
+  width: 100%;
+  height: 222rpx;
+  border-bottom: 1px solid #ebebeb;
+  padding: 32rpx 32rpx 32rpx 0;
+}
+
+.item:last-child{
+  border-bottom:none;
+}
+
+.item-left {
+  position:absolute;
+  left:0;
+  top:32rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 6rpx;
+  display: block;
+  margin-right: 20rpx;
+}
+
+.item-right {
+  padding-left:180rpx;
+  height: 100%;
+}
+
+.des {
+  width: 100%;
+  height: 72rpx;
+  color: #333;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  box-orient: vertical;
+  line-clamp: 2;
+}
+
+.address {
+  width: 100%;
+  line-height: 56rpx;
+  color: #999;
+  font-size: 24rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.priceinfo {
+  width: 100%;
+  line-height: 38rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.price {
+  font-size: 29rpx;
+  color: #f52d56;
+  margin-right: 8rpx;
+  font-weight: 600;
+}
+
+#priceicon {
+  font-size: 20rpx;
+}
+
+.special {
+  color: #9b9b9b;
+  font-size: 22rpx;
+  text-decoration: line-through;
+}
+
+
+
+/* 同意公开 */
+.agree{
+  width: 100%;
+  height: auto;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  padding-top: 24rpx;
+  padding-bottom: 48rpx;
+}
+.agree-title{
+  width: 100%;
+  line-height: 34rpx;
+  font-size: 24rpx;
+  color: #333333;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+.agree-button{
+  width: 684rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: #FFFFFF;
+  color: #FFFFFF;
+  background-color: #F52D56;
+  margin: 0 auto;
+}
+.agree-button.cancel{
+  background-color: #c8c7cc;
+}

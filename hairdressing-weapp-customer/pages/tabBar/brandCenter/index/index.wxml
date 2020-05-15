@@ -1,0 +1,50 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<!-- 品牌背景 -->
+<!-- <view class='shopbg'>
+  <image lazy-load src="{{format.getImageUrl(shopInfo.shopImg + '?x-oss-process=image/resize,m_fill,h_376,w_750')}}" mode="aspectFill"></image>
+</view> -->
+<!-- 店铺信息 -->
+<view class="shopInfo-container">
+  <image class="logo" lazy-load src="{{format.getImageUrl(brandInfo.logo + '?x-oss-process=image/resize,m_lfit,h_140,w_140')}}" mode="aspectFill"></image>
+  <view class='shopname'>{{brandInfo.brandName}}</view>
+  <view class='shopstores' style="margin-bottom: 18rpx;">
+    <AppAvgScore width="26rpx" height="26rpx" space="8rpx" score="{{brandInfo.score ? brandInfo.score : 5}}" />
+    <view class='shopscore'>{{brandInfo.score ? format.fixNum(brandInfo.score,1) : 5}}分</view>
+  </view>
+  <view class="flex_box justify_space_between">
+    <view>
+      <view class="fz-24 fc-333333" style="letter-spacing: 1rpx; margin-bottom: 18rpx;">
+        <text class="iconfont iconpingjia fc-AAAAAA" style="margin-right: 14rpx;"></text>{{brandInfo.total ? brandInfo.total : 0}}条
+        <text class="fc-AAAAAA">评价,</text>{{brandInfo.rate ? brandInfo.rate : 100}}%
+        <text class="fc-AAAAAA">好评率</text>
+      </view>
+      <view class="fz-24 fc-333333" style="letter-spacing: 1rpx;">
+        <text class="iconfont iconmendian fc-AAAAAA" style="margin-right: 14rpx;"></text>{{brandInfo.storeNum}}家
+        <text class="fc-AAAAAA">连锁门店,</text>{{brandInfo.staffNum}}名
+        <text class="fc-AAAAAA">星级服务者</text>
+      </view>
+    </view>
+    <view style="width: 76rpx;height: 76rpx; border-left: 2rpx solid #eeeeee;padding-left: 28rpx;">
+      <view class="iconfont icondianhua fc-F52D56 fz-48" bindtap="tel"></view>
+    </view>
+  </view>
+</view>
+<AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bindswitchTab="switchTab" padding="0 40rpx"></AppTabs>
+<view class="container-all">
+  <!-- 门店 -->
+  <view style="padding: 32rpx;" wx:if="{{currentTab == 0}}">
+    <list list="{{storeInfoList}}" latitude="{{address.latitude}}" longitude="{{address.longitude}}" />
+  </view>
+  <view wx:elif="{{currentTab == 1}}" class="box_padding" style="padding: 38rpx 32rpx;">
+    <rich-text nodes="{{aboutContent}}" wx:if="{{aboutContent}}"></rich-text>
+    <AppDefault image="/images/default/default_comment.png" text="暂无品牌相关" wx:else></AppDefault>
+  </view>
+  <view wx:elif="{{currentTab == 2}}" class="box_padding" style="padding: 38rpx 32rpx;overflow:hidden;">
+    <rich-text nodes="{{photos}}" wx:if="{{photos}}"></rich-text>
+    <AppDefault image="/images/default/default_comment.png" text="暂无品牌相册" wx:else></AppDefault>
+  </view>
+
+</view>
+<view style="position: relative;">
+  <AppFooter />
+</view>

@@ -1,0 +1,13 @@
+<view class="container">
+  <view class='phone flex_box justify_space_between'>
+    <input type='number' class='phoneinput' placeholder='请输入手机号' placeholder-class='place-phone' bindinput='bindphone' value="{{mobile}}"></input>
+    <!-- <view class="phoneinput"></view> -->
+    <!-- <button type="primary" bindgetphonenumber= open-type="getPhoneNumber" plain style="padding: 2rpx 12rpx;border-radius: 24rpx;">获取手机号</button> -->
+  </view>
+  <view class='code'>
+    <input class='codeinput' placeholder='请输入验证码' placeholder-class='place-code' bindinput='bindcode'></input>
+    <view class='getcode' wx:if="{{code}}" bindtap='getcode'>获取验证码</view>
+    <view class='againcode' wx:else>{{time}}s后重新发送</view>
+  </view>
+</view>
+<button class='button' open-type='getUserInfo' bindgetuserinfo='submit'>确定</button>

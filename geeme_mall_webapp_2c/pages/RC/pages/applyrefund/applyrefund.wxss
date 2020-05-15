@@ -1,0 +1,206 @@
+@import '/template/OrderPreference/OrderPreference.wxss';
+.applyrefund{
+  width: 100%;
+  height: auto;
+  padding-bottom: 150rpx;
+}
+/* 头部服务 */
+.serviceContent{
+  width: 100%;
+  height: 246rpx;
+  padding: 52rpx 32rpx 34rpx 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start
+}
+.serviceImage{
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+  background-color: black;
+}
+
+.serviceDes{
+  width: 506rpx;
+  height: 72rpx;
+  line-height: 36rpx;
+  color: #333333;
+  font-size: 28rpx;
+  overflow: hidden;
+  display: box;
+  text-overflow: ellipsis;
+  box-orient: vertical;
+  line-clamp: 2;
+}
+.specificationName{
+  color: #7E7E7E;
+  font-size: 24rpx;
+  margin: 10rpx 0 6rpx;
+}
+
+.serviceCount > text{
+  display: inline-block;
+}
+
+.serviceCount > text:first-child{
+  font-size:30rpx;
+  color:#f52d56;
+  margin-right:20rpx;
+}
+
+.serviceCount > text:last-child{
+  font-size:24rpx;
+  color:#7e7e7e;
+}
+
+.serviceCount .symbol{
+  font-size:24rpx;
+}
+
+/* 订单信息 */
+.orderContent{
+  width: 100%;
+  padding: 0 0 20rpx;
+  background-color: #F8F8F8;
+}
+.orderItem{
+  width: 100%;
+  height: 116rpx;
+  padding: 16rpx 32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  background-color: white;
+}
+.orderCode{
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.orderTitle{
+  color: #333333;
+  font-size: 24rpx;
+}
+.orderNumber{
+  color: #999999;
+  font-size: 24rpx;
+}
+
+
+/* 退款主体 */
+.refundContent{
+  width: 100%;
+  padding-bottom: 20rpx;
+  background-color: #F8F8F8;
+}
+.refundItem{
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+  background-color: white;
+}
+.refundBox{
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  padding-left: 144rpx;
+  position: relative;
+  border-bottom: 2rpx solid #EFEFF4;
+}
+.r-title{
+  color: #333333;
+  font-size: 28rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.r-input{
+  width: 100%;
+  height: 100%;
+  line-height: 96rpx;
+  font-size: 28rpx;
+}
+.r-w-icon{
+  width: 30rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  position: absolute;
+  background-size: 16rpx;
+  right: 0;
+  bottom: 0;
+}
+
+.updatePic{
+  width: 100%;
+  padding: 34rpx 0 34rpx;
+}
+
+.picItem{
+  display: inline-block;
+  width:180rpx;
+  height:180rpx;
+  margin-right:40rpx;
+}
+
+.picItem image{
+  width:100%;
+  height:100%;
+}
+
+.updatePicItem{
+  display: inline-block;
+  width: 180rpx;
+  height: 180rpx;
+  /* border: 2rpx solid #C8C7CC; */
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAkFBMVEUAAADJyM3IyMzNyM3IyMzIyMzJydHJyM3V1dXJyM3S0tXJyM3JyM3JyMzLy87Jyc3KyM7JyM3JyMzJyM3JyM3JyM3JyM7Lyc3Ny8/JyM3IyM3g4ODJyMzJyM3JyM3JyM3JyM3Lyc/Lys7JyM3JyM3JyM3Kys3Kyc/Jx83JyM3Kyc7NzM7KyM7KyM7Ly9LIx8wQW1H2AAAAL3RSTlMAonQu6bob+wnMDe2DpidlWPHm0cB/YjUf9bYF3LGtnZg/O6mIbk8q4pFII3hTE0rLC+UAAAOWSURBVHja7d3ZbuJAEIXhGjC22SHsywCBsCaZ8/5vNy6TSISxa0YKssqa898BNx92N3QbJIuE7SeUqKd2mJibKFnNUNqYh1Kiwjna8oRSmRM1ngSQkgUQnRnRRBsRTbQR0UQbEU20EdFEGxFNtBHRRBsRTbQR0UQbEU20EdFEGxFNtBHRRBsRTbQR0UQbEU20EdFEGxFN9GedAbKL1gtP6E5ViyWtjtwqjtBjpA1F6yK/fugHXUHaQJJ+NQGsfmSkL/zwg94jrS5J6/SQZ9VF0rMb9K99RZuIyERlE8lsqGdj4QV9U90YA52ZMRcLQnfedrX71DwLJaeRzsXal3ZvnQLR0zlyakleiwEymk+LQh+byCloSG5bZNU8FoOOT0iKgoy6YnQO7oqQdIoLQXf1AHUb8u0aXT1l3ULQtcd95D4DqBWCXgL1B35KLgtBR8BO/lo4ed+PL9W7EdsZHxpy0w6ICkH/wzLiOKrj2uzn+Eb5EgHB7dD6AcAH+rWN25qVWK71oAUNh+hWhLtOW0lbIe3gDt34CW222h8mz72PYRJ1P1dN2tgbujFQ1mkcy0fhOULSSJJa0KKON3R6nF/iL0M8Pdo9fUfL9FVvE/FFR0ZPvha39dmJqlvDVU+coY86FN6zj39dPvKGVlwrb6S/+0Trfmu5yFtkLH2izzrh8s9B1SV6CQSS3UUHjkf0EcBasov7QN0j+pA3OrQ50PeI1i3NVnLaAIgdokcAptYlhFen6I7k1NJ35BA9tjaPawALh+jLddmZezEv8DgRp8jfPTYiYOgRLQOgH0tmutOquETrTNznX1F9dYnuRLptzTvQQ58LpvQbpJ012gP93nGKDmcA3uS+WAfHT6+bABnfbwK1UM3B1C1azn9eKj886RZxK37Ri52qo/Px8/FlmD7RE8doXWSkLTej7v5l1YcWbMU3Wt5PuKs2Fe9oid/6uGlwEfGPTtiHdQAtGrQmIuVAa/HrdhLqYrRM6GtE/2/oJlCTB1UDmoWg60C/IQ+poZdwCkHr+nMVywOKVwA2haB1qY9gU/l2myD9MaMQtLTwwFpSDFp/dHtQUUuKQkt1HeABBeuqFIbWwuq3Cz388So35/81zYhooo2IJtqIaKKNiCbaiGiijYgm2ohooo2IJtqIaKKNiCbaiGiijYgm2ohooo2IJtqIaKKNiCbaiGiijYgm2ojoK7qcN5Qu5a27S3mT9DLejv43363Qpu+V2XAAAAAASUVORK5CYII=) no-repeat center center/100% auto;
+}
+
+/* 温馨提示 */
+.prompt{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  padding: 32rpx 34rpx;
+}
+.promptTitle{
+  width: 100%;
+  margin-bottom: 24rpx;
+  color: #484848;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+.promptContent{
+  
+}
+.promptItem{
+  width: 100%;
+  color: #666666;
+  font-size: 26rpx;
+  margin-bottom: 28rpx;
+}
+
+/* 退款按钮 */
+.botton{  
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10rpx 0;
+  background-color: white;
+  z-index: 10;
+}
+.bottonItem{
+  width: 684rpx;
+  height: 100%;
+  background-color: #F52D56;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  color: white;
+  border-radius: 50rpx;
+}

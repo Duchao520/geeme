@@ -1,0 +1,43 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+
+<view class="container" wx:if="{{goodsInfoList.length > 0 || groupPurchaseGoodsList.length > 0}}">
+  <view class="flex_box justify_space_between goods-item" bindtap="jumpProductDetail" wx:for="{{goodsInfoList}}" wx:key="index" data-type="{{item.goodsType}}" data-id="{{item.goodsId}}">
+    <image class="thumb" src='{{format.getImageUrl(item.imageList[0] + "?x-oss-process=image/resize,m_fill,h_216,w_216")}}' mode='aspectFill'></image>
+    <view class="content">
+      <view style="height: 72rpx;" class="fz-28 txt-overflow fc-333333">{{item.fullTitle}}</view>
+      <view class="fz-24 fc-999999 flex_box align_center">
+        <image src="/images/button/store_icon.png" style="display: block;width: 24rpx;height: 24rpx;margin-right: 8rpx;"></image>
+        <view style="width: 420rpx;" class="txt-ellipsis">{{item.storeName}}</view>
+      </view>
+      <view style="margin-bottom: 4rpx;">
+        <text class="fz-32 fc-F52D56"><text class="iconfont iconrenminbidanjia fz-24"></text>{{item.experiencePrice}}</text>
+      </view>
+      <view>
+        <text class="fc-F52D56 fz-20" style="margin-right: 16rpx;padding: 0 12rpx;border-radius: 24rpx;border: 1rpx solid #F52D56;">新人专享</text>
+        <!-- <text class="bg-F60F51 fc-ffffff fz-20" style="padding: 0 6rpx;">拼团</text> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="flex_box justify_space_between goods-item" bindtap="jumpProductDetail" wx:for="{{groupPurchaseGoodsList}}" wx:key="index" data-type="{{item.goodsType}}" data-id="{{item.goodsId}}">
+    <image class="thumb" src='{{format.getImageUrl(item.cycleImage + "?x-oss-process=image/resize,m_fill,h_216,w_216")}}' mode='aspectFill'></image>
+    <view class="content">
+      <view style="height: 72rpx;" class="fz-28 txt-overflow fc-333333">{{item.goodsSimpleTitle}}</view>
+      <view class="fz-24 fc-999999 flex_box align_center">
+        <image src="/images/button/store_icon.png" style="display: block;width: 24rpx;height: 24rpx;margin-right: 8rpx;"></image>
+        <view style="width: 420rpx;" class="txt-ellipsis">{{item.storeName}}</view>
+      </view>
+      <view style="margin-bottom: 4rpx;">
+        <text class="fz-32 fc-F52D56"><text class="iconfont iconrenminbidanjia fz-24"></text>{{item.groupPrice}}</text>
+        <text class="fz-24 fc-999999 iconfont iconrenminbidanjia" style="text-decoration: line-through;">{{item.shopPrice}}</text>
+      </view>
+      <view>
+        <text class="fc-F52D56 fz-20" style="margin-right: 16rpx;padding: 0 12rpx;border-radius: 24rpx;border: 1rpx solid #F52D56;">拼团</text>
+        <!-- <text class="bg-F60F51 fc-ffffff fz-20" style="padding: 0 6rpx;">拼团</text> -->
+      </view>
+    </view>
+  </view>
+</view>
+
+<AppDefault text="暂无优惠商品~~" wx:else></AppDefault>
+

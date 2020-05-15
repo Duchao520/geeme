@@ -1,0 +1,18 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="VipCardCateDetail">
+  <view>
+    <Masonry list="{{list}}" key="id" column-space="30rpx" generic:masonry-item="VipDoubleCard"></Masonry>
+    <!-- <view class='card' wx:for="{{list}}" wx:key="{{index}}" style='background-image:url({{format.getImageUrl(item.cardCover + "?x-oss-process=image/resize,m_lfit,h_400,w_630")}})' bindtap='jumpVipCardDetail' data-id='{{item.id}}'>
+      <view class='card-title'>
+        <image class='card-logo' lazy-load src="{{logo + '?x-oss-process=image/resize,m_lfit,h_82,w_82'}}" mode='aspectFill'></image>
+        <text class='card-name'>{{item.cardName}}</text>
+      </view>
+      <view class='card-info'>
+        <view class='card-effect' wx:if="{{item.cardType === 1}}">
+          <text>赠{{item.cardGiftNum}}元</text>
+        </view>
+        <view class='card-price'>¥{{item.cardType === 1 ? item.cardFirstRechargeNum : item.cardPrice}}</view>
+      </view>
+    </view> -->
+  </view>
+</view>

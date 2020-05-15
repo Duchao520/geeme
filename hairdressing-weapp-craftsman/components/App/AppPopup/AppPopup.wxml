@@ -1,0 +1,15 @@
+<view class='cover {{show ? "active" : ""}}' catchtouchmove="prevent" bindtap="close">
+  <view class='popup-container {{show ? "active" : ""}}' catchtap="prevent">
+    <view class='popup-container-header'>
+      <text>{{title}}</text>
+      <view class='icon--close popup-container-close' bindtap='close'></view>
+    </view>
+    <view></view>
+    <scroll-view class="popup-main" scroll-y>
+      <slot name="main" />
+    </scroll-view>
+    <view class="bottom-button-container">
+      <button class="bottom-button" bindtap="clickButton">{{buttonText}}</button>
+    </view>
+  </view>
+</view>

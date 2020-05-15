@@ -1,0 +1,47 @@
+<wxs module="wxs">
+  function formatDate(date) {
+    return date = date.replace('-', '年') + '月'
+  }
+  module.exports = {
+    formatDate: formatDate
+  }
+</wxs>
+<view class="experience-page">
+  <view class="experience-main">
+    <block wx:for='{{list}}' wx:key="{{index}}">
+      <view class="exp-container">
+        <view class="exp-row">
+          <view class="row-title">{{type == 0 ? '获奖时间' : '开始时间'}}</view>
+          <view class="row-input arrow--right">
+            <picker mode="date" value="{{item.dateFrom}}" fields="month" bindchange="setDateFrom" data-index="{{index}}">
+              <view class="picker {{item.dateFrom ? '' : 'placeholder'}}">{{item.dateFrom ? wxs.formatDate(item.dateFrom) : '选择' + (type == 0 ? '获奖时间' : '开始时间')}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="exp-row" wx:if="{{type != 0}}">
+          <view class="row-title">结束时间</view>
+          <view class="row-input arrow--right">
+            <picker mode="date" value="{{item.dateTo}}" fields="month" bindchange="setDateTo" data-index="{{index}}">
+              <view class="picker {{item.dateTo ? '' : 'placeholder'}}">{{item.dateTo ? wxs.formatDate(item.dateTo) : '选择结束时间'}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="exp-row">
+          <view class="row-title">{{type == 0 ? '获奖名称' : '经历描述'}}</view>
+          <view class="row-input arrow--right">
+            <input placeholder="{{'输入' + (type == 0 ? '获奖名称' : '经历描述')}}" placeholder-style="color:#ccc" value="{{item.expName}}" bindinput="inputExpName" data-index="{{index}}"></input>
+          </view>
+        </view>
+      </view>
+      <view class="line {{index == list.length - 1 ? 'last' : ''}}"></view>
+    </block>
+  </view>
+  <view>
+    <view class="experience-add" bindtap="pushExp" data-type="{{type}}">
+      <text class="icon--add">添加{{title}}</text>
+    </view>
+  </view>
+</view>
+<view class="bottom-fixed" bindtap="confirm">
+  <view class="bottom-button">保存</view>
+</view>

@@ -1,0 +1,48 @@
+.main{
+  margin-top:40rpx;
+  padding:0 32rpx 100rpx;
+}
+
+.row{
+  font-size:26rpx;
+  height:116rpx;
+  line-height:116rpx;
+}
+
+.row.title{
+  color:#999 !important;
+  font-size:24rpx !important;
+  height:auto;
+  line-height: normal;
+  margin-bottom:20rpx;
+}
+
+.row:nth-child(odd){
+  background: #fff;
+}
+
+.row:nth-child(even){
+  background:#f8f8f8;
+}
+
+.row > view{
+  display: inline-block;
+  vertical-align: middle;
+  line-height:normal;
+}
+
+.column-1{
+  width:216rpx;
+  padding-left:16rpx;
+  color:#999;
+}
+
+.column-2{
+  width:346rpx;
+  padding-right:50rpx;
+  color:#333;
+}
+
+.column-3{
+  color:#333;
+}

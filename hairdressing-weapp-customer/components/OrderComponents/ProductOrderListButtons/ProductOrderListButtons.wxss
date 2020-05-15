@@ -1,0 +1,25 @@
+.ProductOrderListButtons {
+  width: 100%;
+  height: 54rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ProductOrderListButtons > view{
+  min-width: 150rpx;
+  line-height: 54rpx;
+  padding: 0 24rpx;
+  color: #666;
+  font-size: 26rpx;
+  border: 1rpx solid #d8d8d8;
+  text-align: center;
+  border-radius: 50rpx;
+  margin-right: 30rpx;
+}
+
+.ProductOrderListButtons > view.red{
+  color:#f52d56;
+  border-color: #f52d56;
+}

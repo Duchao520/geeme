@@ -1,0 +1,60 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="page-container" wx:if="{{groupBuyProducts.length > 0}}">
+  <view class="product-item" wx:for="{{groupBuyProducts}}" wx:key="{{index}}">
+    <view class="item-top" bindtap="jumpGoodsDetail" data-id="{{item.goodsId}}" data-type="{{item.goodsType}}">
+      <image class="top-image" src="{{format.getImageUrl(item.cycleImage + '?x-oss-process=image/resize,m_fill,h_180,w_180')}}" mode="aspectFill" lazy-load></image>
+      <view class="top-right">
+        <view class="top-right-l1 text--ellipsis_2">{{item.goodsTitle}}</view>
+        <view class="top-right-l2">
+          <text><text style="font-size:40rpx;font-weight:normal">¥</text>{{item.memberPrice}}</text>
+          <text>¥{{item.shopPrice}}</text>
+        </view>
+        <view class="top-right-l3">已有{{item.customerCount}}人成功拼团</view>
+      </view>
+    </view>
+    <view class="item-bottom flex_box">
+      <view class="bottom-left">
+        <view class="flex_box align_center">
+          <text class="fz-36"><text style="font-size:24rpx;font-weight:normal">¥</text>{{item.groupPrice}}</text>
+          <image src="/images/icon_tag_yellow.png" wx:if="{{item.cashReward}}" style="display: block;width: 100.5rpx;height: 37.5rpx;margin-left: 12rpx;"></image>
+        </view>
+        <view class="flex_box">
+          <text class="border-radius fz-20 fc-ffffff">{{item.groupCondition}}人拼团价</text>
+        </view>
+      </view>
+      <view  class="bottom-right">
+        <block wx:if="{{item.countDown}}">
+          <view class="fc-ffffff fz-24" style="margin-bottom: 8rpx;">距结束还剩:</view>
+          <view class="fc-ffffff">
+            <text class="time fz-28">{{format.formatNumber(item.hour)}}</text>
+            <text style="margin: 0 8rpx;">:</text>
+            <text class="time">{{format.formatNumber(item.minute)}}</text>
+            <text style="margin: 0 8rpx;">:</text>
+            <text class="time">{{format.formatNumber(item.second)}}</text>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="fc-ffffff fz-24" style="margin-bottom: 8rpx;">团购享更多优惠</view>
+        </block>
+      </view>
+      <!-- <view class="bottom-left">
+        <text><text style="font-size:24rpx;font-weight:normal">¥</text>{{item.groupPrice}}</text>
+        <text>{{item.groupCondition}}人团</text>
+      </view> -->
+
+      <!-- <view class="bottom-center">
+        <block >
+          倒计时
+          <text class="time">{{format.formatNumber(item.hour)}}</text>时
+          <text class="time">{{format.formatNumber(item.minute)}}</text>分
+          <text class="time">{{format.formatNumber(item.second)}}</text>秒
+        </block>
+        <block wx:else>
+          团购享更多优惠
+        </block>
+      </view>
+      <view class="bottom-right" bindtap="jumpGoodsDetail" data-id="{{item.goodsId}}" data-type="{{item.goodsType}}">{{item.numberRemain > 0 ? '立即参团' : '立即开团'}}</view> -->
+    </view>
+  </view>
+</view>
+<AppDefault text="暂无任何拼团活动~~" wx:else></AppDefault>

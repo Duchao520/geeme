@@ -1,0 +1,108 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<movebox flag="{{flag}}" bindclose="close">
+  <Time wx:if="{{times.length}}" slot="timeContent" dates="{{dates}}" times="{{times}}" bindsetCurrentDate="setCurrentDate" bindsetCurrentTime="setCurrentTime"></Time>
+  <view slot="timeBottom" class='timeButtons' wx:if="{{flag}}">
+    <view class='timeButtons-left'>
+      <view class='t-l-item'>
+        <text style='color:#999999'>已选时间  </text>
+        <text style='color:#333333'>{{currentDate}}</text>
+        <text style='color:#333333'>{{currentTime}}</text>
+      </view>
+    </view>
+    <view class='timeButtons-right' bindtap='confirmChange'>
+      确认修改
+    </view>
+  </view>
+</movebox>
+<view class="appointmentDetail">
+  <!-- 头部状态 -->
+  <appointmentStatus info="{{info}}" appointmentStatus="{{info.status}}" payStatus="{{info.payStatus}}" time="{{time}}"></appointmentStatus>
+  <!-- 头部 -->
+  <view class='header'>
+    <!-- 已约时间 -->
+    <view class='time'>
+      <view class='time-title'>已约时间</view>
+      <view class='time-item'>
+        <view class='t-i-left'>
+          <view class='t-i-icon'></view>
+          <view class='t-i-text'>{{format.getDate4(format.getDate5(info.dueTime))}}</view>
+        </view>
+        <view class='t-i-right' wx:if="{{info.status == '待服务'}}">
+          <view class='t-i-button' bindtap='updateTime'>修改时间</view>
+        </view>
+      </view>
+    </view>
+    <!-- 客户 -->
+    <view class='customerContent'>
+      <view class='customer-l'>
+        <AppAvatar style="margin-right:10rpx" gender="{{info.customerInfo.sex}}" avatar="{{info.customerInfo.avatar}}" width="76rpx" iconWidth="24rpx" />
+        <view class='customerInfo'>
+          <view class='customerText'>
+            <view class='customerName'>{{info.customerInfo.name}}</view>
+            <!-- <view class='customerLevel'>{{info.customerInfo.memberLevel}}</view> -->
+          </view>
+          <view class='customerMobile'>{{format.encriptPhone(info.customerInfo.mobile)}}</view>
+        </view>
+      </view>
+      <view class='customer-r' bindtap="jumpCustomerDetail">美丽档案</view>
+    </view>
+  </view>
+
+  <!-- 已选服务 -->
+  <view class='service-container'>
+    <view class='service'>
+      <view class='service-title'>
+        <view class='service-text'>已选服务</view>
+        <view class='service-button' bindtap='updateService' wx:if="{{info.status == '待服务'}}">修改服务</view>
+      </view>
+      <view class='service-item' wx:for="{{info.serviceInfoForAppointments}}" wx:for-item="serviceItem" wx:key="{{index}}">
+        <image class='serviceimage' src="{{format.getImageUrl(serviceItem.image)}}" mode="aspectFill"></image>
+        <view class='serviceinfo'>
+          <view class='servicedes text--ellipsis_2'>{{serviceItem.name || serviceItem.serviceName}}</view>
+          <view class='packageinfo'>{{serviceItem.specificationName}}
+            <text wx:if="{{serviceItem.time != null || serviceItem.serverTime != null}}">{{serviceItem.time != undefined ? serviceItem.time : serviceItem.serverTime}}分钟</text>
+          </view>
+          <view class='total'>
+            <view class='price'>
+              <text class='symbol'>¥</text>{{serviceItem.price}}</view>
+            <view class='count'>X{{serviceItem.count}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='grey-line'></view>
+  <!-- 合计 -->
+  <!-- <view class='totalInfo'>
+    <view class='totalItem'>
+      <view class='total-l'>合计金额</view>
+      <view class='total-r'>
+        <text class='symbol'>¥</text>1334</view>
+    </view>
+  </view> -->
+
+  <!-- <view class='grey-line'></view> -->
+  <!-- 备注信息 -->
+  <view class='notes'>
+    <view class='notesItems'>
+      <view class='customerNotesItem'>
+        <view class='customerItem-r'>{{info.notes || '暂无'}}</view>
+        <view class='customerItem-l'>客户备注</view>
+      </view>
+      <!-- <view class='changeInput'>
+        <view class='changeTitle'>备注：</view>
+        <input placeholder='对本次交易的说明（选填）'></input>
+      </view> -->
+    </view>
+  </view>
+</view>
+<view class='grey-line'></view>
+<!-- 底部按钮 -->
+<view class="page-footer">
+  <view class="footer-button" wx:if="{{info.status == '待服务'}}" catchtap="saveAppointment">确认修改</view>
+  <view class="footer-button btn-2" wx:if="{{info.status == '待服务'}}" catchtap="createOrder">快速开单</view>
+  <view style="color:#999;padding-left:30rpx">合计金额
+    <text style="color:#f52d56;font-size:40rpx"><text style="font-size:24rpx;">¥</text>{{format.getPrice(_totalPrice) || 0}}</text>
+  </view>
+</view>

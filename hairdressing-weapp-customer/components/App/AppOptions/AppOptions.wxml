@@ -1,0 +1,4 @@
+<view class="options-container">
+  <view class="active-ele" style="left: {{left}}"></view>
+  <view class="options {{index == activeIndex ? 'active-options' : ''}}" bindtap="switchTab" data-index="{{index}}" wx:key="index" wx:for="{{options}}">{{item}}</view>
+</view>

@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "Masonry": "/components/Masonry/Masonry",
+    "OptiCard": "/components/Card/OptiCard/OptiCard",
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "PopHeader": "/components/popup/PopHeader/PopHeader",
+    "PopSingleColumn": "/components/popup/PopSingleColumn/PopSingleColumn",
+    "PopDoubleColumn": "/components/popup/PopDoubleColumn/PopDoubleColumn"
+  },
+  "navigationBarTitleText": "优选推荐"
+}

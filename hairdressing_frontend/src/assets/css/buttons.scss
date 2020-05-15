@@ -1,0 +1,79 @@
+$white: #fff;
+// 按钮颜色规范
+// 1 绿色
+$default_green: #75C74F;
+$hover_green: #6DBB4A;
+$active_green: #61AD3F;
+// 2 孔雀蓝
+$default_peacock_blue: #41CAC0;
+$hover_peacock_blue: #39B2A9;
+$active_peacock_blue: #2FA39B;
+// 3 蓝色
+$default_blue: #58C9F3;
+$hover_blue: #53BEE6;
+$active_blue: #54B1D3;
+// 4 橘黄
+$default_yellow: #FCB322;
+$hover_yellow: #F0A91C;
+$active_yellow: #E39E17;
+// 5 粉红
+$default_pink: #FF6D61;
+$hover_pink: #EE5D51;
+$active_pink: #DF4A3F;
+// 6 红色
+$default_red: #F52D56;
+$hover_red: #E02047;
+$active_red: #D11D42;
+// 7 银灰
+$default_silvery_gray: #F4F5F7;
+$hover_silvery_gray: #EDF0F5;
+$active_silvery_gray: #E1E4EA;
+// 8 浅灰色
+$default_light_gray: #fff;
+$hover_light_gray: #E0E3E9;
+$active_light_gray: #D3D8E2;
+// 9 灰色
+$default_gray: #fff;
+$hover_gray: #BEC3C6;
+$active_gray: #AFB7BC;
+
+// 空心按钮
+@mixin plain_model($theme, $h_theme, $a_theme, $font:$white) {
+  user-select: none;
+  border: $theme 1px solid;
+  color: $font;
+  background: $white;
+  &:hover { color: $white; background: $h_theme; border-color: $h_theme; }
+  &:active { color: $white; background: $a_theme; border-color: $a_theme; }
+}
+// 表示设计稿上有无此样式: 1 有, 0 无。
+#body .plain_green_btn { @include plain_model($default_green, $hover_green, $active_green, $default_green); }
+#body .plain_blue_btn { @include plain_model($default_blue, $hover_blue, $active_blue, $default_blue); }
+#body .plain_pink_btn { @include plain_model($default_pink, $hover_pink, $active_pink, $default_pink); }
+#body .plain_gray_btn { @include plain_model($default_gray, $hover_gray, $active_gray, $hover_gray); border-color: $hover_gray; }
+
+// 常规按钮
+@mixin normal_model($theme, $h_theme, $a_theme, $font:$white) {
+  user-select: none;
+  color: $font;
+  background: $theme;
+  border: 1px solid $theme;
+  &:hover { background: $h_theme; border-color: $h_theme; }
+  &:active { background: $a_theme; border-color: $a_theme }
+}
+#body .normal_green_btn { @include normal_model($default_green, $hover_green, $active_green); }
+#body .normal_peacock_blue_btn { @include normal_model($default_peacock_blue, $hover_peacock_blue, $active_peacock_blue); }
+#body .normal_blue_btn { @include normal_model($default_blue, $hover_blue, $active_blue); }
+#body .normal_yellow_btn { @include normal_model($default_yellow, $hover_yellow, $active_yellow); }
+#body .normal_pink_btn { @include normal_model($default_pink, $hover_pink, $active_pink); }
+#body .normal_red_btn { @include normal_model($default_red, $hover_red, $active_red); }
+#body .normal_silvery_gray_btn { @include normal_model($default_silvery_gray, $hover_silvery_gray, $active_silvery_gray, #666); }
+#body .normal_light_gray_btn { @include normal_model($default_light_gray, $hover_light_gray, $active_light_gray, #666); border-color: $hover_light_gray }
+#body .normal_gray_btn { @include normal_model($default_gray, $hover_gray, $active_gray, #666); border-color: $hover_gray; }
+#body .el-button--medium{
+  padding: 9.5px 17px;
+}
+#body .icon-icon_operate_delete {
+  color: #DFE1E3;
+  &:hover { color: $default_peacock_blue; }
+}

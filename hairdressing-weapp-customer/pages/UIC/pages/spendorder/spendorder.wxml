@@ -1,0 +1,82 @@
+<!--pages/UIC/pages/spendorder/spendorder.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function sliceGoodsName1(name) {
+    return name.split('/')[0]
+  }
+
+  function sliceGoodsName2(name) {
+    return name.split('/')[1]
+  }
+
+  module.exports = {
+    sliceGoodsName1: sliceGoodsName1,
+    sliceGoodsName2: sliceGoodsName2
+  }
+</wxs>
+<view class='container'>
+  <!-- 搜索头部 -->
+  <view style="position: fixed;top: 0;left: 0;width: 100%;z-index:1;">
+    <view style='background:#fff;padding-bottom:20rpx;'>
+      <AppSearch placeholder="搜索商品名称/服务单号" bind:input="search" hide-text></AppSearch>
+    </view>
+    <AppTabs tabs="{{tabList}}" currentTab="{{tabIndex}}" bindswitchTab="switchTab"></AppTabs>
+  </view>
+  <view style="height: 184rpx;"></view>
+  <!-- 列表主体 -->
+  <view class='spendbody'>
+    <view class='spenditem' wx:for="{{list}}" wx:key="index" bindtap='jumpDetail' data-id="{{item.id}}">
+      <!-- 状态 -->
+      <view class='state {{item.status}}'>{{item.status == "UnBilling" ? "待结算" : item.status == 'UnPaid' ? '待支付' : '已完成'}}</view>
+      <!-- 店铺信息 -->
+      <view class='shopinfo'>
+        <image class='shopimg' lazy-load src='{{format.getImageUrl(item.storeImage + "?x-oss-process=image/resize,m_fill,h_80,w_80")}}' mode='aspectFill'></image>
+        <view class='shoptext'>
+          <view class='s-name'>{{format.getCity(item.storeCity)}} {{item.storeName}}</view>
+          <view class='s-time'>{{format.getDate4(format.getDate5(item.serviceTime))}}</view>
+        </view>
+      </view>
+      <!-- 账单服务详情 -->
+      <view class='goodsInfo'>
+        <view class='goodsInfo-item' wx:for="{{item.details.length ? item.details : item.consumerOrderCardInfo}}" wx:key="index" wx:for-item="goods">
+          <!-- 左边 -->
+          <!-- <view class='serchleft'>
+            <view class='ser-name'>
+              <text class="{{goods.cardKindId ? 'card' : ''}}">{{goods.cardKindId ? goods.cardName : wxs.sliceGoodsName1(goods.goodsName)}}</text>
+              <block wx:if="{{goods.cardKindId}}">
+                <text class="symbol blue" wx:if="{{goods.operateType == 1}}">续</text>
+                <text class="symbol green" wx:if="{{goods.isUpgrade}}">升</text>
+              </block>
+            </view>
+            <view class='ser-pack'>
+              <view class='ser-pack-name text--ellipsis_1'>{{goods.cardKindId ? "" : wxs.sliceGoodsName2(goods.goodsName)}}</view>
+              <view class='ser-pack-counst'>X{{goods.cardKindId ? 1 : goods.count}}</view>
+            </view>
+          </view> -->
+          <view class='goodsInfo-item-right'>
+            <view class='goodsInfo-item-count'>X{{goods.cardKindId ? 1 : goods.count}}</view>
+            <view class="goodsInfo-item-price">¥{{goods.cardKindId ? goods.chargeMoney : goods.price}}</view>
+          </view>
+          <view class='goodsInfo-item-left'>
+            <view class='goodsInfo-item-name text--ellipsis_1 {{goods.cardKindId ? "card" : ""}}'>{{goods.cardKindId ? goods.cardName : wxs.sliceGoodsName1(goods.goodsName)}}</view>
+            <block wx:if="{{goods.cardKindId}}">
+              <view class="symbol blue" wx:if="{{goods.operateType == 1}}">续</view>
+              <view class="symbol green" wx:if="{{goods.isUpgrade}}">升</view>
+            </block>
+            <view class='goodsInfo-item-pack text--ellipsis_1' wx:if="{{!goods.cardKindId}}">{{wxs.sliceGoodsName2(goods.goodsName)}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 合计 -->
+      <view class='totalprice'>
+        <view class='totalprice-discount' wx:if="{{item.totalPreference}}">
+          <text>优惠</text>-¥{{item.totalPreference}}
+        </view>
+        <text class='t-text'>合计</text>
+        <text class='t-num'>¥{{item.finalPrice}}</text>
+      </view>
+    </view>
+  </view>
+  <AppDefault wx:if="{{!list.length}}" text="暂时没有任何消费账单哦" />
+</view>

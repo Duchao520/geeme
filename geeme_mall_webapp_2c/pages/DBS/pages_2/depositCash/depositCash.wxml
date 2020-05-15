@@ -1,0 +1,64 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  function calCash(item){
+    if(item.surplusSecurityFund >= item.originSecurityFund){
+      return '+' + item.changeSecurityFund;
+    }else{
+      return '-' + item.changeSecurityFund;
+    }
+  }
+  module.exports = {
+    calCash: calCash
+  }
+</wxs>
+
+<view class="box_padding" style="padding: 44rpx 32rpx;">
+  <view class="total-detail">
+    <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight">
+          <text class="iconfont iconrenminbidanjia fz-26"></text>{{statistics.recharge ? statistics.recharge : 0}}</view>
+        <view class="fz-24 text-center fc-666666">累积充值</view>
+      </view>
+      <view class="line"></view>
+    </view>
+    <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight">
+          <text class="iconfont iconrenminbidanjia fz-26"></text>{{statistics.returnAmount ? statistics.returnAmount : 0}}</view>
+        <view class="fz-24 text-center fc-666666">累计返还</view>
+      </view>
+      <view class="line"></view>
+    </view>
+    <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight">
+          <text class="iconfont iconrenminbidanjia fz-26"></text>{{statistics.surplusSecurityFund ? statistics.surplusSecurityFund : 0}}</view>
+        <view class="fz-24 text-center fc-666666">剩余保证金</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view>
+  <view class="fz-36 font-weight" style="color: #1F1F1F;margin-left: 32rpx;margin-bottom: 20rpx;">保证金变动记录</view>
+  <view class="wallet" wx:if="{{recordList.length > 0}}">
+    <view wx:for="{{recordList}}" wx:key="index" wx:for-item="date">
+      <view class="date-head fz-32">{{date.dateHead}}</view>
+      <view class="box_padding" style="padding: 0 32rpx;" wx:for="{{date.RecordInfoList}}" wx:for-index="recordIndex" wx:key="recordIndex">
+        <view style="padding: 24rpx 0;border-bottom: 2rpx solid #EFEFF4" class="flex_box justify_space_between align_center">
+          <view style="margin-bottom: 12rpx;">
+            <view class="fc-333333 fz-32" style="margin-bottom: 12rpx;">
+              {{item.remark}}
+            </view>
+            <view class="fc-999999 fz-28">{{item.createTime}}</view>
+          </view>
+          <view class="fc-000000 fz-40">{{wxs.calCash(item)}}</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<!-- <AppDefault text="暂无推荐商品~~" wx:else></AppDefault> -->

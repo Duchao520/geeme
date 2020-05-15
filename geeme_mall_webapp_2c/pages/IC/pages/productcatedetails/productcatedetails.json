@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "全部商品",
+  "usingComponents": {
+    "FilterOne":"/components/PurchaseComponents/FilterOne/FilterOne",
+    "FilterTwo": "/components/PurchaseComponents/FilterTwo/FilterTwo",
+    "FilterThree": "/components/PurchaseComponents/FilterThree/FilterThree",
+    "Masonry": "/components/Masonry/Masonry",
+    "ServiceCard":"/components/Card/ServiceCard/ServiceCard",
+    "AppSearch":"/components/App/AppSearch/AppSearch"
+  }
+}

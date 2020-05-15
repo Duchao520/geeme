@@ -1,0 +1,53 @@
+<!--pages/appointment/choose/choose.wxml-->
+<!--components/choose/choose.wxml-->
+<view class='choose'>
+  <view class='choose-head'>
+    <view class='ch-line' style='transform: translateX({{240*show}}rpx); '></view>
+
+    <view class='ch-people {{show==1?"active":""}}' bindtap='jumpchoose' data-index="1">选服务者</view>
+    <view class='ch-people {{show==2?"active":""}}' bindtap='jumpchoose' data-index="2">先选时间</view>
+    <!-- <view class='ch-people {{show==3?"active":""}}' bindtap='jumpchoose' data-index="3">先看作品</view> -->
+  </view>
+  <!-- show为1的时候 -->
+  <block wx:if="{{show == 1}}">
+    <!-- <view class='choose-search'>
+      <view class="searchbox">
+        <view class='sc-icon'></view>
+        <input class='sc-input' placeholder='搜索服务者昵称'></input>
+      </view>
+
+      <view class='search-all'>
+        <view class='search-all-text'>全部</view>
+        <view class='all-icon'></view>
+      </view>
+    </view> -->
+
+    <view class='choose-content' wx:if="{{show == 1}}">
+      <StaffCard wx:for="{{hairlist}}" wx:key="{{index}}" item="{{item}}" />
+    </view>
+    <AppDefault wx:if="{{!hairlist.length}}" text='还没有服务者接受网上预约，可到店安排哦' />
+  </block>
+
+  <!-- show为2的时候 -->
+  <block wx:if="{{show == 2}}">
+    <!-- 时间组件 -->
+    <view class='Timebox'>
+      <Time wx:if="{{isShow}}" times="{{times}}" dates="{{dates}}" bindsetCurrentDate="setCurrentDate" bindsetCurrentTime="setCurrentTime">
+        <view class='calendaricon' slot="timeCalendarIcon"></view>
+      </Time>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class='nextbutton'>
+      <view class='n-b-left'>
+        <text class='n-b-des'>已选时间</text>
+        <text class='n-b-date'>  {{currentdate}}  </text>
+        <text class='n-b-time'>   {{currenttime}}   </text>
+      </view>
+      <view class='n-b-right' bindtap='next'>
+        下一步
+      </view>
+    </view>
+  </block>
+
+</view>

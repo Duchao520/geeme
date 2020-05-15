@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "搜索结果",
+  "usingComponents": {
+    "List":"/components/list/list",
+    "AppSearch": "/components/App/AppSearch/AppSearch"
+  }
+}

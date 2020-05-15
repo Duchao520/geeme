@@ -1,0 +1,44 @@
+.shareCard-list{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #FFFFFF;
+}
+.shareCard-list .close{
+  position: fixed;
+  top: 100rpx;
+  right: 27rpx;
+}
+
+.shareCard-list .scroll{
+  position: fixed;
+  box-sizing: border-box;
+  padding: 0 42rpx;
+  top: 180rpx;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #F2F2F2;
+}
+
+.shareCard-list .sharecard-item{
+  width: 666rpx;
+  height: 234rpx;
+  background: url('/pages/packageA/static/imgs/sharecard_bg.png') center center no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding: 31rpx 48rpx 31rpx 34rpx;
+  margin-bottom: 24rpx;
+}
+.shareCard-list .sharecard-item .sharecard_slogan{
+  width: 141rpx;
+  height: 33rpx;
+  background: url("/pages/packageA/static/imgs/sharecard_slogan.png") center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.hoverClass{
+  opacity: .5;
+}

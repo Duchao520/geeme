@@ -1,0 +1,23 @@
+.container{
+  padding-bottom:150rpx;
+}
+
+.products-container{
+  padding:0 32rpx;
+}
+
+.works-container{
+  padding:30rpx 32rpx;
+}
+
+.default-button{
+  margin: 40rpx auto;
+  width:180rpx;
+  height: 72rpx;
+  line-height:72rpx;
+  text-align: center;
+  border-radius:36rpx;
+  border: 1px solid #f52d56;
+  color:#f52d56;
+  font-size:28rpx;
+}

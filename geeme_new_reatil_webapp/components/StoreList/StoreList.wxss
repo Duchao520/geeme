@@ -1,0 +1,97 @@
+.historyshop-top {
+  width: 100%;
+  height: 56rpx;
+  font-size: 37rpx;
+  font-weight: 600;
+  font-family: PingFangSC-Semibold;
+  color: #262628;
+  line-height: 56rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-right: 32rpx;
+  margin-bottom: 26rpx;
+}
+
+.history-iconbox{
+  width: 60rpx;
+  height: 100%;
+  position: relative;
+}
+
+.history-bottom {
+  height: 356rpx;
+}
+
+.history-items {
+  height: 100%;
+  margin-bottom: 10rpx;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-bottom: 10rpx;
+  padding-right: 32rpx;
+}
+
+.historyshop-item {
+  width: 422rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 0rpx 12rpx 0rpx rgba(0, 0, 0, 0.1);
+  margin-left: 32rpx;
+  flex-shrink: 0;
+}
+
+
+.history-img {
+  width: 100%;
+  height: 218rpx;
+}
+
+.historyshop-des {
+  width: 100%;
+  height: 120rpx;
+  padding: 16rpx;
+}
+
+.historyshop-name {
+  height: 44rpx;
+  line-height: 44rpx;
+  color: rgb(38, 38, 40);
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.historyshop-name-text{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.historyshop-name > .city{
+  max-width:100rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right:10rpx;
+}
+
+.shopstores {
+  height: 28rpx;
+  line-height:28rpx;
+  margin: 16rpx 0 22rpx 0;
+  font-size:0;
+}
+
+.shopscore {
+  display: inline-block;
+  margin-left:6rpx;
+  font-size: 24rpx;
+  color: #f52d56;
+  vertical-align: middle;
+}

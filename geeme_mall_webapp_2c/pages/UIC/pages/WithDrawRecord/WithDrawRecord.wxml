@@ -1,0 +1,57 @@
+<wxs module="wxs">
+  function JudgeStatus(status){
+    switch(status){
+      case 1:
+        return {
+          class: "WAIT",
+          statusMean: "待处理"
+        };
+      case 2:
+        return {
+          class: "REJECT",
+          statusMean: "已拒绝"
+        };
+      case 3:
+        return {
+          class: "FINISH",
+          statusMean: "已提现"
+        };
+      case 4:
+        return {
+          class: "CANCEL",
+          statusMean: "已取消"
+        };
+      case 5:
+        return {
+          class: "MODIFY",
+          statusMean: "修改中"
+        };
+      default:
+        return {
+          class: "",
+          statusMean: ""
+        };
+    }
+  }
+
+  module.exports = {
+    JudgeStatus: JudgeStatus
+  }
+</wxs>
+<view class="box_padding" style="padding: 0 26rpx;">
+  <view class="record-item" wx:for="{{infoList}}" wx:key="index" data-id="{{item.id}}" bindtap="navigateToProgress">
+    <view class="flex_box justify_space_between align_center" style="margin-bottom: 8rpx;">
+      <view class="fz-32 fc-333333">提现到银行卡</view>
+      <view class="fz-40 fc-333333 flex_box align_center">{{item.cashAmount}}
+        <text class="iconfont iconyoujiantou fc-AAAAAA fz-20"></text>
+      </view>
+    </view>
+    <view class="flex_box justify_space_between">
+      <view class="fz-24 fc-999999">
+        <view style="margin-bottom: 4rpx;" wx:if="{{item.createTime}}">申请：{{item.createTime}}</view>
+        <view wx:if="{{item.transferTime}}">转账：{{item.transferTime}}</view>
+      </view>
+      <view class="status {{wxs.JudgeStatus(item.status).class}}">{{wxs.JudgeStatus(item.status).statusMean}}</view>
+    </view>
+  </view>
+</view>

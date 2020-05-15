@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "管理会员卡",
+  "usingComponents": {
+    "VipCardPay": "/components/VipComponents/VipCardPay/VipCardPay",
+    "VipCardRecharge": "/components/VipComponents/VipCardRecharge/VipCardRecharge",
+    "VipCardDiscount": "/components/VipComponents/VipCardDiscount/VipCardDiscount",
+    "VipCardCount": "/components/VipComponents/VipCardCount/VipCardCount"
+  }
+}

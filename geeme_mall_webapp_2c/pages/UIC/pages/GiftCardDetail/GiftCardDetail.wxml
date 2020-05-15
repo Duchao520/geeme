@@ -1,0 +1,331 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    createTime = Date.parse(getDate())
+    if (finishTime - createTime < 0) {
+      return 0
+    } else {
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+
+  function JudgevalidTimeStrategy(item) {
+    switch (item.validTimeStrategy) {
+      case 1:
+        var validTimeTo = item.validTimeTo.split(' ')[0];
+        validTimeTo = validTimeTo.replace('-', '年').replace('-', '月') + '日';
+        var validTimeFrom = item.validTimeFrom.split(' ')[0];
+        validTimeFrom = validTimeFrom.replace('-', '年').replace('-', '月') + '日';
+        return validTimeFrom + '-' + validTimeTo;
+      case 2:
+        return '自领取当日起' + item.days + '天内';
+      case 3:
+        return '自领取次日起' + item.days + '天内';
+    }
+  }
+
+  function JudgetimeTo(item) {
+    var timeTo = item.timeTo.split(' ')[0];
+    timeTo = timeTo.replace('-', '/').replace('-', '/')
+    return timeTo;
+  }
+
+  module.exports = {
+    JudgevalidTimeStrategy: JudgevalidTimeStrategy,
+    JudgetimeTo: JudgetimeTo,
+    getCountdownDay: getCountdownDay
+  }
+</wxs>
+<canvas canvas-id="cardPic" style="width: 750rpx;height: 600rpx;position: absolute;z-index: -1;opacity: 0;top: -600rpx;left: -750rpx;"></canvas>
+<view class="box_padding" style="padding: 44rpx 60rpx 32rpx;">
+  <view class="cart-item fc-ffffff" style="background-image: url({{format.getImageUrl(card.cardCover ? card.cardCover : card.cardKindInfo.cardCover)}})">
+    <block wx:if="{{tabIndex == 0}}">
+      <view class="flex_box">
+        <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+        <view>
+          <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{card.cardName}}</view>
+          <view class="slogan">礼品卡</view>
+        </view>
+      </view>
+      <text class="isUse fz-24">{{card.status == 0 ? '可使用' : '已禁用'}}</text>
+      <view class="price" wx:if="{{card.cardType == 1}}">
+        <text class="iconfont iconrenminbidanjia fz-44"></text>{{card.giftMoney + card.rechargeMoney}}
+      </view>
+      <view class="price" wx:else>
+        {{wxs.getCountdownDay(card.finishTime) + '天'}}
+      </view>
+      <view class="expireDate fz-24">{{card.timeTo}} 到期</view>
+    </block>
+
+    <block wx:elif="{{tabIndex == 1}}">
+      <view class="flex_box">
+        <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+        <view>
+          <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{card.giftCardName}}</view>
+          <view class="slogan">礼品卡</view>
+        </view>
+      </view>
+      <view class="share iconfont icontubiaolunkuo- fc-ffffff" bindtap="showShareModal" wx:if="{{(card.shareInfo.splitNum - card.shareInfo.shareOrder) > 0}}"></view>
+      <text class="isUse fz-24">{{'可赠送：' + (card.shareInfo.splitNum - card.shareInfo.shareOrder) + '张'}}</text>
+      <view class="price flex_box align_center">
+        <text class="fz-56">
+          <block wx:if="{{card.free}}">
+            <text>免费</text>
+    </block>
+    <block wx:else>
+      <text class="iconfont iconrenminbidanjia fz-44"></text>{{card.activityPrice}}
+    </block>
+    </text>
+    <text class="fz-32 line-through">
+          <text class="iconfont iconrenminbidanjia fz-24"></text>{{card.cardPrice}}
+    </text>
+    </view>
+    <view class="expireDate fz-24">{{wxs.JudgetimeTo(card)}} 活动到期</view>
+    </block>
+
+    <block wx:elif="{{tabIndex == 2}}">
+      <view class="flex_box">
+        <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+        <view>
+          <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{card.giftCardName}}</view>
+          <view class="slogan">礼品卡</view>
+        </view>
+      </view>
+      <text class="isUse fz-24">{{'仅剩' + (card.cardCount-card.getNum) + '张'}}</text>
+      <view class="price flex_box align_center">
+        <text class="fz-56">
+          <block wx:if="{{card.free}}">
+            <text>免费</text>
+    </block>
+    <block wx:else>
+      <text class="iconfont iconrenminbidanjia fz-44"></text>{{card.activityPrice}}
+    </block>
+    </text>
+    <text class="fz-32 line-through">
+          <text class="iconfont iconrenminbidanjia fz-24"></text>{{card.cardPrice}}
+    </text>
+    </view>
+    <view class="expireDate fz-24">{{wxs.JudgetimeTo(card)}} 活动到期</view>
+    </block>
+  </view>
+</view>
+
+<block wx:if="{{tabIndex == 0}}">
+  <view class="box_padding" style="padding: 38rpx 33rpx;margin-bottom: 34rpx;">
+    <view style="padding-bottom: 60rpx;border-bottom: 2rpx solid #EFEFF4;">
+      <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;">使用权益</view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">卡项原价: {{cardKindInfo.cardType == 1 ? cardKindInfo.cardFirstRechargeNum : cardKindInfo.cardPrice}}元</view>
+      </view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">会员卡号: {{cardKindInfo.cardNo}}</view>
+      </view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">享受权益:
+          <block>
+            <text wx:if="{{cardKindInfo.listServiceCountInfo.length > 1}}" space="ensp" bindtap="showCountDetail">{{cardKindInfo.listServiceCountInfo[1].serviceName}} {{format.isNumber(cardKindInfo.listServiceCountInfo[1].countLimit) || '无限'}}次 <text class="fc-58C9F3">明细</text>
+            </text>
+            <text wx:else>{{cardKindInfo.listServiceCountInfo[0].serviceName}} {{format.isNumber(cardKindInfo.listServiceCountInfo[0].countLimit) || '无限'}}次</text>
+          </block>
+        </view>
+      </view>
+      <!-- 排期 -->
+      <!-- <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">适用门店: {{cardKindInfo.suitStoreStrategy == 0? '所有门店' : (cardKindInfo.suitStoreStrategy == 1 ? "所有直营店" : "指定门店")}}
+          <text class='fc-58C9F3' wx:if="{{cardKindInfo.suitStoreStrategy == 2}}">详情</text>
+        </view>
+      </view> -->
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">
+          领取时间： {{cardKindInfo.createTime}}
+        </view>
+      </view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">
+          有效期： {{cardKindInfo.validityTime}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="box_padding" style="padding: 0 33rpx;" wx:if="{{cardKindInfo.cardInstruction || card.remark}}">
+    <view>
+      <view class="fz-30 fc-484848 font-weight" style="margin-bottom: 26rpx;">使用说明</view>
+      <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{cardKindInfo.cardInstruction}}">
+        <text space="emsp" decode>{{cardKindInfo.cardInstruction}}</text>
+      </view>
+      <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{card.remark}}">
+        <text space="emsp" decode>{{card.remark}}</text>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:elif="{{tabIndex == 1}}">
+  <AppTabs tabs="{{tabs}}" padding="0 213rpx;" bind:switchTab="switchTab"></AppTabs>
+  <block wx:if="{{sendCardTabIndex == 0}}">
+    <view class="box_padding" style="padding: 38rpx 33rpx;margin-bottom: 34rpx;">
+      <view style="padding-bottom: 60rpx;border-bottom: 2rpx solid #EFEFF4;">
+        <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;">使用权益</view>
+        <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">卡项原价: {{card.cardPrice}}元</view>
+        </view>
+        <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">活动价: {{card.free ? '免费' : card.activityPrice + '元'}}</view>
+        </view>
+        <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">享受权益:
+            <block>
+              <text wx:if="{{card.cardKindInfo.listServiceCountInfo.length > 1}}" space="ensp" bindtap="showCountDetail">{{card.cardKindInfo.listServiceCountInfo[1].serviceName}} {{format.isNumber(card.cardKindInfo.listServiceCountInfo[1].countLimit) || '无限'}}次 <text class="fc-58C9F3">明细</text>
+              </text>
+              <text wx:else>{{card.cardKindInfo.listServiceCountInfo[0].serviceName}} {{format.isNumber(card.cardKindInfo.listServiceCountInfo[0].countLimit) || '无限'}}次</text>
+            </block>
+          </view>
+        </view>
+        <!-- 排期 -->
+        <!-- <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">适用门店: {{card.cardKindInfo.suitStoreStrategy == 0? '所有门店' : (card.cardKindInfo.suitStoreStrategy == 1 ? "所有直营店" : "指定门店")}}
+            <text class='fc-58C9F3' wx:if="{{card.cardKindInfo.suitStoreStrategy == 2}}">详情</text>
+          </view>
+        </view> -->
+        <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">
+            可赠剩余： {{card.shareInfo.shareOrder}}/{{card.shareInfo.splitNum}}张
+          </view>
+        </view>
+        <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">
+            总数剩余： {{card.getNum}}/{{card.cardCount}}张
+          </view>
+        </view>
+        <view class="ul-item">
+          <text class="icon"></text>
+          <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">
+            有效期： {{wxs.JudgevalidTimeStrategy(card)}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="box_padding" style="padding: 0 33rpx;" wx:if="{{cardKindInfo.cardInstruction || card.remark}}">
+      <view>
+        <view class="fz-30 fc-484848 font-weight" style="margin-bottom: 26rpx;">使用说明</view>
+        <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{cardKindInfo.cardInstruction}}">
+          <text space="emsp" decode>{{cardKindInfo.cardInstruction}}</text>
+        </view>
+        <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{card.remark}}">
+          <text space="emsp" decode>{{card.remark}}</text>
+        </view>
+      </view>
+    </view>
+    <view style="height: 218rpx;" wx:if="{{(card.shareInfo.splitNum - card.shareInfo.shareOrder) > 0}}"></view>
+    <view class="fixBottom" wx:if="{{(card.shareInfo.splitNum - card.shareInfo.shareOrder) > 0}}">
+      <!-- <view class="fz-24 fc-F52D56 text-center" style="margin-bottom: 24rpx;">分享给好友成功领取或购买，可奖励20元</view> -->
+      <button class="shareBtn" bindtap="showShareModal">立即分享</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="box_padding" style="padding:38rpx 32rpx;" wx:if="{{shareInfoList.length > 0}}">
+      <view style="width:100%;height: 740rpx;border-radius: 8rpx;border: 2rpx solid #FFEDF1;">
+        <view class="th">
+          <view>领取好友</view>
+          <view>奖励</view>
+        </view>
+        <scroll-view scroll-y="{{true}}" class="tbody" style="width:100%;height: 592rpx;">
+          <view class="td box_padding flex_box align_center justify_space_between" style="padding: 20rpx 28rpx;" wx:for="{{shareInfoList}}" wx:key="index">
+            <view>
+              <view class="fz-28 fc-333333">{{item.brandCustomerName}} {{item.mobile}}</view>
+              <view class="fz-20 fc-999999">{{item.createTime}}</view>
+            </view>
+            <view class="iconfont iconrenminbidanjia fz-36 font-weight" style="color: #E33443;">{{item.award}}</view>
+          </view>
+        </scroll-view>
+        <view class="tf">
+          <text class="fz-20">总计:</text>
+          <text class="iconfont iconrenminbidanjia fz-36 font-weight">{{totalAward}}</text>
+        </view>
+      </view>
+    </view>
+    <AppDefault text="暂无领奖记录" wx:else></AppDefault>
+  </block>
+
+</block>
+
+<block wx:elif="{{tabIndex == 2}}">
+  <view class="box_padding" style="padding: 0 33rpx;margin-bottom: 60rpx;">
+    <view class="text-center fz-32 fc-333333">{{card.giftCardName}}原价{{card.cardPrice}}元</view>
+    <view class="fz-36 fc-333333 text-center" style="margin-bottom: 38rpx;" wx:if="{{card.free}}">
+      现
+      <text class="fz-36 fc-F52D56">免费</text>送
+    </view>
+    <view class="fz-36 fc-333333 text-center" style="margin-bottom: 38rpx;" wx:else>现仅需
+      <text class="fz-36 fc-F52D56"><text class="fz-24 iconfont iconrenminbidanjia"></text>{{card.activityPrice}}</text>
+    </view>
+    <view class="text-center fz-34 font-weight bg-F52D56 fc-ffffff" style="height: 100rpx;line-height: 100rpx;border-radius: 50rpx;margin-bottom: 22rpx;" wx:if="{{card.free}}" bindtap="getGiftCardForFree">免费领取</view>
+    <view class="text-center fz-34 font-weight bg-F52D56 fc-ffffff" style="height: 100rpx;line-height: 100rpx;border-radius: 50rpx;margin-bottom: 22rpx;" wx:else bindtap="buyGiftCard">立即购买</view>
+    <view class="fz-24 fc-666666 text-center">有效期： {{wxs.JudgevalidTimeStrategy(card)}}</view>
+  </view>
+  <view class="box_padding" style="padding: 0 33rpx;margin-bottom: 34rpx;">
+    <view style="padding-bottom: 60rpx;border-bottom: 2rpx solid #EFEFF4;">
+      <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;">使用权益</view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">卡项原价: {{card.cardPrice}}元</view>
+      </view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">活动价: {{card.free ? '免费' : card.activityPrice + '元'}}</view>
+      </view>
+      <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">享受权益:
+          <block>
+            <text wx:if="{{card.cardKindInfo.listServiceCountInfo.length > 1}}" space="ensp" bindtap="showCountDetail">{{card.cardKindInfo.listServiceCountInfo[1].serviceName}} {{format.isNumber(card.cardKindInfo.listServiceCountInfo[1].countLimit) || '无限'}}次 <text class="fc-58C9F3">明细</text>
+            </text>
+            <text wx:else>{{card.cardKindInfo.listServiceCountInfo[0].serviceName}} {{format.isNumber(card.cardKindInfo.listServiceCountInfo[0].countLimit) || '无限'}}次</text>
+          </block>
+        </view>
+      </view>
+      <!-- 排期 -->
+      <!-- <view class="ul-item">
+        <text class="icon"></text>
+        <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">适用门店: {{card.cardKindInfo.suitStoreStrategy == 0? '所有门店' : (card.cardKindInfo.suitStoreStrategy == 1 ? "所有直营店" : "指定门店")}}
+          <text class='fc-58C9F3' wx:if="{{card.cardKindInfo.suitStoreStrategy == 2}}">详情</text>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  <view class="box_padding" style="padding: 0 33rpx;" wx:if="{{cardKindInfo.cardInstruction || card.remark}}">
+    <view>
+      <view class="fz-30 fc-484848 font-weight" style="margin-bottom: 26rpx;">使用说明</view>
+      <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{cardKindInfo.cardInstruction}}">
+        <text space="emsp" decode>{{cardKindInfo.cardInstruction}}</text>
+      </view>
+      <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{card.remark}}">
+        <text space="emsp" decode>{{card.remark}}</text>
+      </view>
+    </view>
+  </view>
+
+</block>
+
+
+
+<!-- 各种弹框 -->
+<view class="cover" catchtouchmove='{{true}}' wx:if="{{ifShowCountDetail}}" bindtap="closePop">
+  <view>
+    <VipCardCount wx:if="{{ifShowCountDetail}}" list="{{cardKindInfo.listServiceCountInfo}}" bind:closeCount="closePop" />
+  </view>
+</view>
+<AppShareModal ifShowSharePop="{{ifShowSharePop}}" bind:sharePic="jumpSharePic"></AppShareModal>
+<AppModal show="{{SUCCESS_MODAL}}" title="领取成功!" content="恭喜您，礼品卡已经领取成功！请前往我的资产-礼品卡查收。" button1="返回首页" button2="查看礼品卡" bind:cancle="jumpHome" bind:confirm="jumpGiftCard"></AppModal>

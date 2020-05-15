@@ -1,0 +1,10 @@
+<view class='OrderButtonByStatus'>
+  <block wx:if="{{status == '待评价'}}">
+    <view class='sendButton'>发作品</view>
+    <view class='invitationButton'>邀请评价</view>
+  </block>
+  <block wx:else>
+  <view class='selectButton'>查看评价</view>
+
+  </block>
+</view>

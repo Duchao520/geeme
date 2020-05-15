@@ -1,0 +1,169 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    createTime = Date.parse(getDate())
+    if(finishTime - createTime < 0){
+      return 0
+    }else{
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+  function JudgeType(cardType){
+    switch(cardType){
+      case 0:
+        return '身份卡';
+      case 1:
+        return '储值卡';
+      case 2:
+        return '次卡'
+      case 3:
+        return '时间卡';
+      default:
+        return '';
+    }
+  }
+  module.exports = {
+    getCountdownDay: getCountdownDay,
+    JudgeType: JudgeType
+  }
+</wxs>
+<!-- 会员卡充值 -->
+<block wx:if="{{flagRecharge}}">
+  <VipCardRecharge info="{{currentCard}}" rechargeRules="{{rechargeRules}}" bind:toRecharge="bindtoRecharge" bindcloseRecharge="closeRecharge"></VipCardRecharge>
+</block>
+
+<!-- 会员卡支付 -->
+<VipCardPay flagPay="{{flagPay}}" payNumber="{{rechargeNum}}" bindtoPay="bindtoPay" bindclosePay="closePay" bindgoBack="bindgoBack"></VipCardPay>
+<!-- 会员卡支付 -->
+<block wx:if="{{list && list.length}}">
+  <view class="vipCard">
+    <!-- 会员卡 -->
+    <view class='myCardContent'>
+      <view class='cardList'>
+        <swiper bindchange="change" current="{{current}}" previous-margin="45rpx" next-margin="45rpx">
+          <!-- 拥有的会员卡 -->
+          <swiper-item wx:for="{{list}}" wx:key="index" style="text-align:center">
+            <view class='card {{current == index ? "active" : ""}}' style='background-image:url({{format.getImageUrl(item.cardCover + "?x-oss-process=image/resize,m_fill,h_400,w_630")}})'>
+              <view class='card-title'>
+                <image class='card-logo' lazy-load src="{{logo + '?x-oss-process=image/resize,m_lfit,h_82,w_82'}}" mode='aspectFill'></image>
+                <view class="flex_box flex_column">
+                  <view class='card-name txt-ellipsis'>{{item.cardName}}</view>
+                  <view class="tag">{{wxs.JudgeType(item.cardType)}}</view>
+                </view>
+              </view>
+              <view class='card-info'>
+                <!-- <view class="card-system fz-24 fc-ffffff text_center" catchtap="onTapCardSystem" data-item="{{item}}">管理</view> -->
+                <view class='card-price'>
+                  <text wx:if="{{item.cardType == 1}}">¥{{format.getPrice(item._balance)}}</text>
+                  <text wx:else>{{item.validPermanent ? '永久' : wxs.getCountdownDay(item.finishTime) + '天'}}</text>
+                </view>
+              </view>
+            </view>
+          </swiper-item>
+          <!-- 购买会员卡 -->
+          <swiper-item>
+            <view class='card buy {{current >= list.length ?"active":""}}'>
+              <view class='buy-line' style='margin-top:40rpx;'>
+                <view class='buy-icon'></view>
+              </view>
+              <view class='buy-line' style='margin-top:20rpx;'>更多会员权益，请点击购买会员卡</view>
+              <view class='buy-line' style='margin-top:40rpx;'>
+                <view class='buy-button' bindtap='jumpPurchase'>购买会员卡</view>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+      <!-- 权益说明 -->
+      <view hidden="{{current >= list.length}}">
+        <!-- 权益说明 -->
+        <view class='power'>
+          <view class='powerTitle'>权益说明</view>
+          <view class='powerBody'>
+            <view class='powerItem'>
+              <view class='powerText'>
+                <text wx:if="{{currentCard.cardType == 1}}">首次充值：{{currentCard.cardFirstRechargeNum}}元</text>
+                <text wx:else>售价：{{currentCard.cardPrice}}元</text>
+              </view>
+            </view>
+            <view class='powerItem' wx:if="{{currentCard.cardType == 2 || currentCard.cardType == 3}}">
+              <view class='powerText flex_box'>享受权益：
+                <view>
+                  <block wx:if="{{currentCard.totalCountLimit >= 0}}">
+                    <text>所有服务{{currentCard.totalCountLimit}}次</text>
+                  </block>
+                  <block wx:else>
+                    <text wx:if="{{currentCard.listServiceCountInfo.length > 1}}" space="ensp" bindtap="showCountDetail">{{currentCard.listServiceCountInfo[1].serviceName}} {{format.isNumber(currentCard.listServiceCountInfo[1].countLimit) || '无限'}}次 <text class="detail-text">明细</text>
+                    </text>
+                    <text wx:else>{{currentCard.listServiceCountInfo[0].serviceName}} {{format.isNumber(currentCard.listServiceCountInfo[0].countLimit) || '无限'}}次</text>
+                  </block>
+                </view>
+              </view>
+            </view>
+            <view class='powerItem' wx:if="{{currentCard.cardType == 1}}">
+              <view class='powerText'>赠送金额：{{currentCard.cardGiftNum}}元</view>
+            </view>
+            <view class='powerItem' wx:if="{{currentCard.cardDiscountStrategy != 0}}">
+              <view class='powerText' wx:if="{{currentCard.cardDiscountStrategy == 2}}">折扣权益：指定服务，产品
+                <text class='detail-text' bindtap='showDiscountDetail'>明细</text>
+              </view>
+              <view class='powerText' wx:else>折扣权益：服务{{currentCard.cardServiceDiscount == 10 ? "不打" : currentCard.cardServiceDiscount}}折，产品{{currentCard.cardProductDiscount == 10 ? "不打" : currentCard.cardProductDiscount}}折
+              </view>
+            </view>
+            <view class='powerItem'>
+              <view class='powerText'>适用门店：{{currentCard.suitStoreStrategy == 0? '所有门店' : (currentCard.suitStoreStrategy == 1 ? "所有直营店" : "指定门店")}}
+                <text class='detail-text' bindtap='$wait' wx:if="{{currentCard.suitStoreStrategy == 2}}">详情</text>
+              </view>
+            </view>
+            <view class='powerItem'>
+              <view class='powerText'>开卡时间：{{format.getDate1(currentCard.createTime)}}</view>
+            </view>
+            <view class='powerItem'>
+              <view class='powerText' wx:if="{{currentCard.validUsedNum > 0}}">首次使用后有效期{{currentCard.validUsedNum}}年</view>
+              <view class='powerText' wx:else>有效期至：{{currentCard.validPermanent ? "永久有效" : validTime}}</view>
+            </view>
+          </view>
+        </view>
+        <!-- 使用须知 -->
+        <view class='notes-container'>
+          <view class='notes' wx:if="{{currentCard.cardInstruction}}">
+            <view class='notes-title' bindtap='$set' data-key="ifShowInstruction" data-value="{{!ifShowInstruction}}">
+              <view class='notes-title-left'>使用说明</view>
+              <view class='notes-title-right'>
+                <text class='arrow--down {{ifShowInstruction ? "arrow--up" : ""}}'>{{ifShowInstruction ? "收起" : "展开"}}</text>
+              </view>
+            </view>
+            <view class='notes-detail' hidden='{{!ifShowInstruction}}'>
+              <text space="emsp" decode>{{currentCard.cardInstruction}}</text>
+            </view>
+          </view>
+          <view class='notes' wx:if="{{currentCard.cardNotes}}">
+            <view class='notes-title' bindtap='$set' data-key="ifShowNote" data-value="{{!ifShowNote}}">
+              <view class='notes-title-left'>办卡须知</view>
+              <view class='notes-title-right'>
+                <text class='arrow--down {{ifShowNote ? "arrow--up" : ""}}'>{{ifShowNote ? "收起" : "展开"}}</text>
+              </view>
+            </view>
+            <view class='notes-detail' hidden='{{!ifShowNote}}'>
+              <text space='emsp' decode>{{currentCard.cardNotes}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 购买会员卡 -->
+      <view class='bottom-fixed' hidden="{{current >= list.length}}">
+        <view class='bottom-button {{currentCard.supportRenewal ? "" : "unable"}}' bindtap='showRecharge'>充值</view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_card.png" text="您还没有会员卡，快去看看吧" button="去看看" bind:click="jumpPurchase" />
+</block>
+<!-- 各种弹框 -->
+<view class="cover" wx:if="{{ifShowDiscountDetail || ifShowCountDetail}}" bindtap="closePop">
+  <view catchtap="prevent">
+    <VipCardDiscount wx:if="{{ifShowDiscountDetail}}" service="{{currentCard.partServiceDiscountStrategy}}" product="{{currentCard.partProductDiscountStrategy}}" bind:closeDiscount="closeDiscount" />
+    <VipCardCount wx:if="{{ifShowCountDetail}}" list="{{currentCard.listServiceCountInfo}}" bind:closeCount="closeCount" />
+  </view>
+</view>

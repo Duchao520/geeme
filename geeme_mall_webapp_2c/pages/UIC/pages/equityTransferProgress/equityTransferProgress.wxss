@@ -1,0 +1,29 @@
+/* pages/UIC//pages/equityTransferProgress/equityTransferProgress.wxss */
+@import "../WithDrawProgress/WithDrawProgress.wxss";
+
+.roll-out {
+  width: 750rpx;
+  height: 110rpx;
+  background: #fff;
+  justify-content: flex-end;
+  border-top: 2rpx solid #EFEFF4;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.roll-out-btns {
+  width: 150rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  border-radius: 26rpx;
+  margin: 0 0;
+  margin-right: 30rpx;
+}
+.cancle-btn {
+  border: 1rpx solid rgba(216, 216, 216, 1);
+}
+.edit-btn {
+  border: 1rpx solid rgba(245, 45, 86, 1);
+}

@@ -1,0 +1,174 @@
+.evaluationDetail {
+  width: 100%;
+  height: auto;
+  border-top: 2rpx solid #ebebeb;
+}
+
+.evaluationTop {
+  padding: 0 32rpx;
+}
+
+.evaluation-score{
+  margin-top:30rpx;
+}
+
+.score-text{
+  display: inline-block;
+  margin-right:20rpx;
+  font-size:32rpx;
+  color:#f52d56;
+  vertical-align: middle;
+}
+
+/* 评价数据统计 */
+
+.evaluationData {
+  margin-top:34rpx;
+  margin-right:-30rpx;
+}
+
+.evaluationDataItem {
+  display: inline-block;
+  box-sizing: content-box;
+  margin: 0 30rpx 30rpx 0;
+  padding: 0 28rpx;
+  height:58rpx;
+  line-height:58rpx;
+  border-radius: 30rpx;
+  border: 1px solid #666;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.evaluationDataItem.active {
+  color: #f52d56;
+  border: 1px solid #f52d56;
+}
+
+/* 评价底部 */
+
+.evaluationBottom {
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+  border-top: 2rpx solid #ebebeb;
+}
+
+.evalutaionBottomItem {
+  padding: 38rpx 0 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border-bottom: 2rpx solid #ebebeb;
+}
+
+.userAvatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.userContent {
+  max-width: 582rpx;
+  margin-left: 24rpx;
+  flex: auto;
+  height: auto;
+}
+
+.userInfo {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userName {
+  color: #262628;
+  font-size: 30rpx;
+}
+
+.userScore {
+  width: 100rpx;
+  height: 42rpx;
+  background: black;
+}
+
+.evaluationTime {
+  line-height: 64rpx;
+  color: #9b9b9b;
+  font-size: 24rpx;
+}
+
+.evaluationText {
+  color: #666;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.evaluationImages {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 14rpx;
+}
+
+.evaluationItemImage {
+  width: 168rpx;
+  height: 168rpx;
+  background: black;
+  margin-bottom: 40rpx;
+}
+
+/* 评价主体（小） */
+.des {
+  width: 100%;
+  height: 64rpx;
+  background-color: rgba(248, 248, 248, 1);
+  padding: 8rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5rpx;
+  margin-bottom: 34rpx;
+}
+
+.des-left {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.ev-logo {
+  width: 64rpx;
+  height: 32rpx;
+  background-color: rgba(245, 45, 86, 1);
+  text-align: center;
+  line-height: 32rpx;
+  font-size: 20rpx;
+  color: white;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+  border-radius: 5rpx;
+}
+
+.ev-produce {
+  color: rgba(153, 153, 153, 1);
+  font-size: 24rpx;
+}
+
+.des-right {
+}
+
+.ev-price {
+  color: rgba(245, 45, 86, 1);
+  font-size: 24rpx;
+  line-height: 64rpx;
+  margin-right: 10rpx;
+}

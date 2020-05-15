@@ -1,0 +1,81 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="dynamicDetail-page">
+  <view class="detail-item" wx:for="{{dynamics}}" wx:key="{{dynamic.id}}" wx:for-item="dynamic" wx:for-index="dIndex">
+    <!-- 头部信息 -->
+    <view class="detail-header">
+      <view style="display:inline-block" bindtap="jumpStaffDetail" data-brand_id="{{dynamic.brandId}}" data-staff_id="{{dynamic.staffId}}">
+        <image class="avatar" src='{{format.getImageUrl(dynamic.headPortrait)}}' mode='aspectFill'></image>
+        <view class="header-info">
+          <text class="name">{{dynamic.nickName}}\n</text>
+          <text class="time">{{dynamic.createTime}}</text>
+        </view>
+      </view>
+      <view wx:if="{{dynamic.curUserId != dynamic.userId}}" class="header-button {{dynamic.attentived ? 'active' : ''}}" bindtap="weDynamicAttentive" data-index="{{dIndex}}" data-attentive="{{dynamic.attentived}}" data-userId="{{dynamic.userId}}">
+        {{dynamic.attentived ? '已关注' : '关注'}}
+      </view>
+    </view>
+    <!-- 轮播图 -->
+    <view class="swiper-container">
+      <swiper class="detail-swiper {{dynamic._needBigSwiper ? 'big' : ''}}" data-index="{{dIndex}}" bindchange='changeSwiperImage'>
+        <swiper-item wx:for="{{dynamic.photos}}" wx:key="{{index}}">
+          <image bindtap="$previewImage" data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(dynamic.photos)}}" class="swiper-image" src="{{format.getImageUrl(item)}}" mode="aspectFit" lazy-load></image>
+        </swiper-item>
+      </swiper>
+      <view class="swiper-indicator">{{dynamic.currentImage + 1}}/{{dynamic.photos.length}}</view>
+    </view>
+    <!-- 正文 -->
+    <view class="detail-main">
+      <view class="main-text">
+        <text decode space="emsp" selectable>{{dynamic.description}}</text>
+      </view>
+      <view class="flex_box justify_space_between align_center">
+        <view class="main-tags" wx:if="{{dynamic.tagNames && dynamic.tagNames.length}}">
+          <text wx:for="{{dynamic.tagNames}}" wx:key="{{index}}">#{{item}}</text>
+        </view>
+        <view></view>
+        <view class="fz-24" bindtap="weDeleteDynamicWorkById" style="color: #666;margin-right: 24rpx;" hidden="{{!Delete}}">删除</view>
+      </view>
+      
+    </view>
+    <!-- 点赞评论等操作 -->
+    <view class="detail-actions-container">
+      <button class="action share" bindtap="$set" data-key="ifShowSharePop" data-value="{{true}}">{{dynamic.shares || ''}}</button>
+      <view class="action msg">{{dynamic.comments || ''}}</view>
+      <view class="action star {{dynamic.collected ? 'active' : ''}}" bindtap="weDynamicCollect" data-index="{{dIndex}}" data-collect="{{dynamic.collected}}" data-worksId="{{dynamic.id}}">{{dynamic.collections || ''}}</view>
+      <view class="action thumb {{dynamic.thumbUped ? 'active' : ''}}" bindtap='weDynamicThumbUp' data-index="{{dIndex}}" data-thumbUp="{{dynamic.thumbUped}}" data-worksId="{{dynamic.id}}">{{dynamic.thumbUp || ''}}</view>
+    </view>
+
+    <!-- 评论列表 -->
+    <view class='detail-comments' wx:if="{{dynamic.staffDynamicWorkCommentList && dynamic.staffDynamicWorkCommentList.length}}" bindtap="toDynamicComment" data-id="{{dynamic.id}}">
+      <view class='comments-item' wx:for="{{dynamic.staffDynamicWorkCommentList}}" wx:key="{{index}}">
+        <text class="comments-item-nickname">{{item.name}}：</text>
+        <text class="comments-item-content">{{item.content}}</text>
+      </view>
+      <view class="comments-showMore" wx:if="{{dynamic.comments > 2}}">查看{{dynamic.comments}}条评论</view>
+    </view>
+
+    <!-- 添加评论 -->
+    <view class="detail-addComment">
+      <image class="addComment-avatar" src='{{format.getImageUrl(avatar)}}' mode='aspectFill'></image>
+      <input class="addComment-input" type='text' confirm-type='send' value='{{dynamic.addComment}}' placeholder='添加评论...' bindconfirm='addComment' data-worksId="{{dynamic.id}}" data-index="{{dIndex}}"></input>
+    </view>
+
+    <!-- 弹出分享 -->
+    <view class="cover" wx:if="{{ifShowSharePop}}" bindtap="$set" data-key="ifShowSharePop" data-value="{{false}}">
+      <view class='pop-share {{ifShowSharePop ? "active" : ""}}' catchtap="prevent">
+        <view class='share-title'>
+          分享至
+          <view class="title-close" bindtap='$set' data-key="ifShowSharePop" data-value="{{false}}"></view>
+        </view>
+        <view class='share-button-container'>
+          <view class='share-button-item pic' bindtap='sharePic' data-dynamic="{{dynamic}}">生成画报</view>
+          <button class='share-button-item weixin' open-type="share" data-dynamic="{{dynamic}}">微信</button>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<canvas class='canvas' id='canvas' canvas-id='canvas' />
+<AppBackHome />

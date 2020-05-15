@@ -1,0 +1,488 @@
+<template>
+  <div class="renewal-wrap">
+    <center-header :title="'个人中心'" :backing="'返回'" :isSelfSite="true" />
+    <div class="renewal-wrap_main">
+      <h1>系统续费</h1>
+      <div class="renewal-wrap_content">
+        <section>
+          <strong>门店名称</strong>
+          <span>颜美美容美发</span>
+        </section>
+        <section>
+          <strong>当前版本</strong>
+          <span>旗舰版</span>
+        </section>
+        <section>
+          <strong>续费版本</strong>
+          <el-select v-model="version" placeholder="请选择">
+            <el-option
+              v-for="item in versions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+          <span class="info-span">3000元/年</span>
+        </section>
+        <section>
+          <strong>续费门店</strong>
+          <el-radio-group v-model="shopType">
+            <el-radio :label="3">所有门店</el-radio>
+            <el-radio :label="6">所有直营店</el-radio>
+            <el-radio :label="9">部分门店</el-radio>
+          </el-radio-group>
+          <g-button
+            :name="'选择门店'"
+            type="detail"
+            :icon="''"
+            @click=""
+            style="margin-left:10px"
+          ></g-button>
+        </section>
+        <section>
+          <div class="renewal-wrap_table">
+            <el-table class="el-table-re" :row-class-name="tableRowClassName" :data="shopData">
+              <el-table-column prop="city" align="left" width="100" label="城市"></el-table-column>
+              <el-table-column prop="name" align="left" label="门店名称"></el-table-column>
+              <el-table-column prop="endTime" align="left" label="到期时间"></el-table-column>
+              <el-table-column  align="left" width="200" label="续费时长">
+                <template slot-scope="scope">
+                  <el-select v-model="scope.row.time" style="margin-right:10px;" placeholder="请选择">
+                    <el-option
+                      v-for="item in times"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </template>
+              </el-table-column>
+              <el-table-column prop="renewalTime" align="left" label="续费到期时间"></el-table-column>
+              <el-table-column align="left" label="续费金额">
+                <template slot-scope="scope">
+                    ￥{{scope.row.amount}}
+                </template>
+              </el-table-column>
+              <el-table-column align="left" width="200" label="操作">
+                <template slot-scope="scope">
+                  <div class="delete-btn" @click="delShop([scope.row],scope.$index)">
+                    <i class="icon iconfont icon-icon_operate_delete"></i>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+            <el-pagination
+              class="pagination"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="pages.currentPage"
+              :page-size="pages.pageSize"
+              :page-count="10"
+              layout="total, prev, pager, next, jumper"
+              :total="pages.totalCount"
+            ></el-pagination>
+          </div>
+        </section>
+        <section>
+          <strong>续费门店数</strong>
+          <el-input v-model="shopAccount" disabled class="shop-input" />
+        </section>
+        <section>
+          <strong>续费金额</strong>
+          <span class="red-text">￥28000</span>
+        </section>
+        <el-row type="flex">
+          <strong>付款方式</strong>
+          <!-- <el-tabs type="border-card" class="tab-card">
+             <el-tab-pane>
+              <el-row type="flex" align="middle" slot="label">
+                <img :src="weiPay" class="pay-img" alt="">
+                我的行程
+              </el-row>
+              <div>
+                
+              </div>
+            </el-tab-pane>
+            <el-tab-pane>
+              <el-row type="flex" align="middle" slot="label">
+                <img :src="aliPay" class="pay-img" alt="">
+              支付宝
+              </el-row>
+            </el-tab-pane>
+            <el-tab-pane>
+              <el-row type="flex" align="middle" slot="label">
+                <img :src="bankPay" class="pay-img" alt="">
+                银行汇款
+              </el-row>
+            </el-tab-pane>
+          </el-tabs> -->
+          <div class="tab-card">
+            <el-row type="flex"  class="tab-card-pay" justify="space-between">
+              <el-row type="flex" justify="center" align="middle" @click.native="checkItem(index)" v-bind:class="{active:index==isActive}" v-for="(item, index) in btnData" :key="item.title" class="pay-btn">
+                <img :src="item.img" class="pay-img" alt="">
+                <span v-text="item.title"></span>
+                <img src="static/images/default/icon_choose_blue.png" />
+              </el-row>
+            </el-row>
+            <div class="check-pay">
+              <div v-if="isActive===2" class="check-pay_box">
+                <div class="box-body">
+                  <h3>请将款项汇至如下账户：</h3>
+                  <p>
+                    户名： 杭州及美网络科技有限公司 <br>
+                    账号： 3301 04016 0008 787289 <br>
+                    开户行： 杭州银行杭州滨江支行
+                  </p>
+                  <h3>汇款成功后，请填写：</h3>
+                  <el-form ref="form" class="form-body" :model="form" label-width="100px">
+                    <el-form-item label="付款方户名">
+                      <el-input class="input" placeholder="请填写付款公司或个人全称" v-model="form.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="付款方账号">
+                      <el-input  class="input"  placeholder="请准确填写付款账号" v-model="form.ccount"></el-input>
+                    </el-form-item>
+                    <el-form-item label="入职时间">
+                      <el-date-picker
+                        v-model="form.time"
+                        type="date"
+                        placeholder="选择日期">
+                      </el-date-picker>
+                    </el-form-item>
+                    <el-form-item>
+                      <el-button type="primary" @click="onSubmit">确认提交</el-button>
+                    </el-form-item>
+                  </el-form>
+                </div>
+              </div>
+              <el-button v-else type="primary">
+                立即支付
+              </el-button>
+            </div>
+          </div>
+        </el-row>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import centerHeader from "@/components/common/CenterHeader";
+export default {
+  name: 'renewal',
+  components: {centerHeader},
+  data() {
+    return {
+      versions: [
+        {
+          label: '畅想版',
+          value: 1,
+        },
+        {
+          label: '尊享版',
+          value: 2,
+        },
+        {
+          label: '旗舰版',
+          value: 3,
+        }
+      ],
+      times: [
+        {
+          label: '1年',
+          value: 1
+        },
+        {
+          label: '2年',
+          value: 2
+        },
+        {
+          label: '3年',
+          value: 3
+        }
+      ],
+      version: 3,
+      shopData: [
+        {
+          city: '杭州',
+          name: '中北美发店',
+          renewalTime:  '2020年6月30日',
+          endTime: '2019年6月30日',
+          amount: '5000',
+          time: 1
+        },
+        {
+          city: '杭州',
+          name: '文三综合店',
+          renewalTime:  '2020年6月30日',
+          endTime: '2019年6月30日',
+          amount: '8000',
+          time: 2
+        },
+        {
+          city: '杭州',
+          name: '滨江宝龙店',
+          renewalTime:  '2020年6月30日',
+          endTime: '2019年6月30日',
+          amount: '0',
+          time: ''
+        },
+        {
+          city: '绍兴',
+          name: '咸亨店',
+          renewalTime:  '2020年6月30日',
+          endTime: '2019年6月30日',
+          amount: '10000',
+          time: 2
+        },
+        {
+          city: '绍兴',
+          name: '三味书屋店',
+          renewalTime:  '2020年6月30日',
+          endTime: '2019年6月30日',
+          amount: '5000',
+          time: 2
+        },
+      ],
+      payTypes: [
+        { name: "微信支付", type: "1" },
+        { name: "支付宝", type: "2" },
+        { name: "网银认证", type: "3" },
+      ],
+      type: '1',
+      pages: {
+        currentPage: 1, // 当前页面
+        totalCount: 5, // 总页面
+        pageSize: 10, // 每页的条数
+      },
+      payType: '',
+      isActive:0,
+      btnData: [
+        {
+          title: '微信支付',
+          img: require('@/assets/images/icon_pay_weixin.png'),
+        },
+        {
+          title: '支付宝',
+          img: require('@/assets/images/icon_pay_alipay.png'),
+        },
+        {
+          title: '银行汇款',
+          img: require('@/assets/images/icon_pay_bank.png'),
+        }
+      ],
+      shopType: 1,
+      shopAccount: 12,
+      form: {
+        name: '',
+        ccount: '',
+        time: ''
+      }
+    }
+  },
+  methods: {
+    tableRowClassName({row, rowIndex}) {
+      let n = rowIndex
+      if ((n+1)%2===0) {
+          return 'success-row';
+      } else if (n%2===0) {
+          return 'warning-row';
+      }
+      return '';
+    },
+    selectPay() {
+      
+    },
+    delShop(row, index) {
+      this.shopData.splice(index, 1)
+    },
+     // 分页
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      // 赋值
+      this.pages.currentPage = val;
+      // 判断是否可调接口
+    },
+    checkItem(index) {
+      console.log(index)
+      this.isActive = index
+    },
+    onSubmit() {
+      
+    }
+  }
+}
+</script>
+<style lang="scss">
+   .el-table .warning-row {
+    background: #F4F5F7;
+  }
+
+  .el-table .success-row {
+    background: #ffff;
+  }
+</style>
+<style lang="scss" scoped>
+  .renewal-wrap{
+    max-width: 1440px;
+    margin:85px auto;
+    &_main{
+      flex: auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0px -1px 4px 0px rgba(174, 184, 229, 0.3);
+      padding: 32px 78px;
+    }
+    &_content{
+      margin: 3px 0 0 0;
+      section{
+        margin: 20px 0;
+      }
+    h1{
+      height: 30px;
+      color: rgba(51, 51, 51, 1);
+      font-size: 22px;
+      text-align: left;
+    }
+    strong{
+      display: inline-block;
+      width: 70px;
+      height: 20px;
+      color: rgba(102, 102, 102, 1);
+      font-size: 14px;
+      text-align: right;
+      margin-right: 20px;
+    }
+    span{
+      color: rgba(51, 51, 51, 1);
+      font-size: 14px;
+      text-align: left;
+    }
+    }
+    &_table{
+      width: 89%;
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: 0px 0px 8px 0px rgba(174, 184, 229, 0.3);
+      border-radius: 6px;
+      margin-left: 88px;
+      padding-bottom: 10px;
+    }
+    .info-span{
+      color: rgba(245, 45, 86, 1);
+      font-size: 12px;
+      text-align: left;
+      padding-left: 10px;
+    }
+    .red-text{
+      color: rgba(230, 51, 63, 1);
+      font-size: 20px;
+    }
+  }
+  .el-table-re{
+    width: 100%;
+    padding: 0 20px 20px 20px;
+    border-radius: 6px;
+  }
+  .pay-box{
+    width: 183px;
+    height: 200px;
+    margin-left: 96px;
+    border: 1px solid red;
+  }
+  .pagination{
+    margin-top: 10px;
+  }
+  .delete-btn{
+    cursor: pointer;
+    i{
+      font-size: 20px;
+      color: #BEC3C6;
+    }
+    &:hover,&:active{
+      i{
+        color: red;
+      }
+    }
+  }
+  .tab-card{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    &-pay{
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  .pay-img{
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+  }
+  .pay-btn{
+    width: 150px;
+    height: 50px;
+    border: 1px solid rgba(220, 223, 230, 1);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img:first-child{
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+    }
+    img:last-child{
+      width: 35px;
+      height: 22px;
+      display: none;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+    }
+    input{
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+  .active {
+    border: 1px solid rgba(88, 201, 243, 1);
+    img:last-child{
+      display: block;
+    }
+  }
+  .check-pay{
+    &_box{
+      width: 700px;
+      height: 472px;
+      background-color: rgba(255, 255, 255, 1);
+      border: 1px solid rgba(220, 223, 230, 1);
+    }
+    .box-body{
+      padding: 30px;
+      h3{
+        color: rgba(51, 51, 51, 1);
+        font-size: 16px;
+      }
+      p:nth-child(2) {
+        padding: 10px 0 30px 19px;
+        line-height: 30px;
+      }
+      .input{
+        width: 250px;
+      }
+      .form-body{
+        padding-top: 20px;
+      }
+    }
+    button{
+      background: #58C9F3;
+    }
+  }
+  .shop-input{
+    width: 200px;
+    height: 40px;
+  }
+</style>

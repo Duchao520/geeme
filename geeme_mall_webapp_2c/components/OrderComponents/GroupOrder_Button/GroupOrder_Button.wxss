@@ -1,0 +1,95 @@
+.GroupOrder_Button{
+  display: inline-block;
+  width: 202rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  text-align: center;
+  color: #f52d56;
+  font-size:26rpx;
+  border: .5px solid #f52d56;
+  border-radius: 27rpx;
+}
+
+/* 弹框背景 */
+.cover{
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  min-height:100vh;
+  background: rgba(0, 0, 0, 0);
+  z-index:-1;
+  transition: all 0.625s ease;
+}
+
+.cover.active{
+  background: rgba(0, 0, 0, .5);
+  z-index:999;
+}
+
+.share-container{
+  position: fixed;
+  top:400rpx;
+  left:60rpx;
+  width: 630rpx;
+  background: #fff;
+  text-align: center;
+  border-radius: 8rpx;
+  padding-bottom:34rpx;
+}
+
+.share-l1{
+  display: inline-block;
+  margin-top:60rpx;
+  padding-left: 40rpx;
+  font-size:22rpx;
+  color:#999;
+  background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAMAAADfNcjQAAAApVBMVEUAAACoqKioqKjk5OSysrKtra2oqKinp6eoqKiqqqqoqKioqKiZmZmbm5uoqKirq6usrKynp6epqamoqKipqampqamnp6eqqqqrq6unp6enp6eoqKioqKioqKioqKioqKipqamrq6u1tbXAwMCnp6eoqKinp6eoqKioqKioqKioqKioqKipqamvr6+qqqqoqKioqKiampqZmZmampqpqamnp6eZmZmcj2NRAAAANXRSTlMA+/UBExHb1ac245uMhFsrJvJxYVZOLyEb38u5tIyHgkcyDQXn0MK9raOTezsYC8d3Ym5YQU5aZFoAAAFiSURBVDjLfdLZeoIwFATgSUDWFtkE933fbTu+/6P1w4oRJf3vQibJOSFQgkj8kQlqxSztUK+d51v6ed6G3ogD6DWDoa0PNOIFC3ExOE5RmEJJ5qRYbc/prBgtogAwfI4fy1eklZgo9cm16VO4Zfk2ZTyDYuwEJUV6H5odehmqXIuMy3iP1kFNqVVLAzdnyibeZfJ+o42IgTo8M9S/obhtPGRXfbxcv/DQu93aLFLdAp/Xj6dCKY/AD+eGJgCbLWBAH7rAkFtgyVQbaLELWNxrAyE9IGKuDZgUgGQbyvf1Ug0YsOhWnkXlBdErimxBZ1wU6XP4zwt1ilZs6HQZAEfBJuqFFEVJDteooWZCQRd1Jrzv7bPTwLupxc29dYu9GV4ZfXbM8j4kV43X9X3KTF2IpO1Wz7cpW1Ayj3RC1d+GnE/w7LAhaY/SfbhPRwuSTvutqb5gSfRqGzcT5+RJ7+QkJpRfBoIoQyZ50JQAAAAASUVORK5CYII=') no-repeat left center;
+  background-size: 30rpx 34rpx;
+}
+
+.share-l1 > text{
+  display: inline-block;
+  width:40rpx;
+  height:40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color:#fff;
+  background: #f52d56;
+  border-radius:8rpx;
+}
+
+.share-l1 > text:first-child{
+  margin-left:4rpx;
+}
+
+.share-l2{
+  margin-top:14rpx;
+  font-size:30rpx;
+  color:#333;
+}
+
+.share-button-container {
+  margin-top:36rpx;
+  text-align: center;
+}
+
+.share-button-item {
+  display: inline-block;
+  min-width: 100rpx;
+  line-height: normal;
+  text-align: center;
+  color: #333;
+  font-size: 26rpx;
+  vertical-align: middle;
+}
+
+.share-button-item > image{
+  width:100rpx;
+  height:100rpx;
+}
+
+.share-button-item.canvas {
+  margin-right: 150rpx;
+}

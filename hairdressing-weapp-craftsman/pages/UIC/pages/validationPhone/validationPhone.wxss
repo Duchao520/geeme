@@ -1,0 +1,79 @@
+.container{
+  width: 100%;
+  height: auto;
+  padding: 40rpx 70rpx 0 72rpx;
+}
+.containerTitle{
+  color: #333333;
+  font-size: 40rpx;
+  font-weight: 400;
+}
+.phone{
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 2rpx solid #EFEFF4;
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.phoneinput{
+  line-height: 90rpx;
+   color: #333;
+  font-size: 32rpx;
+
+}
+.place-phone{
+  color: #CCCCCC;
+  font-size: 32rpx;  
+}
+.code{
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 2rpx solid #EFEFF4;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.codeinput{
+  width: 68%;
+  line-height: 90rpx;
+     color: #333;
+  font-size: 32rpx;
+}
+.place-code{
+  color: #CCCCCC;
+  font-size: 32rpx; 
+}
+.getcode{
+  width: 32%;
+  line-height: 90rpx;
+  color: #F52D56;
+  font-size: 26rpx;
+  text-align: right;
+}
+.againcode{
+  color: #CCCCCC;
+  font-size: 26rpx;
+}
+.button{
+  width: 604rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+  font-size: 34rpx;
+  background-color: #F52D56;
+  margin: 86rpx auto 0;
+  border-radius: 50rpx;
+  box-shadow:  0 0 24rpx 0 rgba(255, 112, 112, .3);
+}
+.titleMessage{
+  color: #999999;
+  font-size: 24rpx;
+  padding-left: 74rpx;
+  margin-top: 34rpx;
+}
+.titleMessage text{
+  color: #F52D56;
+}

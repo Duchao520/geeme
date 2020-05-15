@@ -1,0 +1,135 @@
+/* 头部 */
+.DailyWorkHader{
+  padding: 28rpx 0;
+}
+.sh-head {
+  margin: 0 34rpx;
+  height: 60rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  line-height: 60rpx;
+}
+
+.sh-text {
+  max-width:500rpx;
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgba(72, 72, 72, 1);
+  font-size: 44rpx;
+  font-weight: 600;
+}
+
+.sh-text > text{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.sh-text > text:first-child{
+  max-width: 150rpx;
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right:10rpx;
+}
+
+.sh-btns {
+  color: rgba(153, 153, 153, 1);
+  font-size: 24rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  line-height: 60rpx;
+}
+
+.sh-icon {
+  width: 11rpx;
+  height: 100%;
+  background: no-repeat center center/100% auto;
+  background-position-y: 25rpx;
+}
+
+.sh-btn {
+  margin-right: 8rpx;
+}
+
+.nav-buttons{
+  margin:12rpx 45rpx 0;
+}
+
+.nav-item{
+  display: inline-block;
+  width:25%;
+  text-align: center;
+  font-size:0;
+}
+
+.nav-item > image{
+  width:116rpx;
+  height:116rpx;
+  border-radius: 50%;
+}
+
+.nav-item > view{
+  margin-top:20rpx;
+  color:#263238;
+  font-size:24rpx;
+}
+
+/* 我的预约 */
+.Appointment{
+  width: 100%;
+  height: auto;
+}
+.appointmentTitle{
+  margin-top: 60rpx;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32rpx;
+}
+.appointmentTitle.fixed{
+  margin-top:0;
+}
+.a-t-left{
+  color: #262628;
+  font-size: 40rpx;
+  font-weight: 600;
+}
+.a-t-right{
+  width: 40rpx;
+  height: 40rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAhFBMVEUAAADS09SwwMexwsiyvsWxwMayw8qxv8axv8axvsazv8exvsaxv8axv8Wwv8a3w86xv8axv8ayv8eyv8jT0+qxv8ayv8azwci1xMqwvsaxv8axv8ayv8e2ytSxv8axv8azv8eywMaxwMewwcaywMexvsaywMazwMixv8ayvsiyv8awvsXlJTEZAAAAK3RSTlMABpUuanUnz8ihQPjzx5kS59w+OQPgjCMd7tazbwzArUeBel5bplcwoE9MjMVAtwAAAXtJREFUSMfdlelSwjAUhbtA6QahK90pm6jn/d/PZJJIUJo41nEcv1+nl/sR0l5S6x+yqR31sloVr9r+K4Crcl0CjVZIAYTqgsD2h4T+5ARBkIdMsANBx4WMxsN4358VYNhcgGDPhScwWqL0ky0QxXEsVogEUqCfALgowhHobBbCqT2QAfBu9RYFD5OClQGnW93H6r2MTBEcyK/ygOUDoS+Q9IowAqVWsEgo+0VfZj0S1lTQMV/w0bgGXj6sYGae4KNYGDjM3PQ3hT6oGz5J6Sq+EBbysk7Ok4IDIGZ9pAawYaUOFHdKaEAZxdAi4XNMWUwJe1B2NFQstOLYAMYpYZfIahch8VggPuBM36XcJXJqXZuH3Kt+c1rnP+nqJP9g6bn6ghDGgCNPizg0C758Dh4La7OQQJwyKQuNWSgBJDYNNlMPZiE/DgHf6y4YlrlGGMy31QU69USMdgbhCKR3L5762dHRit1JShiJU0vlvI6gY7v/9JtzW4f1h3kDMpZQuqVp7JgAAAAASUVORK5CYII=) no-repeat center center/100% auto;
+}
+.appointmentDate{
+  width: 100%;
+  padding: 0 38rpx 38rpx;
+  margin-top: 42rpx;
+  background:#fff;
+  border-bottom: 1rpx solid #EFEFF4;
+}
+
+.appointmentDate.fixed{
+  margin-top:0;
+}
+
+.appointmentContent{
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+  margin-top: 22rpx;
+}
+
+.appointmentContent.fixed{
+  margin-top:300rpx;
+}
+
+/* vantApp style */
+.custom{
+  border-radius: 50rpx;
+}
+
+

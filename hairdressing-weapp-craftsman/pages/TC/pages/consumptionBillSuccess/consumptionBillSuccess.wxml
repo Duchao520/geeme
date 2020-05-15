@@ -1,0 +1,17 @@
+<view class="appointmentSuccess">
+  <view class='successHeader'>
+    <view class='successIcon'>
+    </view>
+    <view class='successText'>恭喜，开单成功</view>
+    <view class='successMessage'>客户将收到开单提醒</view>
+  </view>
+
+  <view class='successMiddle'>
+    邀请客户线上支付，立享<text>红包/优惠券</text> 
+  </view>
+
+  <view class='successButtons'>
+    <view class='button-showAppointment' bindtap='backHome'>返回首页</view>
+    <view class='button-showAppointment' bindtap="jumpOrders">查看开单</view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<block wx:if="{{list && list.length}}">
+  <view class="main">
+    <view class="row title">
+      <view class="column-1">时间</view>
+      <view class="column-2">事件</view>
+      <view class="column-3">获得成长值</view>
+    </view>
+    <view class="row" wx:for="{{list}}" wx:key="{{index}}">
+      <view class="column-1">
+        <view>{{format.getDate2(item.createTime)}}</view>
+        <view>{{format.getDate5(format.getDate6(item.createTime))}}</view>
+      </view>
+      <view class="column-2">
+        <view class="text--ellipsis_2">{{item.description}}</view>
+      </view>
+      <view class="column-3">{{item.experience}}</view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault />
+</block>

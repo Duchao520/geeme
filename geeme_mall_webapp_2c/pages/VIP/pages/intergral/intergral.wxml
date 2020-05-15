@@ -1,0 +1,100 @@
+<view class="info">
+  <view class="flex_box justify_space_between">
+    <view class="fc-ffffff">
+      <view class="fz-60">{{integralUnused}}</view>
+      <view class="fz-24">积分值</view>
+    </view>
+    <button class="search fz-24" bindtap="jumpDetail">查看明细</button>
+  </view>
+  <view class="fz-24 fc-ffffff tips">{{currentYearOverdue}} 积分将于{{overdueDate}}到期</view>
+</view>
+<view class="box_padding" style="padding: 32rpx;">
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 12rpx 0 50rpx;">
+    <view class="fz-34 fc-333333 font-weight">赚取积分</view>
+    <view class="fz-28 fc-F52D56 flex_box align_center" bindtap="jumpRule">查看规则<text class="iconfont iconyoujiantou" style="font-size: 16rpx;"></text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{commentDynamic10Integral}}">
+    <view class="fz-30 fc-333333">评论动态超过10个字</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{commentDynamic10Integral}}积分/次</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{improvementOfPersonalDataIntegral}}">
+    <view class="fz-30 fc-333333">完善个人资料，单次有效</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{improvementOfPersonalDataIntegral}}积分</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{loginAndBindPhoneIntegral}}">
+    <view class="fz-30 fc-333333">首次登录网店并绑定手机号，单次有效</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{loginAndBindPhoneIntegral}}积分</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineAppointmentAndOrderIntegral}}">
+    <view class="fz-30 fc-333333">线上预约并开单，每日上限50积分</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineAppointmentAndOrderIntegral}}积分/次</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineBuyCardByCardIntegral}}">
+    <view class="fz-30 fc-333333">线上使用储值卡购买服务</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineBuyCardByCardIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineBuyCardByCashIntegral}}">
+    <view class="fz-30 fc-333333">线上使用现金类购买服务</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineBuyCardByCashIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineBuyProductByCardIntegral}}">
+    <view class="fz-30 fc-333333">线上使用储值卡购买产品</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineBuyProductByCardIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineBuyProductByCashIntegral}}">
+    <view class="fz-30 fc-333333">线上使用现金类购买产品</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineBuyProductByCashIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineBuyServiceByCardIntegral}}">
+    <view class="fz-30 fc-333333">线上使用储值卡购买卡项</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineBuyServiceByCardIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineConsumerOrderPayByCardIntegral}}">
+    <view class="fz-30 fc-333333">线上使用现金类购买卡项</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineConsumerOrderPayByCardIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineGroupBuyAndComplete2Integral}}">
+    <view class="fz-30 fc-333333">线上发起2人拼团成功</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineGroupBuyAndComplete2Integral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineGroupBuyAndComplete3Integral}}">
+    <view class="fz-30 fc-333333">线上发起3人拼团成功</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineGroupBuyAndComplete3Integral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{improvementOfPersonalDataIntegral}}">
+    <view class="fz-30 fc-333333">线上使用储值卡进行买单</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{improvementOfPersonalDataIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineConsumerOrderPayByCashIntegral}}">
+    <view class="fz-30 fc-333333">线上使用现金类进行买单</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineConsumerOrderPayByCashIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineRenewCardByCardIntegral}}">
+    <view class="fz-30 fc-333333">线上使用储值卡续卡充值</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineRenewCardByCardIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{onlineRenewCardByCashIntegral}}">
+    <view class="fz-30 fc-333333">线上使用现金类续卡充值</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{onlineRenewCardByCashIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{orderEvaluation20Integral}}">
+    <view class="fz-30 fc-333333">完成订单评价内容超过20字</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{orderEvaluation20Integral}}积分/单</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{orderEvaluationIntegral}}">
+    <view class="fz-30 fc-333333">完成订单评价内容不足20字</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{orderEvaluationIntegral}}积分/单</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{shopCheckstandPayByCardIntegral}}">
+    <view class="fz-30 fc-333333">门店使用储值卡收银台买单</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{shopCheckstandPayByCardIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{shopCheckstandPayByCashIntegral}}">
+    <view class="fz-30 fc-333333">门店使用现金类收银台买单</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{shopCheckstandPayByCashIntegral}}积分/元</text></view>
+  </view>
+  <view class="flex_box justify_space_between align_center border-bottom" style="padding: 32rpx 0;" wx:if="{{successfulProductPromotionIntegral}}">
+    <view class="fz-30 fc-333333">推广商品给好友购买成功</view>
+    <view class="flex_box align_center"><text class="add-intergration">+{{successfulProductPromotionIntegral}}积分/元</text></view>
+  </view>
+</view>

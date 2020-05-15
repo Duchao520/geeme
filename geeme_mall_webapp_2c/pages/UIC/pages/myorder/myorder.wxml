@@ -1,0 +1,89 @@
+<!--pages/UIC/pages/myorder/myorder.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='myorder'>
+  <view style='background:#FFFFFF;position: fixed;top:0;left:0;width: 100%;z-index:1;'>
+    <AppSearch placeholder="搜索商品名称/订单号" bind:input="search" hideText></AppSearch>
+    <AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bindswitchTab="switchTab"></AppTabs>
+  </view>
+  <view style="height: 164rpx;background: #FFFFFF;"></view>
+
+  <!-- 预约列表主体 -->
+  <view class='myappointment'>
+    <block wx:if="{{orderList.length}}">
+      <view class='appointment-body' wx:if="{{orderList.length}}">
+        <view class='appointment-item' wx:for="{{orderList}}" wx:key="index">
+          <view class='serviceitem' data-id="{{item.id}}" bindtap='jumpOrderDetail'>
+            <view class='serviceitem-child'>
+              <view class='counsts'>
+                <view class='serprice'>
+                  <text id='moneyicon'>￥</text>{{item.received}}</view>
+                <view class='counst'>x{{item.serviceInfoForOrder.count}}</view>
+              </view>
+              <view class='serimg'>
+                <view class="symbol" wx:if="{{item.wholesale}}">拼</view>
+                <image src="{{format.getImageUrl(item.serviceInfoForOrder.image + '?x-oss-process=image/resize,m_fill,h_160,w_160')}}" lazy-load mode='aspectFill'></image>
+              </view>
+              <view class='sercontext'>
+                <view class='serdes text--ellipsis_2'>{{item.serviceInfoForOrder.serviceName}}</view>
+                <view class='sershortdes'>
+                  <view class='sershorttext'>{{item.serviceInfoForOrder.specificationName}}</view>
+                  <view class='sertime'>{{item.serviceInfoForOrder.serverTime}}分钟</view>
+                </view>
+                <view class='seraddress'>
+                  <view class='sa-hairname' wx:if="{{item.staffName}}">{{item.staffName}}</view>
+                  <view class='sa-icon'></view>
+                  <view class='sa-text'>{{item.storeName}}</view>
+                </view>
+              </view>
+              <view class='orderstatus one' wx:if="{{item.orderStatus=='WAITING_PAY'}}">待付款</view>
+              <view class='orderstatus two' wx:if="{{item.orderStatus=='WAITING_SERVICE'}}">待服务</view>
+              <view class='orderstatus three' wx:if="{{item.orderStatus=='WAITING_ASSESSMENT'}}">待评价</view>
+              <view class='orderstatus four' wx:if="{{item.orderStatus=='GROUP_BUY_WAIT'}}">待拼单</view>
+              <view class='orderstatus five' wx:if="{{item.orderStatus=='COMPLETED'}}">已完成</view>
+              <view class='orderstatus six' wx:if="{{item.orderStatus=='CLOSED'}}">已关闭</view>
+              <view class='orderstatus seven' wx:if="{{item.orderStatus=='REFUNDING'}}">退款中</view>
+            </view>
+
+          </view>
+
+          <!-- 订单状态不同，显示不同 -->
+          <!-- 下单(时间) -->
+          <view class='alredyyorder'>
+            <view class='ay-des'>{{item.online ? "线上订单" : "门店开单"}}</view>
+            <view class='ay-cutline'>|</view>
+            <view class='ay-starttime' wx:if="{{item.orderStatus === 'CLOSED'}}">取消时间： {{item.cancelTime}}</view>
+            <view class='ay-starttime' wx:elif="{{item.appointTime && (item.orderStatus === 'WAITING_PAY' || item.orderStatus === 'WAITING_SERVICE')}}">预约时间： {{item.appointTime}}</view>
+            <view class='ay-starttime' wx:elif="{{item.serviceTime}}">服务时间： {{item.serviceTime}}</view>
+            <view class='ay-starttime' wx:elif="{{item.paymentTime}}">支付时间： {{item.paymentTime}}</view>
+            <view class='ay-notappoin' wx:else>未预约</view>
+          </view>
+          <!-- 按钮 -->
+          <view class='buttons' wx:if="{{item.orderStatus != 'GROUP_BUY_WAIT'}}">
+            <view wx:if="{{item.orderStatus == 'WAITING_PAY'}}" bindtap='cancel' data-id="{{item.id}}">取消</view>
+            <view wx:if="{{item.orderStatus == 'WAITING_SERVICE'}}" bindtap='jumpApplyRefund' data-id="{{item.id}}" data-refund="{{item.refund}}">{{item.refund ? "退款进度" : "申请退款"}}</view>
+            <view class='red' wx:if="{{!item.appointTime && (item.orderStatus == 'WAITING_PAY' || item.orderStatus == 'WAITING_SERVICE')}}" data-item="{{item}}" bindtap='addAppointment'>预约</view>
+            <view class='red' wx:if="{{item.orderStatus == 'WAITING_PAY'}}" bindtap='orderPay' data-item="{{item}}">支付</view>
+            <view class='red' wx:if="{{item.orderStatus == 'WAITING_ASSESSMENT'}}" data-id="{{item.id}}" bindtap='toEvaluation' data-info="{{item}}">立即评价</view>
+            <!-- <view wx:if="{{item.orderStatus == 'COMPLETED'}}" bindtap='$wait'>申请售后</view> -->
+            <view class='red' wx:if="{{item.orderStatus == 'COMPLETED'}}" bindtap='$wait'>再次购买</view>
+            <!-- <view wx:if="{{item.orderStatus == 'CLOSED'}}">删除</view>  -->  <!-- 需求延期 -->
+            <!-- <view class='red' wx:if="{{item.orderStatus == 'REFUNDING'}}" bindtap='jumpRefundList'>查看进度</view> -->
+          </view>
+          <view class="groupBuy" wx:else>
+            <view class="groupBuy-left">
+              <image wx:for="{{item.groupMemberImage}}" lazy-load wx:key="index" wx:for-item="item2" src="{{format.getImageUrl(item2 + '?x-oss-process=image/resize,m_fill,h_54,w_54')}}" mode="aspectFill"></image>
+              <text>还差{{item.numberRemain}}人</text>
+            </view>
+            <GroupOrder_Button info="{{item}}" style="margin-right:24rpx;" />
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 没有订单 -->
+    <block wx:else>
+      <AppDefault text="暂时没有任何订单哦" />
+    </block>
+  </view>
+</view>
+<AppFooter />

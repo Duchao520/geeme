@@ -1,0 +1,36 @@
+<view class="container">
+  <!-- 功能 -->
+  <view class='func'>
+    <!-- 修改手机号 -->
+    <view class='f-row' bindtap='updatePhone'>
+      <view class='f-text'>修改手机号</view>
+      <view class='icon arrow--right'></view>
+    </view>
+    <!-- 设置支付密码 -->
+    <view class='f-row' bindtap='jumpSetPayPwd'>
+      <view class='f-text'>设置支付密码</view>
+      <view class='icon arrow--right'></view>
+    </view>
+    <!-- 收获地址 -->
+    <view class='f-row' bindtap='jumpShippingAddress'>
+      <view class='f-text'>收货地址</view>
+      <view class='icon arrow--right'></view>
+    </view>
+    <!-- 意见反馈 -->
+    <!-- <view class='f-opinion' bindtap='tofeedBack'>
+      <view class='f-text'>意见反馈</view>
+      <view class='icon'></view>
+    </view> -->
+    <!-- 商家电话 -->
+    <view class='f-row' bindtap='makePhone'>
+      <view class='f-text'>商家电话</view>
+      <view class='servicephone'>
+        <view class='opin-num'>{{brandPhone}}</view>
+        <view class='icon arrow--right'></view>
+      </view>
+    </view>
+
+  </view>
+</view>
+<!-- 退出登录 -->
+<view class='exit' wx:if="{{isLogin}}" bindtap='outLogin'>退出登录</view>

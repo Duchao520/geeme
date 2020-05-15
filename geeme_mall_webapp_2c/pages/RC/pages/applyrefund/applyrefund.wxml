@@ -1,0 +1,98 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<import src="../../../../template/OrderPreference/OrderPreference.wxml" />
+<view class="applyrefund">
+  <!-- 头部服务 -->
+  <view class='serviceContent'>
+    <image class='serviceImage' lazy-load src="{{format.getImageUrl(info.image || info.serviceInfo.image)}}" mode='aspectFill'></image>
+    <view class='serviceInfo'>
+      <view class='serviceDes'>{{info.title || info.serviceInfo.serviceName}}</view>
+      <view class='specificationName'>{{info.specificationName || info.serviceInfo.specificationName}}</view>
+      <view class='serviceCount'>
+        <text><text class="symbol">¥</text>{{info.unitPrice || info.serviceInfo.price}}</text>
+        <text>X{{info.amount || info.serviceInfo.count}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 订单优惠信息 -->
+  <template is="OrderPreference" data="{{info}}" />
+  <!-- 订单信息 -->
+  <view class='orderContent'>
+    <view class='orderItem'>
+      <view class='orderCode'>
+        <view class='orderTitle'>订单编号：</view>
+        <view class='orderNumber'>{{info.code || info.orderSerialCode}}</view>
+      </view>
+      <view class='orderCode'>
+        <view class='orderTitle'>支付时间：</view>
+        <view class='orderNumber'>{{info.paymentTime || info.time}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 退款主体 -->
+  <view class='refundContent'>
+    <view class='refundItem'>
+      <view class='refundBox' bindtap="showReasonList">
+        <view class='r-title'>{{isAfterReceive ? '售后类型' : '退款原因'}}</view>
+        <input class='r-input' placeholder="{{isAfterReceive ? '请选择售后类型' : '请选择退款原因'}}" placeholder-style='color:#999999;' value="{{refundReason}}" disabled></input>
+        <view class='r-w-icon'></view>
+      </view>
+
+      <view class='refundBox' wx:if="{{isAfterReceive}}">
+        <view class='r-title'>是否要求退款</view>
+        <switch style='position:absolute;right:0' checked='{{showMoney}}' color='#f52d56' bindchange='changeIfNeedMoney'></switch>
+      </view>
+
+      <view class='refundBox' hidden='{{!showMoney}}'>
+        <view class='r-title'>退款金额</view>
+        <input class='r-input' placeholder='请输入金额（不得高于实付金额）' placeholder-style='color:#999999;' type='digit' bindinput='updatePrice'></input>
+      </view>
+
+      <view class='refundBox'>
+        <view class='r-title'>{{isAfterReceive ? '问题描述' : '留言'}}</view>
+        <input class='r-input' placeholder="{{isAfterReceive ? '请描述您遇到的问题,并表达您的诉求' : '请表达您的诉求'}}" placeholder-style='color:#999999;' bindinput="updateNote"></input>
+      </view>
+
+      <view class='updatePic'>
+        <view class='picItem' wx:for="{{images}}" wx:key="{{index}}">
+          <image src="{{format.getImageUrl(item)}}" mode="aspectFill" lazy-load bindtap="$previewImage" data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(images)}}"></image>
+        </view>
+        <view class='updatePicItem' bindtap="uploadImage" wx:if="{{images.length < 3}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{!ifModify}}">
+    <!-- 温馨提示 -->
+    <view class='prompt' wx:if="{{!isAfterReceive}}">
+      <view class='promptTitle'>温馨提示</view>
+      <view class='promptContent'>
+        <view class='promptItem'>1.退款后，获赠的积分、成长值将被扣除</view>
+        <view class='promptItem'>2.购买时的优惠可能一并取消</view>
+        <view class='promptItem'>3.一旦退款订单无法恢复</view>
+        <view class='promptItem'>4.款项将在1-7个工作日原路退回至付款账户</view>
+      </view>
+    </view>
+    <!-- 联系人 联系电话 -->
+    <view class='refundContent' wx:else>
+      <view class='refundItem'>
+
+        <view class='refundBox'>
+          <view class='r-title'>联系人</view>
+          <input class='r-input' placeholder='请输入联系人姓名' placeholder-style='color:#999999;' bindinput="updateName"></input>
+        </view>
+
+        <view class='refundBox'>
+          <view class='r-title'>联系电话</view>
+          <input class='r-input' placeholder='请填写联系手机号码' placeholder-style='color:#999999;' bindinput="updatePhone" type='number'></input>
+        </view>
+
+      </view>
+      <view style="font-size:24rpx;padding:26rpx 32rpx;color:#999999">提交服务单后,我们将与您电话沟通,请保持手机畅通</view>
+    </view>
+  </block>
+
+  <!-- 申请退款按钮 -->
+  <view class='botton'>
+    <view class='bottonItem' bindtap="clickButton">{{ifModify ? '确认修改' : '提交申请'}}</view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch"
+  },
+  "navigationBarTitleText":"充值有礼"
+}

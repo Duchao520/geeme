@@ -1,0 +1,225 @@
+/* 发型师信息 */
+
+.container {
+  width: 100%;
+  height: auto;
+  padding: 28rpx 32rpx 200rpx;
+} 
+
+.header {
+  width: 100%;
+  padding: 24rpx 26rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  box-shadow: 0 0 8rpx 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hairavatar {
+  width: 96rpx;
+  height: 96rpx;
+  background: no-repeat center center/100% auto;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.hairname {
+  line-height: 48rpx;
+  color: #263238;
+  font-size: 34rpx;
+}
+
+.hl-title {
+  display: inline-block;
+  color: #333;
+  line-height: 56rpx;
+  font-size: 24rpx;
+  margin-right: 12rpx;
+}
+
+.hairaddress {
+  height: 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.ha-icon {
+  width: 18rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAYCAMAAADAi10DAAAAXVBMVEUAAAC4ydDEy9ewv8axv8axvsaxv8axvsazwMixvsWxvsaxwMeywMexwMixv8awv8axv8awv8Wxv8Wxv8axv8eyv8ayv8axv8i0wMa1wMi1xcXHx+OwwMWyvsewvsWZh0eNAAAAHnRSTlMACgf67NO68j3QopVAROff18+bf2pXTDcqIB8EhXroT2xQAAAApklEQVQY03WP2RKDIAxFL4iC4Fbr1try/5/ZSUgVHzwvZM7cLIBxoTamDg5/3lUUqlcyq4kHZuWMGHGUk66ikF7AcVG2SrUllw0CGwUAml0APy2YhuoBhuaopDTNs+hI6Ux1aWGTNVaY6Kk1hx5UT1CWndPasbEKeF5P/VC8jxk9L19ytYAZT+ORUIMI+piw2WTshoM5qfk0cskXF3yMI67s3u+45QdzcRjDEixsZAAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+  margin-right: 4rpx;
+}
+
+.ha-text {
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* 备注 */
+
+.note {
+  width: 100%;
+  height: auto;
+  /* padding: 0 32rpx; */
+  overflow: hidden;
+  position: relative;
+}
+
+.notetitle {
+  width: 100%;
+  height: 102rpx;
+  padding-top: 40rpx;
+  color: #262628;
+  font-size: 30rpx;
+  text-align: left;
+}
+
+.notearea {
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 8rpx;
+  /* padding-left: 26rpx; */
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.noteinput {
+ width:549rpx;
+line-height:70rpx;
+background-color:#f8f8f8;
+color:#aaa;
+font-size:28rpx;
+padding:10rpx 28rpx;
+
+}
+
+.wordsnum {
+  text-align: center;
+  line-height: 70rpx;
+  color: #aaa;
+  font-size: 24rpx;
+  position: absolute;
+  right: 26rpx;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+}
+
+/* 未选发型师样式 */
+.timeone{
+  width: 526rpx;
+  height: 112rpx;
+  border-radius: 8rpx;
+  background-color: #F8F8F8;
+  padding: 0 20rpx 16rpx;
+  margin-top: 20rpx;
+}
+.time{
+  width: 100%;
+  height: 112rpx;
+  border-radius: 8rpx;
+  background-color: #F8F8F8;
+  padding: 0 20rpx 16rpx;
+  position: relative;
+}
+.time-top{
+  width: 100%;
+  line-height: 60rpx;
+  color: #666666;
+  font-size: 24rpx;
+  text-align: left;
+}
+.time-bottom{
+  width: 100%;
+  height: 36rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.t-b-number{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.t-b-icon{
+  width: 20rpx;
+  height: 36rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAANlBMVEUAAAD2Llj2LVf1Llj2LVb2LVf1Llf2Llf2Llf3L1f/QGr3Llf3Lln1LVb1Llf2Llf1LVf2LVbUKO7oAAAAEXRSTlMAVNuA8+jNpYp+DF5C6dO8tcAY1vQAAACPSURBVCjPnZHLFoUgCEWRVEq9D///ZyOXJ7GBg5gobDnyoPfmhL1ncc8w1248ob3FQmjHPsejS0TJRUucOgeVUC7nUAdqfMVpqxt1wndCpAEoIkX00gEeCpSSBQlavgaygEL1M/jkAYxU8SqRrZSgiqxPfvh8lNvQ949yR4MwNNhSQDCSxRAXY18vyq72tZ0qlQmDf63K6gAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+  margin-right: 6rpx;
+}
+.t-b-num{
+  color: #F52D56;
+  font-size: 24rpx;
+}
+.t-b-button{
+  width: 100rpx;
+  height: 36rpx;
+  border-radius: 22rpx;
+  border: 1rpx solid #F52D56;
+  color: #F52D56;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* moveBox插槽timeBottom */
+.timeButtons{
+  width: 100%;
+  height: 120rpx;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border-top: 2rpx solid #EFEFF4;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  z-index: 999;
+  background: white;
+}
+.timeButtons-left{
+  padding-left: 16rpx;
+  line-height: 120rpx;
+  font-size: 28rpx;
+}
+
+.timeButtons-right{
+  width: 238rpx;
+  height: 120rpx;
+  background-color: #F52D56;
+  text-align: center;
+  line-height: 120rpx;
+  font-size: 34rpx;
+  color: white;
+}
+
+.page-footer{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:120rpx;
+  line-height:120rpx;
+  font-size:34rpx;
+  background-color:#fff;
+  border-top: 1px solid #efeff4;
+  z-index:2;
+}
+
+.footer-button{
+  float:right;
+  width:240rpx;
+  height:100%;
+  text-align: center;
+  background:#f52d56;
+  color:#fff;
+}
+

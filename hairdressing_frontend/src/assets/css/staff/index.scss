@@ -1,0 +1,41 @@
+// 基本资料模块
+@import './theme.scss';
+@import './mixin.scss';
+// 服务档案
+.server-wrap {
+    padding: 30px;
+    .card-modules {
+        margin-bottom: 30px;
+    }
+    .table-modules {
+        margin-bottom: 15px;
+    }
+    .client-modules {
+        padding: 20px;
+        .title {
+            color: #333333;
+            font-size: 16px;
+        }
+        .client-box {
+            margin: 20px 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #EBEBEB;
+            &:last-child {
+                border-bottom: none;
+            }
+            .sub-title {
+                color: #484848;
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            .txt {
+                font-size: 12px;
+                margin-right: 10px;
+                line-height: 30px;
+            }
+            .icon {
+                color: #58C9F3;
+            }
+        }
+    }
+}

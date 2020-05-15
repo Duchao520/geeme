@@ -1,0 +1,20 @@
+<wxs src="../../utils/format.wxs" module="format" />
+<view class='historyshop'>
+  <scroll-view scroll-x class='history-bottom'>
+    <view class="history-items">
+      <view class='historyshop-item' bindtap='jumpdetails' wx:for="{{storeList}}" wx:key="index" bindtap='tostoreDetail' data-id="{{item.id}}">
+        <image src='{{format.getImageUrl(item.shopImg + "?x-oss-process=image/resize,m_mfit,h_218,w_422")}}' class='history-img' mode="aspectFill" lazy-load></image>
+        <view class='historyshop-des'>
+          <view class='historyshop-name'>
+            <text class='historyshop-name-text city'>{{format.getCity(item.city)}}</text>
+            <text class="historyshop-name-text"> {{item.shopName}}</text>
+          </view>
+          <view class='shopstores'>
+            <AppAvgScore width="24rpx" height="24rpx" space="6rpx" score="{{item.shopScore}}" />
+            <view class='shopscore'>{{format.fixNum(item.shopScore,1)}}分</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

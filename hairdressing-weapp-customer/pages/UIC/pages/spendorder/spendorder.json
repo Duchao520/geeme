@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "AppSearch": "/components/App/AppSearch/AppSearch"
+  },
+  "navigationBarTitleText": "消费账单"
+}

@@ -1,0 +1,15 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='page'>
+  <view class='header'>
+    <AppSearch placeholder="搜索商品名称/客户姓名/手机号" bind:input="search" value="{{keyword}}" />
+    <view style='margin-top:20rpx;'>
+      <AppTabs tabs="{{tabs}}" currentTab="{{currentTab}}" bind:switchTab="switchTab" />
+    </view>
+  </view>
+  <view class='main'>
+    <view class='card-container'>
+      <ServiceOrderCard wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" />
+    </view>
+    <AppDefault wx:if="{{!list.length}}" text="您还没有服务单哦~" />
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "DateHeadContainer":"/components/DailyWork/DateHeadContainer/DateHeadContainer",
+    "DateHeadBefore":"/components/common/DateHeadBefore/DateHeadBefore",
+    "MonthHeadBefore": "/components/common/MonthHeadBefore/MonthHeadBefore",
+    "AppTabs":"/components/App/AppTabs/AppTabs"
+  },
+  "navigationBarTitleText": "业绩提成"
+}

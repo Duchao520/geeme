@@ -1,0 +1,11 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='goodsCard' bindtap='toProductDetail' data-id="{{item.productId}}">
+  <image class='goods-image' src='{{format.getImageUrl(item.cycleImage[0] + "?x-oss-process=image/resize,m_fill,h_328,w_328")}}' mode='aspectFill' lazy-load></image>
+  <view class='goods-info'>
+    <view class='goods-title'>{{item.title}}</view>
+    <view class='goods-price'>
+      <text class='discount'><text class='symbol'>¥</text>{{item.weProductSpecifications[0].memberPrice}}</text>
+      <text class='original' wx:if="{{item.weProductSpecifications[0].memberPrice != item.weProductSpecifications[0].shopPrice}}">¥{{item.weProductSpecifications[0].shopPrice}}</text>
+    </view>
+  </view>
+</view>

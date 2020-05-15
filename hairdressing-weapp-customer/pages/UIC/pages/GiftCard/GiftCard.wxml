@@ -1,0 +1,110 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    createTime = Date.parse(getDate())
+    if(finishTime - createTime < 0){
+      return 0
+    }else{
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+
+  function JudgevalidTimeStrategy(item){
+    switch(item.validTimeStrategy){
+      case 1:
+        var validTimeTo = item.validTimeTo.split(' ')[0];
+            validTimeTo = validTimeTo.replace('-','/').replace('-','/')
+        return validTimeTo;
+      case 2:
+        return '领取当日';
+      case 3:
+        return '领取次日'
+    }
+  }
+
+  function JudgetimeTo(item){
+    var timeTo = item.timeTo.split(' ')[0];
+        timeTo = timeTo.replace('-','/').replace('-','/')
+    return timeTo;
+  }
+
+  module.exports = {
+    JudgevalidTimeStrategy: JudgevalidTimeStrategy,
+    JudgetimeTo: JudgetimeTo,
+    getCountdownDay: getCountdownDay
+  }
+</wxs>
+<AppTabs tabs="{{tabs}}" padding="0 180rpx" bind:switchTab="switchTab"></AppTabs>
+<view class="box_padding" style="padding: 44rpx 60rpx;" wx:if="{{activityList && activityList.length > 0}}">
+  <view class="cart-item fc-ffffff"  wx:for="{{activityList}}" wx:key="index" style="background-image: url({{format.getImageUrl(item.cardCover ? item.cardCover : item.cardKindInfo.cardCover)}})" bindtap="jumpDetail" data-item="{{item}}">
+    <block wx:if="{{tabIndex == 0}}">
+      <view class="flex_box">
+        <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+        <view>
+          <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{item.cardName}}</view>
+          <view class="slogan">礼品卡</view> 
+        </view>
+      </view>
+      <text class="isUse fz-24">{{item.status == 0 ? '可使用' : '已禁用'}}</text>
+      <view class="price" wx:if="{{item.cardType == 1}}">
+        <text class="iconfont iconrenminbidanjia fz-44"></text>{{item.giftMoney + item.rechargeMoney}}
+      </view>
+      <view class="price" wx:else>
+        {{wxs.getCountdownDay(item.finishTime) + '天'}}
+      </view>
+      <view class="expireDate fz-24">{{item.timeTo}} 到期</view>
+    </block>
+
+    <block wx:elif="{{tabIndex == 1}}">
+      <view class="flex_box">
+        <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+        <view>
+          <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{item.giftCardName}}</view>
+          <view class="slogan">礼品卡</view> 
+        </view>
+      </view>
+      <view class="share iconfont icontubiaolunkuo- fc-ffffff" wx:if="{{(item.shareInfo.splitNum - item.shareInfo.shareOrder) > 0}}"></view>
+      <text class="isUse fz-24">{{'可赠送：' + (item.shareInfo.splitNum - item.shareInfo.shareOrder) + '张'}}</text>
+      <view class="price flex_box align_center">
+        <text class="fz-56">
+          <block wx:if="{{item.free}}">
+            <text>免费</text>
+          </block>
+          <block wx:else>
+            <text class="iconfont iconrenminbidanjia fz-44"></text>{{item.activityPrice}} 
+          </block>
+        </text>
+        <text class="fz-32 line-through">
+          <text class="iconfont iconrenminbidanjia fz-24"></text>{{item.cardPrice}}
+        </text>
+      </view>
+      <view class="expireDate fz-24">{{wxs.JudgetimeTo(item)}} 活动到期</view>
+    </block> 
+
+    <block wx:elif="{{tabIndex == 2}}">
+      <view class="flex_box">
+        <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+        <view>
+          <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{item.giftCardName}}</view>
+          <view class="slogan">礼品卡</view> 
+        </view>
+      </view>
+      <text class="isUse fz-24">{{'仅剩' + (item.cardCount-item.getNum) + '张'}}</text>
+      <view class="price flex_box align_center">
+        <text class="fz-56">
+          <block wx:if="{{item.free}}">
+            <text>免费</text>
+          </block>
+          <block wx:else>
+            <text class="iconfont iconrenminbidanjia fz-44"></text>{{item.activityPrice}} 
+          </block>
+        </text>
+        <text class="fz-32 line-through">
+          <text class="iconfont iconrenminbidanjia fz-24"></text>{{item.cardPrice}}      
+        </text>
+      </view>
+      <view class="expireDate fz-24">{{wxs.JudgetimeTo(item)}} 活动到期</view>
+    </block> 
+  </view>
+</view>
+<AppDefault text="暂无礼品卡" image="/images/default/default_card.png" wx:else></AppDefault>

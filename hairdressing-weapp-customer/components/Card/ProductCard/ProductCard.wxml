@@ -1,0 +1,15 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="ProductCard" bindtap='jumpProductDetail' data-id="{{info.goodsId || info.id}}" data-type="{{info.goodsType || info.goodsTypeScope}}">
+  <image class='product-image' src="{{format.getImageUrl((info.cycleImage || info.cycleImages[0]) + '?x-oss-process=image/resize,m_fill,h_160,w_160')}}" mode='aspectFill' lazy-load></image>
+  <view class='product-right'>
+    <view class='right-1'>{{info.title || info.simpleTitle}}</view>
+    <view class='right-2 icon--address'>
+      <text>{{format.getCity(info.storeCity || info.city)}}</text>
+      <text>{{info.storeName || info.storeAddress}}</text>
+    </view>
+    <view class='right-3'>
+      <text><text class='symbol'>¥</text>{{info.memberPrice}}</text>
+      <text>¥{{info.shopPrice}}</text>
+    </view>
+  </view>
+</view>

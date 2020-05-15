@@ -1,0 +1,22 @@
+<!-- 弹出套餐 -->
+<view class='cover {{ifShowSharePop ?"active":""}}' bindtap="hide">
+  <view catchtap="prevent">
+    <!-- 弹出分享 -->
+    <view class='pop-share {{ifShowSharePop ? "active" : ""}}'>
+      <view class='share-title'>
+        分享至
+        <view class="title-close icon--close" bindtap='$set' data-key="ifShowSharePop" data-value="{{false}}"></view>
+      </view>
+      <view class='share-button-container'>
+        <view class='share-button-item canvas' bindtap='sharePic'>
+          <image src="/images/button/share_canvas.png" />
+          <view>生成画报</view>
+        </view>
+        <button class='share-button-item weixin' open-type="share">
+          <image src="/images/button/share_weixin.png" />
+          <view>微信</view>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

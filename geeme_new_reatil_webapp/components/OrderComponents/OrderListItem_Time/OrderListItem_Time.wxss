@@ -1,0 +1,6 @@
+.OrderListItem_Time{
+  margin-top:20rpx;
+  margin-bottom:10rpx;
+  font-size:24rpx;
+  color:#999;
+}

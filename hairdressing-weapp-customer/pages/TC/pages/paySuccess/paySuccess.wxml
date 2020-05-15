@@ -1,0 +1,22 @@
+<view class="paySuccess">
+  <view class='paySuccessIcon'></view>
+  <view class='paySuccessMessage'>恭喜，支付成功</view>
+  <view class='paySuccessText' wx:if="{{type == 'service'}}">到店请凭手机号享受服务</view>
+  <view class="promotion" wx:if="{{promotion}}">
+    <view class="promotion-button">
+      <button open-type="share">邀请好友拼单</button>
+    </view>
+  </view>
+  <view class='buttons' wx:if="{{type == 'card' || type == 'recharge'}}">
+    <view class='backPurchase' bindtap='backRecharge'>返回充值</view>
+    <view class='backSelectOrderList' bindtap="jumpUserCard">查看会员卡</view>
+  </view>
+  <view class='buttons' wx:elif="{{type == 'bill'}}">
+    <view class='backPurchase' bindtap='backpurchase'>返回首页</view>
+    <view class='backSelectOrderList' bindtap="toProductOrderList">查看账单</view>
+  </view>
+  <view class='buttons' wx:else>
+    <view class='backPurchase' bindtap='backpurchase'>返回首页</view>
+    <view class='backSelectOrderList' bindtap="toProductOrderList">查看订单</view>
+  </view> 
+</view>

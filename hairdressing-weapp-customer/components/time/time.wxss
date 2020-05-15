@@ -1,0 +1,94 @@
+.choose-time{
+  width: 100%;
+  height: auto;
+
+}
+.ct-head{
+  width: 100%;
+  height: 158rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  position: relative;
+}
+.ct-head.firstTime{
+  padding: 40rpx 80rpx 80rpx;
+}
+.ct-head.updateTime{
+  padding-top: 40rpx;
+}
+.cth-item{
+  height: 100%;
+  color: #666666;
+  text-align: center;
+  line-height: 32rpx;
+}
+.cth-item.active{
+  color: #F52D56;
+}
+.cth-text1{
+  display: block;
+  font-size: 24rpx;
+
+}
+.cth-text2{
+  display: block;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+
+}
+.ct-body{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+} 
+.ctb-item{
+  width: 148rpx;
+  height: 70rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 24rpx;
+  color: #999999;
+  background:no-repeat center center;
+  background-color: white;
+  border:1rpx solid rgba(221, 221, 221, 1);
+  margin-bottom: 30rpx;
+}
+/* 埋伏好的类名 */
+.ctb-item.outtime{
+  background-color: #C1C0C9;
+  color: white;
+}
+.ctb-item.outtimepeople{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAABGCAMAAAAdFE3CAAAAjVBMVEXCwMnCwMnHx88AAADIx8/FxczBwMn////Gxc25ubns7O329vaenp76+vre3uDKydGnp6fb29vJyND4+PnHxs78/P3v7/Dj4+bIx8/y8vPV1djEw8uhoaHJycmxsbHp6ern5+jc3N3AwMDR0dfOzdS2trasrKykpKTY2N7Q0NDMzMzFxcWamprg4OCzs7OewchxAAAABnRSTlP92CAA3iNjwQ8TAAABvElEQVRo3uzQwQnAMAzFUDsB0xGy/6RtN9DxQ6QJHqq9uiao6rVrRZH+PlJPXF1xo2YSTTOiRImCiaKJoomiiaKJoomiiaKJoomiiaKJol2BOnmo8+Sdepu1s9yEYSgKww8FndixHWJnnocmKUO7/+UVqFRX5IU+BN9fXsAnkK5vJAejoYbyvBQghgrefRBDlZECiKF0lIAaShcxiKEyrwWIofRoQAx1HwTEUEGQgxiqjD5iEEPpiAPEULqQIIaKvA4ghrpddcRQpacAYqhA56jvrHMNTAUBVJndBkEvenw1y9I01aGZXKMyj+OWEolSE1NqHtSnY5QeJX7KAaQdoLjbv89edX6TID38lrhArQfBseoM51zcD4+doNaDoF+k8X1xPblv4AqlswR/k2CiulTXI5grVPa4EdQ5C3MRywtCJyi789oSYVjYz+dOHB2hgtHgofMAFk7tcKrZyQXK7rw2KVqwoYGpeOLil7I7L2zFDLCC4zQAr0eVUR9j3VwALAR849dL/UKU/fhd10og5LgWH0NpUduq7M77fNLb+FGX3XmfL91t+vzNXnXPJ9Nov/VDwdL77+TY7d++AZSjBYxhJ542AAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  color: white;
+}
+
+.ctb-item.outpeople{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAABGCAMAAAAdFE3CAAAAnFBMVEX1pSP2qCP3pyAAAAD1rTP3sTvwqCT1piP////5wmj3skH2rDL+7tX3s0P2rTT/+/P84bP+89/3sDz2qi3//fn2qCb/+Oz4vFf2rzn2rjf97M7847j83KX3sj//9+n85Lv836771pj60Y36z4j6zID3t0r2qSr/+vD+9eX+8Nj5yHX4wWP4vl396cf958L72Jz5ynr4uVD71ZX5xGxyALC7AAAAB3RSTlP92CAA/d4jb6F5ZwAAAdJJREFUaN7s0LENgDAQxdC7pLiOIhL7rwps4PJL2BM8ufbqmqCq164VRfp6ST1xdcWNmkk0zYgSJQomiiaKJoomiiaKJoomiiaKJoomiiaK9gfUffJQ54o79TRr57oJA1EUhouQcIaxZ/F4X7ENZl/z/u8WsoiJUApSwNy/cftJdnEs3WiyXVJDCXEAiKH8+QrEUCabhSCGmqR7gBYqCt4XIIZKxRQghvITDWIozs8AMZTveyCGMukxBDFUlTUALVRUbWIQQ6W8BIih/JMGMRQXnf3CQxoov8rRFbg064FNSQA1pGsJqEFhmwRBkgg/2bhGBaLAZ82gm2LDiuJ0LBq3qKja1vhuCWC3A5qV49eX8QO+qhON/eSadoKym/enVuTS87zB88zlETpDmawPcU0FUsbxEMdmGUu4Qk2CHX4nwQwfCzEWhjlB2c1r6zRTmocygnKCspvXpo1kSs1nOW/doCI/WeKm2RpMbfNj17OzCxTnLW6TJgdbJ1hknp46QNnNC1s5B1jpoVsDT0bZn9/b5iXAFBAv6j7on4yqsj3+KpeAWuFSeJhKi3qCKqpYjPurRw8+6rKb9/7a14eev9nNe391O3p79KEg5+P/NXp9e/kA3LgwVB6IRyAAAAAASUVORK5CYII=) no-repeat center center/100% auto;
+  color: white;
+}
+
+.ctb-item.normal{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAABGCAMAAAAdFE3CAAAAllBMVEX2KVj1Llb2LlUAAAD0LFX3RGn1LVb////2PGL2Mlr3S272PmT3RGn2Qmb3SGz6jKP6hJz1MFj/+vv+6e79ws77nrL2NFz+4ej+2+L8v8z8tcT6iJ//9ff/8fT+1d39yNP9xdH5bYn4X373U3X3TXD/7fH+5+z9zdf8sL/8rL37lqr5c4/4YoL4WXn1N177qbr5e5X4ZYQ4G2+pAAAABnRSTlMg/NgA/d7HV06uAAABfUlEQVRo3u3ayW7CMBSFYZPCPY4dhwwQxkIZylRK2/d/uUYCyVLIwiyor1T/qyw/xZJ1FhYvIuoQozpRTRJdYlZXiIjYFQlWZ3etI4hhARVQAeVYQLkWUK4FlGsB5VpAuRZQrgWUawHlWkC5FlCuBZRr/wEVJ/xQiWb3p3J13nFDaTkEmKHUZgxmqIueFWCGSs0S4IXKk49XMEMZeQCYodR6BGYoKU8AM5TaLsAMVZlsDmao1EwAXqg8Xb2DGcrIL4AZSn2OwAwl9akAM5RK9wAvVJV8z8EMlegpGg3WY6+oPP0p0WgS08QTym7ee1MfXlB28zYbWJMP1EX3i3aTP5RKlrhWTouGyRMqtpsXGZ1v328xzeADdX8RjBPajqzJEypX6x1gKzck97Wpqk2+UPLuIpivKD4sK8rgAWU3b7M+UVybPKEqkxVo6Xgz+UClZoD2FlO0oDr0zOzmda/Uf/Coy8gjHmnYe+rzN7t53SuHWjz7oaCU9Fi6J15+ATQWABK4Vo2pAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  color: white;
+}
+
+.ctb-item.outtime{
+  background-color: #C1C0C9;
+}
+.calendaricon{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 29rpx;
+  right: 0rpx;
+}
+
+
+
+

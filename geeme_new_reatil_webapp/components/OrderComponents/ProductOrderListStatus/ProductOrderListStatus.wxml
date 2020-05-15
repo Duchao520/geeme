@@ -1,0 +1,3 @@
+<view class="ProductOrderList">
+  <view class='statusItem {{state}}'>{{stateObj[state]}}</view>
+</view>

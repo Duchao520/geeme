@@ -1,0 +1,35 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class='productOrderList'>
+  <view class='productOrderList-head' style="background:#FFFFFF;position: fixed;top:0;left:0;width: 100%;z-index:1;">
+    <AppSearch placeholder="搜索商品名称/订单号" bind:input="search" hideText></AppSearch>
+    <AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bindswitchTab="switchTab"></AppTabs>
+  </view>
+  <view style="height: 164rpx;background: #FFFFFF;"></view>
+  <view class='productOrderList-body'>
+    <block wx:if="{{orderList.length}}">
+      <view class='productOrderListContent'>
+        <OrderListItem wx:for="{{orderList}}" wx:key="index" orderItem="{{item}}">
+          <ProductOrderListStatus slot="status" state="{{item.orderStatus}}"></ProductOrderListStatus>
+          <block wx:if="{{item.orderStatus != 'GROUP_BUY_WAIT'}}">
+            <ProductOrderListButtons slot="buttons" info="{{item}}" bind:confirm="confirm"></ProductOrderListButtons>
+          </block>
+          <block wx:else>
+            <!-- 待拼单 -->
+            <view class="groupBuy" slot="buttons">
+              <view class="groupBuy-left">
+                <image wx:for="{{item.groupMemberImage}}" wx:key="index" lazy-load wx:for-item="item2" src="{{format.getImageUrl(item2 + '?x-oss-process=image/resize,m_fill,h_54,w_54')}}" mode="aspectFill"></image>
+                还差{{item.numberRemain}}人
+              </view>
+              <GroupOrder_Button info="{{item}}" style="margin-right:24rpx;" />
+            </view>
+          </block>
+          <OrderListItemTime slot="time" orderItem="{{item}}"></OrderListItemTime>
+        </OrderListItem>
+      </view>
+    </block>
+    <block wx:else>
+      <AppDefault text="暂时没有任何订单哦" />
+    </block>
+  </view>
+</view>
+<AppFooter />

@@ -1,0 +1,21 @@
+/* pages/IC/pages/newCustomer/newCustomer.wxss */
+.container{
+  box-sizing: border-box;
+  padding: 40rpx;
+
+}
+.goods-item{
+  padding: 38rpx 0;
+  border-bottom: 2rpx solid #eeeeee;
+}
+.thumb{
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  background: #cccccc;
+  border-radius: 6rpx;
+}
+.content{
+  width: 460rpx;
+  height: 200rpx;
+}

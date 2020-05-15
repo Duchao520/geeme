@@ -1,0 +1,38 @@
+.ProductOrderList{
+  width: 92rpx;
+  height: 38rpx;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+.statusItem{
+  width: 100%;
+  height: 38rpx;
+  color: white;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 38rpx;
+}
+/* 待付款 */
+.statusItem.WAITING_PAY{
+  background-color: #F52D56;
+}
+/* 待发货 */
+.statusItem.WAITING_DELIVER{
+  background-color: #58C9F3;
+}
+/* 待收货 */
+.statusItem.WAITING_CONFIRM{
+  background-color: #5683FF;
+}
+/* 待评价 */
+.statusItem.WAITING_ASSESSMENT{
+  background-color: #FF9E02;
+}
+/* 已完成 */
+.statusItem.FINISHED{
+  background-color: #00CF82;
+}
+/* 待拼单 */
+.statusItem.GROUP_BUY_WAIT{
+  background-color: #f52d56;
+}

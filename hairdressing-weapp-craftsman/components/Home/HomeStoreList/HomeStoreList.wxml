@@ -1,0 +1,12 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<scroll-view scroll-x>
+  <view class='storeListItems'>
+    <view class='storeListItem' wx:for="{{list}}" wx:key="{{index}}" bindtap='tostoreDetail'>
+      <image src='{{format.getImageUrl(item.shopImg)}}' lazy-load></image>
+      <view class='storeInfo'>{{item.city}} {{item.shopName}}</view>
+      <view class='storeScore'>
+        <Rate score="{{5}}" numberShow="{{true}}"></Rate>
+      </view>
+    </view>
+  </view>
+</scroll-view>

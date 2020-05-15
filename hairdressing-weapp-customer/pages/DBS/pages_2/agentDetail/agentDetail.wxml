@@ -1,0 +1,97 @@
+<wxs module="wxs">
+  function JudgeOrder(type){
+    switch(type){
+      case 0: return '待结算';
+      case 1: return '已结算';
+      case 2: return '已扣回';
+      default: return '--';
+    }
+  }
+
+  function JudgeOrderClass(type){
+    switch(type){
+      case 0: return 'status-wait';
+      case 1: return 'status-finish';
+      case 2: return 'status-wait';
+      default: return 'status-wait';
+    }
+  }
+
+  module.exports = {
+    JudgeOrder: JudgeOrder,
+    JudgeOrderClass: JudgeOrderClass
+  }
+</wxs>
+<view class="box_padding" style="padding: 20rpx 40rpx;">
+  <AppOptions options="{{options}}" bind:switch="init"></AppOptions>
+  <view class="total-detail" style="margin : 40rpx 0;">
+    <view class="flex_box justify_space_between fc-333333 box_padding align_center">
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight">--</view>
+        <view class="fz-24 text-center fc-666666">点击数</view>
+      </view>
+      <view class="line"></view>
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight">{{customerCount ? customerCount : 0}}</view>
+        <view class="fz-24 text-center fc-666666">付款客户数</view>
+      </view>
+      <view class="line"></view>
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight">{{orderCount ? orderCount : 0}}</view>
+        <view class="fz-24 text-center fc-666666">付款订单数</view>
+      </view>
+    </view>
+    <view class="flex_box justify_space_between fc-333333 box_padding align_center">
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight iconfont iconrenminbidanjia">{{orderMoney ? orderMoney : 0}}</view>
+        <view class="fz-24 text-center fc-666666">付款订单金额</view>
+      </view>
+      <view class="line"></view>
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight iconfont iconrenminbidanjia">{{expectPerformance ? expectPerformance : 0}}</view>
+        <view class="fz-24 text-center fc-666666">预估提成总额</view>
+      </view>
+      <view class="line"></view>
+      <view style="width: 210rpx;">
+        <view class="fz-36 text-center font-weight iconfont iconrenminbidanjia">{{amount ? amount : 0}}</view>
+        <view class="fz-24 text-center fc-666666">已结算提成</view>
+      </view>
+    </view>
+  </view>
+  <view class="fz-36 fc-333333 font-weight">股东分红订单明细</view>
+</view>
+
+<view class="table" wx:if="{{infoList.length > 0}}">
+  <view class="flex_box fz-24 fc-666666 tr">
+    <view style="width: 260rpx;">商品名称</view>
+    <view style="width: 176rpx;">客户</view>
+    <view style="width: 104rpx;">金额</view>
+    <view>累计佣金</view>
+  </view>
+  <view class="flex_box tr {{index%2 == 0 ? 'single' : 'double'}} align_center" wx:for="{{infoList}}" wx:key="index">
+    <view style="width: 260rpx;">
+      <view style="margin-bottom: 10rpx;">
+        <text class="fz-26 fc-333333">{{item.specificationName}}</text>
+        <text class="status {{wxs.JudgeOrderClass(item.status)}}">{{wxs.JudgeOrder(item.status)}}</text>
+      </view>
+      <view class="fz-22 fc-666666">{{item.createTime}}</view>
+    </view>
+    <view style="width: 176rpx;">
+      <view class="fz-26 fc-333333"  style="margin-bottom: 10rpx;">{{item.name}}</view>
+      <view class="fz-22 fc-666666">{{item.mobile}}</view>
+    </view>
+    <view style="width: 104rpx;">
+      <view class="fz-28 fc-000000">{{item.orderMoney}}</view>
+      <view class="flex_box">
+        <text class="fc-ffffff payway">{{item.payType}}</text>
+      </view>
+    </view>
+    <view class="fz-28 fc-000000" style="width: 80rpx;text-align:right;">{{item.amount}}</view>
+  </view>
+  <view class="tr flex_box fz-28 font-weight" style="background: #EEEEEE;">
+    <view style="width: 476rpx;">合计:</view>
+    <view style="width: 126rpx;">{{orderMoney ? orderMoney : 0}}</view>
+    <view style="width: 126rpx;">{{amount ? amount : 0}}</view>
+  </view>
+</view>
+<AppDefault text="推广订单明细暂无~~" wx:else></AppDefault>

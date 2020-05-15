@@ -1,0 +1,35 @@
+<view class="container">
+  <view class='item'>
+    <view class='itemTitle'>收货人</view>
+    <input class="content" placeholder="姓名" value="{{info.name}}" bindinput='updateName'></input>
+  </view>
+  <view class='item'>
+    <view class='itemTitle'>联系方式</view>
+    <input class="content" value="{{info.mobile}}" type='number' placeholder="手机号码"  bindinput='updateMobile'></input>
+  </view>
+  <view class='item'>
+    <view class='itemTitle'>省市区/县</view>
+    <picker mode="region" bindchange="changeRegion" value="{{[info.province, info.city, info.district]}}">
+      <view class="content">
+        {{info.province || ''}} {{info.city || ''}} {{info.district || ''}}
+      </view>
+    </picker>
+    <view class='itemRight'></view>
+  </view>
+  <view class='item'>
+    <view class='itemTitle'>详细地址</view>
+    <input class="content" value="{{info.address}}" placeholder="填写道路、楼宇小区、楼层房号等"  bindinput='updateAddress'></input>
+  </view>
+  <view class='item'>
+    <view class='itemTitle'>设为默认</view>
+    <switch style="float:right" color="#f52d56" checked="{{info.isDefault}}" bindchange="changeDefault"></switch>
+  </view>
+</view>
+<view class="container" wx:if="{{id}}">
+  <view class="item" bindtap="deleteAddress">
+    <view class="itemTitle" style="color:#f52d56;width:200rpx;">删除收货地址</view>
+  </view>
+</view>
+<view class="bottom-fixed">
+  <view class="bottom-button" bindtap="confirm">{{id ? '确认修改' : '确认新增'}}</view>
+</view>

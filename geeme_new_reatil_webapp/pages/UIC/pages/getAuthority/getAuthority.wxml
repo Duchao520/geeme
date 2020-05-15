@@ -1,0 +1,7 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="container">
+  <view style='text-align:center;'>
+    <image class="brandLogo" lazy-load src="{{format.getImageUrl(logo)}}"></image>
+  </view>
+  <button class='loginButton' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>微信登录</button>
+</view>

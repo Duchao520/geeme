@@ -1,0 +1,143 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class="consumptiondetail">
+  <view class='container'>
+    <!-- 顶部线 -->
+    <view class='topLine'></view>
+    <!-- 头部 -->
+    <view class='header'>
+      <view class='header-left'>
+        <image class='storeImg' lazy-load src='{{format.getImageUrl(bill.shopImage + "?x-oss-process=image/resize,m_fill,h_80,w_80")}}' mode="aspectFill"></image>
+        <view class='storeInfo'>
+          <view class='storeName'>{{format.getCity(bill.city)}} {{bill.shopName}}</view>
+          <view class='consumptionTime'>{{format.getDate4(format.getDate5(bill.serviceTime))}}</view>
+        </view>
+      </view>
+      <view class='header-right'>
+        <view class="status {{bill.paymentStatus ? 'Paid' : bill.billId ? 'UnPaid' : 'UnBilling'}}">{{bill.paymentStatus ? '已完成' : bill.billId ? '待支付' : '待结算'}}</view>
+      </view>
+    </view>
+    <!-- 凹槽 -->
+    <view class='bump'></view>
+    <!-- 服务信息 -->
+    <view class='serviceContent'>
+      <view class='serviceItem' wx:for="{{bill.consumerGoodsOrderInfoList.length ? bill.consumerGoodsOrderInfoList : bill.listConsumerOrderCardInfo}}" wx:key="{{index}}">
+        <view class='serviceOne'>
+          <image class='serviceImg' lazy-load wx:if="{{item.goodsType}}" src="{{format.getImageUrl(item.image + '?x-oss-process=image/resize,m_fill,h_120,w_120')}}" mode='aspectFill'></image>
+          <view class='serviceInfo'>
+            <view class='serviceName'>
+              <view class='serviceNameLeft'>{{item.goodsType ? item.serviceName : item.cardName}}
+                <block wx:if="{{!item.goodsType}}">
+                  <text class='{{item.operateType == 1 ? "blue" : ""}}'>{{item.operateType == 1 ? "续卡" : "开卡"}}</text>
+                  <text wx:if="{{item.isUpgrade}}" class='green'>升级</text>
+                </block>
+              </view>
+              <view class='serviceNameright'>¥{{item.goodsType ? item.unitPrice : item.chargeMoney}}</view>
+            </view>
+            <view class='servicePackage service-line' wx:if="{{item.goodsType}}">
+              <text wx:if="{{item.goodsType}}">{{item.specificationName}}</text>
+              <text wx:if="{{item.goodsType && item.serverTime}}">{{item.serverTime}}分钟</text>
+            </view>
+            <view wx:else style="color:#333;font-size:24rpx;">
+              <text class="upgrade" wx:if="{{item.isUpgrade}}">升级为：{{item.upgradeCardKindName}}</text>
+            </view>
+            <view class='staffPeople service-line'>
+              <text wx:for="{{item.stationOne}}" wx:for-item="item2" wx:key="{{index}}">{{item2.staffName}}</text>
+              <text wx:for="{{item.assistantOrSalers}}" wx:for-item="item2" wx:key="{{index}}">{{item2.staffName}}</text>
+              <text wx:for="{{item.stationThree}}" wx:for-item="item2" wx:key="{{index}}">{{item2.staffName}}</text>
+            </view>
+          </view>
+          <view class='serviceCount' wx:if="{{item.goodsType}}">x{{item.count}}</view>
+        </view>
+
+        <!-- 商品账单的优惠信息 -->
+        <view class='serviceTwo'>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.storePreference}}">
+            <view class='discountBoxName'>门店优惠</view>
+            <view class='discountBoxMoney red'>-¥{{item.preferentialInfo.storePreference}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.identityCardPreference}}">
+            <view class='discountBoxName'>身份卡优惠</view>
+            <view class='discountBoxMoney'>-¥{{item.preferentialInfo.identityCardPreference}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.prepaidCardPreference}}">
+            <view class='discountBoxName'>储值卡优惠</view>
+            <view class='discountBoxMoney'>-¥{{item.preferentialInfo.prepaidCardPreference}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.countCardPreference}}">
+            <view class='discountBoxName'>次卡优惠</view>
+            <view class='discountBoxMoney'>-¥{{item.preferentialInfo.countCardPreference}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.timeCardPreference}}">
+            <view class='discountBoxName'>时间卡优惠</view>
+            <view class='discountBoxMoney'>-¥{{item.preferentialInfo.timeCardPreference}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.redPacketPreference}}">
+            <view class='discountBoxName'>红包优惠</view>
+            <view class='discountBoxMoney'>-¥{{item.preferentialInfo.redPacketPreference}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.preferentialInfo.memberPreference}}">
+            <view class='discountBoxName'>{{item.preferentialInfo.levelName}}优惠</view>
+            <view class='discountBoxMoney'>-¥{{item.preferentialInfo.memberPreference}}</view>
+          </view>
+        </view>
+
+        <!-- 卡项账单信息 -->
+        <!-- <view class='serviceTwo' wx:else>
+          <view class='discountBox'>
+            <view class='discountBoxName'>实付款</view>
+            <view class='discountBoxMoney red'>¥{{item.chargeMoney}}</view>
+          </view>
+          <view class='discountBox' wx:if="{{item.giftMoney}}">
+            <view class='discountBoxName'>赠送金</view>
+            <view class='discountBoxMoney'>¥{{item.giftMoney}}</view>
+          </view>
+        </view> -->
+
+        <view class='serviceThree'>
+          <view class='payPrice'>{{item.paymentStatus ? "实付款" : "应付款"}}：
+            <text style="color:#F52D56;font-size:28rpx">¥{{item.goodsType ? item.unitFinalPrice : item.chargeMoney}}</text>
+          </view>
+          <view class='orderType'>
+            <view class='orderTypeName'>{{item.online ? '线上订单' : '门店开单'}}</view>
+            <view class='line'>|</view>
+            <view class='payStatus'>
+              <text wx:if="{{item.paymentStatus}}">已支付({{item.paymentTypeName === '储值卡' ? '储值金¥' + (item.chargeMoneyCost || 0) + ' 赠送金¥' + (item.giftMoneyCost || 0) : item.paymentTypeName}})</text>
+              <text wx:else>未支付</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 代付金额 -->
+      <view class='waitPay'>
+        {{bill.paymentStatus ? "消费总金额" : "待付金额"}}：
+        <text style="color:#F52D56;font-size:32rpx;font-weight:600;">¥{{bill.finalPrice}}</text>
+      </view>
+
+      <!-- 订单编号 -->
+      <view class='orderInfo'>
+        <view class='orderSerial' wx:if="{{bill.serialCode}}">
+          <view class='orderText'>账单编号</view>
+          <view class='orderNumber'>{{bill.serialCode}}</view>
+        </view>
+
+        <view class='orderSerial' wx:if="{{bill.createTime}}">
+          <view class='orderText'>下单时间</view>
+          <view class='orderNumber'>{{bill.createTime}}</view>
+        </view>
+
+        <view class='orderSerial' wx:if="{{bill.staffName}}">
+          <view class='orderText'>开单人</view>
+          <view class='orderNumber'>{{bill.staffName}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部按钮 -->
+<view class='button' wx:if="{{bill}}">
+  <view class='calculate' bindtap='jumpOrder' wx:if="{{bill.paymentStatus}}">立即评价</view>
+  <view class='calculate' bindtap='jumpPay' wx:elif="{{bill.billId}}">立即支付</view>
+  <view class='calculate' bindtap='billing' wx:else>立即结算</view>
+</view>
+
+<AppModal title="暂时无法结算!" content="账单中有服务项目未选择服务者,请联系商家填写完善。" show="{{NULL_SERVER_MODAL}}"></AppModal>

@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "主打服务",
+    "usingComponents":{
+      "AppSearch":"/components/App/AppSearch/AppSearch",
+      "Masonry": "/components/Masonry/Masonry",
+      "ServiceCard": "/components/Card/ServiceCard/ServiceCard",
+      "PopHeader": "/components/popup/PopHeader/PopHeader",
+      "PopSingleColumn": "/components/popup/PopSingleColumn/PopSingleColumn",
+      "PopDoubleColumn": "/components/popup/PopDoubleColumn/PopDoubleColumn"
+    }
+}

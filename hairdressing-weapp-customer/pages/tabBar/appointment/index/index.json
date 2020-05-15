@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "预约",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+      "AppSearch": "/components/App/AppSearch/AppSearch",
+      "AppFooter": "/components/App/AppFooter/AppFooter",
+      "AppHeader": "/components/App/AppHeader/AppHeader",
+      "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore",
+      "StaffCard":"/components/Card/StaffCard/StaffCard",
+      "OffLineDefault": "/components/Common/OffLineDefault/OffLineDefault"
+    }
+}

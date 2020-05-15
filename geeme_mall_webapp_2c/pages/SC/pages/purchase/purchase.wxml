@@ -1,0 +1,124 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<block wx:if="{{!abnormal}}">
+  <view id="shop">
+    <!-- 商店名字 -->
+    <view class='shopname'>
+      <view class="flex_box align_center" style="width: 80%;" bindtap="toDetail">
+        <view class='nameitem' >
+          <text>{{format.getCity(shopInfo.city)}}</text>
+          <text style="max-width: 340rpx;" class="txt-ellipsis">{{shopInfo.shopName}}</text>
+        </view>
+        <text class="fz-20 working">主页<text class="iconfont iconyoujiantou fz-20"></text></text>
+      </view>
+
+      <view class='namefunc' bindtap='jumpShopCate'>
+        <view class='functext'>其他门店</view>
+        <view class='sh-icon arrow--right'></view>
+      </view>
+    </view>
+
+    <!-- 搜索服务 -->
+    <view class='shopsearch'>
+      <AppSearch placeholder="搜索服务项目/产品/会员卡" bind:clickinput="jumpSearch" showCart disabled></AppSearch>
+    </view>
+
+    <!-- 广告banner -->
+    <view class="box_padding" style="padding: 0 16.5rpx;height: 256rpx;margin-bottom: 30rpx;" wx:if="{{bannerInfoList.length > 0}}">
+      <swiper class="swiper-adv" indicator-dots autoplay indicator-color="rgba('255,255,255,0')">
+        <block wx:for="{{bannerInfoList}}" wx:key="index">
+          <swiper-item class="adv-item" bindtap="getAdDetailByAdId" data-adid="{{item.adId}}">
+            <image lazy-load src="{{format.getImageUrl(item.banner)}}" style="display:block;border-radius: 12rpx;width: 100%;height: 100%;" mode='aspectFill'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <!-- 功能模块 -->
+    <view class='function'>
+      <view class='function-item' bindtap='toService'>
+        <image class='function-image' src='/images/button/purchase_action1.png'></image>
+        <view class='function-text'>主打服务</view>
+      </view>
+
+      <view class='function-item' bindtap='togoodProduct'>
+        <image class='function-image' src='/images/button/purchase_action2.png'></image>
+        <view class='function-text'>优选好物</view>
+      </view>
+
+      <view class='function-item' bindtap='topurchaseRecharge'>
+        <image class='function-image' src='/images/button/purchase_action3.png'></image>
+        <view class='function-text'>充值有礼</view>
+      </view>
+
+      <view class='function-item' bindtap='jumpProductCate'>
+        <image class='function-image' src='/images/button/purchase_action4.png'></image>
+        <view class='function-text'>全场分类</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐服务者 -->
+  <view class='recommended' wx:if="{{firsthair.length}}">
+    <view class='recommended-head'>
+      <view class='rh-left'>推荐服务者</view>
+      <view class="rh-right arrow--right" bindtap="jumpMyFocus">所有服务者</view>
+    </view>
+
+    <scroll-view scroll-x style="box-sizing:border-box">
+      <view class='recommended-body'>
+        <view class='rb-item' wx:for="{{firsthair}}" lazy-load wx:key="index" hover-class='false' bindtap='tostaffDetail' data-id="{{item.id}}">
+          <image class='rb-avatar' src='{{format.getImageUrl(item.avatar + "?x-oss-process=image/resize,m_fill,h_192,w_192")}}' mode='aspectFill'></image>
+          <view class='rb-name'>{{item.name}}</view>
+          <view class='rb-levelName'>{{item.levelName}}</view>
+        </view>
+        <navigator class='rb-item-debug'>
+        </navigator>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 美物拼团 -->
+  <view class="recommend-container" wx:if="{{groupBuyProducts && groupBuyProducts.length}}">
+    <view class="s-title" style="padding:0 32rpx;" bindtap="jumpProduct_group">
+      <view class="s-title-left">美物拼团</view>
+      <view class="s-title-right arrow--right_red"></view>
+    </view>
+    <scroll-view scroll-x class="recommend-scroll-view">
+      <view style="padding-bottom:16rpx;">
+        <view class="recommend-item" wx:for="{{groupBuyProducts}}" wx:key="index" bindtap="jumpGoodsDetail" data-id="{{item.goodsId}}" data-type="{{item.goodsType}}">
+          <view class="recommend-image">
+            <image src="{{format.getImageUrl(item.cycleImage + '?x-oss-process=image/resize,m_fill,h_270,w_270')}}" lazy-load mode="aspectFill"></image>
+          </view>
+          <view class="recommend-text">
+            <view class="recommend-title text--ellipsis_2">{{item.goodsTitle}}</view>
+            <view class="price-group">
+              <text style="font-size:24rpx;font-weight:normal">¥</text>{{item.groupPrice}}
+              <text class="word-symbol">团</text>
+            </view>
+            <view class="price-shopPrice">¥{{item.shopPrice}}
+              <text class="word-symbol">单</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 推荐服务信息 -->
+  <view class='Service'>
+    <view class='Service-item'>
+      <view class='s-title'>
+        <view class='s-title-left'>今日推荐</view>
+      </view>
+      <view class='s-contents'>
+        <Masonry list="{{productList}}" key="id" column-space="30rpx" generic:masonry-item="ServiceCard"></Masonry>
+      </view>
+    </view>
+  </view>
+  <AppDefault wx:if="{{showDefault}}" text="本店还没有推荐服务，去主打服务看看吧" />
+</block>
+<block wx:else>
+  <OffLineDefault />
+</block>
+
+<AppFooter />

@@ -1,0 +1,63 @@
+<wxs src="../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  function canAdd(time, isToday) {
+    if(!isToday) return true
+    var now = getDate()
+
+    var hm = time.split(':')
+    var time_minutes = parseInt(hm[0]) * 60 + parseInt(hm[1])
+    var now_minutes = now.getHours() * 60 + now.getMinutes()
+
+    return (time_minutes - now_minutes) > 60
+  }
+
+  module.exports = {
+    canAdd: canAdd
+  }
+</wxs>
+<view class='appointmentItem' wx:for="{{appointmentList}}" wx:key="{{index}}" wx:for-item="appointment">
+  <!-- 左侧时间 -->
+  <view class='appointmentItem-left'>
+    <view class='a-l-time'>{{appointment.time}}</view>
+    <view class='appointmentItemStatus {{format.appointmentTimeStatus(appointment.customerList.length,capacity)}}'></view>
+    <view class='appointmentItem-decoration'></view>
+  </view>
+
+  <!-- 允许预约 -->
+  <view class='OutAppointmentItem-right {{capacity == 1 ? "one" : ""}}'>
+    <view class='out-r-item' wx:for="{{appointment.customerList}}" wx:key="{{index}}" bindtap='toappointmentDetail' data-id="{{item.appointmentId}}">
+      <view class='status {{item.status == "已超时" ? "expired" : ""}} {{item.status == "已服务" ? "finished" : ""}}'></view>
+      <AppAvatar style="margin-right:10rpx" gender="{{item.sex}}" avatar="{{item.avatar}}" width="76rpx" iconWidth="24rpx" />
+      <view class='userInfo'>
+        <view class='userName'>{{item.customerName}}</view>
+        <view class='userMobile'>{{format.encriptPhone(item.phone)}}</view>
+      </view>
+    </view>
+
+    <!-- 过期div -->
+    <block wx:if="{{appointment.expired}}">
+      <view class='out-r-item out-time' wx:for="{{capacity - appointment.customerList.length}}" wx:key="{{index}}">
+
+      </view>
+    </block>
+    <block wx:else>
+      <!-- 禁用div -->
+      <view class='out-r-item' wx:for="{{appointment.disabled}}" wx:key="{{index}}">
+        <view class='NoCapacity' bindtap='takeUp' data-status="{{false}}" data-time="{{appointment.time}}" data-index="{{index}}">
+          <view class='NocapacityIcon'></view>
+        </view>
+      </view>
+      <!-- 添加和占用div -->
+      <view class='out-r-item active' wx:for="{{capacity - appointment.customerList.length - appointment.disabled}}" wx:key="{{index}}">
+        <view class='addCustomer' wx:if="{{wxs.canAdd(appointment.time, isToday)}}" bindtap='reserve' data-appointment="{{appointment}}">
+          <view class='addCustomer-top'></view>
+          <view class='addCustomer-bottom'>添加</view>
+        </view>
+        <view class='takeUp' bindtap='takeUp' data-status="{{true}}" data-time="{{appointment.time}}" data-index="{{index}}">
+          <view class='takeUp-top'></view>
+          <view class='takeUp-bottom'>占用</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

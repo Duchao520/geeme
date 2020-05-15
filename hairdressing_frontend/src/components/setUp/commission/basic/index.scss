@@ -1,0 +1,50 @@
+$blue: #58c9f3;
+$gray: #d5dadf;
+
+.dialog-body-filter-line {
+  padding: 22px 20px 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  .search-box {
+    width: 220px;
+  }
+}
+.bottom-line {
+  height: 45px;
+}
+#app .el-pagination{
+  margin-top: 15px !important;
+  padding: 0;
+}
+#app .cost-input-box {
+  display: flex;
+  width: 132px;
+  font-size: 14px;
+  .cost-input-before {
+    width: 100px;
+    height: 30px;
+    outline: none;
+    border: 1px solid $gray;
+    border-radius: 4px 0 0 4px;
+    text-indent: 4px;
+  }
+  .cost-input-after {
+    flex: 1;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    background: $gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 0 4px 4px 0;
+  }
+}
+#app tr.checked {
+  .cost-input-before {
+    outline: $blue;
+    border-color: $blue;
+  }
+  .cost-input-after {
+    background: $blue;
+  }
+}

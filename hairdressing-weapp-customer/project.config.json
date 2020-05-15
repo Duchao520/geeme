@@ -1,0 +1,479 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.1",
+	"appid": "wx61af8f23a13fcda7",
+	"projectname": "%E5%8F%8A%E7%BE%8E%E5%AE%A2%E6%88%B7%E7%89%88",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 9,
+			"list": [
+				{
+					"id": -1,
+					"name": "服务订单列表",
+					"pathName": "pages/UIC/pages/myorder/myorder",
+					"query": "id=2606",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "服务订单详情",
+					"pathName": "pages/TC/pages/orderDetail/orderDetail",
+					"query": "id=2603",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "账单详情",
+					"pathName": "pages/TC/pages/consumptiondetail/consumptiondetail",
+					"query": "id=2689",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "消费账单列表",
+					"pathName": "pages/UIC/pages/spendorder/spendorder",
+					"query": "id=2689",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "产品订单详情",
+					"pathName": "pages/IC/pages/productOrderDetail/productOrderDetail",
+					"query": "orderId=925",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/SC/pages/hairdetails/hairdetails",
+					"query": "hairId=103",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "商品详情",
+					"pathName": "pages/IC/pages/productdetails/productdetails",
+					"query": "productId=249&from=unKnow",
+					"scene": 1007
+				},
+				{
+					"id": -1,
+					"name": "美购",
+					"pathName": "pages/tabBar/purchase/index/index",
+					"query": "productId=291",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "退款详情",
+					"pathName": "pages/IC/pages/refundDetail/refundDetail",
+					"query": "id=208&isProduct=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "template/CountShow",
+					"pathName": "template/CountShow",
+					"query": "id=208&isProduct=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "绑定手机号",
+					"pathName": "pages/UIC/pages/bindphone/bindphone",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的资产",
+					"pathName": "pages/UIC/pages/UsersMyAssets/UsersMyAssets",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/UIC/pages/Recharge/Recharge",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "钱包明细",
+					"pathName": "pages/UIC/pages/Wallet/Wallet",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提现",
+					"pathName": "pages/UIC/pages/Withdraw/Withdraw",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "优惠券",
+					"pathName": "pages/UIC/pages/Coupon/Coupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 16,
+					"name": "预约",
+					"pathName": "pages/tabBar/appointment/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/TC/pages/order/order",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分销",
+					"pathName": "pages/DBS/pages/distribution/distribution",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推荐商品",
+					"pathName": "pages/DBS/pages/promoteGoods/promoteGoods",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的客户",
+					"pathName": "pages/DBS/pages/customer/customer",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "排行榜",
+					"pathName": "pages/DBS/pages/rank/rank",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推广提成明细",
+					"pathName": "pages/DBS/pages/agentDetail/agentDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "邀请奖励详情",
+					"pathName": "pages/DBS/pages/inviteDetail/inviteDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的推广员",
+					"pathName": "pages/DBS/pages/myAgent/myAgent",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推广商品详情",
+					"pathName": "pages/DBS/pages/promoteGoodsDetail/promoteGoodsDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推广海报",
+					"pathName": "pages/DBS/pages/agentPic/agentPic",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拼团",
+					"pathName": "pages/IC/pages/product_group/product_group",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/IC/pages/productdetails/productdetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员卡",
+					"pathName": "pages/VIP/pages/purchaseRecharge/purchaseRecharge",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预约成功",
+					"pathName": "pages/TC/pages/appointmentsuccess/appointmentsuccess",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/TC/pages/shopCar/shopCar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付成功",
+					"pathName": "pages/TC/pages/paySuccess/paySuccess",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分",
+					"pathName": "pages/VIP/pages/intergral/intergral",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分规则",
+					"pathName": "pages/VIP/pages/intergralRule/intergralRule",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分明细",
+					"pathName": "pages/VIP/pages/intergralDetail/intergralDetail",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员优惠",
+					"pathName": "pages/IC/pages/newCustomer/newCustomer",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": 37,
+					"name": "客户评价",
+					"pathName": "pages/IC/pages/customerAssess/customerAssess",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "品牌主页",
+					"pathName": "pages/tabBar/brandCenter/index/index",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推荐美店",
+					"pathName": "pages/SC/pages/recommended/recommended",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/tabBar/my/index/index",
+					"query": "from=productdetails",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/TC/pages/choosetime/choosetime",
+					"pathName": "pages/SC/pages/hairdetails/hairdetails",
+					"query": "hairId=136",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员优惠",
+					"pathName": "pages/IC/pages/vipDiscount/vipDiscount",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品海报",
+					"pathName": "pages/IC/pages/sharePic/sharePic",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品详情",
+					"pathName": "pages/IC/pages/productdetails/productdetails",
+					"query": "productId=313&from=unKnow",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "优选好物",
+					"pathName": "pages/IC/pages/goodProduct/goodProduct",
+					"query": "productId=313&from=unKnow",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "绑定手机号",
+					"pathName": "pages/UIC/pages/bindphone/bindphone",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "礼品卡",
+					"pathName": "pages/UIC/pages/GiftCard/GiftCard",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "礼品卡详情",
+					"pathName": "pages/UIC/pages/GiftCardDetail/GiftCardDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 49,
+					"name": "分享礼品卡详情",
+					"pathName": "pages/UIC/pages/ShareGiftCard/ShareGiftCard",
+					"query": "a=6&k=392&b=8388&t=1587114193&s=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "礼品卡海报",
+					"pathName": "pages/UIC/pages/GiftCardPic/GiftCardPic",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 51,
+					"name": "分享礼品卡领取",
+					"pathName": "pages/UIC/pages/ShareGiftCard/ShareGiftCard",
+					"query": "scene= 27,399,8365,0,1588764016",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "切换门店",
+					"pathName": "pages/SC/pages/shopcate/shopcate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 53,
+					"name": "pages/tabBar/home/index/index",
+					"pathName": "pages/tabBar/home/index/index",
+					"query": "scene=\"storeId=85“",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提现记录",
+					"pathName": "pages/UIC/pages/WithDrawRecord/WithDrawRecord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提现进度",
+					"pathName": "pages/UIC/pages/WithDrawProgress/WithDrawProgress",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "股东分红",
+					"pathName": "pages/DBS/pages_2/distribution/distribution",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "推广商品",
+					"pathName": "pages/DBS/pages/promoteGoods/promoteGoods",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的会员卡",
+					"pathName": "pages/VIP/pages/UserVipCard/UserVipCard",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

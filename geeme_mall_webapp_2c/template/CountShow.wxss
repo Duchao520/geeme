@@ -1,0 +1,44 @@
+/* 价格数量模板 */
+.template-Content{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.template-price{
+  color: #F52D56;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+  line-height: 44rpx;
+  font-weight: 600;
+}
+.t-moneyicon{
+  font-size: 20rpx;
+  display: inline-block;
+  margin-right: -7rpx; 
+}
+.template-count{
+  color: #7E7E7E;
+  font-size: 24rpx;
+  line-height: 44rpx;
+}
+
+/* 原价特价模板 */
+
+.SpecialAndNormalContent > view{
+  display: inline-block;
+}
+.SpecialAndNormalContent .symbol{
+  font-size: 20rpx;
+}
+.SpecialAndNormal-specialPrice{
+  color: #F52D56;
+  font-size: 30rpx;
+  margin-right: 4rpx;
+  font-weight: 600;
+}
+
+.SpecialAndNormal-normalPrice{
+  color: #9B9B9B;
+  font-size: 24rpx;
+  text-decoration: line-through;
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "客户评价",
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault",
+    "comments": "/components/comments/comments",
+    "AppAvgScore": "/components/App/AppAvgScore/AppAvgScore"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "MemberLevelCard":"/components/Card/MemberLevelCard/MemberLevelCard"
+  },
+  "navigationBarTitleText": "会员身份"
+}

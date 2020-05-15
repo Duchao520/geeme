@@ -1,0 +1,30 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class="container">
+  <!-- 发型师信息 -->
+  <view class='header'>
+    <image class='hairavatar' src='{{format.getImageUrl(staff.avatar)}}' mode='aspectFill'></image>
+    <view class='hairinfo'>
+      <view class='hairname'>{{staff.name}}</view>
+      <view class='hairlevel'>
+        <view class='hl-title'>{{staff.level}}</view>
+        <AppAvgScore width="25rpx" height="25rpx" space="8rpx" score="{{staff.score}}" />
+      </view>
+      <view class='hairaddress'>
+        <view class='ha-icon'></view>
+        <view class='ha-text'>{{format.getCity(staff.city)}}{{staff.shopName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view style="margin-top:40rpx" wx:if="{{skills && skills.length}}">
+    <AppServiceTree list="{{skills}}" bind:updateService="updateService" />  
+  </view>
+
+  <!-- 合计金额 -->
+  <view class="page-footer">
+    <view class="footer-button" catchtap="confirm">确认修改</view>
+    <view style="color:#999;padding-left:30rpx">合计金额
+      <text style="color:#f52d56;font-size:40rpx"><text style="font-size:24rpx;">¥</text>{{format.getPrice(_totalPrice)}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,31 @@
+page{
+  background:#f8f8f8;
+}
+
+.page-container{
+  padding-bottom:200rpx;
+}
+
+.card-container{
+  position:relative;
+  padding-left:100rpx;
+  background: #fff;
+}
+
+.card-container-left{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100rpx;
+  height:100%;
+}
+
+.selectIcon{
+  position: absolute;
+  left:32rpx;
+  top:50%;
+  margin-top:-20rpx;
+  width:40rpx;
+  height:40rpx;
+  background-size:100% 100%;
+}

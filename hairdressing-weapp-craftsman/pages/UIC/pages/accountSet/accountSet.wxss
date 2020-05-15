@@ -1,0 +1,116 @@
+.container {
+  width: 100%;
+  height: auto;
+  background-color: #f8f8f8;
+  padding: 20rpx 0;
+}
+
+.func {
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+  background-color: white;
+}
+
+.f-phone {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #efeff4;
+}
+
+.f-text {
+  line-height: 96rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.f-password {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #efeff4;
+}
+
+.f-address {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #efeff4;
+}
+
+.f-a-item {
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.noset {
+  line-height: 96rpx;
+  color: #999;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+
+.f-opinion {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #efeff4;
+}
+
+.f-shopinfo {
+  width: 100%;
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.servicephone {
+  height: 96rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.opin-num {
+  line-height: 96rpx;
+  color: #999;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+
+.icon {
+  width: 11rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC)no-repeat center center/100% auto;
+}
+
+
+/* 退出登录 */
+.exit{
+  width: 684rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  border: 2rpx solid #AAAAAA;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 34rpx;
+  color: #666666;
+  margin: 80rpx auto;
+}

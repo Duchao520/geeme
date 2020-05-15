@@ -1,0 +1,9 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "选择时间",
+  "navigationBarTextStyle": "black",
+  "usingComponents":{
+    "calendar":"plugin://calendar/calendar"
+  }
+}

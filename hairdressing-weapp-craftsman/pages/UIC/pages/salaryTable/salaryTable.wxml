@@ -1,0 +1,119 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  var payTypes = ['微信', '支付宝', '现金', '储值卡', '自定义', '次卡', '时间卡']
+
+  function getPayType(payType) {
+    return payTypes[payType]
+  }
+
+  function removeZero(date) {
+    var arr = date.split('/')
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i][0] == '0') {
+        arr[i] = arr[i].substring(1)
+      }
+    }
+    return arr[0] + '/' + arr[1]
+  }
+
+  function getYear(date) {
+    return date.split('-')[0]
+  }
+
+  var cardTypes = ['身份卡', '储值卡', '次卡', '时间卡']
+  function getCardType(cardType){
+    return cardTypes[cardType]
+  }
+
+  var operateTypes = ['开卡', '续卡', '自由开卡']
+  function getOperateType(operateType){
+    return operateTypes[operateType]
+  }
+
+  module.exports = {
+    getPayType: getPayType,
+    removeZero: removeZero,
+    getYear: getYear,
+    getCardType: getCardType,
+    getOperateType: getOperateType
+  }
+</wxs>
+
+<view class="page-container">
+  <view class="page-tabs">
+    <view wx:if="{{dateBegin}}">
+      <!-- <picker mode="date" bindchange="changeDateBegin"> -->
+        <view class="date-range">
+          <view>{{wxs.getYear(dateBegin)}}</view>
+          <view>{{wxs.removeZero(format.getDate7(dateBegin))}}</view>
+        </view>
+      <!-- </picker> -->
+      <view>～</view>
+      <!-- <picker mode="date" bindchange="changeDateEnd"> -->
+        <view class="date-range">
+          <view>{{wxs.getYear(dateEnd)}}</view>
+          <view>{{wxs.removeZero(format.getDate7(dateEnd))}}</view>
+        </view>
+      <!-- </picker> -->
+    </view>
+    <view>
+      <DateHeadContainer calendarAction="{{2}}" value="{{today}}" bind:selectDate="selectDate">
+        <DateHeadBefore bindsetCurrentDate="setCurrentDate" startDate="{{startDate_infoByDay}}" activeDate="{{activeDate}}"></DateHeadBefore>
+      </DateHeadContainer>
+    </view>
+  </view>
+  <view class="page-table">
+    <view class="table-row title">
+      <view class="r1">服务时间</view>
+      <view class="r2">{{type == 'service' ? '服务项目' : type == 'product' ? '产品' : '卡项'}}名称</view>
+      <view class="r3">数量</view>
+      <view class="r4">实收金额</view>
+      <view class="r11" wx:if="{{type == 'card'}}">消费分类</view>
+      <view class="r5">支付方式</view>
+      <view class="r6" wx:if="{{type == 'service'}}">指定</view>
+      <view class="r7">现金业绩</view>
+      <view class="r8">{{type == 'service' ? '劳动' : type == 'product' ? '产品' : '售卡'}}业绩</view>
+      <view class="r9">提成比例</view>
+      <view class="r10">提成</view>
+    </view>
+    <view class="table-row" wx:for="{{type == 'service' ? data.serviceList : type == 'product' ? data.productList : data.cardList}}" wx:key="{{index}}">
+      <!-- 服务时间 -->
+      <view class="r1 c9">{{format.getDate4(item.serviceTime)}}</view>
+      <!-- 服务名称、产品名称、卡项名称 -->
+      <view class="r2">{{item.serviceName || item.productName || item.cardName}}
+        <text wx:if="{{type != 'card' && item.specificSnapName !='默认'}}" class="c9">-{{item.specificSnapName}}</text>
+      </view>
+      <!-- 数量 -->
+      <view class="r3">{{item.amount}}</view>
+      <!-- 实收金额 -->
+      <view class="r4">¥{{item.received}}</view>
+      <!-- 消费分类 -->
+      <view class="r11" wx:if="{{type == 'card'}}">{{wxs.getCardType(item.cardType)}}{{wxs.getOperateType(item.operateType)}}</view>
+      <!-- 支付方式 -->
+      <view class="r5">{{wxs.getPayType(item.payType)}}</view>
+      <!-- 指定 -->
+      <view class="r6 c9" wx:if="{{type == 'service'}}">{{item.isChosen ? '指定' : '非指定'}}</view>
+      <!-- 现金业绩 -->
+      <view class="r7 c9">¥{{item.cashPerformance}}</view>
+      <!-- 劳动业绩、产品业绩、售卡业绩 -->
+      <view class="r8 c9">¥{{format.isNumber(item.laborPerformance) || format.isNumber(item.productSalesPerformance) || format.isNumber(item.cardSalesPerformance)}}</view>
+      <!-- 提成比例 -->
+      <view class="r9 c9">{{item.performancePercent}}%</view>
+      <!-- 提成 -->
+      <view class="r10 red">¥{{item.commission}}</view>
+    </view>
+    <view class="table-row total">
+      <view class="r1">合计</view>
+      <view class="r2"></view>
+      <view class="r3">{{data._amount}}</view>
+      <view class="r4">¥{{format.getPrice(data._received)}}</view>
+      <view class="r11" wx:if="{{type == 'card'}}"></view>
+      <view class="r5"></view>
+      <view class="r6" wx:if="{{type == 'service'}}"></view>
+      <view class="r7">¥{{format.getPrice(data._cashPerformance)}}</view>
+      <view class="r8">¥{{format.getPrice(type == 'service' ? data._laborPerformance : type == 'product' ? data._productSalesPerformance : data._cardSalesPerformance)}}</view>
+      <view class="r9"></view>
+      <view class="r10 red">¥{{format.getPrice(data._commission)}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "会员优惠",
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

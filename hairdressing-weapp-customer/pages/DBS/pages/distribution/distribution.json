@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "AppOptions": "/components/App/AppOptions/AppOptions",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "推广返佣",
+  "navigationBarTextStyle": "black"
+}

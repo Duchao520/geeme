@@ -1,0 +1,182 @@
+<!--index.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class='header'>
+  <view class='header-bg' style="background:{{format.getSkin(themeId).color1}};"></view>
+  <!-- 搜索 -->
+
+  <view class="flex_box align_center" style="margin-top: 30rpx;height: 64rpx;">
+    <view class='search-container'>
+      <AppSearch placeholder="搜索门店名称" disabled bind:clicktype="jumpaddress" bind:clickinput="jumpSearch" hideText></AppSearch>
+    </view>
+    <view class="fc-ffffff fz-44" style="margin-right: 30rpx;position: relative" bindtap="jumpMaps">
+      <image src="/images/button/home_pos.png" style="display: block;width: 48rpx;height: 46rpx;"></image>
+    </view>
+  </view>
+  <!-- 店铺名字 -->
+  <view class='shopname' wx:if="{{brand}}" bindtap="jumpBrandHome">
+    <image class='shop-left' lazy-load src="{{brand.logo+'!style40'}}" mode='aspectFill'></image>
+    <view class='shop-right'>
+      <view class='shop-info text--ellipsis_1'>{{brand.title}}</view>
+      <view class='shop-phone' bindtap='makePhoneCall'>{{brand.phone}}</view>
+    </view>
+  </view>
+</view>
+<block wx:if="{{!abnormal}}">
+  <!-- 按钮 -->
+  <view class='funclass' wx:if="{{goodsClass.length > 0}}">
+    <view class='funclass-item' wx:for="{{goodsClass}}" wx:key="index">
+      <image class='funclass-image' src='{{format.getImageUrl(item.image + "?x-oss-process=image/resize,m_lfit,h_132,w_132")}}' bindtap='jumpClass' data-parent="{{item.parentId}}" data-id='{{item.jimeiClassId}}' data-type="{{item.goodsTypeScope}}" data-name="{{item.sortName}}"></image>
+      <view class='funclass-text'>{{item.sortName}}</view>
+    </view>
+    <view class='funclass-item'>
+      <image class='funclass-image' bindtap='jumpClass' data-type="all" src='/images/button/icon_sort.png'></image>
+      <view class='funclass-text'>全场分类</view>
+    </view>
+  </view>
+
+  <!-- 广告banner -->
+  <view class="box_padding" style="padding: 0 16.5rpx;height: 256rpx;margin-bottom: 30rpx;" wx:if="{{bannerInfoBrandList.length > 0}}">
+    <swiper class="swiper-adv" indicator-dots autoplay indicator-color="rgba('255,255,255,0')">
+      <block wx:for="{{bannerInfoBrandList}}" wx:key="index">
+        <swiper-item class="adv-item" bindtap="getAdDetailByAdId" data-adid="{{item.adId}}">
+          <image lazy-load src="{{format.getImageUrl(item.banner)}}" style="display:block;border-radius: 12rpx;width: 100%;height: 100%;" mode='aspectFill'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 推荐美店 -->
+  <view class='recommended'>
+    <view class='recommended-top' bindtap='jumprecommended'>
+      <view class='recommended-text'>发现好店</view>
+      <view class='recommended-icon arrow--right_red_big'></view>
+    </view>
+    <view class='recommended-bottom'>
+      <StoreList storeList="{{likelist}}" bindtostoreDetail="tostoreDetail"></StoreList>
+    </view>
+  </view>
+
+  <!-- 美物拼团 -->
+  <view class='recommended' wx:if="{{groupBuyProducts.length > 0}}">
+    <view class='recommended-top' bindtap='jumpProduct_group'>
+      <view class='recommended-text'>美物拼团</view>
+      <view class='recommended-icon arrow--right_red_big'></view>
+    </view>
+    <scroll-view scroll-x class="recommend-scroll-view">
+      <view style="padding-bottom:16rpx;">
+        <view class="recommend-item" wx:for="{{groupBuyProducts}}" wx:key="index" bindtap="jumpGoodsDetail" data-id="{{item.goodsId}}" data-type="{{item.goodsType}}">
+          <view class="recommend-image">
+            <image src="{{format.getImageUrl(item.cycleImage + '?x-oss-process=image/resize,m_fill,h_540,w_540')}}" lazy-load mode="aspectFill"></image>
+          </view>
+          <view class="recommend-text">
+            <view class="recommend-title text--ellipsis_2">{{item.goodsTitle}}</view>
+            <view class="price-group">
+              <text style="font-size:24rpx;font-weight:normal">¥</text>{{item.groupPrice}}
+              <text class="word-symbol">团</text>
+            </view>
+            <view class="price-shopPrice">¥{{item.shopPrice}}
+              <text class="word-symbol">单</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 作品动态 -->
+  <view class='recommended' wx:if="{{allGoodsClass.length > 0}}">
+    <!-- <view class='recommended-top' bindtap='jumpWorks'> -->
+    <view class='recommended-top align_center' style="margin-bottom: 0;">
+      <view class='recommended-text'>猜你喜欢</view>
+      <image style="display:block;width: 30rpx;height: 30rpx;" src="/images/button/icon_model01.png" wx:if="{{arrangement}}" bindtap="changeArrangement"></image>
+      <image style="display:block;width: 30rpx;height: 30rpx;" src="/images/button/icon_model02.png" wx:else bindtap="changeArrangement"></image>
+    </view>
+    <view>
+      <AppTabsScroll tabs="{{allGoodsClass}}" bindswitchTab="switchTab" color="#AAAAAA" key="jimeiClassId" wx:if="{{tabShow}}"></AppTabsScroll>
+    </view>
+    <view style="padding: 0 32rpx">
+      <block wx:if="{{productInfos.length > 0}}">
+        <block wx:if="{{arrangement}}">
+          <Masonry list="{{productInfos}}" key="id" column-space="30rpx" generic:masonry-item="ServiceCard"></Masonry>
+        </block>
+        <block wx:else>
+          <ColumnGoods wx:for="{{productInfos}}" wx:key="index" item="{{item}}"></ColumnGoods>
+        </block>
+      </block>
+      <block wx:else>
+        <AppDefault text="暂时没有该类商品~~" top="100rpx" />
+      </block>
+    </view>
+  </view>
+
+  <view class="cover" wx:if="{{TAKE_REDPACKET_STATUS || IS_SHOW_REDPACKET}}">
+      <view class="redPacket-container" wx:if="{{IS_SHOW_REDPACKET}}" style="background-image:url({{bg_redPacket3}});padding-top: 94rpx;">
+        <view class="fz-50 fc-ffffff text-center">{{customerRedPacketInfo.packetName}}</view>
+        <view>
+          <view class="redPacket {{customerRedPacketInfo.redPacketDetailInfoList.length == 1 ? 'big' : redPacketList.length == 2 ? 'middle' : 'small'}}" wx:for="{{customerRedPacketInfo.redPacketDetailInfoList}}" wx:key="index" wx:if="{{index < 3}}">
+            <view class="redPacket-info">
+              <view class="redPacket-info-left">
+                <view>红包</view>
+                <view wx:if="{{item.packetUseCondition == 1}}">满{{item.leastMoney}}元可用</view>
+              </view>
+              <view class="redPacket-info-right">
+                <text style="">¥</text>{{item.packetMoney}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="redPacket-button" catchtap="takeRedPacketById">立即领取</view>
+        <view class="icon--close_big" bindtap="$set" data-key="IS_SHOW_REDPACKET" data-value="{{false}}"></view>
+      </view>
+      <view class="redPacket-container" style="background-image:url({{bg_redPacket2}})" wx:if="{{TAKE_REDPACKET_STATUS}}">
+        <view class="redPacket-info2">
+          <view>恭喜你获得</view>
+          <view>{{customerRedPacketInfo.packetName}}</view>
+          <view>{{redPacketTotalMoney}}
+            <text style="font-size:48rpx">元</text>
+          </view>
+        </view>
+        <view class="redPacket-button button2" catchtap="jumpRedPacket">去我的红包看看</view>
+        <view class="redPacket-close-btn" bindtap="$set" data-key="TAKE_REDPACKET_STATUS" data-value="{{false}}"></view>
+      </view>
+    </view>
+
+
+  <view class="cover" wx:if="{{popRedPacket}}">
+    <!-- 未登录时可领取红包弹框 -->
+    <view wx:if="{{unLogin}}" class="redPacket-container" style="background-image:url('bg_redPacket1.png')">
+      <view class="redPacket-container-text">绑定手机号免费领取</view>
+      <view>
+        <view class="redPacket {{redPacketList.length == 1 ? 'big' : redPacketList.length == 2 ? 'middle' : 'small'}}" wx:for="{{redPacketList}}" wx:key="{{index}}" wx:if="{{index < 3}}">
+          <view class="redPacket-info">
+            <view class="redPacket-info-left">
+              <view>{{redPacketInfo.packetTypeName}}</view>
+              <view wx:if="{{item.packetUseCondition == 1}}">满{{item.leastMoney}}元可用</view>
+            </view>
+            <view class="redPacket-info-right">
+              <text style="">¥</text>{{item.packetMoney}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="redPacket-button" catchtap="jumpRedPacket">立即领取</view>
+      <view class="icon--close_big" bindtap="$set" data-key="popRedPacket" data-value="{{false}}"></view>
+    </view>
+    <!-- 恭喜获得红包 -->
+    <view wx:else class="redPacket-container" style="background-image:url('bg_redPacket2.png')">
+      <view class="redPacket-info2">
+        <view>恭喜你获得</view>
+        <view>{{redPacketInfo.packetTypeName}}</view>
+        <view>{{redPacketInfo.totalMoney}}
+          <text style="font-size:48rpx">元</text>
+        </view>
+      </view>
+      <view class="redPacket-button button2" catchtap="jumpRedPacket">去我的红包看看</view>
+      <view class="redPacket-close-btn" bindtap="$set" data-key="popRedPacket" data-value="{{false}}"></view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <OffLineDefault />
+</block>
+
+<AppFooter />

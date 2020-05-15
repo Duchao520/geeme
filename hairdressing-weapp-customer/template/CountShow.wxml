@@ -1,0 +1,21 @@
+<!-- 价格数量模板 -->
+<template name="priceShow">
+  <view class='template-Content'>
+    <view class='template-price'>
+      <text class='t-moneyicon'>￥</text> {{price}}
+    </view>
+    <view class='template-count'>X{{count}}</view>
+  </view>
+</template>
+
+<!-- 原价特价模板 -->
+<template name="SpecialAndNormal">
+  <view class='SpecialAndNormalContent'>
+    <view class='SpecialAndNormal-specialPrice'>
+      <text class="symbol">￥</text>{{specialPrice}}
+    </view>
+    <view class='SpecialAndNormal-normalPrice'>
+      <text class="symbol">￥</text>{{price}}
+    </view>
+  </view>
+</template>

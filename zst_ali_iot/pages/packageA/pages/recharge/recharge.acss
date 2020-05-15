@@ -1,0 +1,28 @@
+
+.maincard-item{
+  width: 656rpx;
+  height: 188rpx;
+  background: url("/pages/packageA/static/imgs/maincard_bg.png") center center no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto 38rpx;
+}
+.combo-item{
+  box-sizing: border-box;
+  padding: 23rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.combo-item .picker{
+  width: 28rpx;
+  height: 28rpx;
+  border: 1rpx solid #D2D2D2;
+  border-radius: 50%;
+}
+.combo-item .active{
+  background: #FFFFFF;
+  color: #108DE9;
+  font-size:28rpx;
+  border: 0;
+}
+.hoverClass{
+  opacity: .7;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "Masonry": "/components/Masonry/Masonry"
+  },
+  "navigationBarTitleText":"我的作品"
+}

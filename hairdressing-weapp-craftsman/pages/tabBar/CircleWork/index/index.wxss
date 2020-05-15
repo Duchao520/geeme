@@ -1,0 +1,11 @@
+.CircleWorkBody{
+  margin-top: 40rpx;
+}
+
+.Masonry-container{
+  padding:30rpx 32rpx;
+}
+
+.Masonry-container.fixed{
+  padding-top:120rpx;
+}

@@ -1,0 +1,15 @@
+<AppSearch placeholder="搜索服务项目/产品/会员卡" value="{{keyword}}" bind:confirm="confirm"></AppSearch>
+<view style="margin-top:30rpx">
+  <AppTabs tabs="{{['服务', '产品', '卡项']}}" bind:switchTab="switchTab" />
+</view>
+<block wx:if="{{list && list.length}}">
+  <view class='product-container' hidden='{{currentTab == 2}}'>
+    <ProductCard wx:for="{{list}}" wx:key="{{index}}" info="{{item}}" />
+  </view>
+  <view class='card-container' hidden='{{currentTab != 2}}'>
+    <VipCard wx:for="{{list}}" wx:key="{{index}}" info="{{item}}" logo="{{logo}}" />
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_search.png" text="没有搜索到相关信息哦" />
+</block>

@@ -1,0 +1,28 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class='productOrderListItem'>
+  <view class='productOrderListItem-top' bindtap='toOrderDetail'>
+    <view class='productImage'>
+      <view class="symbol" wx:if="{{orderItem.wholesale}}">拼</view>
+      <image src='{{format.getImageUrl(orderItem.cycleImage[0] + "?x-oss-process=image/resize,m_fill,h_160,w_160")}}' mode="aspectFill" lazy-load></image>
+    </view>
+    <view class='productInfo'>
+      <view class='productName'>{{orderItem.title}}</view>
+      <view class='productSpecification'>{{orderItem.specificationName}}</view>
+    </view>
+
+    <view class='orderStatus'>
+      <slot name="status"></slot>
+    </view>
+
+    <view class='orderPriceInfo'>
+      <view class='orderPrice-price'>¥{{orderItem.price}}</view>
+      <view class='orderPrice-count'>X{{orderItem.amount}}</view>
+    </view>
+  </view>
+
+  <slot name="time"></slot>
+
+  <view class='productOrderListItem-bottom'>
+    <slot name="buttons"></slot>
+  </view>
+</view>

@@ -1,0 +1,85 @@
+
+/* 时间数据 */
+.time{
+  width: 100%;
+  height: 76rpx;
+  padding: 0 52rpx 0 32rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rpx;
+}
+.t-left{  
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.t-l-icon{
+  width: 22rpx;
+  height: 34rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAANlBMVEUAAAD2Llj2LVf1Llj2LVb2LVf1Llf2Llf2Llf3L1f/QGr3Llf3Lln1LVb1Llf2Llf1LVf2LVbUKO7oAAAAEXRSTlMAVNuA8+jNpYp+DF5C6dO8tcAY1vQAAACPSURBVCjPnZHLFoUgCEWRVEq9D///ZyOXJ7GBg5gobDnyoPfmhL1ncc8w1248ob3FQmjHPsejS0TJRUucOgeVUC7nUAdqfMVpqxt1wndCpAEoIkX00gEeCpSSBQlavgaygEL1M/jkAYxU8SqRrZSgiqxPfvh8lNvQ949yR4MwNNhSQDCSxRAXY18vyq72tZ0qlQmDf63K6gAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+}
+.t-l-item{
+  color: #333333;
+  font-size: 24rpx;
+}
+.t-right{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.t-r-text{
+  color: #999999;
+  font-size: 24rpx;
+}
+.t-r-icon{
+  width: 14rpx;
+  height: 34rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  margin-left: 8rpx;
+}
+/* 发型师列表 */
+.choose-content{
+  width: 100%;
+  height: auto;
+  padding-bottom:150rpx;
+}
+
+/* 下一步 */
+.bottom{
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 2rpx solid #EFEFF4;
+}
+.bottom-word{
+  padding-left: 32rpx;
+  font-size: 28rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.alt{
+  color: #999999;
+  margin-right: 12rpx;
+}
+.hairname{
+  color: #333333;
+}
+.bottom-btn{
+  width: 240rpx;
+  height: 100%;
+  text-align: center;
+  line-height: 120rpx;
+  color: white;
+  font-size: 34rpx;
+  background-color: #F52D56;
+}

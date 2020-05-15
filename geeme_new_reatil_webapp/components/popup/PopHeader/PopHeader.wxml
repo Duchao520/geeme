@@ -1,0 +1,6 @@
+<view id='PopHeader' class='PopHeader'>
+  <view class='header-item {{activeIndex === index ? "active" : ""}}' wx:for="{{tabs}}" wx:key="index" bindtap='clickTab' data-index="{{index}}">
+    <text wx:if="{{item == '筛选'}}" class='bg_filter {{activeIndex === index ? "icon--filter_red" : "icon--filter"}}'>{{item}}</text>
+    <text wx:else class='bg_arrow {{activeIndex === index ? "arrow--up_red" : "arrow--down"}}'>{{item}}</text>
+  </view>
+</view>

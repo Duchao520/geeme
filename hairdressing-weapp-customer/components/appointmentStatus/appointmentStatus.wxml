@@ -1,0 +1,39 @@
+<wxs module="wxs">
+  function appointmentStatus(appointmentStatus, payStatus) {
+    if (appointmentStatus == '待服务' && payStatus) {
+      return 'waitService'
+    } else if (appointmentStatus == '待服务' && !payStatus) {
+      return 'waitService'
+    } else if (appointmentStatus == '已服务' && payStatus) {
+      return 'alreadyServicePay'
+    } else if (appointmentStatus == '已服务' && !payStatus) {
+      return 'alreadyServiceNoPay'
+    } else if (appointmentStatus == '已超时') {
+      return 'outTimeService'
+    } else if (appointmentStatus == '已取消') {
+      return 'cancelService'
+    }
+  }
+  module.exports.appointmentStatus = appointmentStatus
+</wxs>
+<view class='header {{wxs.appointmentStatus(appointmentStatus,payStatus)}}'>
+  <!-- 待服务 -->
+  <view class='status'>
+    <view class='status-icon {{wxs.appointmentStatus(appointmentStatus,payStatus)}}'></view>
+    <view class='status-text'>
+      <view class='s-t-paystatus'>{{appointmentStatus}}
+        <block wx:if="{{appointmentStatus!='已超时'&&appointmentStatus!='已取消'}}">
+          <text style='font-size:24rpx;'>({{payStatus ? '已支付' : '未支付'}})</text>
+        </block>
+      </view>
+      <!-- 待服务 -->
+      <view class='s-t-paytime' wx:if="{{appointmentStatus == '待服务'}}">距离预约时间还剩{{time}}</view>
+      <!-- 已服务 -->
+      <view class='s-t-paytime' wx:if="{{appointmentStatus == '已服务'}}">服务时间：{{info.serviceTime}}</view>
+      <!-- 已取消 -->
+      <view class='s-t-paytime' wx:elif="{{appointmentStatus == '已取消'}}">取消时间：{{info.cancelTime}}</view>
+      <!-- 已超时 -->
+      <view class='s-t-paytime' wx:elif="{{appointmentStatus == '已超时'}}">超过预约时间30分钟以上</view>
+    </view>
+  </view>
+</view>

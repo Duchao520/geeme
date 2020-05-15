@@ -1,0 +1,151 @@
+.evaluationbody {
+  width: 100%;
+  background-color: white;
+}
+.evaluationbody.evaluationBorder{
+  border-top: 2rpx solid #EBEBEB;
+}
+.evitem {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1rpx solid rgba(235, 235, 235, 1);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-top: 36rpx;
+}
+
+.evitem-left {
+  width: 80rpx;
+  height: 100%;
+}
+
+.evitem-right {
+  position:relative;
+  width: 638rpx;
+  height: 100%;
+  padding-left: 24rpx;
+}
+
+.evinfo {
+  width: 100%;
+  height: 42rpx;
+}
+
+.avgScore-container{
+  position:absolute;
+  top:5rpx;
+  right:0;
+  font-size:0;
+}
+
+.username {
+  color: rgba(38, 38, 40, 1);
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+.stores {
+  width: 164rpx;
+  height: 29rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJwAAAAeCAYAAADZwHeeAAAAAXNSR0IArs4c6QAAAuFJREFUeAHtmj+LFDEYxndULBT/lCpYCaedFmIn24idoCD6ISzuQ9gcWHgieIWojb34AeQKQbCx9F9x5YEiip5wdyrqL7MTyMZkMkmcZSf3vvBsMsn75tl58jC7M7vVH2IkIQrMSIFdM+IRGlGgViDFcN+ovACOgPv1KrN9Ef4h668+UiPjhvYXdXvAWmR9brrwNxswRP1jr3AfOdeH2nBVVf2if0sfz6AV/oHrH2u4ZUy2aRnrEccfrLG+DoV/4PrHGO4rLrpnOwkDbjF22x7v4Vj4C9A/xnArmEttuitWGPTNufJTxoS/AP27Gm4Dh3ivYhhR3TneSXFRxxrhL0T/St0yGpv+nf4b8K7Be906vrsxNR0sdYyRkw0WjP6J6UzvkfCXrr8yXBMPaPd5rZAxwbpnwOeGx9cI/w7Qf2TsvnqQ21vAs2xwubrC35v6I7XPc6G/+R1OfRz2GaH1Q/O57y20fmhe+PMUmOhrXGpe0T+ct6a7mnWvg98Gl6sr/DtAf/MjVZngJTjotk3aKOtdBT9BlxD+wvW3DadM8QIcSLPXdBXrXAY/QEwIf8H6uwynzPEc7J+2T9wR9ZdArNkoqUP4C9XfZzi166ugirPZJJu6MdgGObFKsfAnbAC6jcFc6m/epdqnds4eiDg+Te7eiHxXqvC7VOk2Nrf6txnuLb8umL9CdDvVSdbrmGRPrvAXqH+b4XJMk1Or/ZezRk6t8E8UyNHQW9uL4bgyrvOec/894n3T2hG+VvjnV/9eDNcYIdkwUl8rUKR+SYbjDugauAuO+64yjPcmmPAPWH82zxf/PIcj8TxQvwbo2KSzBA7ZxmPspk5KbIXfEhUdB69/23O4i/p8OdFT4GmLcT4xtwjqRyG06n92z0BOCH+zAYhYjP72HzC1x1T7BTwGR8EVsBuEYo2EJ+AsGIeSA/PCX6D+bYYL+EGmRYF4BdpuGuJXkwpRIKCAGC4gkEz/XwX+Arig4Zo+BwO3AAAAAElFTkSuQmCC) no-repeat center center/100%;
+  background-color: rgba(245, 45, 86, 1);
+}
+
+.ev-time {
+  width: 100%;
+  height: 28rpx;
+  text-align: left;
+  line-height: 28rpx;
+  font-size: 24rpx;
+  color: rgba(155, 155, 155, 1);
+  overflow: hidden;
+  margin: 12rpx 0 24rpx;
+}
+
+.ev-text {
+  width: 100%;
+  max-height: 130rpx;
+  overflow: hidden;
+  line-height: 44rpx;
+  font-size: 28rpx;
+  color: rgba(102, 102, 102, 1);
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.ev-imgs {
+  margin-right:-32rpx;
+  margin-top: 14rpx;
+}
+
+.imgs-item {
+  width: 168rpx;
+  height: 168rpx;
+  background-color: black;
+  margin-bottom: 40rpx;
+  margin-right:40rpx;
+}
+
+.imgs-item:nth-child(3n){
+  margin-right:0;
+}
+
+/* 从此处断开 */
+
+.hairname {
+  width: 100%;
+  height: 32rpx;
+  font-size: 24rpx;
+  color: rgba(153, 153, 153, 1);
+  text-align: left;
+  margin-bottom: 8rpx;
+}
+
+.des {
+  width: 100%;
+  height: 64rpx;
+  background-color: rgba(248, 248, 248, 1);
+  padding: 8rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5rpx;
+  margin-bottom: 34rpx;
+}
+
+.des-left {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.ev-logo {
+  width: 64rpx;
+  height: 32rpx;
+  background-color: rgba(245, 45, 86, 1);
+  text-align: center;
+  line-height: 32rpx;
+  font-size: 20rpx;
+  color: white;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+  border-radius: 5rpx;
+}
+
+.ev-produce {
+  color: rgba(153, 153, 153, 1);
+  font-size: 24rpx;
+}
+
+.des-right {
+}
+
+.ev-price {
+  color: rgba(245, 45, 86, 1);
+  font-size: 24rpx;
+  line-height: 64rpx;
+  margin-right: 10rpx;
+}

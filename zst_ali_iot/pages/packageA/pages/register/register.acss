@@ -1,0 +1,22 @@
+.form-item{
+  box-sizing: border-box;
+  padding: 34rpx 24rpx;
+  border-bottom: 4rpx solid #EEEEEE;
+}
+.bg{
+  width: 100%;
+  height: 319rpx;
+  background: url('https://zhushangtong.oss-cn-hangzhou.aliyuncs.com/guide/2019/10/17/cfccfffcab7dc6880d519bbf02443f05.png') center center no-repeat;
+  background-size: 100% 100%;
+}
+.keyboard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.active{
+  border-color: #108DE9;
+}
+.hover-class{
+  opacity: .7;
+}

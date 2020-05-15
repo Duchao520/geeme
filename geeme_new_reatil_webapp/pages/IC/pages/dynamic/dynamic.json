@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "作品动态",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "WorksCard": "/components/Card/WorksCard/WorksCard",
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "Masonry": "/components/Masonry/Masonry"
+  }
+}

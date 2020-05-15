@@ -1,0 +1,98 @@
+@import '/utils/wxss/icon.wxss';
+.main{
+  padding-bottom:150rpx;
+}
+
+.grey-line{
+  height:20rpx;
+  background: #f7f7f7;
+}
+
+.userInfo{
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx;
+  background-color: white;
+}
+.item{
+  position:relative;
+  height: 96rpx;
+  line-height:96rpx;
+  border-bottom: 1px solid #EFEFF4;
+  color: #333;
+  font-size:28rpx;
+}
+.item:last-child{
+  border-bottom: 0;
+}
+
+.itemTitle{
+  position:relative;
+  float:left;
+  width:155rpx;
+  height:100%;
+  color: #333333;
+  font-size: 28rpx;
+}
+
+.itemTitle.required::before{
+  position: absolute;
+  height:100%;
+  left:-15rpx;
+  top:0;
+  content: '*';
+  color:#f52d56;
+}
+
+.content{
+  display: block;
+  height:96rpx;
+  font-size:28rpx;
+  color:#999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemRight{
+  position:absolute;
+  right:0;
+  top:0;
+  width: 50rpx;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAASCAYAAABvqT8MAAAAAXNSR0IArs4c6QAAAWpJREFUKBWdUk1Lw0AQTdI0PYrf+AeEguLX0VOD95gE8iOLiYTkZqs96NGDIrXRu1ZEUYSEQEt9r80GY1IPDsy+2Zk3uzOzK0uQdrt9CTiE3kF1x3FegZWi0KuqqgXoQ7eg3SAIVoCVIguv53lro9Goh31TluXbWq2mW5b1JuIC8wQ6fN9fT9P0AmYTegNlee/AXKYliZ1hGC+wddwwAO4AO+hvScSJhQQ6cOJQURQdZjSZTPaAZ2EYLjJGKZQ0c81W13U3xuNxD7tN6HW9Xj8yTfOjdMOMLkm2bT83Go0WynqE7wADOWFsbgKDmFSCsr5oQxa4zE1gs3Ecd8DZ5y1IPGaCyuW3kMwJZU0/aJrWwgSfyCvdgAdchr+bkSP2IcilBH4JTOYcgV1ohB4KZCbkJZGcJAnJ2yhngBtamNSQpJ8yfQfUvAonyfx891kZfPWSiB5OESG5/xeZ2SLhE/YVvjlrrjyZ5H/JN2aIfysSJ7DbAAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+  background-size: 12rpx;
+  background-position-x: 40rpx;
+}
+
+.photo-line{
+  position: relative;
+  height:196rpx;
+  line-height: 196rpx;
+  text-align: center;
+  font-size:0;
+  background: #fff;
+}
+
+.avatar{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width:140rpx;
+  height:140rpx;
+}
+
+.avatar > image{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+}
+
+.avatar > .icon--photo{
+  position: absolute;
+  right:0;
+  bottom:0;
+  width:50rpx;
+  height:50rpx;
+  background-size:100% 100%;
+}

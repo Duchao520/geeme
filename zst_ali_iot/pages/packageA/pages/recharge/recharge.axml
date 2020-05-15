@@ -1,0 +1,34 @@
+<view class="box_padding" style="padding: 110rpx 47rpx;">
+  <view class="maincard-item box_padding" style="padding: 24rpx 42rpx 24rpx 24rpx;margin-bottom: 60rpx;" a:if="{{MAIN_CARD}}">
+    <view class="flex_box justify_space_between" style="margin-bottom: 60rpx;">
+      <text class="fz-24 fc-ffffff">(累计使用：{{MAIN_CARD.selfConsumeCount}}次)</text>
+      <text class="fz-24 fc-ffffff" a:if="{{MAIN_CARD.realName}}">持卡人：{{MAIN_CARD.realName}}</text>
+    </view>
+    <view class="flex_box justify_space_between" style="align-items: flex-end;">
+      <view class="fz-28 fc-ffffff">余额：{{MAIN_CARD.money_ceil}}元</view>
+      <view style="text-align: right;">
+        <text class="fz-48 fc-ffffff" style="letter-spacing: 6rpx;">{{MAIN_CARD.discountRate_ceil}}</text>
+        <text class="fz-22 fc-ffffff" style="letter-spacing: 6rpx;">折</text>
+        <text class="fz-22 fc-ffffff" style="border: 2rpx solid #FFFFFF">会员折扣</text>
+      </view>
+    </view>
+  </view>
+  <view a:if="{{RECHARGE_LIST.length > 0}}">
+    <view class="fz-28" style="margin-bottom: 52rpx;color: #7D7D7D;">选择套餐</view>
+    <view style="margin-bottom: 58rpx;">
+      <view class="combo-item flex_box" a:for="{{RECHARGE_LIST}}" data-activeIndex="{{index}}" onTap="chooseActive">
+        <view class="text-center" style="width:84rpx;height:32rpx;border: 1rpx solid #108DE9;border-radius:0 9rpx 0 9rpx;margin-right: 20rpx;">
+          <text class="fz-24 fc-0095D9">套餐{{index+1}}</text>
+        </view>
+        <view class="fz-28" style="width: 465rpx;">充值{{item.shouldMoney_ceil}}送{{item.giveMoney_ceil}}，会员卡折扣{{item.discountRate_ceil}}折</view>
+        <view class="picker {{activeIndex == index ? 'active icon-choosehandle iconfont' : ''}}"></view>
+      </view>
+    </view>
+    <view class="fz-34 text-center fc-0095D9" style="margin-bottom: 40rpx;">需充值{{ACT.shouldMoney_ceil}}元</view>
+    <button type="primary" hover-class="hoverClass" 
+            onTap="clickPayEvent"
+            class="fz-34 fc-ffffff bg-0095D9" style="width: 559rpx;height: 94rpx;line-height: 94rpx;border-radius: 9rpx;margin:0 auto;"
+              >刷脸支付</button>
+  </view>
+  <view a:else class="text-center fz-28">暂时没有充值套餐</view>
+</view>

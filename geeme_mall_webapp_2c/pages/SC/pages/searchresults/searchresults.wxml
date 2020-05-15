@@ -1,0 +1,11 @@
+<AppSearch placeholder="搜索门店名称" value="{{keyword}}" bind:confirm="confirm"></AppSearch>
+
+<block wx:if="{{list.length}}">
+  <view class='storeList'>
+    <List list="{{list}}" latitude="{{latitude}}" longitude="{{longitude}}" />
+  </view>
+</block>
+
+<block wx:else>
+  <AppDefault image="/images/default/default_search.png" text="没有搜索到相关信息哦" />
+</block>

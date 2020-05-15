@@ -1,0 +1,20 @@
+@import '/utils/wxss/base.wxss';
+
+.ev-imgs {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 14rpx;
+}
+
+.imgs-item {
+  width: 168rpx;
+  height: 168rpx;
+  margin-right: 30rpx;
+  margin-bottom: 40rpx;
+  background: #000000;
+}
+
+.imgs-item:nth-child(3n) {
+  margin-right: 0;
+}

@@ -1,0 +1,12 @@
+<view class="wuhuan box_padding" style="padding: 100rpx 25rpx 0;">
+  <view class="flex_box">
+    <view class="flex_box flex_column" style="width: 150rpx;justify-content: center;margin-right:80rpx;" onTap="goOrder">
+      <image mode="scaleToFill" src="/static/imgs/allsearch.png" class="icon"/>
+      <text class="fz-26 fc-8D8E98 text-center">订单明细</text>
+    </view>
+    <view class="flex_box flex_column" style="width: 150rpx;justify-content: center;" onTap="logout">
+      <view class="iconfont icon-zhuxiao fz-48" style="display: block;width: 54rpx;height: 56rpx;margin: 0 auto 18rpx;color: #FC4995;"></view>
+      <text class="fz-26 fc-8D8E98 text-center">注销</text>
+    </view>
+  </view>
+</view>

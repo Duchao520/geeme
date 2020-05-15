@@ -1,0 +1,40 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<moveBox flag="{{true}}" title="会员卡充值" bindclose="close">
+  <view slot="timeContent" class='cardContent'>
+    <view class='m-cardImgBox'>
+      <view class='card' style='background-image:url({{format.getImageUrl(info.cardCover + "?x-oss-process=image/resize,m_fill,h_114,w_180")}})'>
+        <view class='card-title'>
+          <image class='card-logo' src="{{logo + '?x-oss-process=image/resize,m_lfit,h_60,w_60'}}" mode='aspectFill' lazy-load></image>
+          <text class='card-name'>{{info.cardName}}</text>
+        </view>
+        <view class='card-info'>
+          <view class='card-effect' wx:if="{{info.cardType === 1}}">
+            <text>赠{{info.cardGiftNum}}元</text>
+          </view>
+          <view class='card-price'>¥{{info.cardType === 1 ? info.cardFirstRechargeNum : info.cardPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='m-Money'>
+      <view class='m-currentMoney'>
+        当前金额
+        <text>¥{{info.cardType === 1 ? info._balance : info.cardPrice}}<text>（含赠送金¥{{info.giftMoney}}）</text></text>
+      </view>
+      <view class='m-payMoney'>
+        <view class='m-payMoneyTitle'>充值金额</view>
+        <!-- 选择金额 -->
+        <picker mode="selector" range='{{rechargeRules}}' range-key='{{info.cardType == 0 ? "cardPrice" : "cardRechargeNum"}}' value='{{index}}' bindchange='bindPickerChange'>
+          <view class='m-payMoneyNumber'>
+            <view class='m-p-left'>￥{{info.cardType === 1 ? currentRule.cardRechargeNum : currentRule.cardPrice}}</view>
+            <view class='m-p-right arrow--right'></view>
+          </view>
+        </picker>
+      </view>
+      <view class='m-cardDes'>
+        <text wx:if="{{info.cardType == 1}}">赠送金： ￥{{currentRule.cardGiftNum}}</text>
+        <text>充值后有效期： ￥{{validTime}}</text>
+      </view>
+    </view>
+  </view>
+  <view slot="timeBottom" class='cardBottom' bindtap='toPay'>去支付</view>
+</moveBox>

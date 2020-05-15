@@ -1,0 +1,159 @@
+<view style="position:relative;" wx:if="{{CUSTOMER_SELLER}}">
+  <!-- 总计统计 -->
+  <view class="head">
+    <view class="totalModel">
+      <view class="pos-r fz-26 fc-ffffff" bindtap="navigateToDetailIncome">收入明细
+        <view class="fz-20 iconfont iconyoujiantou" style="margin-left: 8rpx;"></view>
+      </view>
+      <view class="fz-22 fc-ffffff">累计已分红(元)</view>
+      <view class="fz-60 fc-ffffff" style="margin: 0 8rpx 18rpx 0;">{{allBonus ? allBonus : '0'}}</view>
+      <view class="flex_box justify_space_between fc-ffffff box_padding" style="padding: 0 30rpx;">
+        <view>
+          <view class="fz-30">
+            <text class="iconfont iconrenminbidanjia fz-24"></text>{{expectedBonus ? expectedBonus : '0'}}</view>
+          <view class="fz-24">预估待分红</view>
+        </view>
+        <view class="line"></view>
+        <view>
+          <view class="fz-30">
+            <text class="iconfont iconrenminbidanjia fz-24"></text>{{lastMonthExpectedBonus ? lastMonthExpectedBonus : '0'}}</view>
+          <view class="fz-24">上月预估分红</view>
+        </view>
+        <view class="line"></view>
+        <view>
+          <view class="fz-30">
+            <text class="iconfont iconrenminbidanjia fz-24"></text>{{currentMonthExpectedBonus ? currentMonthExpectedBonus : '0'}}</view>
+          <view class="fz-24">本月预估分红</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex_box justify_space_between box_padding" style="padding: 48rpx 60rpx;">
+      <view bindtap="navigateToPromoteGoods">
+        <image class="icon" src="../../images/icon_rackback_goods.png"></image>
+        <view class="fz-26 fc-333333">投资保证金</view>
+      </view>
+      <view bindtap="navigateToCustomer">
+        <image class="icon" src="../../images/icon_rackback_customer.png"></image>
+        <view class="fz-26 fc-333333">我的客户</view>
+      </view>
+      <view bindtap="navigateToMyAgent">
+        <image class="icon" src="../../images/icon_rackback_sale.png"></image>
+        <view class="fz-26 fc-333333">介绍的股东</view>
+      </view>
+      <view bindtap="navigateToRank">
+        <image class="icon" src="../../images/icon_rackback_ranking.png"></image>
+        <view class="fz-26 fc-333333">排行榜</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 股东分红明细 -->
+  <view class="box_padding" style="padding: 40rpx;">
+    <view class="flex_box justify_space_between align_center" style="margin-bottom: 40rpx;" bindtap="navigateToAgentDetail">
+      <view class="fz-36 fc-333333 font-weight">股东分红明细</view>
+      <view class="arrow--right recommended-icon" style="height: 30rpx;"></view>
+    </view>
+    <AppOptions options="{{options}}" bind:switch="switchBouns"></AppOptions>
+    <view class="total-detail flex_box align_center" style="margin-top : 40rpx;">
+      <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+        <view style="width: 210rpx;">
+          <view class="fz-36 text-center font-weight">
+            <text class="iconfont iconrenminbidanjia fz-26"></text>{{bouns.expectedAllBonus ? bouns.expectedAllBonus : 0}}</view>
+          <view class="fz-24 text-center fc-666666">预估分红总额</view>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view>
+        <view style="width: 210rpx;height: 80rpx;margin-bottom: 60rpx;" class="flex_box align_center">
+          <view style="width: 210rpx;">
+            <view class="fz-36 text-center font-weight">{{bouns.consumerCount ? bouns.consumerCount : 0}}</view>
+            <view class="fz-24 text-center fc-666666">付款客户数</view>
+          </view>
+          <view class="line"></view>
+        </view>
+        <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+          <view style="width: 210rpx;">
+            <view class="fz-36 text-center font-weight">
+              <text class="iconfont iconrenminbidanjia fz-26"></text>{{bouns.consumeReceived ? bouns.consumeReceived : 0}}</view>
+            <view class="fz-24 text-center fc-666666">付款订单金额</view>
+          </view>
+          <view class="line"></view>
+        </view>
+      </view>
+      <view>
+        <view style="width: 210rpx;height: 80rpx;margin-bottom: 60rpx;" class="flex_box align_center">
+          <view style="width: 210rpx;">
+            <view class="fz-36 text-center font-weight">{{bouns.orderCount ? bouns.orderCount : 0}}</view>
+            <view class="fz-24 text-center fc-666666">付款订单数</view>
+          </view>
+        </view>
+        <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+          <view style="width: 210rpx;">
+            <view class="fz-36 text-center font-weight">
+              <text class="iconfont iconrenminbidanjia fz-26"></text>{{bouns.allBonus ? bouns.allBonus : 0}}
+            </view>
+            <view class="fz-24 text-center fc-666666">已结算提成</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 介绍股东奖励明细 -->
+  <view class="box_padding" style="padding: 40rpx;">
+    <view class="flex_box justify_space_between align_center" style="margin-bottom: 40rpx;" bindtap="navigateToInviteDetail">
+      <view class="fz-36 fc-333333 font-weight">介绍股东奖励明细</view>
+      <view class="arrow--right recommended-icon" style="height: 30rpx;"></view>
+    </view>
+    <AppOptions options="{{options}}" bind:switch="switchInvite"></AppOptions>
+    <view class="total-detail flex_box align_center" style="margin-top : 40rpx;">
+      <view style="width: 160rpx;height: 80rpx;" class="flex_box align_center">
+        <view style="width: 160rpx;">
+          <view class="fz-36 text-center font-weight">
+            <text class="iconfont iconrenminbidanjia fz-26"></text>{{invite.expectedAllReferralFee ? invite.expectedAllReferralFee : 0}}</view>
+          <view class="fz-24 text-center fc-666666">预估奖金总额</view>
+        </view>
+        <view class="line"></view>
+      </view>
+      <view>
+        <view style="width: 210rpx;height: 80rpx;margin-bottom: 60rpx;" class="flex_box align_center">
+          <view style="width: 210rpx;">
+            <view class="fz-36 text-center font-weight">{{invite.consumeShareholderCount ? invite.consumeShareholderCount : 0}}</view>
+            <view class="fz-24 text-center fc-666666">付款股东数</view>
+          </view>
+          <view class="line"></view>
+        </view>
+        <view style="width: 210rpx;height: 80rpx;" class="flex_box align_center">
+          <view style="width: 210rpx;">
+            <view class="fz-36 text-center font-weight">
+              <text class="iconfont iconrenminbidanjia fz-26"></text>{{invite.expectedAllBonus ? invite.expectedAllBonus : 0}}</view>
+            <view class="fz-24 text-center fc-666666">预估股东分红总额</view>
+          </view>
+          <view class="line"></view>
+        </view>
+      </view>
+      <view>
+        <view style="width: 240rpx;height: 80rpx;margin-bottom: 60rpx;" class="flex_box align_center">
+          <view style="width: 240rpx;">
+            <view class="fz-36 text-center font-weight">{{invite.orderCount ? invite.orderCount : 0}}</view>
+            <view class="fz-24 text-center fc-666666">介绍股东客户订单数</view>
+          </view>
+        </view>
+        <view style="width: 240rpx;height: 80rpx;" class="flex_box align_center">
+          <view style="width: 240rpx;">
+            <view class="fz-36 text-center font-weight">
+              <text class="iconfont iconrenminbidanjia fz-26"></text>{{invite.allReferralFee ? invite.allReferralFee : 0}}
+            </view>
+            <view class="fz-24 text-center fc-666666">已结算奖金</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <AppFooter></AppFooter>
+</view>
+
+<block wx:else>
+  <AppDefault image="/images/default/default_works.png" text="您暂未获得推广员资格"></AppDefault>
+</block>

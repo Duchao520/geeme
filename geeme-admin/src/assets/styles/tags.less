@@ -1,0 +1,24 @@
+@green: #A9D86E;
+@red: #F52D56;
+@yellow: #FFAC32;
+
+.tags (@bg){
+  user-select: none;
+  display: inline;
+  padding: 2px 6px;
+  background: @bg;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 10px;
+}
+
+.tags.red {
+  .tags(@red)
+}
+.tags.green {
+  .tags(@green)
+}
+.tags.yellow {
+  .tags(@yellow)
+}
+

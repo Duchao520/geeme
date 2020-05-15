@@ -1,0 +1,12 @@
+<scroll-view scroll-x>
+  <view class='staffListItems'>
+    <view class='staffListItem' wx:for="{{10}}" wx:key="{{index}}" bindtap='tostaffDetail'>
+      <image src='https://image-test.geeme.cn/images/908968d8eccb4728bcc697aba33dd148' class='staffAvatar'></image>
+      <view class='staffName'>刘一刀</view>
+      <view class='staffLevelName'>总监设计师</view>
+      <view class='RateBox'>
+        <Rate score="{{3}}"></Rate>
+      </view>
+    </view>
+  </view>
+</scroll-view>

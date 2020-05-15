@@ -1,0 +1,193 @@
+{
+	"name": "app",
+	"entry": [],
+	"children": [
+		{
+			"title": "操作台",
+			"name": "dashboard",
+			"permission": false,
+			"entry": [],
+			"children": []
+		},
+		{
+			"title": "商户管理",
+			"name": "merchant",
+			"permission": true,
+			"entry": [],
+			"children": [
+				{
+					"title": "商家列表",
+					"name": "merchantList",
+					"permission": true,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "新增试用",
+					"name": "trialMerchantList",
+					"permission": false,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "新购订单",
+					"name": "newMerchantList",
+					"permission": false,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "续费订单",
+					"name": "renewalMerchantList",
+					"permission": true,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "升级订单",
+					"name": "upgradeMerchantList",
+					"permission": true,
+					"entry": [],
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "供应商管理",
+			"name": "supplier",
+			"permission": true,
+			"entry": [],
+			"children": [
+				{
+					"title": "供应商列表",
+					"name": "supplierList",
+					"permission": true,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "新增试用",
+					"name": "trialSupplierList",
+					"permission": true,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "新购订单",
+					"name": "newSupplierList",
+					"permission": false,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "续费订单",
+					"name": "renewalSupplierList",
+					"permission": false,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "升级订单",
+					"name": "upgradeSupplierList",
+					"permission": false,
+					"entry": [],
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "设置中心",
+			"name": "setting",
+			"permission": true,
+			"entry": [],
+			"children": [
+				{
+					"title": "个人中心",
+					"name": "settingPerson",
+					"permission": true,
+					"entry": [],
+					"children": [
+						{
+							"title": "基本资料",
+							"name": "basicInfo",
+							"permission": true,
+							"entry": [],
+							"children": []
+						},
+						{
+							"title": "账户安全",
+							"name": "accountSecurity",
+							"permission": true,
+							"entry": [],
+							"children": []
+						},
+						{
+							"title": "修改密码",
+							"name": "changePassword",
+							"permission": true,
+							"entry": [],
+							"children": []
+						}
+					]
+				},
+				{
+					"title": "组织架构",
+					"name": "settingOrganization",
+					"permission": true,
+					"entry": [],
+					"children": [
+						{
+							"title": "架构设置",
+							"name": "settingArchitecture",
+							"permission": true,
+							"entry": [],
+							"children": []
+						},
+						{
+							"title": "职务设置",
+							"name": "settingPosition",
+							"permission": true,
+							"entry": [],
+							"children": []
+						},
+						{
+							"title": "权限管理",
+							"name": "settingPermission",
+							"permission": true,
+							"entry": [],
+							"children": []
+						}
+					]
+				},
+				{
+					"title": "软件定价",
+					"name": "settingPricing",
+					"permission": false,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "提成设置",
+					"name": "settingCommission",
+					"permission": true,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "编码规则",
+					"name": "settingEncoding",
+					"permission": true,
+					"entry": [],
+					"children": []
+				},
+				{
+					"title": "素材库",
+					"name": "settingMaterial",
+					"permission": false,
+					"entry": [],
+					"children": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,106 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<import src="../../../../template/OrderPreference/OrderPreference.wxml" />
+<block wx:if="{{format.IF(info)}}">
+  <view class="productOrderDetail">
+    <!-- 状态组件 -->
+    <ProductOrderDetailStatus wx:if="{{format.IF(info)}}" info="{{info}}" isProduct="{{true}}"></ProductOrderDetailStatus>
+    <!-- 服务模块 -->
+    <view class='serviceModule'>
+      <view class='serviceItem'>
+        <view class='serviceItem-left'>
+          <image src='{{format.getImageUrl(info.image + "?x-oss-process=image/resize,m_fill,h_160,w_160")}}' mode="aspectFill" bindtap='toProductDetail' lazy-load></image>
+        </view>
+        <view class='serviceItem-right'>
+          <view class='serviceItemName' bindtap='toProductDetail'>{{info.title}}</view>
+          <view class='serviceItemSpecification'>{{info.specificationName}}</view>
+          <view class='serviceItemPriceInfo'>
+            <view class='serviceItemPriceInfo-price'>
+              <text>￥</text>{{info.unitPrice}}</view>
+            <view class='serviceItemPriceInfo-count'>X{{info.amount}}</view>
+          </view>
+        </view>
+        <!-- <view class="productSpecification" bindtap="toProductSpecification" wx:if="{{!info.newRecord}}">商品快照</view> -->
+      </view>
+    </view>
+
+    <!-- 订单优惠信息 -->
+    <template is="OrderPreference" data="{{info}}" />
+
+    <!-- 门店信息模块 -->
+    <block wx:if="{{format.IF(info.selfPickUp)}}">
+      <view class='storeModule'>
+        <view class='storeModule-left'>
+          提货门店
+        </view>
+        <view class='storeModule-right'>
+          <view class='storeAddress text--ellipsis_2'>{{format.getCity(info.city)}} {{format.getArea(info.area)}}{{info.storeName}}（{{info.address}}）</view>
+          <view class='storePhone'>{{info.hotline}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="addressCard-container">
+        <view class="address-card">
+          <view class="card-left">
+            <view class="icon icon--address_big"></view>
+          </view>
+          <view class="card-main">
+            <view class="card-line-1">
+              <text style="color:#1f1f1f;">{{info.consignee}}</text>
+              <text style="color:#555">{{format.encriptPhone(info.consigneePhone)}}</text>
+            </view>
+            <view class="card-line-2">
+              <text space="emsp" decode selectable>{{info.consigneeAddress}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{format.IF(logistics)}}" class="addressCard-container" style="background:#f8f8f8;padding-top:20rpx;">
+        <view class="address-card" style="background:#fff">
+          <view class="card-left">
+            <view class="icon icon--logistics" style="width:32rpx;height:28rpx;left:28rpx;top:40rpx"></view>
+          </view>
+          <view class="card-main">
+            <view class="card-line-1">
+              <text style="color:#1f1f1f;">{{logistics.logisticsCompany}}</text>
+            </view>
+            <view class="card-line-2">
+              <text>{{logistics.trackingNum}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 我的评价 -->
+    <view class='evaluationModule' wx:if="{{info.orderStatus === 'FINISHED'}}">
+      <view class='evaluationContent' bindtap='jumpMyEvaluation'>
+        <text>我的评价</text>
+        <view class='arrow--right'></view>
+      </view>
+    </view>
+
+    <!-- 编号模块 -->
+    <view class='codeModule'>
+      <view class='codeContent'>
+        <ProductOrderDetailCode info="{{info}}"></ProductOrderDetailCode>
+        <view class='notes'>备注：
+          <text>{{info.customerNote || '无'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮模块 -->
+  <view class='bottom-button-container'>
+    <block wx:if="{{info.orderStatus != 'GROUP_BUY_WAIT'}}">
+      <ProductOrderListButtons info="{{info}}"></ProductOrderListButtons>
+    </block>
+    <block wx:else>
+      <view class="groupBuy-left">
+        立即邀请好友拼单
+      </view>
+      <GroupOrder_Button info="{{info}}" style="float:right;margin-right:24rpx;" />
+    </block>
+  </view>
+</block>

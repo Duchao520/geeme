@@ -1,0 +1,12 @@
+<wxs src="../../../utils/format.wxs" module="format"></wxs>
+<view class='worksCard' data-id="{{item.id}}" bindtap='toDynamicDetail'>
+  <image class='w-image' src='{{format.getImageUrl(item.photos[0])}}' mode="widthFix"></image>
+  <view class='w-dsc'>{{item.description}}</view>
+  <view class='hairinfo'>
+    <image class='h-avatar' src='{{format.getImageUrl(item.weStaffSimpleUserInfo ? item.weStaffSimpleUserInfo.headPortrait : item.weSimpleUserInfo.headPortrait)}}' mode='aspectFill'></image>
+    <view class='h-name'>{{item.weStaffSimpleUserInfo ? item.weStaffSimpleUserInfo.nickName : item.weSimpleUserInfo.nickName}}</view>
+  </view>
+  <view class='type'>
+    <view class='type-item' wx:for="{{item.tagNames}}" wx:key="{{index}}" wx:for-item="tagItem">#{{tagItem}}</view>
+  </view>
+</view>

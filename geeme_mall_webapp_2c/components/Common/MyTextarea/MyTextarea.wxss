@@ -1,0 +1,24 @@
+.my-class {
+  height:240rpx;
+  padding:20rpx 28rpx;
+  background-color: #f8f8f8;
+  font-size: 28rpx;
+}
+
+.textarea{
+  line-height:1.2;
+  width:100%;
+  height:100%;
+}
+
+.view{
+  line-height:1.2;
+  width:100%;
+  height:100%;
+  overflow: scroll;
+  
+}
+
+.view.placeholder{
+  color:#aaa;
+}

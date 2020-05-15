@@ -1,0 +1,45 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="payVipCard">
+  <!-- 卡项主体 -->
+  <view class='cardContent'>
+    <view class='card-container'>
+      <view class='card' style='background-image:url({{format.getImageUrl(info.cardCover + "?x-oss-process=image/resize,m_fill,h_228,w_360")}})'>
+        <view class='card-title'>
+          <image class='card-logo' lazy-load src="{{logo + '?x-oss-process=image/resize,m_lfit,h_46,w_46'}}" mode='aspectFill'></image>
+          <text class='card-name'>{{info.cardName}}</text>
+        </view>
+        <view class='card-info'>
+          <view class='card-effect' wx:if="{{info.cardType === 1}}">
+            <text>赠{{info.cardGiftNum}}元</text>
+          </view>
+          <view class='card-price'>¥{{info.cardType === 1 ? info.cardFirstRechargeNum : info.cardPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='totalPrice'>
+      <view class='totalText'>合计金额</view>
+      <view class='totalPriceItem'>
+        <text style='font-size:22rpx'>￥</text>{{totalCharge}}</view>
+    </view>
+  </view>
+  <!-- 支付方式 -->
+  <view class='pay'>
+    <view class='pay-header'>选择支付方式 </view>
+    <view class='pay-body'>
+      <view class='payitem'>
+        <view class='itemicon'></view>
+        <view class='itemname'>微信支付</view>
+        <view class='itemselected'></view>
+        <view class='itemselectedno' wx:if="{{5>6}}"></view>
+      </view>
+    </view>
+    <view class='pay-footer'>订单已生成，请在24小时内完成支付，否则订单将自动关闭。</view>
+  </view>
+
+  <!-- 确认支付按钮 -->
+  <view class='btnitem' bindtap='pay'>
+    确认支付
+  </view>
+
+
+</view>

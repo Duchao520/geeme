@@ -1,0 +1,72 @@
+@import '/utils/wxss/icon.wxss';
+.experience-page{
+  padding-bottom:200rpx;
+}
+
+.exp-container{
+
+}
+
+.exp-row{
+  padding:22rpx 32rpx 0;
+}
+
+.row-title{
+  color:#666;
+  font-size:24rpx;
+}
+
+.row-input{
+  height:90rpx;
+  line-height:90rpx;
+  color:#333;
+  font-size:36rpx;
+  border-bottom: 0.5px solid #d5d5d5;
+  background: no-repeat right center;
+  background-size:12rpx 16rpx;
+}
+
+.exp-row:last-child > .row-input{
+  border:none;
+}
+
+.row-input > input{
+  height: 100%;
+}
+
+.experience-add{
+  margin:40rpx auto;
+  width: 690rpx;
+  height:120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  color:#333;
+  font-size:32rpx;
+  border: 0.5px dashed #c7cad1;
+}
+
+.experience-add > text{
+  display: inline-block;
+  padding-left:50rpx;
+  background: no-repeat left center;
+  background-size:30rpx 30rpx;
+}
+
+.picker{
+  
+}
+
+.picker.placeholder{
+  color:#ccc;
+}
+
+.line{
+  height:20rpx;
+  background-color:#f8f8f8;
+}
+
+.line.last{
+  margin:0 30rpx;
+  height:.5px;
+  background: #d5d5d5;
+}

@@ -1,0 +1,27 @@
+/* pages/VIP//pages/VipCardManagement/VipCardManagement.wxss */
+@import '../UserVipCard/UserVipCard.wxss';
+
+.card {
+  margin: 48rpx 60rpx 80rpx !important;
+}
+
+.card-number {
+  max-width: 300rpx !important;
+}
+
+/* 会员卡操作 */
+.card-management {
+  width: 684rpx;
+  height: 96rpx;
+  border-bottom: 2rpx solid #EFEFF4;
+  margin: 0 auto;
+}
+
+.card-management-text {
+  flex: 1;
+}
+.card-management-image {
+  width: 12rpx;
+  height: 100%;
+  background: no-repeat center center/100% auto;
+}

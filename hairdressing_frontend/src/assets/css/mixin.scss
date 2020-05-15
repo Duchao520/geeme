@@ -1,0 +1,97 @@
+@import './theme.scss';
+@mixin box-sizing($sizing...) {
+    box-sizing: $sizing;
+    -webkit-box-sizing: $sizing;
+    -ms-box-sizing: $sizing;
+    -moz-box-sizing: $sizing;
+    -o-box-sizing: $sizing;
+}
+
+@mixin display-flex($val...) {
+    display: $val;
+    display: -webkit-$val;
+    display: -ms-$val;
+    display: -moz-$val;
+    display: -o-$val;
+}
+
+@mixin flex($val...) {
+    flex: $val;
+    -webkit-flex: $val;
+    -ms-flex: $val;
+    -moz-flex: $val;
+    -o-flex: $val;
+}
+
+@mixin border-radius($val...) {
+    border-radius: $val;
+    -webkit-border-radius: $val;
+    -ms-border-radius: $val;
+    -moz-border-radius: $val;
+    -o-border-radius: $val;
+}
+
+@mixin transformxy($left, $top) {
+    transform: translate($left, $top);
+    -webkit-transform: translate($left, $top);
+    -moz-transform: translate($left, $top);
+    -ms-transform: translate($left, $top);
+    -o-transform: translate($left, $top);
+}
+
+@mixin box-shadow-card($val...) {
+    box-shadow: 0px 0px 8px 0px rgba(174, 184, 229, 0.3);
+}
+
+// 文字超出...显示
+@mixin word-dot() {
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin scroll() {
+    /*滚动条样式*/
+    &::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 0px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    &::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+        background: rgba(0, 0, 0, 0);
+    }
+    &::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0);
+    }
+}
+
+// 横向为0的滚动条
+@mixin scroll-y($val...) {
+    /*滚动条样式*/
+    &::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: $val;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        height: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.1);
+    }
+    &::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.1);
+    }
+}

@@ -1,0 +1,5 @@
+<view class="FilterSingle {{flagTwo?'active':''}}">
+  <view class='FilterSingleItem {{index==currentIndex?"active":""}}' data-index="{{index}}" data-name="{{item}}" wx:for="{{listTwo}}" wx:key="{{index}}" bindtap='setTwoCurrent'>
+      {{item}}
+  </view>
+</view>

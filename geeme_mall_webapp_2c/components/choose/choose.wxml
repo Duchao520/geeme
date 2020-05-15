@@ -1,0 +1,199 @@
+<!--components/choose/choose.wxml-->
+<view class='choose'>
+  <view class='choose-head'>
+      <view class='ch-line' style='transform: translateX({{157*show}}rpx); '></view>
+
+    <view class='ch-people {{show==1?"active":""}}' bindtap='jumpchoose' data-index="1">
+      选发型师
+    </view>
+    <view class='ch-people {{show==2?"active":""}}' bindtap='jumpchoose' data-index="2">先选时间</view>
+    <view class='ch-people {{show==3?"active":""}}' bindtap='jumpchoose' data-index="3">先看作品</view>
+  </view>
+  <!-- show为1的时候 -->
+
+  <block wx:if="{{show == 1}}">
+    <view class='choose-search'>
+      <view class="searchbox">
+        <view class='sc-icon'></view>
+        <input class='sc-input' placeholder='搜索发型师昵称'></input>
+      </view>
+
+      <view class='search-all'>
+        <view class='search-all-text'>全部</view>
+        <view class='all-icon'></view>
+      </view>
+    </view>
+
+    <view class='choose-content' wx:if="{{show == 1}}">
+      <view class='choose-item'>
+        <view class='ci-left'>
+          <view class='peo-avatar'></view>
+          <!-- // -->
+          <view class='rb-starus'>未关注</view>
+          <view class='rb-starus-false' wx:if="{{a>6}}">已关注</view>
+          <!-- // -->
+        </view>
+        <view class='ci-right'>
+          <view class='cr-info'>
+            <view class='cr-name'>刘一刀</view>
+            <view class='cr-price'>
+              <view class="text">剪发价</view>
+              <text class='cr-price-text'>￥68</text>
+            </view>
+          </view>
+          <view class='cr-level'>
+            <view class='level-name'>总监设计师</view>
+            <view class='level-store'></view>
+          </view>
+          <view class='cr-address'>
+            <view class='address-icon'></view>
+            <view class='address-text'>杭州市春路店</view>
+          </view>
+          <view class='cr-success'>
+            <view class='cs-title'>擅长</view>
+            <view class='cs-item'>日式短发</view>
+            <view class='cs-item'>短发</view>
+          </view>
+          <scroll-view scroll-x>
+            <view class='cr-show'>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+              <image src='' class='show-img'></image>
+            </view>
+          </scroll-view>
+          <view class='cr-btn'>
+            预约
+          </view>
+
+        </view>
+
+      </view>
+    </view>
+  </block>
+  <!-- show为2的时候 -->
+  <block wx:if="{{show == 2}}">
+      <view class='choose-time'>
+        <view class='ct-head'>
+          <view class='cth-item active'>
+            <text class='cth-text1'>今天</text>
+            <text class='cth-text2'>12/2</text>
+          </view>
+
+          <view class='cth-item '>
+            <text class='cth-text1'>周一</text>
+            <text class='cth-text2'>12/2</text>
+          </view>
+
+          <view class='cth-item '>
+            <text class='cth-text1'>周二</text>
+            <text class='cth-text2'>12/2</text>
+          </view>
+
+          <view class='cth-item '>
+            <text class='cth-text1'>周三</text>
+            <text class='cth-text2'>12/2</text>
+          </view>
+
+            <view class='cth-item '>
+            <text class='cth-text1'>周四</text>
+            <text class='cth-text2'>12/2</text>
+          </view>
+        </view>
+
+        <view class='ct-body'>
+          <view class='ctb-item outtime'>
+            10:00
+          </view>
+
+           <view class='ctb-item outtimepeople'>
+            10:30
+          </view>
+
+           <view class='ctb-item outpeople'>
+            11:00
+          </view>
+
+           <view class='ctb-item normal'>
+            11:30
+          </view>
+
+           <view class='ctb-item'>
+            12:00
+          </view>
+
+           <view class='ctb-item'>
+            12:30
+          </view>
+
+           <view class='ctb-item'>
+            13:00
+          </view>
+
+           <view class='ctb-item'>
+            13:30
+          </view>
+
+           <view class='ctb-item'>
+            14:00
+          </view>
+
+           <view class='ctb-item'>
+            14:30
+          </view>
+
+           <view class='ctb-item'>
+            15:00
+          </view>
+           <view class='ctb-item'>
+            15:30
+          </view>
+           <view class='ctb-item'>
+            16:00
+          </view>
+           <view class='ctb-item'>
+            16:30
+          </view>
+           <view class='ctb-item'>
+            17:00
+          </view>
+           <view class='ctb-item'>
+            17:30
+          </view>
+            <view class='ctb-item'>
+            18:00
+          </view>
+           <view class='ctb-item'>
+            18:30
+          </view>
+           <view class='ctb-item'>
+            19:00
+          </view>
+           <view class='ctb-item'>
+            19:30
+          </view>
+            <view class='ctb-item'>
+            20:00
+          </view>
+           <view class='ctb-item'>
+            20:30
+          </view>
+           <view class='ctb-item'>
+            21:00
+          </view>
+           <view class='ctb-item'>
+            21:30
+          </view>
+        </view>
+      </view>
+  </block>
+
+  <!-- show为3的时候 -->
+  <block wx:if="{{show == 3}}"></block>
+
+</view>

@@ -1,0 +1,154 @@
+/* 以下重写组件中的样式 */
+.AppTabs-tabs-container{
+  height:49.5rpx !important;
+  line-height:49.5rpx !important;
+  font-size:12.6rpx !important;
+}
+
+.AppTabs-tabs-item > .hiddenLine{
+  width:21.6rpx !important;
+  height:1.8rpx !important;
+}
+
+.AppTabs-activeLine{
+  top:47.3rpx !important;
+  width:21.6rpx !important;
+  height:2px !important;
+}
+
+.DateTitleItem{
+  font-size: 12.6rpx !important;
+}
+.DateTitleItem-week{
+  margin-bottom: 4.5rpx !important;
+}
+
+.DateHeadContailer{
+  padding: 9rpx 50rpx 9rpx 13.5rpx !important;
+}
+.canenderIcon{
+  width: 24rpx !important;
+  height: 24rpx !important;
+  right: 0 !important;
+}
+/* 以上重写组件中的样式 */
+
+page{
+  font-size: 12.6rpx;
+}
+
+.c9{
+  color:#999;
+}
+
+.red{
+  color:#f52d56;
+}
+
+.page-container{
+  padding: 0 40.5rpx 36rpx;
+}
+
+.page-tabs{
+  background-color: #f8f8f8;
+}
+
+.page-tabs > view:nth-child(2){
+  margin-right: 140rpx;
+}
+
+.page-tabs > view:nth-child(1){
+  float:right;
+  width: 120rpx;
+  padding: 9rpx 13.5rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: #666666;
+  background-color: #f8f8f8;
+  font-size:12.6rpx;
+}
+
+.page-tabs > view:nth-child(3) > view{
+  display: inline-block;
+}
+
+.date-range > view:first-child{
+  margin-bottom: 4.5rpx;
+}
+
+.page-table{
+  margin-top: 18rpx;
+  font-size: 10.8rpx;
+}
+
+.table-row{
+  padding: 9rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-row.title{
+  color: #999;
+}
+
+.table-row.total{
+  font-size: 11.7rpx;
+}
+
+.table-row:nth-child(2n){
+  background-color: #f8f8f8;
+}
+
+.table-row > view{
+  flex-grow:1;
+}
+
+/* 服务时间 */
+.table-row > .r1{
+  width: 83rpx;
+  padding-left:11.7rpx;
+}
+/* 服务项目名称 */
+.table-row > .r2{
+  width: 90rpx;
+  padding-right:13.5rpx;
+}
+/* 数量 */
+.table-row > .r3{
+  width: 36rpx;
+}
+/* 实收金额 */
+.table-row > .r4{
+  width: 57.6rpx;
+}
+/* 支付方式 */
+.table-row > .r5{
+  width: 73rpx;
+}
+/* 指定 */
+.table-row > .r6{
+  width: 45rpx;
+}
+/* 现金业绩 */
+.table-row > .r7{
+  width: 45rpx;
+}
+/* 劳动业绩 */
+.table-row > .r8{
+  width: 45rpx;
+}
+/* 提成比例 */
+.table-row > .r9{
+  width: 45rpx;
+}
+/* 提成 */
+.table-row > .r10{
+  width: 39.6rpx;
+}
+/* 消费分类 */
+.table-row > .r11{
+  width: 74rpx;
+}

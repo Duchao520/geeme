@@ -1,0 +1,51 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  function rank(index){
+    switch(index){
+      case 0: return '../../images/icon_rackback_tag01.png';
+      case 1: return '../../images/icon_rackback_tag02.png';
+      case 2: return '../../images/icon_rackback_tag03.png';
+      default: return index + 1;
+    }
+  }
+
+  function isTop(index){
+    switch(index){
+      case 0: return true;
+      case 1: return true;
+      case 2: return true;
+      default: return fasle;
+    }
+  }
+
+  module.exports = {
+    rank: rank,
+    isTop: isTop
+  }
+</wxs>
+<view class="box_padding" style="padding: 20rpx 40rpx;">
+  <AppOptions options="{{options}}" bind:switch="init"></AppOptions>
+</view>
+<view class="box_padding" style="padding: 0 16rpx;" wx:if="{{infoForPagedList.length > 0}}">
+  <view class="list-item flex_box align_center justify_space_between" wx:for="{{infoForPagedList}}" wx:key="index">
+    <view class="flex_box align_center">
+      <view style="width: 40rpx;margin-right: 26rpx;">
+        <image class="top3" src="{{wxs.rank(index)}}" wx:if="{{wxs.isTop(index)}}"></image>
+        <view class="fz-40 text-center" style="color: #FF0232;" wx:else>{{wxs.rank(index)}}</view>
+      </view>
+      <image class="thumb" src='{{format.getImageUrl(item.headPortrait + "?x-oss-process=image/resize,m_fill,h_100,w_100")}}' style="margin-right: 24rpx;"></image>
+      <view style="width: 248rpx;">
+        <view>
+          <text class="fz-26 fc-333333">{{item.brandCustomerNickName}}</text>
+          <text class="level">LV{{item.brandCustomerLevel}}</text>
+        </view>
+        <view class="fz-22 fc-666666">{{item.brandCustomerMobile}}</view>
+      </view>
+    </view>
+    <view>
+      <view class="fz-28 fc-000000" style="text-align: right;">¥{{item.myTakeBonus ? item.myTakeBonus : 0.00}}</view>
+      <view class="fz-20 fc-999999" style="text-align: right;">累计分红</view>
+    </view>
+  </view>
+</view>
+<AppDefault text="排行榜暂未公布~~" wx:else></AppDefault>

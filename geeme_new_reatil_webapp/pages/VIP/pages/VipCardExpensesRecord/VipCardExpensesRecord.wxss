@@ -1,0 +1,42 @@
+/* pages/VIP//pages/VipCardExpensesRecord/VipCardExpensesRecord.wxss */
+
+.space {
+  width: 750rpx;
+  height: 20rpx;
+  background: #F8F8F8;
+}
+.mgl6 {
+  margin-left: 6rpx;
+}
+
+.card-record {
+  width: 686rpx;
+  height: 176rpx;
+  margin: 0 auto;
+  border-bottom: 2rpx solid #EFEFF4;
+}
+.card-record-time {
+  width: 686rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+}
+.card-record-product {
+  width: 686rpx;
+  height: 80rpx;
+}
+.card-record-product image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 4rpx;
+}
+.card-record-product-info {
+  width: 586rpx;
+  height: 80rpx;
+  /* margin-left: 16rpx; */
+}
+.card-record-product-info-title, .card-record-product-info-addr {
+  width: 490rpx;
+}
+.card-record-product-info-amount {
+  width: 100rpx;
+}

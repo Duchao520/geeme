@@ -1,0 +1,86 @@
+.customerItem{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 24rpx 24rpx 24rpx 26rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 0 8rpx 0 rgba(174, 184, 229, .3);
+  position: relative;
+  margin-bottom: 40rpx;
+}
+.customerItem-l{
+  position: relative;
+}
+.customerItem image{
+   width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: black;
+  margin-right: 20rpx;
+}
+.customerSex{
+  width: 30rpx;
+  height: 30rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAb1BMVEUAAAD/gJP/fpH/fpL/fZH/fpL/fpL/fZL/gJP/fZH//////P3/9vf/rrv/hpj/gZT/6ez/l6f/7O//kqP/+Pn/0tj/zNT/wMn/ipz/8fP/4uf/4eX/2N7/vcf/prP/pbP/pLL/oK7/09r/xM3/iZuyTrNNAAAACXRSTlMAG2zz8tm2m04mD7MwAAAA5klEQVQoz31S25aDIAwUFJQB0apVe2939/+/cQONnry08wBhQjKQpGAobU1ZGqtVIaFqt6MWrqZyAlWz8Xrn1jGmTfP9jX4MAC4HsnKM2vLMwDR4+JayJZ1Nt0Ugqlu8p5iaApjvAu7ZWHChVe3KL/R8wyMmfbtnOrI1YHTOFoaPT5zZmrA6Z4qSj5FEOXSgtWTHde6uOCXPPeCRHSYLntAD8OcjbXNiDIuPAbgtHsifIVh+7mEC+jU+21fnMvT7gzGAkvyKEqt3Sf7Cj4u3UTRFFFGiUqLsEo1olIT+1Nqvw/BxfP4BuTITPyuR+eYAAAAASUVORK5CYII=) no-repeat center center/100% auto;
+  position: absolute;
+  right: 11rpx;
+  top: 0;
+}
+.customerItem-r{
+
+}
+.customerInfo{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.customerName{
+  color: #263238;
+  font-size: 34rpx;
+}
+.customerLevel{
+  width: 76rpx;
+  height: 34rpx;
+  background: #FAD685;
+  border-radius: 4rpx;
+  color: white;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 34rpx;
+}
+.customerMobile{
+  color: #333333;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.customerPhotoList{
+  height: 88rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.customerPhotoList image{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 8rpx;
+  background: black;
+  margin-right: 20rpx;
+}
+.customerPrice{
+  color: #999999;
+  font-size: 20rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 24rpx;
+}
+.customerPrice text{
+  color: #F52D56;
+  font-size: 44rpx;
+  font-weight: 600;
+
+}

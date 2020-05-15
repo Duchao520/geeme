@@ -1,0 +1,44 @@
+.center-menu__wrap {
+  .menu-list {
+    position: relative;
+    padding-bottom: 18px;
+    .menu-title {
+      cursor: pointer;
+      color: #333333;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 20px 20px 5px 20px;
+      .icon {
+        line-height: 16px;
+        font-size: 16px;
+        color: #333333;
+        font-weight: normal;
+        margin-right: 10px;
+      }
+    }
+    .menu-item {
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+      padding-left: 46px;
+      font-size: 14px;
+      &.current {
+        color: #E33443;
+      }
+      // padding: 10px 0 5px 20px;
+    }
+    &:after {
+      content: '';
+      width: 120px;
+      height: 1px;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      @include transformxy(-50%, 0);
+      background: #DCDFE6;
+    }
+    &:last-child:after {
+      display: none;
+    }
+  }
+}

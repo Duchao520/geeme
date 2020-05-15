@@ -1,0 +1,29 @@
+.des-container{
+  padding:0 32rpx;
+}
+
+.des-header{
+  color:#484848;
+  font-size:34rpx;
+  font-weight: 600;
+}
+
+.des-items{
+  margin-top:40rpx;
+  line-height:1.7;
+}
+
+.des-item{
+  position: relative;
+  font-size:28rpx;
+  padding-left:28rpx;
+  color:#666;
+}
+
+.des-item::before{
+  position: absolute;
+  left:0;
+  top:0;
+  content:'● ';
+  color:#000;
+}

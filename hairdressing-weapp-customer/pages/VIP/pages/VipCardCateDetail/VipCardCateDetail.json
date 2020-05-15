@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText":"超值推荐",
+  "usingComponents": {
+    "Masonry": "/components/Masonry/Masonry",
+    "VipDoubleCard": "/components/Card/VipDoubleCard/VipDoubleCard"
+  }
+}

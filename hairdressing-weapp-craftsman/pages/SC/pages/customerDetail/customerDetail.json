@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "AppTabs":"/components/App/AppTabs/AppTabs",
+    "Notes": "/components/notes/notes",
+    "Release": "/components/CircleWork/Release/Release"
+  },
+  "navigationBarTitleText": "美丽档案",
+  "navigationBarBackgroundColor": "#9061FF",
+  "navigationBarTextStyle": "white"
+}

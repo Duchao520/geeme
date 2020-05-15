@@ -1,0 +1,73 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs1">
+  function getDes(score) {
+    var desArr = ['很差', '差', '满意', '非常满意', '无可挑剔']
+    return desArr[score - 1]
+  }
+  module.exports.getDes = getDes
+</wxs>
+<template name="scoreDes">
+  <view class="item-score">
+    <view class="score-get" wx:for="{{score}}" wx:key="{{index}}"></view>
+    <view class="score-lose" wx:for="{{5 - score}}" wx:key="{{index}}"></view>
+  </view> 
+  <view class="item-des">{{wxs1.getDes(score)}}</view>
+</template>
+<!-- ~~~~~~~~~~~~~我是工具与页面wxml文档的分割线~~~~~~~~~~~~ -->
+<view class="evaluationDetail">
+  <!-- 头像 昵称 评价时间 -->
+  <view class="header">
+    <!-- <image class="header-portrait" src="{{format.getImageUrl(assessment.headPortrait)}}" mode='aspectFill'></image> -->
+    <AppAvatar style="display:inline-block;vertical-align:middle;margin-right:24rpx;" avatar="{{assessment.headPortrait}}" width="80rpx" />
+    <view class="header-text">
+      <view class="text-1">{{assessment.nickName}}</view>
+      <view class="text-2">{{format.getDate2(assessment.createTime)}}</view>
+    </view>
+  </view>
+  <!-- 评价 -->
+  <view class="assessment">
+    <view class="assessment-item overall">
+      <view class="item-title">总体评价</view>
+      <template is="scoreDes" data="{{score:assessment.totalScore}}"/>
+    </view>
+    <view class="assessment-seperate-container">
+      <view class="assessment-item">
+        <view class="item-title">{{assessment.goodsType == 'service' ? '专业度' : '商品质量'}}</view>
+        <template is="scoreDes" data="{{score:assessment.professionScore || assessment.productQuality}}"/>
+      </view>
+      <view class="assessment-item">
+        <view class="item-title">{{assessment.goodsType == 'service' ? '环境' : '发货速度'}}</view>
+        <template is="scoreDes" data="{{score:assessment.environmentScore || assessment.deliverSpeed}}"/>
+      </view>
+      <view class="assessment-item">
+        <view class="item-title">{{assessment.goodsType == 'service' ? '服务' : '快递物流'}}</view>
+        <template is="scoreDes" data="{{score:assessment.serviceScore || assessment.express}}"/>
+      </view>
+    </view>
+  </view>
+  <!-- 标签 -->
+  <view class="tags">
+    <view class="tags-item" wx:for="{{assessment.tagInfos}}" wx:key="{{index}}">{{item.tag}}</view>
+  </view>
+  <!-- 内容 -->
+  <view class="content">{{assessment.content}}</view>
+  <!-- 照片 -->
+  <view class="images">
+    <image wx:for="{{assessment.images}}" wx:key="{{index}}" src='{{format.getImageUrl(item)}}' mode='widthFix'></image>
+  </view>
+  <!-- 商家回复 -->
+  <view class='reply' wx:if="{{assessment.reply}}">商家回复：{{assessment.replyContent}}</view>
+  <!-- 服务/产品信息 -->
+  <view class="productInfo">
+    <image class='productInfo-image' mode='aspectFill' src='{{format.getImageUrl(assessment.serviceImg)}}'></image>
+    <view class='productInfo-right'>
+      <view class='right-1 text--ellipsis_2'>{{assessment.serviceTitle}}</view>
+      <view class='right-2'>
+        <text>{{format.getCity(assessment.city)}}{{assessment.storeName}}</text>
+      </view>
+      <view class='right-3'>
+        <text class='specialPrice'><text class='symbol'>¥</text>{{assessment.servicePrice}}</text>
+      </view>
+    </view>
+  </view>
+</view>

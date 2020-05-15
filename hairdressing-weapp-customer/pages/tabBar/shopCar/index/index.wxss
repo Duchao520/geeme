@@ -1,0 +1,47 @@
+page{
+}
+.list {
+  border-top: 20rpx solid #F8F8F8;
+  padding-left: 26rpx;
+}
+.storeLogo{
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.uncheckbox{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  border: 2rpx solid #AAAAAA;
+}
+.checkbox{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  color: #F52D56;
+}
+.submit{
+  width: 240rpx;
+  height: 120rpx;
+  background: #F52D56;
+  margin: 0;
+  text-align: center;
+  line-height: 120rpx;
+  color: #FFFFFF;
+  font-size: 34rpx;
+}
+.fixBottom{
+  background: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  box-sizing: none;
+  z-index: 2;
+
+}

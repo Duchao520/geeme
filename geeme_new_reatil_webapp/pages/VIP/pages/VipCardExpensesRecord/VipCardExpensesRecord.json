@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "会员卡消费记录",
+  "usingComponents": {
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

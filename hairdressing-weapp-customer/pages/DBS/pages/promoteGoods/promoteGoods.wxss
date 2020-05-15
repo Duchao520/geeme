@@ -1,0 +1,45 @@
+.container{
+  background: #F8F8F8;
+  box-sizing: border-box;
+  padding: 22rpx 32rpx;
+}
+.list-item {
+  width: 100%;
+  height: 232rpx;
+  margin-bottom: 28rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+  padding: 28rpx 24rpx;
+}
+.thumb{
+  display: block;
+  width: 176rpx;
+  height: 176rpx;
+  background: #e0e0e0;
+  border-radius: 8rpx;
+  margin-right: 22rpx;
+}
+.card-bg{
+  width: 176rpx;
+  height: 112rpx;
+  border-radius: 8rpx;
+  background-size: 100% 100%;
+  margin-right: 22rpx;
+  box-sizing: border-box;
+  padding: 14rpx 18rpx;
+}
+.detail{
+  width: 440rpx;
+  height: 176rpx;
+}
+.btn-default{
+  display: block;
+  width: 160rpx;
+  height: 46rpx;
+  border-radius: 22rpx;
+  line-height: 46rpx;
+  text-align: center;
+  margin: 0;
+  background: #F52D56;
+}

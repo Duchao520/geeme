@@ -1,0 +1,53 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="releaseIndex">
+  <!-- 图片模块 -->
+  <view class='releaseImageMoudle'>
+    <view class='releaseImageBox' wx:for="{{photos}}" wx:key="{{index}}">
+      <image src='{{format.getImageUrl(item)}}' bindtap='$previewImage' data-current="{{format.getImageUrl(item)}}" data-urls="{{format.getImageArr(photos)}}" mode="aspectFill"></image>
+      <view class='closeIcon icon--close' data-url="{{item}}" data-index="{{index}}" catchtap='deleteImage'></view>
+    </view>
+    <view class='addImage' catchtap='chooseImage' wx:if="{{photos.length<9}}">
+      <view class='cross'></view>
+      <view class='vertical'></view>
+    </view>
+  </view>
+  <!-- 文字模块 -->
+  <view class='releaseTextMoudle'>
+    <textarea placeholder='这一刻，想说点什么...' bindinput='inputText'></textarea>
+  </view>
+  <!-- 功能模块 -->
+  <view class='releaseTextFuncMoudle'>
+    <view class='funcAddLabel' bindtap='toreleaseAddLabel'>
+      <view class='funcAddLabel-1'>
+        <view class='funcLabelIcon funcLabelIcon-addLabel'></view>
+        <view class='funcLabelName'>添加标签</view>
+        <view class='moreIcon'></view>
+      </view>
+      <view class='funcAddLabel-2' wx:if="{{tagsNameList}}">
+        <text wx:for="{{tagsNameList}}" wx:key="{{index}}">#{{item}}</text>
+      </view>
+    </view>
+    <view class='funcAddLabel' wx:if="{{!fromOrder}}" bindtap='toreleaseRelatedProduct'>
+      <view class='funcAddLabel-1'>
+        <view class='funcLabelIcon funcLabelIcon-addProduct'></view>
+        <view class='funcLabelName'>关联商品</view>
+        <view class='moreIcon'></view>
+      </view>
+      <view class='funcAddLabel-2' wx:if="{{relateProductsImg}}">
+        <image wx:for="{{relateProductsImg}}" wx:key="{{index}}" src='{{format.getImageUrl(item)}}' mode='aspectFill'></image>
+      </view>
+    </view>
+    <view class='funcAddLabel' wx:if="{{!fromOrder}}" bindtap='jumpRelatedOrder'>
+      <view class='funcAddLabel-1'>
+        <view class='funcLabelIcon funcLabelIcon-addOrder'></view>
+        <view class='funcLabelName'>关联服务单</view>
+        <view class='moreIcon'></view>
+      </view>
+      <view class='funcAddLabel-2' wx:if="{{relateOrderImg}}">
+        <image wx:for="{{relateOrderImg}}" wx:key="{{index}}" src='{{format.getImageUrl(item)}}' mode='aspectFill'></image>
+      </view>
+    </view>
+  </view>
+  <!-- 发布按钮 -->
+  <view class='button' bindtap='clickRelease'>发布</view>
+</view>

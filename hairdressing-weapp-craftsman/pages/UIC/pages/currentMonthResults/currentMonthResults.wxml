@@ -1,0 +1,393 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function replaceName(serviceName) {
+    return serviceName.replace('-默认', '')
+  }
+
+  var payTypes = ['微信', '支付宝', '现金', '储值卡', '自定义', '次卡', '时间卡']
+
+  function getPayType(payType) {
+    return payTypes[payType]
+  }
+
+  module.exports = {
+    replaceName: replaceName,
+    getPayType: getPayType
+  }
+</wxs>
+<view class="currentMonthResults">
+  <AppTabs tabs="{{tabList}}" currentTab="{{currentTab}}" bindswitchTab="switchTab"></AppTabs>
+  <view class='DayReport' wx:if="{{currentTab == 0}}">
+    <DateHeadContainer calendarAction="{{2}}" start="{{date_60DayAgo}}" end="{{today}}" value="{{today}}" bind:selectDate="selectDate_infoByDay">
+      <DateHeadBefore bindsetCurrentDate="setCurrentDate" startDate="{{startDate_infoByDay}}"></DateHeadBefore>
+    </DateHeadContainer>
+    <!-- 日报数据预览 -->
+    <view class='dayDataShow'>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>{{infoByDay.serviceCustomerNum || 0}}</view>
+          <view class='dayShow-bottom'>服务客数</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByDay.totalCashPerformance || 0}}</view>
+          <view class='dayShow-bottom'>现金业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem' bindtap="jumpSalaryTable" data-type="service">
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByDay.laborPerformance || 0}}</view>
+          <view class='dayShow-bottom more'>劳动业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content' bindtap="jumpSalaryTable" data-type="product">
+          <view class='dayShow-top'>¥{{infoByDay.productSalesPerformance || 0}}</view>
+          <view class='dayShow-bottom more'>产品业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content' bindtap="jumpSalaryTable" data-type="card">
+          <view class='dayShow-top'>¥{{infoByDay.cardSalesPerformance || 0}}</view>
+          <view class='dayShow-bottom more'>售卡业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByDay.totalCommission || 0}}</view>
+          <view class='dayShow-bottom'>当日提成</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 劳动业绩 -->
+    <view class='dayDataDetail'>
+      <view class='dayDataDetailTitle arrow--right_black_big' bindtap="jumpSalaryTable" data-type="service">劳动业绩</view>
+      <view class='dayDataDetailContent'>
+        <!-- 每一列的名字 -->
+        <view class='infoByDay-line title'>
+          <view class="infoByDay-cell">服务项目</view>
+          <view class="infoByDay-cell">实收金额</view>
+          <view class="infoByDay-cell">支付方式</view>
+          <view class="infoByDay-cell">业绩</view>
+          <view class="infoByDay-cell">提成</view>
+        </view>
+        <!-- 每一列的内容 -->
+        <view class='infoByDay-line' wx:for="{{infoByDay.serviceList}}" wx:key="{{index}}">
+          <!-- 服务项目 -->
+          <view class='infoByDay-cell'>
+            <view>{{format.getDate5(format.getDate6(item.serviceTime))}}</view>
+            <view class='text--ellipsis_1'>{{wxs.replaceName(item.serviceName)}}</view>
+          </view>
+          <!-- 实收金额 -->
+          <view class='infoByDay-cell'>¥{{item.received || 0}}</view>
+          <!-- 支付方式 -->
+          <view class='infoByDay-cell c9'>{{wxs.getPayType(item.payType)}}</view>
+          <!-- 业绩 -->
+          <view class='infoByDay-cell c9'>¥{{item.totalPerformance || 0}}</view>
+          <!-- 提成 -->
+          <view class='infoByDay-cell red'>¥{{item.commission || 0}}</view>
+        </view>
+        <view class='infoByDay-line'>
+          <view class='infoByDay-cell'>合计</view>
+          <view class='infoByDay-cell'>¥{{format.getPrice(infoByDay.service_received)}}</view>
+          <view class='infoByDay-cell'></view>
+          <view class='infoByDay-cell'>¥{{infoByDay.laborPerformance || 0}}</view>
+          <view class='infoByDay-cell red'>¥{{format.getPrice(infoByDay.service_commission)}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 产品业绩 -->
+    <view class='dayDataDetail'>
+      <view class='dayDataDetailTitle arrow--right_black_big' bindtap="jumpSalaryTable" data-type="product">产品业绩</view>
+      <view class='dayDataDetailContent'>
+        <!-- 每一列的名字 -->
+        <view class='infoByDay-line title'>
+          <view class="infoByDay-cell">产品名称</view>
+          <view class="infoByDay-cell">实收金额</view>
+          <view class="infoByDay-cell">支付方式</view>
+          <view class="infoByDay-cell">业绩</view>
+          <view class="infoByDay-cell">提成</view>
+        </view>
+        <!-- 每一列的内容 -->
+        <view class='infoByDay-line' wx:for="{{infoByDay.productList}}" wx:key="{{index}}">
+          <!-- 产品名称 -->
+          <view class='infoByDay-cell'>
+            <view>{{item.productName}}
+              <text style="color:#999">{{item.specificSnapName === '默认' ? '' : '-' + item.specificSnapName}}</text>
+            </view>
+          </view>
+          <!-- 实收金额 -->
+          <view class='infoByDay-cell'>¥{{item.received || 0}}</view>
+          <!-- 支付方式 -->
+          <view class='infoByDay-cell c9'>{{wxs.getPayType(item.payType)}}</view>
+          <!-- 业绩 -->
+          <view class='infoByDay-cell c9'>¥{{item.totalPerformance || 0}}</view>
+          <!-- 提成 -->
+          <view class='infoByDay-cell red'>¥{{item.commission || 0}}</view>
+        </view>
+        <view class='infoByDay-line'>
+          <view class='infoByDay-cell'>合计</view>
+          <view class='infoByDay-cell'>¥{{format.getPrice(infoByDay.product_received)}}</view>
+          <view class='infoByDay-cell'></view>
+          <view class='infoByDay-cell'>¥{{infoByDay.productSalesPerformance || 0}}</view>
+          <view class='infoByDay-cell red'>¥{{format.getPrice(infoByDay.product_commission)}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 售卡业绩 -->
+    <view class='dayDataDetail'>
+      <view class='dayDataDetailTitle arrow--right_black_big' bindtap="jumpSalaryTable" data-type="card">售卡业绩</view>
+      <view class='dayDataDetailContent'>
+        <!-- 每一列的名字 -->
+        <view class='infoByDay-line title'>
+          <view class="infoByDay-cell">卡项名称</view>
+          <view class="infoByDay-cell">实收金额</view>
+          <view class="infoByDay-cell">支付方式</view>
+          <view class="infoByDay-cell">业绩</view>
+          <view class="infoByDay-cell">提成</view>
+        </view>
+        <!-- 每一列的内容 -->
+        <view class='infoByDay-line' wx:for="{{infoByDay.cardList}}" wx:key="{{index}}">
+          <!-- 卡项名称 -->
+          <view class='infoByDay-cell'>
+            <view>{{item.cardName}}</view>
+            <view style="color:#999">{{item.operateType === 0 ? '开卡' : item.operateType === 1 ? '续卡' : '自由开卡'}}</view>
+          </view>
+          <!-- 实收金额 -->
+          <view class='infoByDay-cell'>¥{{item.received || 0}}</view>
+          <!-- 支付方式 -->
+          <view class='infoByDay-cell c9'>{{wxs.getPayType(item.payType)}}</view>
+          <!-- 业绩 -->
+          <view class='infoByDay-cell c9'>¥{{item.totalPerformance || 0}}</view>
+          <!-- 提成 -->
+          <view class='infoByDay-cell red'>¥{{item.commission || 0}}</view>
+        </view>
+        <view class='infoByDay-line'>
+          <view class='infoByDay-cell'>合计</view>
+          <view class='infoByDay-cell'>¥{{format.getPrice(infoByDay.card_received)}}</view>
+          <view class='infoByDay-cell'></view>
+          <view class='infoByDay-cell'>¥{{infoByDay.cardSalesPerformance || 0}}</view>
+          <view class='infoByDay-cell red'>¥{{format.getPrice(infoByDay.card_commission)}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推广业绩 -->
+    <!-- <view class='dayDataDetail'>
+          <view class='dayDataDetailTitle'>推广业绩</view>
+          <view class='dayDataDetailContent'>
+           
+            <view class='dayColumnName'>
+              <view class='dayColumnNameItem' wx:for="{{3}}" wx:key="{{index}}">推广项目</view>
+            </view>
+           
+            <view class='dayColumnContent'>
+              <view class='dayColumnLine {{index % 2 == 0?"active":""}}' wx:for="{{8}}" wx:key="{{index}}">
+                <view class='dayColumnTextService'>
+                  <view class='dayTime'>韩式半永久纹眉</view>
+                  <view class='dayService active'>1L</view>
+                </view>
+                <view class='dayColumnTextIncome'>¥198</view>
+                <view class='dayColumnTextCommission'>¥56.4</view>
+              </view>
+              <view class='dayColumnLine active' style="height:80rpx;">
+                <view class='dayService active' style=" flex:auto;">合计</view>
+                <view class='dayColumnTextIncome'>¥198</view>
+                <view class='dayColumnTextCommission'>¥56.4</view>
+              </view>
+            </view>
+          </view>
+        </view> -->
+
+
+  </view>
+  <view class='MonthReport' wx:if="{{currentTab == 1}}">
+    <DateHeadContainer calendarAction="{{2}}" fields="month" start="{{startMonth}}" end="{{currentMonth}}" value="{{currentMonth}}" bind:selectDate="selectDate_infoByMonth">
+      <MonthHeadBefore bindsetCurrentDate="setCurrentDate" startDate="{{startDate_infoByMonth}}"></MonthHeadBefore>
+    </DateHeadContainer>
+
+    <!-- 月报数据预览 -->
+    <view class='dayDataShow'>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>{{infoByMonth.serviceCustomerNum || 0}}</view>
+          <view class='dayShow-bottom'>服务客数</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByMonth.cashPerformance || 0}}</view>
+          <view class='dayShow-bottom'>现金业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByMonth.laborPerformance || 0}}</view>
+          <view class='dayShow-bottom'>劳动业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByMonth.productSalesPerformance || 0}}</view>
+          <view class='dayShow-bottom'>产品业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByMonth.cardSalesPerformance || 0}}</view>
+          <view class='dayShow-bottom'>售卡业绩</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{infoByMonth.totalCommission || 0}}</view>
+          <view class='dayShow-bottom'>当月提成</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 月报数据 -->
+    <view class='monthData'>
+      <view class='monthClomnName'>
+        <view class='monthClomnNameItem' wx:for="{{['日期','服务客数','劳动业绩','产品业绩','售卡业绩','提成']}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+
+      <view class='monthClomnContent'>
+        <view class='monthLine' wx:for="{{infoByMonth.performanceSalaryInfos}}" wx:key="{{index}}">
+          <!-- 日期 -->
+          <view>{{format.getDate7(item.occurDate)}}</view>
+          <!-- 服务客数 -->
+          <view>{{item.serviceCustomerNum || 0}}</view>
+          <!-- 劳动业绩 -->
+          <view>¥{{item.laborPerformance || 0}}</view>
+          <!-- 产品业绩 -->
+          <view>¥{{item.productSalesPerformance || 0}}</view>
+          <!-- 售卡业绩 -->
+          <view>¥{{item.cardSalesPerformance || 0}}</view>
+          <!-- 提成 -->
+          <view>¥{{item.totalCommission || 0}}</view>
+        </view>
+        <!-- 合计 -->
+        <view class='monthLine'>
+          <view style="color:#000">合计</view>
+          <view>{{infoByMonth.serviceCustomerNum || 0}}</view>
+          <view>¥{{infoByMonth.laborPerformance || 0}}</view>
+          <view>¥{{infoByMonth.productSalesPerformance || 0}}</view>
+          <view>¥{{infoByMonth.cardSalesPerformance || 0}}</view>
+          <view>¥{{infoByMonth.totalCommission || 0}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='PriceDetail' wx:if="{{currentTab == 2}}">
+    <DateHeadContainer calendarAction="{{2}}" fields="month" start="{{startMonth}}" end="{{currentMonth}}" value="{{currentMonth}}" bind:selectDate="selectDate_infoByMonth">
+      <MonthHeadBefore bindsetCurrentDate="setCurrentDate" startDate="{{startDate_infoByMonth}}"></MonthHeadBefore>
+    </DateHeadContainer>
+
+    <!-- 月报数据预览 -->
+    <view class='dayDataShow'>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>{{salaryInfo.serviceCustomerNum || 0}}</view>
+          <view class='dayShow-bottom'>服务客数</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{salaryInfo.laborCommission || 0}}</view>
+          <view class='dayShow-bottom'>劳动提成</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{salaryInfo.cardCommission || 0}}</view>
+          <view class='dayShow-bottom'>售卡提成</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{salaryInfo.productCommission || 0}}</view>
+          <view class='dayShow-bottom'>产品提成</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>¥{{salaryInfo.totalCommission || 0}}</view>
+          <view class='dayShow-bottom'>当月薪资</view>
+        </view>
+      </view>
+      <view class='dayDataShowItem'>
+        <view class='dataItem-content'>
+          <view class='dayShow-top'>{{salaryInfo.monthRanking || '暂无'}}</view>
+          <view class='dayShow-bottom'>业绩排行</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 月报数据 -->
+    <view class='monthData'>
+      <view class='monthClomnName'>
+        <view class='monthClomnNameItem' wx:for="{{['日期','服务客数','劳动提成','售卡提成','产品提成']}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+
+      <view class='monthClomnContent'>
+        <view class='monthLine' wx:for="{{salaryInfo.performanceSalaryInfos}}" wx:key="{{index}}">
+          <!-- 日期 -->
+          <view class='month-time'>{{format.getDate7(item.occurDate)}}</view>
+          <!-- 服务客数 -->
+          <view class='month-customers'>{{item.serviceCustomerNum}}</view>
+          <!-- 劳动提成 -->
+          <view class='month-labor'>¥{{item.laborCommission}}</view>
+          <!-- 售卡提成 -->
+          <view class='month-sellCard'>¥{{item.cardCommission}}</view>
+          <!-- 产品提成 -->
+          <view class='month-products'>¥{{item.productCommission}}</view>
+        </view>
+        <!-- 合计 -->
+        <view class='monthLine'>
+          <view class='month-time' style='color:#333'>合计</view>
+          <view class='month-customers'>{{salaryInfo.serviceCustomerNum || 0}}</view>
+          <view class='month-labor'>¥{{salaryInfo.laborCommission || 0}}</view>
+          <view class='month-sellCard'>¥{{salaryInfo.cardCommission || 0}}</view>
+          <view class='month-products'>¥{{salaryInfo.productCommission || 0}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 排行榜 -->
+  <view class='RankList' wx:if="{{currentTab == 3}}">
+    <view class='rankListBanner'>
+      <view class='rankBannerItem {{rank.cycleIndex == index ? "active" : ""}}' bindtap='setCycle' data-index="{{index}}" wx:for="{{['今日', '本周', '本月']}}" wx:key="{{index}}">{{item}}</view>
+    </view>
+    <view class='rankListContent'>
+      <view class='rankContentHead'>
+        <view class='ranking' style='font-size:24rpx'>名次</view>
+        <view class='rankStaffInfo'>服务者</view>
+        <view class='results'>
+          <picker bindchange="changeRankType" value="{{0}}" range="{{rank.types_cn}}">
+            <view class='resultsText'>{{rank.types_cn[rank.typeIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+
+      <view class='rankContentBody'>
+        <view class='rankContentItem {{index%2 == 0?"active":""}}' wx:for="{{rankInfo.wePerformanceRankingInfos}}" wx:key="{{index}}">
+          <view class='ranking-icon {{item.ranking == 1 ? "first" : item.ranking == 2 ? "second" : "third"}}' wx:if="{{item.ranking <= 3}}"></view>
+          <view class='ranking' wx:else>{{item.ranking}}</view>
+          <!-- 排名 -->
+          <view class='rankStaffInfo'>
+            <!-- 服务者信息 -->
+            <image class='rankStaffAvatar' src='{{format.getImageUrl(item.headPortrait)}}' mode='aspectFill'></image>
+            <view class='rankStaffName'>{{item.staffName}}</view>
+          </view>
+          <view class='results'>¥{{item.performance}}</view>
+          <!-- 劳动业绩 -->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

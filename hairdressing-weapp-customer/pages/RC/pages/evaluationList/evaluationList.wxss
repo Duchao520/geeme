@@ -1,0 +1,144 @@
+.evaluationDetail{
+  width: 100%;
+  height: auto;
+}
+
+/* 评价星级 */
+.Score{
+  padding:0 32rpx;
+  width: 100%;
+  height: 112rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.scoreLeft{
+  color: #F52D56;
+  font-size: 0;
+}
+
+.scoreRight{
+  color: #999999;
+  font-size: 28rpx;
+}
+/* 评价数据统计 */
+.evaluationData{
+  padding:0 32rpx;
+  width: 100%;
+  height: auto;
+  margin-right:-32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border-bottom:1px solid #EBEBEB;
+  position: relative;
+}
+.absBtm{
+  position: absolute;
+  bottom: 0;
+  right: 30rpx;
+}
+.evaluationDataItem{
+  padding: 14rpx 28rpx;
+  border-radius: 30rpx;
+  border: 1px solid #999999;
+  font-size: 24rpx;
+  color: #999999;
+  margin: 0 30rpx 30rpx 0;
+}
+.evaluationDataItem.active{
+  color: #F52D56;
+  border: 1rpx solid #F52D56;
+}
+
+/* 评价底部 */
+.evaluationBottom{
+  width: 100%;
+  height: auto;
+}
+.evalutaionBottomItem{
+  padding: 38rpx 0 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border-top: 2rpx solid #EBEBEB;
+
+}
+.userAvatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: black;
+}
+.userContent{
+  max-width: 582rpx;
+  margin-left: 24rpx;
+  flex: auto;
+  height: auto;
+}
+.userInfo{
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.userName{
+  color: #262628;
+  font-size: 30rpx;
+}
+.userScore{
+  width: 100rpx;
+  height: 42rpx;
+  background: black;
+}
+.evaluationTime{
+
+  line-height: 64rpx;
+  color: #9B9B9B;
+  font-size: 24rpx;
+}
+.evaluationText{
+  color: #666666;
+  font-size: 28rpx;
+  line-height: 44rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  box-orient: vertical;
+  line-clamp: 3;
+}
+.evaluationImages{
+
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 14rpx;
+}
+.evaluationItemImage{
+  width: 168rpx;
+  height: 168rpx;
+  background: black;
+  margin-bottom: 40rpx;
+}
+
+/* 评价主体（小） */
+.shopstore_bottom {
+  width: 138rpx;
+  height: 27rpx;
+  background-color: #d3d3d3;
+  margin-right: 10rpx;
+}
+
+.shopstore {
+  width: 142rpx;
+  height: 27rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJwAAAAeCAYAAADZwHeeAAAAAXNSR0IArs4c6QAAAuFJREFUeAHtmj+LFDEYxndULBT/lCpYCaedFmIn24idoCD6ISzuQ9gcWHgieIWojb34AeQKQbCx9F9x5YEiip5wdyrqL7MTyMZkMkmcZSf3vvBsMsn75tl58jC7M7vVH2IkIQrMSIFdM+IRGlGgViDFcN+ovACOgPv1KrN9Ef4h668+UiPjhvYXdXvAWmR9brrwNxswRP1jr3AfOdeH2nBVVf2if0sfz6AV/oHrH2u4ZUy2aRnrEccfrLG+DoV/4PrHGO4rLrpnOwkDbjF22x7v4Vj4C9A/xnArmEttuitWGPTNufJTxoS/AP27Gm4Dh3ivYhhR3TneSXFRxxrhL0T/St0yGpv+nf4b8K7Be906vrsxNR0sdYyRkw0WjP6J6UzvkfCXrr8yXBMPaPd5rZAxwbpnwOeGx9cI/w7Qf2TsvnqQ21vAs2xwubrC35v6I7XPc6G/+R1OfRz2GaH1Q/O57y20fmhe+PMUmOhrXGpe0T+ct6a7mnWvg98Gl6sr/DtAf/MjVZngJTjotk3aKOtdBT9BlxD+wvW3DadM8QIcSLPXdBXrXAY/QEwIf8H6uwynzPEc7J+2T9wR9ZdArNkoqUP4C9XfZzi166ugirPZJJu6MdgGObFKsfAnbAC6jcFc6m/epdqnds4eiDg+Te7eiHxXqvC7VOk2Nrf6txnuLb8umL9CdDvVSdbrmGRPrvAXqH+b4XJMk1Or/ZezRk6t8E8UyNHQW9uL4bgyrvOec/894n3T2hG+VvjnV/9eDNcYIdkwUl8rUKR+SYbjDugauAuO+64yjPcmmPAPWH82zxf/PIcj8TxQvwbo2KSzBA7ZxmPspk5KbIXfEhUdB69/23O4i/p8OdFT4GmLcT4xtwjqRyG06n92z0BOCH+zAYhYjP72HzC1x1T7BTwGR8EVsBuEYo2EJ+AsGIeSA/PCX6D+bYYL+EGmRYF4BdpuGuJXkwpRIKCAGC4gkEz/XwX+Arig4Zo+BwO3AAAAAElFTkSuQmCC) no-repeat center center/100% auto;
+}
+
+.shopstore_copy {
+  background-color: #f52d56;
+  height: 27rpx;
+}

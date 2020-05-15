@@ -1,0 +1,5 @@
+.packet-container{
+  overflow:hidden;
+  padding-left:6rpx;
+  padding-bottom:150rpx;
+}

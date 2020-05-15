@@ -1,0 +1,17 @@
+@mixin goods-shadow-hover {
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    &:hover {
+        transform: translateY(-2%);
+        box-shadow: 1px 4px 10px 2px rgba(174,184,229,0.6);
+        -webkit-box-shadow: 1px 4px 10px 2px rgba(174,184,229,0.6);
+        -moz-box-shadow: 1px 4px 10px 2px rgba(174,184,229,0.6);
+        -webkit-transform: translateY(-2%);
+        -moz-transform: translateY(-2%);
+        -ms-transform: translateY(-2%);
+        -o-transform: translateY(-2%);
+    }
+}

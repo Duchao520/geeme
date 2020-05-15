@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "及美",
+  "usingComponents": {
+    "comments": "/components/comments/comments",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "AppAvgScore":"/components/App/AppAvgScore/AppAvgScore",
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "Masonry": "/components/Masonry/Masonry",
+    "ServiceCard": "/components/Card/ServiceCard/ServiceCard",
+    "WorksCard": "/components/Card/WorksCard/WorksCard"
+  }
+}

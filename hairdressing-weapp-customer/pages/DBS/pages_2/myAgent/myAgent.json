@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "介绍的股东",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  }
+}

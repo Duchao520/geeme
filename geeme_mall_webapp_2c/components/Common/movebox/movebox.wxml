@@ -1,0 +1,12 @@
+<!-- 修改时间 -->
+<view>
+  <view class='updateTimeComments {{flag?"active":""}}' bindtap='close'></view>
+  <view class='updateItemComments {{flag?"active":""}} {{title == "修改预约时间"?"time":""}} {{title != "修改预约时间"?"card":""}}'>
+    <view class='title {{title != "修改预约时间"?"card":""}}'>{{title}}</view>
+    <slot name="timeContent"></slot>
+    <view class='calendar-icon' catchtap='canendar' wx:if="{{title == '修改预约时间'}}"></view>
+    <view class='closeButton' catchtap='close' wx:if="{{title != '选择支付方式'}}"></view>
+    <view class='moreIcon' wx:if="{{title == '选择支付方式'}}" bindtap='goBack'></view>
+    <slot name="timeBottom"></slot>
+  </view>
+</view>

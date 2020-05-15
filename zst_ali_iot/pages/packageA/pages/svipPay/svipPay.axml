@@ -1,0 +1,50 @@
+<view>
+  <view>
+    <view class="bg box_padding" style="padding: 80rpx 0 0">
+      <view class="flex_box align_center" style="justify-content:center;margin-bottom:38rpx;">
+        <image mode="scaleToFill" src="/static/imgs/xiaohouzhi.png" style="width:38rpx;height: 38rpx;margin-right:17rpx;"/>
+        <text class="fz-34 fc-ffffff font-weight txt-ellipsis">{{USERINFO.isUser ? '尊敬的会员(' + USERINFO.nick + ')，您好' : '欢迎成为本店会员'}}</text>
+      </view>
+
+      <view class="userInfo box_padding" style="padding:44rpx 27rpx;margin-bottom: 65rpx;">
+        <view class="flex_box justify_space_between" style="margin-bottom:40rpx;">
+          <text class="fz-28" style="color: #7D7D7D;">会员ID</text>
+          <text class="fz-28">{{USERINFO.username}}</text>
+        </view>
+        <view class="flex_box justify_space_between" style="margin-bottom:40rpx;">
+          <text class="fz-28" style="color: #7D7D7D;">绑定手机号</text>
+          <text class="fz-28">{{USERINFO.phone}}</text>
+        </view>
+        <view class="flex_box justify_space_between">
+          <text class="fz-28" style="color: #7D7D7D;">话呗余额</text>
+          <text class="fz-28 fc-0095D9 font-weight">{{USERINFO.totalmoney}}话呗</text>
+        </view>
+      </view>
+      <view class="fz-32 text-center font-weight">选择会员支付选项</view>
+
+      <carder a:if="{{USER_IS_CARDER}}" 
+            STORE_ACTIVE="{{STORE_ACTIVE}}" 
+            SHARE_CARD_LIST="{{SHARE_CARD_LIST}}"
+            ref="getCarderRef"
+            onShowShareCardList="showShareCardList" 
+            onClearCoupon="clearCoupon" 
+            onShowCouponList="showCouponList"></carder>
+    <vip STORE_ACTIVE="{{STORE_ACTIVE}}" 
+         SHARE_CARD_LIST="{{SHARE_CARD_LIST}}" 
+         ref="getVIPRef" 
+         onShowCouponList="showCouponList"
+         onClearCoupon="clearCoupon" 
+         onShowShareCardList="showShareCardList" a:else></vip>
+    </view>
+  </view>
+  <coupon-list a:if="{{COUPON_LIST_FLAG}}" COUPON_LIST="{{COUPON_LIST}}" 
+               onCloseCouponList="closeCouponList" 
+               COUPON_ACTIVE_INDEX="{{COUPON_ACTIVE_INDEX}}"
+               onChooseCoupon="chooseCoupon"
+               onOnlyUseCoupon="onlyUseCoupon"
+               ref="getCouponListRef"></coupon-list>
+
+  <share-card-list a:if="{{SHARE_CARD_LIST_FLAG}}" SHARE_CARD_LIST="{{SHARE_CARD_LIST}}" 
+                   ref="getShareCardRef" 
+                   onCloseShareCardList="closeShareCardList" onChooseShareCard="chooseShareCard"></share-card-list>
+</view>

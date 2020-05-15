@@ -1,0 +1,42 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+
+<view wx:if="{{hasLoad}}">
+  <!-- 用户信息 -->
+  <view class="header">
+    <view class='userInfo'>
+      <image class='avatar' lazy-load src="{{format.getImageUrl(customerHeadPortrait)}}" mode='aspectFill'></image>
+      <view class='userName'>{{customerName}}</view>
+    </view>
+  </view>
+
+
+  <!-- 美丽档案主体 -->
+  <block wx:if="{{list && list.length}}">
+    <view class='archives'>
+      <view class='item' wx:for="{{list}}" wx:key="{{index}}" bindtap='jumpArchivesDetail' data-id="{{item.id}}">
+        <view class='i-left i-left-active'>
+          <view class='point'></view>
+          <view class='time'>{{format.getDate4(format.getDate2(item.createTime))}}</view>
+          <view class='shopInfo'>
+            <view class='cityName icon--address'>{{format.getCity(item.storeCity)}}</view>
+            <view class='shopName'>{{item.storeName}}</view>
+          </view>
+        </view>
+        <view class='i-right i-left-active'>
+          <view class='images'>
+            <image class='imageItem' lazy-load wx:for="{{item.image}}" wx:for-item="image" wx:key="{{index}}" wx:if="{{index < 3}}" src="{{format.getImageUrl(image + '?x-oss-process=image/resize,m_fill,h_170,w_170')}}" mode='aspectFill'></image>
+          </view>
+          <view class='serviceList'>
+            <view class='serviceItem' wx:for="{{item.goodsList}}" wx:key="{{index}}">
+              <view class='serviceName'>{{item.goodsTitle}}</view>
+              <view class='servicePrice'>￥{{item.finalTempPrice}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <AppDefault image="/images/default/default_archives.png" text="您还没有美丽档案哦~"  />
+  </block>
+</view>

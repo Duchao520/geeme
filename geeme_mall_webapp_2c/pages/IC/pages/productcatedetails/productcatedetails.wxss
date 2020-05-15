@@ -1,0 +1,135 @@
+/* pages/IC/pages/productcatedetails/productcatedetails.wxss */
+.container {
+  background: #f7f7f7;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* 服务主体 */
+
+.body {
+  width: 100%;
+  height: auto;
+}
+
+/* 服务头部 */
+
+.b-head {
+  width: 100%;
+  height: 100rpx;
+  color: #444;
+  font-size: 28rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  position: relative;
+}
+
+.b-h-left {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.b-l-text {
+  margin-right: 8rpx;
+}
+
+.b-l-icon {
+  width: 18rpx;
+  height: 18rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAKCAMAAACzB5/1AAAATlBMVEUAAABERERERERFRUVFRUVERERFRUVFRUVGRkZHR0dFRUVGRkZgYGBERERFRUVFRUVFRUVFRUVFRUVFRUVERERFRUVISEhOTk5JSUlERESWVRIVAAAAGXRSTlMA8ca79+hsW0o2Kh8E4NOupp+UjX9+QBcHGTRTHwAAAExJREFUCNdty0cOgDAMRNGJTYAUep37XxQQwguUt/uWBz+SYJKAPnwVPKF07VtNRUWeyPqplZwzgI1ccI731b4GsQ2wO7KLMLHXAwUX3coDEazMDDYAAAAASUVORK5CYII=) no-repeat center center/100% auto;
+}
+
+.b-h-middle {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.b-m-text {
+  margin-right: 8rpx;
+}
+
+.b-m-icon {
+  width: 18rpx;
+  height: 18rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAKCAMAAACzB5/1AAAATlBMVEUAAABERERERERFRUVFRUVERERFRUVFRUVGRkZHR0dFRUVGRkZgYGBERERFRUVFRUVFRUVFRUVFRUVFRUVERERFRUVISEhOTk5JSUlERESWVRIVAAAAGXRSTlMA8ca79+hsW0o2Kh8E4NOupp+UjX9+QBcHGTRTHwAAAExJREFUCNdty0cOgDAMRNGJTYAUep37XxQQwguUt/uWBz+SYJKAPnwVPKF07VtNRUWeyPqplZwzgI1ccI731b4GsQ2wO7KLMLHXAwUX3coDEazMDDYAAAAASUVORK5CYII=) no-repeat center center/100% auto;
+}
+
+.b-h-right {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.b-r-text {
+  margin-right: 8rpx;
+}
+
+.b-r-icon {
+  width: 18rpx;
+  height: 18rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAS1BMVEUAAABFRUVGRkZFRUVFRUVERERLS0tFRUVERERERERERERiYmJFRUVERERFRUVGRkZGRkZFRUVFRUVERERFRUVERERFRUVGRkZERERQ5hPpAAAAGHRSTlMAYCzqwaERzPK2rwTj1b1uUETaqJuViXxgQziwAAAAZ0lEQVQY053QOQ6AMAxE0WF3EpaE/f4nhQjECJOKX9jSk9wYg+wqGSA2U1mBKXK8yguDurmU1tQAlUalUWlU2qNdH1ffncaqMs6ywj/cZqJK4TolMPj0uXMJNNZ90YtpF+hCO95/OQDNEgR9pPWFyQAAAABJRU5ErkJggg==) no-repeat center center/100% auto;
+}
+
+/* 服务主体 */
+
+.b-content {
+  width: 100%;
+  height: auto;
+  padding: 32rpx 32rpx 150rpx;
+}
+
+/* 缺省 */
+.default {
+  width: 100%;
+  height: auto;
+  padding-top: 254rpx;
+}
+
+.default-icon {
+  width: 252rpx;
+  height: 178rpx;
+  background: url(data:image/png;base64,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) no-repeat center center/100% auto;
+  margin: 0 auto 28rpx;
+}
+
+.default-text {
+  width: 100%;
+  line-height: 40rpx;
+  color: #888;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+
+.bg{
+  width: 100%;
+  height: calc( 100vh - 203rpx );
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 100rpx;
+  right: 0;
+  z-index: 500;
+  display: none;
+}
+.bg.active{
+  display: block;
+}

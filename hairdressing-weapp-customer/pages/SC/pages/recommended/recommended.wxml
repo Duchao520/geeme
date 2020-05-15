@@ -1,0 +1,11 @@
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<view class='recommended-page'>
+  <!-- 搜索 -->
+  <view class='search-container'>
+    <AppSearch placeholder="搜索门店名称" disabled bind:clickinput="jumpSearch" hideText></AppSearch>
+  </view>
+  <view class='body {{isAttach ? "fixed" : ""}}'>
+    <list list="{{shopList}}" latitude="{{address.latitude}}" longitude="{{address.longitude}}" />
+  </view>
+  <view class='cover' hidden='{{activeTab == -1}}' bindtap='$set' data-key="activeTab" data-value="{{-1}}"></view>
+</view>

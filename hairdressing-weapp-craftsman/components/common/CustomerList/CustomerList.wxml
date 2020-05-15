@@ -1,0 +1,26 @@
+<view class='customerItem' wx:for="{{[1,2,3,4]}}" wx:key="{{index}}">
+      <view class='customerItem-l'>
+        <image src='' lazy-load></image>
+        <view class='customerSex'></view>
+      </view>
+
+      <view class='customerItem-r'>
+        <view class='customerInfo'>
+          <view class='customerName'>妞妞和小猪</view>
+          <view class='customerLevel'>黄金</view>
+        </view>
+
+        <view class='customerMobile'>15735090985</view>
+
+        <view class='customerPhotoList'>
+          <image src='' lazy-load></image>
+          <image src='' lazy-load></image>
+          <image src='' lazy-load></image>
+          <image src='' lazy-load></image>
+          <image src='' lazy-load></image>
+        </view>
+      </view> 
+
+      <view class='customerPrice'>客单价<text>￥68</text>
+       </view>
+    </view>

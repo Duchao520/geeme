@@ -1,0 +1,51 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<view class="releaseRelatedProduct">
+  <!-- <van-tabs sticky border="{{false}}" nav-class="nav-class" active="{{index}}" line-width="{{35}}" bindclick="clickTab"> -->
+  <van-tabs sticky border="{{false}}" nav-class="nav-class" active="{{index}}" line-width="{{35}}">
+    <van-tab title="服务">
+      <view class='serviceMoudle'>
+        <view class='serviceItem' wx:for="{{serviceList}}" wx:key="{{index}}" data-type="service" data-index="{{index}}" data-selected="{{item.selected}}" bindtap='clickItem'>
+          <view class='isSelectedIcon'>
+            <view class='selected-true' wx:if="{{item.selected}}"></view>
+            <view class='selected-false' wx:else></view>
+          </view>
+          <view class='service-left'>
+            <image src='{{format.getImageUrl(item.photos[0])}}' mode="aspectFill"></image>
+          </view>
+          <view class='service-right'>
+            <view class='serviceName'>{{item.title}}</view>
+            <view class='storeAddress'>{{item.address}}</view>
+            <view class='servicePrice'>
+              <text>￥</text>{{item.shopPrice}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="产品">
+      <view class='productMoudle'>
+        <view class='serviceItem' wx:for="{{productList}}" wx:key="{{index}}" data-type="product" data-index="{{index}}" data-selected="{{item.selected}}" bindtap='clickItem'>
+          <view class='isSelectedIcon'>
+            <view class='selected-true' wx:if="{{item.selected}}"></view>
+            <view class='selected-false' wx:else></view>
+          </view>
+
+          <view class='service-left'>
+            <image src='{{format.getImageUrl(item.photos[0])}}' mode='aspectFill'></image>
+          </view>
+          <view class='service-right'>
+            <view class='serviceName'>{{item.title}}</view>
+            <view class='storeAddress'>{{item.address}}</view>
+            <view class='servicePrice'>
+              <text>￥</text>{{item.shopPrice}}
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </van-tab>
+  </van-tabs>
+  <view class="bottom-fixed">
+    <view class="bottom-button" bindtap='finish'>完成</view>
+  </view>
+</view>

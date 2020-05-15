@@ -1,0 +1,46 @@
+@import "../../../../../../utils/wxss/base.wxss";
+@import "../../../../../../utils/wxss/icon.wxss";
+.WalletAuth{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(12,12,12,.3);
+  box-sizing: border-box;
+  padding: 60rpx 36rpx;
+}
+.WalletAuth .content{
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+}
+.WalletAuth .content .header{
+  height: 10%;
+  box-sizing: border-box;
+}
+.WalletAuth .content .header .close{
+  position: absolute;
+  right: 12rpx;
+  top: 12rpx;
+}
+.WalletAuth .content .scroll{
+  height: 80%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+}
+.WalletAuth .content .submit{
+  width: 600rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  background: #FF0033;
+  line-height: 80rpx;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 30rpx;
+}
+.WalletAuth .content .hover{
+  background: #D10D1C;
+}

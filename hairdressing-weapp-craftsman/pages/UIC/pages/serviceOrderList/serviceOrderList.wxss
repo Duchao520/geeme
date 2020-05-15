@@ -1,0 +1,15 @@
+page{
+  background:#f7f7f7;
+}
+
+.header{
+  background:#fff;
+}
+
+.main{
+  padding-bottom:150rpx;
+}
+
+.card-container{
+  padding:0 32rpx;
+}

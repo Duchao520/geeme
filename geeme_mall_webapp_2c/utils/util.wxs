@@ -1,0 +1,59 @@
+/**
+ * 计算俩地之间的距离
+ */
+function Rad(d) {
+  return d * Math.PI / 180.0;
+}
+var distance = function(lat1, lng1, lat2, lng2) {
+  var radLat1 = Rad(lat1);
+  var radLat2 = Rad(lat2);
+  var a = radLat1 - radLat2;
+  var b = Rad(lng1) - Rad(lng2);
+  var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+  s = s * 6378.137;
+  s = Math.round(s * 10000) / 10000;
+  return s.toFixed(1);
+}
+/**
+ * 传入一个状态吗，确认每个时间的状态
+ */
+// 先选时间(status:EXPIRED 过期  EXPIRED_NO_CAPACITY 过期满    AVAILABLE_NO_CAPACITY 未过期满   AVAILABLE 正常)
+var timestatus = function(available, noCapacity) {
+  if (!available && !noCapacity) {
+    return 'outtime'
+  } else if (!available && noCapacity) {
+    return 'outtimepeople'
+  } else if (available && noCapacity) {
+    return 'outpeople'
+  } else if (available && !noCapacity) {
+    return ''
+  }
+}
+
+/**
+ * 处理地址中的市
+ */
+var addressRules = function(city) {
+  if(!city) return
+  if (city.indexOf('市') > 0) {
+    city = city.slice(0, city.length - 1)
+    return city;
+  } else {
+    return city
+  }
+}
+
+
+/**
+ * 给一个数量和价格，算出总价
+ */
+var totalPrice = function(count, price) {
+  return count * price
+}
+
+module.exports = {
+  distance: distance,
+  timestatus: timestatus,
+  addressRules: addressRules,
+  totalPrice: totalPrice
+}

@@ -1,0 +1,110 @@
+.productSpecification{
+  width: 100%;
+  height: auto;
+}
+/* 商品图片 */
+.productImage{
+  width: 100%;
+  height: 750rpx;
+}
+.productImage image{
+    width: 100%;
+  height: 750rpx;
+  background: black;
+}
+/* 商品信息 */
+.productInfo{
+  width: 100%;
+  height: auto;
+  padding: 20rpx 32rpx 10rpx;
+}
+.productDes{
+  width: 100%;
+  height: auto;
+  color: #262628;
+  font-size: 34rpx;
+  line-height: 54rpx;
+  display: box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-orient: vertical;
+  line-clamp: 2;
+  margin-bottom: 14rpx;
+}
+.productPrices{
+  width: 100%;
+  margin-top: 14rpx;
+  text-align: left;
+}
+.productPrices > view{
+  display: inline-block;
+}
+.price{
+  color: #F52D56;
+  font-size: 50rpx;
+  font-weight: 600;
+}
+.price text{
+  font-size: 20rpx;
+}
+.specialprice{
+  text-decoration: line-through;
+  color: #9B9B9B;
+  font-size: 24rpx;
+  margin-left: 14rpx;
+  line-height: 72rpx;
+}
+.specialprice text{
+  font-size: 20;
+}
+/* 商品提示 */
+.message{
+  width: 100%;
+  height: auto;
+  padding: 20rpx 0 20rpx;
+  background: #F8F8F8;
+}
+.messageItem{
+  width: 100%;
+  height: 100rpx;
+  line-height:100rpx;
+  font-size:24rpx;
+  position: relative;
+  padding-left:80rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAM1BMVEUAAAD/rTP/sj7/rTL/rDL/rDL/rjP/rjT/rTL/rTT//1X/rTL/rTP/rDL/////9ej/w2zK6ejKAAAADXRSTlMAvRDY88WQXFE7A6Kh8X9JHwAAAL5JREFUOMuNlFsSwyAIRcFHjVFi9r/atmbaQMd6Pd9nhEG4pHGpsg/Bc02OxmwsCt4GSo7yQ8xk2R8y4LGbZliGsFOOlz/4r7Xrd87WTv3Wp6Lppx1HM31dThbN8UI0uUtxLsU+Q5lL8p4qI4mJnCBJHCUsJSpYKsRYYvJY8hSwFJakpXJrjVcs1XuYZlUM6f4Ws3QGR8QC4L4qgH6AcV4uXus7bzwvHwI+KXycy2eOAwNHDw6xMS6VKw6LjcMn4IQzEXHhVKQAAAAASUVORK5CYII=) no-repeat 30rpx center;
+  background-size:36rpx 36rpx;
+  background-color:#fff;
+}
+
+/* 商品底部信息 */
+.code{
+  width: 100%;
+  height: auto;
+}
+.codeHeader{
+  width: 100%;
+  height: 84rpx;
+  background: white;
+  position: relative;
+
+}
+.codeHeaderItem{
+  color: #484848;
+  font-size: 28rpx;
+  margin-left: 32rpx;
+  line-height: 84rpx;
+}
+.line{
+  width: 114rpx;
+  height: 4rpx;
+  background: #F52D56;
+  position: absolute;
+  left: 32rpx;
+  bottom: 0;
+
+}
+.codeContent{
+  width: 100%;
+  height: 970rpx;
+  background: black;
+}

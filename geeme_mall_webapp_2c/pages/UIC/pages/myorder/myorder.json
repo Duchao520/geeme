@@ -1,0 +1,12 @@
+{
+  "usingComponents":{
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "AppSearch": "/components/App/AppSearch/AppSearch",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "GroupOrder_Button": "/components/OrderComponents/GroupOrder_Button/GroupOrder_Button"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "服务订单",
+  "navigationBarTextStyle": "black"
+}

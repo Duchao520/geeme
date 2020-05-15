@@ -1,0 +1,10 @@
+<view class="cover {{show ? 'active' : ''}}" catchtouchmove="prevent" bindtap="action" data-from="cover">
+  <view class="modal {{show ? 'active' : ''}}" catchtap="prevent">
+    <view class="modal-title">{{title}}</view>
+    <view class="modal-content">{{content}}</view>
+    <view class="modal-buttons">
+      <button class="button1" bindtap="action" data-from="button1">{{button1}}</button>
+      <button class="button2" bindtap="action" data-from="button2">{{button2}}</button>
+    </view>
+  </view>
+</view>

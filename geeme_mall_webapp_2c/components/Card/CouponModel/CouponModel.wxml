@@ -1,0 +1,102 @@
+<wxs module="wxs">
+  function JudgeCoupon(coupon){
+    if(!coupon) return;
+    var useUnLimited = coupon.couponTemplateSnapshot.useUnLimited,
+        purchaseAboveMoney = coupon.couponTemplateSnapshot.purchaseAboveMoney,
+        money = coupon.couponTemplateSnapshot.money;
+    if(useUnLimited){
+      return money + "元无门槛现金券";
+    }else{
+      return "满" + purchaseAboveMoney + "元减" + money + "元"
+    }
+  }
+
+  function JudgeAuthority(coupon){
+    if(!coupon) return;
+    var allProductPromote = coupon.couponTemplateSnapshot.allProductPromote,
+        allServicePromote = coupon.couponTemplateSnapshot.allServicePromote;
+    if(allProductPromote && allServicePromote){
+      return 1;
+    }else if(!allProductPromote && allServicePromote){
+      return 2;
+    }else if(allProductPromote && !allServicePromote){
+      return 3;
+    }else{
+      return 4;
+    };
+  }
+
+  function timeToDate(timeStr){
+    if(!timeStr) return;
+    var timeArr = timeStr.split(' ');
+    return timeArr[0];
+  }
+
+  function couponBg(coupon){
+    var customerCouponStatus = coupon.customerCouponStatus;
+    if(customerCouponStatus == 'UN_USE'){
+      return 'UN_USE'
+    }else if(customerCouponStatus == 'USED'){
+      return 'USED'
+    }else{
+      return 'INVALID'
+    }
+  }
+
+  module.exports = {
+    JudgeCoupon: JudgeCoupon
+    JudgeAuthority: JudgeAuthority
+    timeToDate: timeToDate
+    couponBg: couponBg
+  }
+</wxs>
+<view class="coupon box_padding {{wxs.couponBg(coupon)}}">
+  <view class="flex_box" style="margin-bottom: 50rpx;">
+    <view style="min-width: 188rpx;margin-right: 16rpx;" class="text-center">
+      <text class="fz-64 fc-ffffff" style="margin-right: 10rpx;">{{coupon.couponTemplateSnapshot.money}}</text>
+      <text class="fz-36 fc-ffffff">元</text>
+    </view>
+    <view class="flex_box flex_column" style="justify-content: center;">
+      <view class="fz-28 fc-ffffff">{{wxs.JudgeCoupon(coupon)}}</view>
+      <view class="fz-20 fc-ffffff">{{wxs.timeToDate(coupon.validDateFrom) + '至' + wxs.timeToDate(coupon.validDateTo)}}      </view>
+    </view>
+  </view>
+  <view class="fz-20 fc-ffffff" catchtap="displayAll" data-authority="{{wxs.JudgeAuthority(coupon)}}">
+    除限时抢购、拼团类等特价商品不可使用,
+    <text wx:if="{{wxs.JudgeAuthority(coupon) == 1}}">所有服务和产品可用</text>
+    <text wx:elif="{{wxs.JudgeAuthority(coupon) == 2}}">所有服务可用</text>
+    <text wx:elif="{{wxs.JudgeAuthority(coupon) == 3}}">所有产品可用</text>
+    <text wx:else>【点此查看全部】</text>
+  </view>
+  <view class="cover" catchtouchmove="prevent" bindtap="$set" data-key="popAll" data-value="{{false}}" wx:if="{{popAll}}">
+    <view class="popup-container" scroll-y catchtap="prevent">
+      <view class="popup-header">可用商品
+        <view class="icon--close" catchtap="$set" data-key="popAll" data-value="{{false}}"></view>
+      </view>
+      <scroll-view scroll-y class="popup-main">
+        <block hidden="{{coupon.couponTemplateSnapshot.serviceList.length == 0}}">
+          <view class="main-header">服务项目</view>
+          <view class="main-line title">
+            <view class="main-line-left">一级分类</view>
+            <view class="main-line-right">二级分类</view>
+          </view>
+          <view class="main-line" wx:for="{{coupon.couponTemplateSnapshot.serviceList}}" wx:key="index" wx:for-item="item">
+            <view class="main-line-left">{{item.levelOneName}}</view>
+            <view class="main-line-right">{{item.levelTwoName}}</view>
+          </view>
+        </block>
+        <block hidden="{{coupon.couponTemplateSnapshot.productList.length == 0}}">
+          <view class="main-header">产品项目</view>
+          <view class="main-line title">
+            <view class="main-line-left">一级分类</view>
+            <view class="main-line-right">二级分类</view>
+          </view>
+          <view class="main-line" wx:for="{{coupon.couponTemplateSnapshot.productList}}" wx:key="index" wx:for-item="item">
+            <view class="main-line-left">{{item.levelOneName}}</view>
+            <view class="main-line-right">{{item.levelTwoName}}</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

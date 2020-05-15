@@ -1,0 +1,5 @@
+<view class="header">请输入支付密码，完成密码设置</view>
+<view class='input-container' bindtap='inputFocus'>
+  <view class='input-item' wx:for="{{6}}" wx:key="{{index}}">{{password.length > index ? "*" : ""}}</view>
+</view>
+<input class='real-input' focus='{{focus}}' bindinput="input" maxlength='6'></input>

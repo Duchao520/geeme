@@ -1,0 +1,255 @@
+@import '/utils/wxss/icon.wxss';
+
+.main{
+  padding-bottom:150rpx;
+}
+
+.levelCard{
+  position: relative;
+  display: inline-block;
+  width:530rpx;
+  height:295rpx;
+  text-align: left;
+  border-radius:10rpx;
+  background-size:cover;
+  background-position: center;
+  color:#fff;
+  transition: all .625s ease;
+  transform: scale(1,0.8);
+}
+
+.levelCard.active{
+  transform: scale(1,1);
+}
+
+.levelCard-userInfo{
+  margin-top:14rpx;
+}
+
+.userInfo-avatar{
+  margin-left:20rpx;
+  width: 80rpx;
+  height:80rpx;
+  border-radius:50%;
+}
+
+.userInfo-text{
+  margin-left:20rpx;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.userInfo-nickName{
+  font-size:32rpx;
+}
+
+.userInfo-exp{
+  margin-top:8rpx;
+  font-size:24rpx;
+  line-height:34rpx;
+}
+
+.userInfo-exp > text{
+  display: inline-block;
+  vertical-align: top;
+  width:80rpx;
+  height:34rpx;
+  line-height: 34rpx;
+  border-radius:17rpx;
+  text-align: center;
+  font-size:20rpx;
+  color:#333;
+  background-color: #fff;
+}
+
+.levelCard-level {
+  position: absolute;
+  right:0;
+  bottom:30rpx;
+  width: 180rpx;
+  height: 52rpx;
+  line-height:52rpx;
+  text-align: center;
+  border-radius:26rpx 0 0 26rpx;
+  background: rgba(255, 255, 255, .2);
+}
+
+.levelCard-level > text{
+  display: inline-block;
+  vertical-align: top;
+  height:100%;
+  background: no-repeat left center;
+  background-size:30rpx 26rpx;
+  padding-left:34rpx;
+  font-size:24rpx;
+}
+
+.exp-row{
+  position: relative;
+  margin-top:40rpx;
+}
+
+.exp-line_transparent{
+  position: relative;
+  height:4rpx;
+  background-color:transparent;
+}
+
+.exp-line{
+  position: absolute;
+  height:100%;
+  z-index:1;
+  background:#d8d8d8;
+}
+
+.exp-line > .exp-line_red{
+  position: absolute;
+  height:100%;
+  background:#f52d56;
+}
+
+.exp-line.l1{
+  left:0;
+  width:56rpx;
+}
+
+.exp-line.l2{
+  left:84rpx;
+  width:280rpx;
+}
+
+.exp-line.l3{
+  left:390rpx;
+  width:280rpx;
+}
+
+.exp-line.l4{
+  right:0;
+  width:56rpx;
+}
+
+.exp-node{
+  display: inline-block;
+  position: absolute;
+  top:-12rpx;
+  text-align: center;
+  color:#333;
+  font-size:0;
+  z-index:2;
+  overflow:visible;
+}
+
+.exp-node.previous{
+  left:56rpx;
+}
+
+.exp-node.current{
+  left:50%;
+  margin-left:-14rpx;
+}
+
+.exp-node.next{
+  right:56rpx;
+}
+
+.node-circle{
+  display: inline-block;
+  position:relative;
+  width:28rpx;
+  height:28rpx;
+  background-color:#d8d8d8;
+  border-radius:50%;
+}
+
+.node-circle.active{
+  background-color:#f52d56;
+}
+
+.node-middle{
+  font-size:28rpx;
+}
+
+.node-small{
+  font-size:20rpx;
+}
+
+.exp-row-text{
+  display: flex;
+  margin-top:20rpx;
+}
+
+.exp-text-item{
+  flex: 1;
+}
+
+.exp-text-item:nth-child(1){
+  text-align: left;
+}
+
+.exp-text-item:nth-child(1) > .text-box{
+  text-align: left;
+  margin-left:40rpx;
+}
+
+.exp-text-item:nth-child(2){
+  text-align: center;
+}
+
+.exp-text-item:nth-child(3){
+  text-align: right;
+}
+
+.exp-text-item:nth-child(3) > .text-box{
+  text-align: right;
+  margin-right:40rpx;
+}
+
+.text-box{
+  display: inline-block;
+  text-align: center;
+}
+
+.text-box > view:first-child{
+  font-size:32rpx;
+  color:#333;
+}
+
+.text-box > view:last-child{
+  font-size:20rpx;
+  color:#afb0b1;
+}
+
+.des-container{
+  padding:0 32rpx;
+}
+
+.des-header{
+  color:#484848;
+  font-size:34rpx;
+  font-weight: 600;
+}
+
+.des-items{
+  margin-top:40rpx;
+  line-height:1.7;
+}
+
+.des-item{
+  position: relative;
+  font-size:28rpx;
+  padding-left:28rpx;
+  color:#666;
+}
+
+.des-item::before{
+  position: absolute;
+  left:0;
+  top:0;
+  content:'● ';
+  color:#000;
+}
+
+.exp-rules{
+  float:right;
+  color:#f52d56;
+}

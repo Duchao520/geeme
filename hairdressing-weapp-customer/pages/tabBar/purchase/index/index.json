@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "美购",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "AppSearch":"/components/App/AppSearch/AppSearch",
+    "Masonry": "/components/Masonry/Masonry",
+    "ServiceCard": "/components/Card/ServiceCard/ServiceCard",
+    "AppFooter": "/components/App/AppFooter/AppFooter",
+    "OffLineDefault": "/components/Common/OffLineDefault/OffLineDefault"
+  }
+}

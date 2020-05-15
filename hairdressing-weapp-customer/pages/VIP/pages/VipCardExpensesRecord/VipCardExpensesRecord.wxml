@@ -1,0 +1,31 @@
+<!--pages/VIP//pages/VipCardExpensesRecord/VipCardExpensesRecord.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getMoney(value) {
+    value = value.toString()
+    return value.substring(1, value.length)
+  }
+
+  module.exports = {
+    getMoney: getMoney
+  }
+</wxs>
+<view wx:if="{{changeRecordResponseList.length != 0}}">
+  <view class="space"></view>
+  <view class="card-record box_padding" wx:for="{{changeRecordResponseList}}" wx:key="index">
+    <view class="card-record-time fz-28 fc-999999 text_left line_height">{{item.createTime}}</view>
+    <view class="card-record-product flex_box flex_row align_center">
+      <!-- <image lazy-load src="{{format.getImageUrl(item.cardCover + '?x-oss-process=image/resize,m_fill,h_400,w_630')}}"></image> -->
+      <view class="card-record-product-info">
+        <view class="card-record-product-info-title">
+          <text class="fz-28 fc-333333">{{item.tradingType}}</text>
+          <text class="fz-24 fc-999999 mgl6">{{item.tradingInstruction.name}}</text>
+        </view>
+        <view class="card-record-product-info-addr fz-24 fc-999999 text_left">{{item.storeMessage}}</view>
+      </view>
+      <view class="card-record-product-info-amount fz-32 fc-000000 text_right white_nowrap" wx:if="{{item.extendContext.chargeMoneyCost != null}}">¥{{wxs.getMoney(item.extendContext.chargeMoneyCost)}}</view>
+      <view class="card-record-product-info-amount fz-32 fc-000000 text_right white_nowrap" wx:if="{{item.extendContext.timeChange != null}}">{{item.extendContext.timeChange}}次</view>
+    </view>
+  </view>
+</view>
+<AppDefault image="/images/default/default_card.png" text="暂时没有消费记录哦～" wx:if="{{changeRecordResponseList.length == 0}}"></AppDefault>

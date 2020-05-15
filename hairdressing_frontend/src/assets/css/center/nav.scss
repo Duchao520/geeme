@@ -1,0 +1,32 @@
+.center-nav__wrap {
+    width: 100%;
+    position: relative;
+    max-height: 162px;
+    overflow-y: auto;
+    @include scroll-y(4px);
+    border-bottom: 1px solid #DCDFE6;
+    .nav-list {
+        .nav-item {
+            cursor: pointer;
+            display: inline-block;
+            padding: 15px 0;
+            margin: 0 15px;
+            position: relative;
+            &.active {
+                color: #E33443;
+            }
+            &.active-b {
+                &::after {
+                    content: "";
+                    width: 95%;
+                    height: 2px;
+                    background: #E4393C;
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    @include transformxy(-50%, 0);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<view class="all">
+	<view style="height:138rpx"></view>
+  <view class="header">
+		<image mode="scaleToFill" src="/static/imgs/logo.png" style="border-radius:50%"/>
+	</view>
+	<view style="height:126rpx"></view>
+	
+	<view class="input_input">
+		<!-- 账号 -->
+		<view class="admin">
+			<image mode="scaleToFill" src="/static/imgs/admin.png"/>
+			<input type="number" onConfirm="navigateTo" onInput="inputphone" placeholder="输入账号或手机号" />
+		</view>
+		<view style="height:25rpx"></view>
+		<!-- 密码 -->
+		<view class="pwd">
+			<image mode="scaleToFill" src="/static/imgs/pwd.png"/ class="pwd_pwd" />
+			<input type="text" password onConfirm="navigateTo" onInput="inputpsd" placeholder="输入密码"/>
+		</view>
+		
+	</view>
+	<!-- 提交 -->
+	<view style="height:160rpx"></view>
+	<view class="login" onTap="navigateTo">
+		登录
+	</view>
+</view>

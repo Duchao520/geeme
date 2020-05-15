@@ -1,0 +1,115 @@
+<!--pages/UIC//pages/equityTransferProgress/equityTransferProgress.wxml-->
+<wxs src="../../../../utils/format.wxs" module="format"></wxs>
+<wxs module="wxs">
+  function JudgeOrderType(type) {
+    switch (type) {
+      case 1:
+        return '余额';
+      case 2:
+        return '银行卡';
+      default:
+        return '';
+    }
+  }
+
+  module.exports = {
+    JudgeOrderType: JudgeOrderType
+  }
+</wxs>
+<view class="flex-column" style="padding: 36rpx;padding-bottom:120rpx;">
+  <block wx:for="{{progressInfoList}}" wx:key="index">
+    <block wx:if="{{item.opType == 1}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">提交申请</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.amount}}">申请提现金额：¥{{item.amount}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.amount}}">转出方式：{{wxs.JudgeOrderType(item.type)}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.type == 2}}">户名：{{item.accountName}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.type == 2}}">账号：{{item.accountNum}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.type == 2}}">银行：{{item.bankName}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.type == 2}}">开户行：{{item.openBank}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+      <view class="progress-item">
+        <view class="flex_box align_center">
+          <image src="{{index === progressInfoList.length- 1 ? '/images/icon_rate_red.png' : '/images/icon_rate_green.png'}}" class="step"></image>
+          <view class="fz-28 fc-333333">你的申请单已受理，待商家审核中</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{item.opType == 3 || item.opType == 5}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_stop.png" class="step"></image>
+          <view class="fz-28 fc-333333">您的申请单被商家拒绝</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{((item.type == '1' && item.opType == 3) || item.type == 2) && item.reason != ''}}">拒绝理由：{{item.reason}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{(item.type == 2 && item.opType == 2) || (item.type == 1 && item.opType == 4)}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">商家已转账，提现完成</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.amount}}">转账金额：¥{{item.amount}}</view>
+          <view class="fz-24 fc-999999 flex_box detail" wx:if="{{item.photo}}">转账凭证：<image class="thumb"  src='{{format.getImageUrl(item.photo + "?x-oss-process=image/resize,m_fill,h_120,w_120")}}' bindtap='$previewImage' data-current="{{format.getImageUrl(item.photo + '?x-oss-process=image/resize,m_lfit,w_750')}}" data-urls="{{[format.getImageUrl(item.photo + '?x-oss-process=image/resize,m_lfit,w_750')]}}" mode='aspectFill'></image></view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{item.opType == 6}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_stop.png" class="step"></image>
+          <view class="fz-28 fc-333333">提现已取消</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{item.opType == 7}}">
+      <view class="progress-item" >
+        <view class="flex_box align_center">
+          <image src="/images/icon_rate_green.png" class="step"></image>
+          <view class="fz-28 fc-333333">修改转出申请</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.amount}}">修改提现金额：¥{{item.amount}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.amount}}">转出方式：{{wxs.JudgeOrderType(item.type)}}</view>
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+      <view class="progress-item">
+        <view class="flex_box align_center">
+          <image src="{{index === progressInfoList.length- 1 ? '/images/icon_rate_red.png' : '/images/icon_rate_green.png'}}" class="step"></image>
+          <view class="fz-28 fc-333333">你的申请单已受理，待商家审核中</view>
+        </view>
+        <view style="padding: 6rpx 0  38rpx 33rpx;margin-left: 21rpx;" class="border">
+          <view class="fz-24 fc-999999 detail" wx:if="{{item.createTime}}">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
+
+<!-- 用户操作 -->
+<view class="roll-out flex_box align_center box_padding" wx:if="{{status === '1'}}">
+  <button class="roll-out-btns fz-26 fc-666666 text_center cancle-btn" bindtap="onTapCancle">取消申请</button>
+  <button class="roll-out-btns fz-26 fc-F52D56 text_center edit-btn" bindtap="onTapEdit">修改申请</button>
+</view>
+
+<!-- 取消申请成功提示 -->
+<AppModal show="{{SUCCESS_MODAL}}" title="确定要取消吗？" content="取消后，提现申请将被即时撤回。" button1="点错了" button2="确定" bind:cancle="jumpBack" bind:confirm="jumpGiftCard"></AppModal>

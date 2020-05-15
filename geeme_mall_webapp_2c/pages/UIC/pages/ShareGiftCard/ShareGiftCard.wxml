@@ -1,0 +1,133 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<wxs module="wxs">
+  function getCountdownDay(finishTime, createTime) {
+    createTime = Date.parse(getDate())
+    if (finishTime - createTime < 0) {
+      return 0
+    } else {
+      return Math.round((finishTime - createTime) / 1000 / 60 / 60 / 24)
+    }
+  }
+
+  function JudgevalidTimeStrategy(item) {
+    switch (item.validTimeStrategy) {
+      case 1:
+        var validTimeTo = item.validTimeTo.split(' ')[0];
+        validTimeTo = validTimeTo.replace('-', '年').replace('-', '月') + '日';
+        var validTimeFrom = item.validTimeFrom.split(' ')[0];
+        validTimeFrom = validTimeFrom.replace('-', '年').replace('-', '月') + '日';
+        return validTimeFrom + '-' + validTimeTo;
+      case 2:
+        return '自领取当日起' + item.days + '天内';
+      case 3:
+        return '自领取次日起' + item.days + '天内';
+    }
+  }
+
+  function JudgetimeTo(item) {
+    var timeTo = item.timeTo.split(' ')[0];
+    timeTo = timeTo.replace('-', '/').replace('-', '/')
+    return timeTo;
+  }
+
+  module.exports = {
+    JudgevalidTimeStrategy: JudgevalidTimeStrategy,
+    JudgetimeTo: JudgetimeTo,
+    getCountdownDay: getCountdownDay
+  }
+</wxs>
+<view class="box_padding" style="padding: 44rpx 60rpx 32rpx;">
+  <view class="cart-item fc-ffffff" style="background-image: url({{format.getImageUrl(cardKindInfo.cardCover)}})">
+    <view class="flex_box">
+      <image style="width: 84rpx;height: 84rpx;display:block;border-radius: 50%;margin-right: 14rpx;" src="{{format.getImageUrl(brand.logo)}}"></image>
+      <view>
+        <view class="fz-36 txt-ellipsis" style="width: 400rpx;margin-bottom: 4rpx;">{{card.giftCardName}}</view>
+        <view class="slogan">礼品卡</view>
+      </view>
+    </view>
+    <text class="isUse fz-24">{{'仅剩' + (card.cardCount-card.getNum) + '张'}}</text>
+    <view class="price flex_box align_center">
+      <text class="fz-56">
+          <block wx:if="{{card.free}}">
+            <text>免费</text>
+      </block>
+      <block wx:else>
+        <text class="iconfont iconrenminbidanjia fz-44"></text>{{card.activityPrice}}
+      </block>
+      </text>
+      <text class="fz-32 line-through">
+          <text class="iconfont iconrenminbidanjia fz-24"></text>{{card.cardPrice}}
+      </text>
+    </view>
+    <view class="expireDate fz-24">{{wxs.JudgetimeTo(card)}} 活动到期</view>
+  </view>
+</view>
+
+
+<view class="box_padding" style="padding: 0 33rpx;margin-bottom: 60rpx;">
+  <view class="text-center fz-32 fc-333333">{{card.giftCardName}}原价{{card.cardPrice}}元</view>
+  <view class="fz-36 fc-333333 text-center" style="margin-bottom: 38rpx;" wx:if="{{card.free}}">
+    现
+    <text class="fz-36 fc-F52D56">免费</text>送
+  </view>
+  <view class="fz-36 fc-333333 text-center" style="margin-bottom: 38rpx;" wx:else>现仅需
+    <text class="fz-36 fc-F52D56"><text class="fz-24 iconfont iconrenminbidanjia"></text>{{card.activityPrice}}</text>
+  </view>
+  <view class="text-center fz-34 font-weight bg-F52D56 fc-ffffff" style="height: 100rpx;line-height: 100rpx;border-radius: 50rpx;margin-bottom: 22rpx;" wx:if="{{card.free}}" bindtap="getGiftCardForFree">免费领取</view>
+  <view class="text-center fz-34 font-weight bg-F52D56 fc-ffffff" style="height: 100rpx;line-height: 100rpx;border-radius: 50rpx;margin-bottom: 22rpx;" wx:else bindtap="buyGiftCard">立即购买</view>
+  <view class="fz-24 fc-666666 text-center">有效期： {{wxs.JudgevalidTimeStrategy(card)}}</view>
+</view>
+<view class="box_padding" style="padding: 0 33rpx;margin-bottom: 34rpx;">
+  <view style="padding-bottom: 60rpx;border-bottom: 2rpx solid #EFEFF4;">
+    <view class="fz-34 fc-484848 font-weight" style="margin-bottom: 28rpx;">使用权益</view>
+    <view class="ul-item">
+      <text class="icon"></text>
+      <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">卡项原价: {{card.cardPrice}}元</view>
+    </view>
+    <view class="ul-item">
+      <text class="icon"></text>
+      <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">活动价: {{card.free ? '免费' : card.activityPrice + '元'}}</view>
+    </view>
+    <view class="ul-item">
+      <text class="icon"></text>
+      <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">享受权益:
+        <block wx:if="{{cardKindInfo.totalCountLimit >= 0}}">
+          <text>所有服务{{cardKindInfo.totalCountLimit}}次</text>
+        </block>
+        <block wx:else>
+          <text wx:if="{{cardKindInfo.listServiceCountInfo.length > 1}}" space="ensp" bindtap="showCountDetail">{{cardKindInfo.listServiceCountInfo[1].serviceName}} {{format.isNumber(cardKindInfo.listServiceCountInfo[1].countLimit) || '无限'}}次 <text class="fc-58C9F3">明细</text>
+          </text>
+          <text wx:else>{{cardKindInfo.listServiceCountInfo[0].serviceName}} {{format.isNumber(cardKindInfo.listServiceCountInfo[0].countLimit) || '无限'}}次</text>
+        </block>
+      </view>
+    </view>
+    <!-- 排期 -->
+    <!-- <view class="ul-item">
+      <text class="icon"></text>
+      <view class="fz-28 fc-666666" style="width: 640rpx;line-height: 52rpx;">适用门店: {{cardKindInfo.suitStoreStrategy == 0? '所有门店' : (cardKindInfo.suitStoreStrategy == 1 ? "所有直营店" : "指定门店")}}
+        <text class='fc-58C9F3' wx:if="{{cardKindInfo.suitStoreStrategy == 2}}">详情</text>
+      </view>
+    </view> -->
+  </view>
+</view>
+<view class="box_padding" style="padding: 0 33rpx;" wx:if="{{cardKindInfo.cardInstruction || card.remark}}">
+  <view>
+    <view class="fz-30 fc-484848 font-weight" style="margin-bottom: 26rpx;">使用说明</view>
+    <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{cardKindInfo.cardInstruction}}">
+      <text space="emsp" decode>{{cardKindInfo.cardInstruction}}</text>
+    </view>
+    <view class="fz-28 fc-666666" style="line-height: 52rpx;" wx:if="{{card.remark}}">
+        <text space="emsp" decode>{{card.remark}}</text>
+      </view>
+  </view>
+</view>
+
+
+
+<!-- 各种弹框 -->
+<view class="cover" catchtouchmove='{{true}}' wx:if="{{ifShowCountDetail}}" bindtap="closePop">
+  <view>
+    <VipCardCount wx:if="{{ifShowCountDetail}}" list="{{cardKindInfo.listServiceCountInfo}}" bind:closeCount="closePop" />
+  </view>
+</view>
+<AppModal show="{{SUCCESS_MODAL}}" title="领取成功!" content="恭喜您，礼品卡已经领取成功！请前往我的资产-礼品卡查收。" button1="返回首页" button2="查看礼品卡" bind:cancle="jumpHome" bind:confirm="jumpGiftCard"></AppModal>

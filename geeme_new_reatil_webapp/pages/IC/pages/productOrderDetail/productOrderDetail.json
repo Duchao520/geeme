@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ProductOrderDetailCode":"/components/OrderComponents/ProductOrderDetailCode/ProductOrderDetailCode",
+    "ProductOrderListButtons":"/components/OrderComponents/ProductOrderListButtons/ProductOrderListButtons",
+    "ProductOrderDetailStatus":"/components/OrderComponents/ProductOrderDetailStatus/ProductOrderDetailStatus",
+    "AddressCard":"/components/Card/AddressCard/AddressCard",
+    "GroupOrder_Button": "/components/OrderComponents/GroupOrder_Button/GroupOrder_Button"
+  },
+  "navigationBarTitleText":"订单详情"
+}

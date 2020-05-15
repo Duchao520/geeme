@@ -1,0 +1,41 @@
+<view class="productSpecification">
+  <!-- 商品图片 -->
+  <view class='productImage'>
+    <image src='{{info.image}}' lazy-load></image>
+  </view>
+  <!-- 商品信息 -->
+  <view class='productInfo'>
+    <view class='productDes'>{{info.title}}</view>
+    <view class='productPrices'>
+      <view class='price'>
+        <text>￥</text>{{info.memberPrice}}
+      </view>
+      <view class='specialprice'>
+        <text>￥</text>{{info.shopPrice}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品提示 -->
+  <view class='message'>
+    <view class='messageItem'>
+      <text>您现在查看的是商品交易快照，该商品已被重新编辑。</text>
+    </view>
+  </view>
+
+  <!-- 商品底部详情 -->
+  <view class='code'>
+    <view class='codeHeader'>
+      <view class='codeHeaderItem'>
+        商品详情
+      </view>
+      <view class='line'></view>
+    </view>
+
+    <rich-text nodes="{{info.richText}}" class="codeContent"></rich-text>
+
+
+  </view>
+
+
+</view>

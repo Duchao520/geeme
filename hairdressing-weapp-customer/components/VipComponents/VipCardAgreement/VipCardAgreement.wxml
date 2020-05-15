@@ -1,0 +1,29 @@
+<view class='power'>
+  <view class='powerTitle'>权益说明</view>
+  <view class='powerBody'>
+    <view class='powerItem'>
+      <view class='point'></view>
+      <view class='powerText'>首次金额充值3000元</view>
+    </view>
+
+    <view class='powerItem'>
+      <view class='point'></view>
+      <view class='powerText'>获得赠送金额500元</view>
+    </view>
+
+    <view class='powerItem'>
+      <view class='point'></view>
+      <view class='powerText'>持卡人可享受服务项目7.5折优惠，产品9.5折优惠</view>
+    </view>
+
+    <view class='powerItem'>
+      <view class='point'></view>
+      <view class='powerText'>持此卡消费，可以获得双倍积分</view>
+    </view>
+
+    <view class='powerItem'>
+      <view class='point'></view>
+      <view class='powerText'>此卡有效期至2020年12月31日</view>
+    </view>
+  </view>
+</view>

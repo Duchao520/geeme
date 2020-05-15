@@ -1,0 +1,31 @@
+.AppDefault{
+  text-align: center;
+}
+
+.image-container{
+  font-size:0;
+}
+
+.image{
+  /* width:250rpx; */
+  /* height:180rpx; */
+}
+
+.text{
+  margin:30rpx auto 0;
+  width:420rpx;
+  color:#888;
+  font-size:28rpx;
+}
+
+.button{
+  display: inline-block;
+  margin-top:50rpx;
+  padding:0 70rpx;
+  height: 72rpx;
+  line-height:72rpx;
+  border-radius: 36rpx;
+  color:#f52d56;
+  font-size:28rpx;
+  border:1px solid #f52d56;
+}

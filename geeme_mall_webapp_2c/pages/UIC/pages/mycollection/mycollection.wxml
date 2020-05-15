@@ -1,0 +1,14 @@
+<!--pages/UIC/pages/mycollection/mycollection.wxml-->
+<view class='container'>
+  <AppTabs tabs="{{tabList}}" bindswitchTab="switchTab"></AppTabs>
+  <view class='products-container' hidden='{{tabIndex != 0}}'>
+    <ProductCard wx:for="{{products.list}}" wx:key="index" info="{{item}}" />
+  </view>
+  <view class='works-container' wx:if="{{works.isFirstShow && works.list.length}}" hidden='{{tabIndex != 1}}'>
+    <Masonry list="{{works.list}}" column-space="30rpx" generic:masonry-item="WorksCard"></Masonry>
+  </view>
+  <view wx:if="{{tabIndex == 0 && !products.list.length || tabIndex == 1 && !works.list.length}}">
+    <AppDefault image="/images/default/default_collection.png" text="您可以将喜欢的内容收藏到这里" />
+    <button class='default-button' bindtap='jumpPurchase'>随便逛逛</button>
+  </view>
+</view>

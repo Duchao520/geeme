@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "AppTabs": "/components/App/AppTabs/AppTabs",
+    "AppDefault": "/components/App/AppDefault/AppDefault"
+  },
+  "navigationBarTitleText": "我的礼品卡"
+}

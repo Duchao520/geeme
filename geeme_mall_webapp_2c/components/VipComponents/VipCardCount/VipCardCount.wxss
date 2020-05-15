@@ -1,0 +1,78 @@
+@import '/utils/wxss/icon.wxss';
+.VipCardDiscount{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  background: #fff;
+}
+
+.header{
+  position: relative;
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  font-size:34rpx;
+  border-bottom:1px solid #efeff4;
+}
+
+.icon--close{
+  position:absolute;
+  top:30rpx;
+  right:30rpx;
+}
+
+.container{
+  margin-top:20rpx;
+  padding:0 32rpx 50rpx;
+  max-height:970rpx;
+}
+
+.row{
+  font-size:26rpx;
+  height:80rpx;
+  line-height:80rpx;
+  color:#333;
+  white-space: nowrap;
+}
+
+.row.title{
+  color:#999 !important;
+  font-size:24rpx !important;
+  height:auto;
+  line-height: normal;
+  margin-bottom:20rpx;
+}
+
+.row:nth-child(odd){
+  background: #fff;
+}
+
+.row:nth-child(even){
+  background:#f8f8f8;
+}
+
+.row > view{
+  display: inline-block;
+  vertical-align: middle;
+  line-height:normal;
+}
+
+.column-1{
+  width:344rpx;
+  padding-left:16rpx;
+}
+
+.column-2{
+  width:200rpx;
+}
+
+.column-3{
+
+}
+
+.text--ellipsis_1{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

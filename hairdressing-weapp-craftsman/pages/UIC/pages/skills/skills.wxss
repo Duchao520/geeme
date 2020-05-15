@@ -1,0 +1,39 @@
+.page-container{
+  padding-bottom:200rpx;
+}
+
+.shop_skills{
+  padding:0 32rpx;
+}
+
+.shop_skills-title{
+  height:96rpx;
+  line-height:96rpx;
+  color:#262628;
+  font-size:30rpx;
+  font-weight: 600;
+}
+
+.skills-container{
+  margin-right:-32rpx;
+}
+
+.skill-item{
+  display: inline-block;
+  box-sizing: content-box;
+  margin-right:32rpx;
+  margin-bottom:30rpx;
+  padding:0 30rpx;
+  height:56rpx;
+  line-height:56rpx;
+  color:#999;
+  font-size:24rpx;
+  border: 1px solid #aaa;
+  border-radius: 28rpx;
+  
+}
+
+.skill-item.active{
+  border-color: #f52d56;
+  color:#f52d56;
+}

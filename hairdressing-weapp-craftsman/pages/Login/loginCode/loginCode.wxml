@@ -1,0 +1,20 @@
+<view class="loginIndex">
+  <view class='logo'></view>
+  <view class='form'>
+    <form bindsubmit='submit'>
+      <input name="telephone" placeholder='请输入登录手机号' placeholder-class='placeholder' bindinput="inputPhone"></input>
+      <view class='inputBox'>
+        <input name="code" placeholder='请输入验证码' placeholder-class='placeholder' bindinput="inputCode"></input>
+        <view class="getCodeBox">
+          <view class='noStart' wx:if="{{countdown == 0}}" bindtap='getCode'>获取验证码</view>
+          <view class='alreadyStart' wx:else>({{countdown}}s)后重新获取</view>
+        </view>
+      </view>
+      <button class='loginButton' form-type='submit'>确认登录</button>
+    </form>
+  </view>
+
+  <view class='loginType' bindtap='tologinIndex'>
+    <view class='login-forget'>密码登录</view>
+  </view>
+</view>

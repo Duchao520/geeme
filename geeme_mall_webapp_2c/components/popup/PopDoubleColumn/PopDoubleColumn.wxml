@@ -1,0 +1,11 @@
+<wxs src="../../../utils/format.wxs" module="format" />
+<view class="PopDoubleColumn" hidden='{{!ifShow}}'>
+  <view class='container'>
+    <view class='left'>
+      <view class='left-item {{activeItem.id == item.id ? "active" : ""}}' wx:for="{{list}}" wx:key="index" catchtap='clickLeft' data-item="{{item}}">{{item.name}}</view>
+    </view>
+    <view class='right'>
+      <view class='right-item {{(currentItem.id == item.parentId || currentItem.id == item.fatherId) && activeChildId == item.id ? "active" : ""}}' wx:for="{{activeItem.children || activeItem.floorList}}" wx:key="index" catchtap='clickRight' data-id="{{item.id}}" data-item="{{item}}" data-name="{{item.name}}">{{format.getCity(item.name)}}</view>
+    </view>
+  </view>
+</view>

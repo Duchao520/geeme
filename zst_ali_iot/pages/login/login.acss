@@ -1,0 +1,62 @@
+.all{
+	position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.header{
+	width: 164rpx;
+	height: 162rpx;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+.header image{
+	width: 164rpx;
+	height: 162rpx;
+}
+.all input{
+	width: 550rpx;
+	padding-left: 110rpx;
+	height: 86rpx;
+	border-bottom: 1px solid #ADADAD;
+	font-size: 30rpx;
+	font-weight: bold;
+	background-color:transparent
+}
+.all .input_input{
+		margin-left:42rpx;
+		position: relative;
+}
+.admin image{
+	width: 42rpx;
+	height: 46rpx;
+	position: absolute;
+	top: 20rpx;
+	left: 40rpx;
+}
+.pwd .pwd_pwd{
+	width: 42rpx;
+	height: 46rpx;
+	position: absolute;
+	top: 145rpx;
+	left: 40rpx;
+}
+.pwd_eye{
+	width: 34rpx;
+	height: 20rpx;
+	position: absolute;
+	top: 160rpx;
+	right:90rpx;
+}
+.login{
+	width: 500rpx;
+	height: 80rpx;
+	background-color: #176DEB;
+	font-size: 36rpx;
+	text-align: center;
+	line-height: 80rpx;
+	border-radius: 40rpx;
+	margin: 0 auto;
+	color: white;
+}

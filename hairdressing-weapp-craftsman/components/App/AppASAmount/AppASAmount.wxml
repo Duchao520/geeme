@@ -1,0 +1,5 @@
+<view class="AppASAmount" style="height:{{height}};line-height:{{height}}">
+  <view catchtap='sub' class="item sub" style="width:{{height}};background-size:{{_height}} {{_height}}"></view>
+  <view class="item amount" style="width:{{height}};font-size:{{_height}}">{{amount}}</view>
+  <view catchtap='add' class="item add" style="width:{{height}};background-size:{{_height}} {{_height}}"></view>
+</view>

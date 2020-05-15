@@ -1,0 +1,30 @@
+<wxs src="../../../../utils/format.wxs" module="format" />
+<block wx:if="{{assessmentList && assessmentList.length}}">
+  <view class="evaluationDetail">
+    <!-- 评价星级 -->
+    <!-- <view class='Score' wx:if="{{assessmentNum != 0}}"> -->
+    <view class='Score'>
+      <view class='scoreLeft'>
+        <text style='font-size:32rpx;vertical-align:middle;display:inline-block;margin-right:16rpx;'>{{format.fixNum(avgScore, 1)}}分</text>
+        <AppAvgScore width="30rpx" height="30rpx" space="10rpx" score="{{avgScore}}" />
+      </view>
+      <view class='scoreRight'>好评{{goodAssessmentRate}}%</view>
+    </view>
+    <!-- 评价数据统计 -->
+    <view class='evaluationData'>
+      <view class='evaluationDataItem {{tagId == item.tagId ? "active" : ""}}' wx:for="{{tags}}" wx:key="{{index}}" bindtap='switchTag' data-id='{{item.tagId}}' wx:if="{{(TAG_SWITCHER ? true : (index <= 8)) }}">{{item.tagName}}({{item.num}})</view>
+      <view class="absBtm fz-24 fc-999999" bindtap="switchTagEvent">
+        <text>{{TAG_SWITCHER ? '收起' : '展开'}}</text>
+        <text class="iconfont fz-24 {{TAG_SWITCHER ? 'iconxiala-copy' : 'iconxiala'}}"></text>
+      </view>
+    </view>
+
+    <!-- 评价底部 -->
+    <view class='evaluationBottom'>
+      <comments list="{{assessmentList}}" />
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <AppDefault image="/images/default/default_comment.png" text="暂无评价哦，快去预约抢沙发吧" />
+</block>

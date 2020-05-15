@@ -1,0 +1,38 @@
+@import '/utils/wxss/icon.wxss';
+
+.PopHeader{
+  display: flex;
+  height:100rpx;
+  line-height:100rpx;
+  background:#fff;
+  border-bottom:1px solid #efeff4;
+  z-index:12;
+}
+
+.header-item{
+  flex: 1;
+  text-align: center;
+  font-size:28rpx;
+  color:#444;
+}
+
+.header-item.active{
+  color:#f52d56;
+}
+
+.header-item > text{
+  display: inline-block;
+  padding-right:22rpx;
+  background: no-repeat right center;
+  background-size:14rpx 10rpx;
+}
+
+.header-item > text.bg_arrow{
+  padding-right: 22rpx;
+  background-size:14rpx 10rpx;
+}
+
+.header-item > text.bg_filter{
+  padding-right:28rpx;
+  background-size:20rpx 20rpx;
+}
